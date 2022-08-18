@@ -24,6 +24,8 @@ parasails.registerPage('login', {
 
     // Server error state for the form
     cloudError: '',
+
+    isOTPRequested: false
   },
 
   //  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗
@@ -34,6 +36,7 @@ parasails.registerPage('login', {
   },
   mounted: async function() {
     //…
+    console.log('parasails', parasails)
   },
 
   //  ╦╔╗╔╔╦╗╔═╗╦═╗╔═╗╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
@@ -48,6 +51,15 @@ parasails.registerPage('login', {
       this.syncing = true;
       window.location = '/';
     },
+
+    sendOTP: async function () {
+      if (!this.formData.emailAddress || !parasails.util.isValidEmailAddress(this.formData.emailAddress)) {
+        this.formErrors.emailAddress = true;
+        this.$forceUpdate();
+        return;
+      }
+      this.isOTPRequested = true;
+    }
 
   }
 });

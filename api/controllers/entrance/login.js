@@ -84,8 +84,9 @@ and exposed as \`req.me\`.)`
     }
 
     // If the password doesn't match, then also exit thru "badCombo".
-    await sails.helpers.passwords.checkPassword(password, userRecord.password)
-    .intercept('incorrect', 'badCombo');
+    // [rowell 2022-08-18] TODO: replace with OTP checking
+    // await sails.helpers.passwords.checkPassword(password, userRecord.password).intercept('incorrect', 'badCombo');
+
 
     // If "Remember Me" was enabled, then keep the session alive for
     // a longer amount of time.  (This causes an updated "Set Cookie"
