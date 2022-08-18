@@ -59,6 +59,11 @@ parasails.registerPage('login', {
         return;
       }
       this.isOTPRequested = true;
+    },
+
+    changeEmail: async function () {
+      this.formData.password = ''
+      this.isOTPRequested = false;
     }
 
   }
