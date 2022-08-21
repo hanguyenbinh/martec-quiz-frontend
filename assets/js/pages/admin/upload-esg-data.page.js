@@ -1,9 +1,8 @@
-parasails.registerPage('welcome', {
+parasails.registerPage('upload-esg-data', {
 
   data: {
-    
-  },
 
+  },
 
   beforeMount: function() {
 
@@ -11,6 +10,7 @@ parasails.registerPage('welcome', {
   mounted: async function() {
 
   },
+
 
   methods: {
 
