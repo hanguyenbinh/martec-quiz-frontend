@@ -101,5 +101,7 @@ module.exports.custom = {
   *                                                                          *
   ***************************************************************************/
   // …
+  attachmentDirectory: process.env.ATTACHMENT_DIR || process.cwd() + "/uploads",
+  attachmentMaxBytes: 10 * 1024 * 1024,
 
 };
