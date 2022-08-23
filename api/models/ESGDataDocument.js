@@ -20,6 +20,12 @@ module.exports = {
       type: 'string',
       maxLength: 255
     },
+    
+    filename: {
+      required: true,
+      type: 'string',
+      maxLength: 255
+    },
 
     internalFile: {
       required: true,

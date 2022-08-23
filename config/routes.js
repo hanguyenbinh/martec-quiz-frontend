@@ -13,9 +13,10 @@ module.exports.routes = {
   //  ╦ ╦╔═╗╔╗ ╔═╗╔═╗╔═╗╔═╗╔═╗
   //  ║║║║╣ ╠╩╗╠═╝╠═╣║ ╦║╣ ╚═╗
   //  ╚╩╝╚═╝╚═╝╩  ╩ ╩╚═╝╚═╝╚═╝
-  'GET /':                      { action: 'view-homepage-or-redirect' },
-  'GET /welcome/:unused?':      { action: 'dashboard/view-welcome' },
-  'GET /admin/upload-esg-data': { action: 'admin/view-upload-esg-data' },
+  'GET /':                        { action: 'view-homepage-or-redirect' },
+  'GET /welcome/:unused?':        { action: 'dashboard/view-welcome' },
+  'GET /admin/upload-esg-data':   { action: 'admin/view-upload-esg-data' },
+  'GET /admin/upload-history':    { action: 'admin/view-upload-history' },
   // 'GET /faq':                { action:   'view-faq' },
   // 'GET /legal/terms':        { action:   'legal/view-terms' },
   // 'GET /legal/privacy':      { action:   'legal/view-privacy' },
@@ -63,4 +64,5 @@ module.exports.routes = {
   // 'POST  /api/v1/deliver-contact-form-message':          { action: 'deliver-contact-form-message' },
   'POST  /api/v1/observe-my-session':                 { action: 'observe-my-session', hasSocketFeatures: true },
   'POST  /api/v1/admin/upload-esg-data':              { action: 'admin/upload-esg-data' },
+  'GET   /api/v1/admin/upload-history':               { action: 'admin/get-upload-history' },
 };

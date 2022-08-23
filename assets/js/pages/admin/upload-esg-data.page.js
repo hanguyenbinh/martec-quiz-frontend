@@ -19,9 +19,9 @@ parasails.registerPage('upload-esg-data', {
   methods: {
     upload: async function () {
       this.uploading = true;
-      await Cloud.uploadEsgData(this.formData.description, this.$refs.esgDataDocument.files[0]);
+      await Cloud.uploadEsgData(this.formData.description, this.browsedFilename, this.$refs.esgDataDocument.files[0]);
       this.uploading = false;
-      this.goto("/admin/view-esg-data");
+      this.goto("/admin/upload-history");
     },
     onChangeEsgDataDocument: async function () {
       if (this.$refs.esgDataDocument.files[0]) {

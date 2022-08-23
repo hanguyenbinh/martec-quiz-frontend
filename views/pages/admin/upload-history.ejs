@@ -1,0 +1,52 @@
+<div id="upload-history" style="border-top: 1px solid #aaa;" v-cloak>
+  <account-notification-banner></account-notification-banner>
+  <div class="container-fluid">
+    <div class="page-container">
+      <div class="left-sidepanel">
+        <div class="list-group">
+          <a href="/" class="list-group-item list-group-item-action">Home</a>
+          <a href="/admin/upload-esg-data" class="list-group-item list-group-item-action">Upload ESG Data</a>
+          <a href="/admin/upload-history" class="list-group-item list-group-item-action active">Upload History</a>
+          <span href="/admin/manage-employee" class="list-group-item list-group-item-action disabled">Manage Employee</span>
+          <span href="/admin/manage-coins" class="list-group-item list-group-item-action disabled">Manage Coins</span>
+          <span href="/admin/manage-events" class="list-group-item list-group-item-action disabled">Manage Events</span>
+        </div>
+      </div>
+      <div class="main-content">
+        <div class="text-center mt-3">
+          <h1>Upload History</h1>
+          <hr/>
+        </div>
+        <div class="container">
+          <div class="row mt-5">
+            <table class="table table-striped table-upload-history">
+              <thead>
+                <tr>
+                  <th scope="col">Upload Data Time</th>
+                  <th scope="col">Filename</th>
+                  <th scope="col">As of Date</th>
+                  <th scope="col">Description</th>
+                  <th scope="col">Blockchain Hash</th>
+                  <th scope="col">Download</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="item in uploadHistoryRecords">
+                  <td scope="row">{{ item.uploadDateTime }}</td>
+                  <td scope="row">{{ item.filename }}</td>
+                  <td scope="row">{{ item.asOfDate }}</td>
+                  <td scope="row">{{ item.description }}</td>
+                  <td scope="row">{{ item.blockchainHash }}</td>
+                  <td scope="row">
+                    <button type="button" class="btn btn-sm btn-light"><i class="fa fa-download"></i></button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<%- /* Expose server-rendered data as window.SAILS_LOCALS :: */ exposeLocalsToBrowser() %>

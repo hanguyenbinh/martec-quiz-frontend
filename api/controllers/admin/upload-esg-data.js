@@ -24,6 +24,11 @@ module.exports = {
 
   inputs: {
     description: {
+      required: true,
+      type: 'string'
+    },
+    filename: {
+      required: true,
       type: 'string'
     },
     file: {
@@ -40,12 +45,13 @@ module.exports = {
 
   fn: async function (inputs) {
     const company = this.req.me.company;
-    const { file, description } = inputs;
+    const { description, filename, file  } = inputs;
     const uploadedFile = await upload(file);
     const basename = path.basename(uploadedFile.fd);
     const data = {
       company,
       description,
+      filename,
       internalFile: basename
     };
     const eSGDataDocument = await ESGDataDocument.create(data).fetch();
