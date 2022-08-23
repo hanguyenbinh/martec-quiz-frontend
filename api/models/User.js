@@ -8,9 +8,11 @@ module.exports = {
 
   attributes: {
 
-    //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
-    //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
-    //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
+    company: {
+      required: true,
+      type: 'number', columnType: 'INT(11)',
+      description: 'Member Company record id',
+    },
 
     emailAddress: {
       type: 'string',
