@@ -43,14 +43,14 @@ module.exports = {
     const { file, description } = inputs;
     const uploadedFile = await upload(file);
     const basename = path.basename(uploadedFile.fd);
-    // const data = {
-    //   company,
-    //   description,
-    //   internalFile: basename
-    // };
-    // const eSGDataDocument = await ESGDataDocument.create(data).fetch();
+    const data = {
+      company,
+      description,
+      internalFile: basename
+    };
+    const eSGDataDocument = await ESGDataDocument.create(data).fetch();
     return {
-      // doc: eSGDataDocument.id
+      doc: eSGDataDocument.id
     };
   }
 

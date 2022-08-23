@@ -25,7 +25,7 @@
           </div>
           <div class="col-md-4">
             <div class="form-group">
-              <input type="password" class="form-control" placeholder="Password" :class="[formErrors.password ? 'is-invalid' : '']" v-model.trim="formData.password" autocomplete="current-password">
+              <input type="password" class="form-control" placeholder="One Time Passcode" :class="[formErrors.password ? 'is-invalid' : '']" v-model.trim="formData.password" autocomplete="current-password">
               <div class="invalid-feedback" v-if="formErrors.password">Please provide the correct OTP.</div>
             </div>
           </div>

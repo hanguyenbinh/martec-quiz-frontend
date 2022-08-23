@@ -59,6 +59,9 @@ parasails.registerPage('login', {
         return;
       }
       this.isOTPRequested = true;
+      setTimeout(function() {
+        $('input[type=password]').focus();
+      }, 100);
     },
 
     changeEmail: async function () {
