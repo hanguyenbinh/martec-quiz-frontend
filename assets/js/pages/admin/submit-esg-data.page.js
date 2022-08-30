@@ -13,6 +13,8 @@ parasails.registerPage('submit-esg-data', {
   },
 
   methods: {
-
+    submitData: async function () {
+      await Cloud.submitEsgData(this.formData);
+    }
   }
 });

@@ -156,6 +156,116 @@
             </div>
           </div>
         </div>
+        <hr/>
+
+        <div class="container mb-3">
+          <div class="row">
+            <h4>Water Consumption</h4>
+          </div>
+          <div class="row">
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="waterConsumption">Annual Water Consumption<br/>&nbsp;</label>
+                <input class="form-control" name="waterConsumption" type="number" :class="[formErrors.waterConsumption ? 'is-invalid' : '']"
+                       v-model.trim="formData.waterConsumption" placeholder="">
+                <div class="invalid-feedback" v-if="formErrors.waterConsumption">Input a valid Annual Water Consumption</div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="noOfProjectsUsingRecoveredWater">No of project using recovered water</label>
+                <input class="form-control" name="noOfProjectsUsingRecoveredWater" type="number" :class="[formErrors.noOfProjectsUsingRecoveredWater ? 'is-invalid' : '']"
+                       v-model.trim="formData.noOfProjectsUsingRecoveredWater" placeholder="">
+                <div class="invalid-feedback" v-if="formErrors.noOfProjectsUsingRecoveredWater">Input a valid No of project using recovered water</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr/>
+
+        <div class="container mb-3">
+          <div class="row">
+            <h4>Non-hazardous Waste Produced</h4>
+          </div>
+          <div class="row">
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="weightInertWasteDisposed">Total weight of inert waste disposed</label>
+                <input class="form-control" name="weightInertWasteDisposed" type="number" :class="[formErrors.weightInertWasteDisposed ? 'is-invalid' : '']"
+                       v-model.trim="formData.weightInertWasteDisposed" placeholder="">
+                <div class="invalid-feedback" v-if="formErrors.weightInertWasteDisposed">Input a valid Total weight of inert waste disposed</div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="weightNonInertWasteDisposed">Total weight of non-inert waste disposed</label>
+                <input class="form-control" name="weightNonInertWasteDisposed" type="number" :class="[formErrors.weightNonInertWasteDisposed ? 'is-invalid' : '']"
+                       v-model.trim="formData.weightNonInertWasteDisposed" placeholder="">
+                <div class="invalid-feedback" v-if="formErrors.weightNonInertWasteDisposed">Input a valid Total weight of non-inert waste disposed</div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="weightMixedWasteDisposed">Total weight of mixed waste disposed</label>
+                <input class="form-control" name="weightMixedWasteDisposed" type="number" :class="[formErrors.weightMixedWasteDisposed ? 'is-invalid' : '']"
+                       v-model.trim="formData.weightMixedWasteDisposed" placeholder="">
+                <div class="invalid-feedback" v-if="formErrors.weightMixedWasteDisposed">Input a valid Total weight of mixed waste disposed</div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="weightWasteBeingReused">Total weight of waste materials being reused</label>
+                <input class="form-control" name="weightWasteBeingReused" type="number" :class="[formErrors.weightWasteBeingReused ? 'is-invalid' : '']"
+                       v-model.trim="formData.weightWasteBeingReused" placeholder="">
+                <div class="invalid-feedback" v-if="formErrors.weightWasteBeingReused">Input a valid Total weight of waste materials being reused</div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="weightHazardWasteDisposed">Total weight of hazardous waste disposed</label>
+                <input class="form-control" name="weightHazardWasteDisposed" type="number" :class="[formErrors.weightHazardWasteDisposed ? 'is-invalid' : '']"
+                       v-model.trim="formData.weightHazardWasteDisposed" placeholder="">
+                <div class="invalid-feedback" v-if="formErrors.weightHazardWasteDisposed">Input a valid Total weight of hazardous waste disposed</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr/>
+
+        <div class="container mb-3">
+          <div class="row">
+            <h4>Health and Safety</h4>
+          </div>
+          <div class="row">
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="noOfIndustrialAccidents">No of Industrial Accidents</label>
+                <input class="form-control" name="noOfIndustrialAccidents" type="number" :class="[formErrors.noOfIndustrialAccidents ? 'is-invalid' : '']"
+                       v-model.trim="formData.noOfIndustrialAccidents" placeholder="">
+                <div class="invalid-feedback" v-if="formErrors.noOfIndustrialAccidents">Input a valid No of Industrial Accidents</div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="noOfOccupationalIncident">No of occupational Incident</label>
+                <input class="form-control" name="noOfOccupationalIncident" type="number" :class="[formErrors.noOfOccupationalIncident ? 'is-invalid' : '']"
+                       v-model.trim="formData.noOfOccupationalIncident" placeholder="">
+                <div class="invalid-feedback" v-if="formErrors.noOfOccupationalIncident">Input a valid No of occupational Incident</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr/>
+
+        <div class="container mb-3">
+          <div class="row">
+            <div class="offset-md-9 col-md-3">
+              <button type="button" class="btn btn-block btn-outline-dark" @click="submitData()">Submit</button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

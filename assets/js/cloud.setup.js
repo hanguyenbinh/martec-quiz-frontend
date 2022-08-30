@@ -13,7 +13,7 @@
 Cloud.setup({
 
   /* eslint-disable */
-  methods: {"logout":{"verb":"GET","url":"/api/v1/account/logout","args":[]},"updateProfile":{"verb":"PUT","url":"/api/v1/account/update-profile","args":["fullName","emailAddress"]},"login":{"verb":"PUT","url":"/api/v1/entrance/login","args":["emailAddress","password","rememberMe"]},"observeMySession":{"verb":"POST","url":"/api/v1/observe-my-session","args":[],"protocol":"io.socket"},"uploadEsgData":{"verb":"POST","url":"/api/v1/admin/upload-esg-data","args":["description","filename","file"]},"getUploadHistory":{"verb":"GET","url":"/api/v1/admin/upload-history","args":[]}}
+  methods: {"logout":{"verb":"GET","url":"/api/v1/account/logout","args":[]},"updateProfile":{"verb":"PUT","url":"/api/v1/account/update-profile","args":["fullName","emailAddress"]},"login":{"verb":"PUT","url":"/api/v1/entrance/login","args":["emailAddress","password","rememberMe"]},"observeMySession":{"verb":"POST","url":"/api/v1/observe-my-session","args":[],"protocol":"io.socket"},"uploadEsgData":{"verb":"POST","url":"/api/v1/admin/upload-esg-data","args":["description","filename","file"]},"getUploadHistory":{"verb":"GET","url":"/api/v1/admin/upload-history","args":[]},"submitEsgData":{"verb":"POST","url":"/api/v1/admin/submit-ecg-data","args":["data"]}}
   /* eslint-enable */
 
 });
