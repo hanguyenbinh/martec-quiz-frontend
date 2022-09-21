@@ -57,7 +57,7 @@ parasails.registerPage('login', {
         this.formErrors.emailAddress = true;
         this.$forceUpdate();
         return;
-      }
+      } 
       this.isOTPRequested = true;
       setTimeout(function() {
         $('input[type=password]').focus();

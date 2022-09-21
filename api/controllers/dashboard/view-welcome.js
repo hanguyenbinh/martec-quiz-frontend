@@ -10,7 +10,7 @@ module.exports = {
   exits: {
 
     success: {
-      viewTemplatePath: 'pages/dashboard/welcome',
+      viewTemplatePath: 'pages/dashboard/welcome', 
       description: 'Display the welcome page for authenticated users.'
     },
 
