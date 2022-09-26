@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { isEmpty } from "lodash";
-import * as moment from "moment";
+import moment from "moment";
 
 // Import Images
 import dummyImg from "../../assets/images/users/user-dummy-img.jpg";

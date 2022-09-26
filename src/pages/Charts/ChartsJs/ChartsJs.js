@@ -1,5 +1,5 @@
 import React from 'react';
-import { Line,Bar,Pie,Doughnut,Polar,Radar} from "react-chartjs-2";
+import { Line,Bar,Pie,Doughnut,PolarArea,Radar} from "react-chartjs-2";
 
 import getChartColorsArray from "../../../Components/Common/ChartsDynamicColor";
 
@@ -237,7 +237,7 @@ const PolarChart = ({dataColors}) => {
     }
   return (
     <React.Fragment>
-      <Polar width={723} height={320} data={data} options={option} />
+      <PolarArea width={723} height={320} data={data} options={option} />
     </React.Fragment>
   )
 }

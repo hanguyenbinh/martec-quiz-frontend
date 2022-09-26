@@ -17,7 +17,7 @@ import {
   Input,
   FormFeedback
 } from "reactstrap";
-import * as moment from "moment";
+import moment from "moment";
 import { Link } from "react-router-dom";
 import Select from "react-select";
 import classnames from "classnames";

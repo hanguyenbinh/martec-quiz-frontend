@@ -22,7 +22,7 @@ import {
 } from "reactstrap";
 import Select from "react-select";
 import Flatpickr from "react-flatpickr";
-import * as moment from "moment";
+import moment from "moment";
 
 import BreadCrumb from "../../../Components/Common/BreadCrumb";
 import { isEmpty } from "lodash";

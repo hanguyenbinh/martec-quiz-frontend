@@ -17,7 +17,7 @@ import {
 import { Link } from "react-router-dom";
 import Flatpickr from "react-flatpickr";
 import { isEmpty } from "lodash";
-import * as moment from "moment";
+import moment from "moment";
 
 // Formik
 import * as Yup from "yup";

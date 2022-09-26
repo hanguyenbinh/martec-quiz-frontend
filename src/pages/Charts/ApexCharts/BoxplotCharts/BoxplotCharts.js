@@ -251,12 +251,12 @@ const Horizontal = ({ dataColors }) => {
   };
   return (
     <React.Fragment>
-      <ReactApexChart
+      {/* <ReactApexChart
         options={options}
         series={series}
         type="boxPlot"
         height={350}
-      />
+      /> */}
     </React.Fragment>
   );
 };

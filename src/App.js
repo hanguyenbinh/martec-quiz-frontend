@@ -1,19 +1,20 @@
-import React from 'react';
+import React from "react"
 
 //import Scss
-import './assets/scss/themes.scss';
+import "./assets/scss/themes.scss"
 
 //imoprt Route
-import Route from './Routes';
+import Route from "./Routes"
 
 // Import Firebase Configuration file
 // import { initFirebaseBackend } from "./helpers/firebase_helper";
 
-// Fake Backend 
-import fakeBackend from "./helpers/AuthType/fakeBackend";
+// Fake Backend
+import fakeBackend from "./helpers/AuthType/fakeBackend"
+import AlertDialog from "./Components/Common/AlertDialog/AlertDialog"
 
 // Activating fake backend
-fakeBackend();
+fakeBackend()
 
 // const firebaseConfig = {
 //   apiKey: process.env.REACT_APP_API_KEY,
@@ -30,11 +31,12 @@ fakeBackend();
 // initFirebaseBackend(firebaseConfig);
 
 function App() {
-  return (
-    <React.Fragment>
-      <Route />
-    </React.Fragment>
-  );
+	return (
+		<React.Fragment>
+			<Route />
+			<AlertDialog />
+		</React.Fragment>
+	)
 }
 
-export default App;
+export default App

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import * as moment from "moment";
+import moment from "moment";
 
 const handleValidDate = date => {
     const date1 = moment(new Date(date)).format("DD MMM Y");
