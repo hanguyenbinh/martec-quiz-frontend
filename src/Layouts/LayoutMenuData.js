@@ -146,6 +146,12 @@ const Navdata = () => {
 			label: "Upload ESG Data",
 			link: "/upload-esg-data",
 			parentId: "uploadESGData"
+		},
+		{
+			id: "uploadHistoryList",
+			label: "Upload History",
+			link: "/upload-history-list",
+			parentId: "uploadHistoryList"
 		}
 		// {
 		// 	id: "dashboard",

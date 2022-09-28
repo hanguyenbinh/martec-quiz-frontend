@@ -92,7 +92,7 @@ const AlertDialog = (props) => {
 				<ModalBody>
 					<div className="mt-4">
 						{![null, undefined, ""].includes(title) && (
-							<h4 className="text-center mb-3">Oops something went wrong!</h4>
+							<h4 className="text-center mb-3">{title}</h4>
 						)}
 
 						{![null, undefined, ""].includes(content) && (

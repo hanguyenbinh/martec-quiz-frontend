@@ -222,10 +222,12 @@ import UserProfile from "../pages/Authentication/user-profile"
 
 import ComponentLibrary from "../pages/ComponentLibrary"
 import UploadESGData from "../pages/UploadESGData"
+import UploadList from "../pages/UploadList"
 
 const authProtectedRoutes = [
 	{ path: "/dashboard", component: ComponentLibrary },
 	{ path: "/upload-esg-data", component: UploadESGData },
+	{ path: "/upload-history-list", component: UploadList },
 
 	{ path: "/dashboard-analytics", component: DashboardAnalytics },
 	{ path: "/dashboard-crm", component: DashboardCrm },

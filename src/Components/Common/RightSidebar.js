@@ -859,7 +859,7 @@ const RightSidebar = () => {
                                                         data-bs-target="#collapseBgGradient"
                                                         data-bs-toggle="collapse"
                                                         aria-controls="collapseBgGradient"
-                                                        checked={leftSidebarType === leftSidebarTypes.GRAD}
+                                                        // checked={leftSidebarType === leftSidebarTypes.GRAD}
                                                         onClick={tog_show}
                                                     >
                                                         <span className="d-flex gap-1 h-100">

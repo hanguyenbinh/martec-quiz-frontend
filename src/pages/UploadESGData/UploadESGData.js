@@ -1,4 +1,5 @@
 import React from "react"
+import { useHistory } from "react-router-dom"
 import {
 	Button,
 	Card,
@@ -15,19 +16,39 @@ import PreviewCardHeader from "../../Components/Common/PreviewCardHeader"
 import { alertService } from "../../services"
 
 const SimpleForm = () => {
+	const history = useHistory()
+
 	const handleSubmit = async () => {
 		const { isConfirmed } = await alertService.fireDialog({
-			title: "Hello",
-			content: "Nooooooo"
+			title: "Confirmation Page",
+			content: <div className="text-center">
+				<p className="mb-0">Version 1</p>
+				<p className="mb-0">Year of Record: 2022</p>
+				<p className="mb-0">Year of Record: 2022</p>
+				<p className="mb-0">...</p>
+				<p className="mb-0"><b>Energy Consumption</b></p>
+				<p className="mb-0">Petrol Usage: 1.2 tonne</p>
+				<p>Diesel: 3 tonne</p>
+				<p className="mb-0 "><b>By clicking the 'confirm' button, you acknowledge that the submitted details are correct.<br/> Please check your details carefully before continuing.<br/><br/>The contents will subsequently be hashed and stored on Blockchain</b></p>
+			</div>,
+			confirmButtonProps: {
+				text: "Confirm"
+			},
+			cancelButtonProps: {
+				show: true,
+				text: "Cancel"
+			}
 		})
-		console.log("confirm", isConfirmed)
+		if (isConfirmed) {
+			history.push("/upload-history-list")
+		}
 	}
 
 	return (
 		<form>
 			<div className="mb-3 d-flex justify-content-end">
 				<Button onClick={handleSubmit} type="button">
-					Submit
+					Upload
 				</Button>
 			</div>
 			<Card>

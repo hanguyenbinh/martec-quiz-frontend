@@ -6,6 +6,7 @@ import { Dropdown, DropdownMenu, DropdownToggle, Form } from 'reactstrap';
 import logoSm from "../assets/images/logo-sm.png";
 import logoDark from "../assets/images/logo-dark.png";
 import logoLight from "../assets/images/logo-light.png";
+import logo from "../assets/images/logo.png";
 
 //import Components
 import SearchOption from '../Components/Common/SearchOption';
@@ -63,10 +64,10 @@ const Header = ({ onChangeLayoutMode, layoutModeType, headerClass }) => {
                             <div className="navbar-brand-box horizontal-logo">
                                 <Link to="/" className="logo logo-dark">
                                     <span className="logo-sm">
-                                        <img src={logoSm} alt="" height="22" />
+                                        <img src={logo} alt="" height="22" />
                                     </span>
                                     <span className="logo-lg">
-                                        <img src={logoDark} alt="" height="17" />
+                                        <img src={logo} alt="" height="17" />
                                     </span>
                                 </Link>
 
@@ -75,7 +76,7 @@ const Header = ({ onChangeLayoutMode, layoutModeType, headerClass }) => {
                                         <img src={logoSm} alt="" height="22" />
                                     </span>
                                     <span className="logo-lg">
-                                        <img src={logoLight} alt="" height="17" />
+                                        <img src={logo} alt="" height="17" />
                                     </span>
                                 </Link>
                             </div>
