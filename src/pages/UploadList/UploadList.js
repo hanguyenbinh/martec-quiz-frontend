@@ -39,7 +39,7 @@ const UploadList = (props) => {
 	return (
 		<div className="page-content">
 			<Container fluid>
-				<BreadCrumb title="Upload history" />
+				<BreadCrumb title={T("Submission(s) History")} />
 				<Card>
 			<table className="table">
 				<thead>

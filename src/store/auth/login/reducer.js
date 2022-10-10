@@ -27,11 +27,14 @@ const login = (state = initialState, action) => {
         ...state,
         loading: true
       }
+      break;
     case LOGIN_INITIATE_SUCCESS:
+      console.log(state);
       state = {
         ...state,
         loading: false
       }
+      break;
     case LOGIN_SUCCESS:
       state = {
         ...state,

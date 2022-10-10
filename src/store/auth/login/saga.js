@@ -48,6 +48,7 @@ function* loginInitiate({ payload: { email, history } }) {
       sessionStorage.setItem("challengeId", JSON.stringify(response));
       if (response.status === 200) {
         yield put(loginInitiateSuccess({challengeId: response.data.challengeId}));
+        history.push("/dashboard");
       } else {
         yield put(apiError(response));
       }

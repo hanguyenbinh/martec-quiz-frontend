@@ -22,11 +22,11 @@ const AuthProtected = (props) => {
     redirect is un-auth access protected routes via url
     */
 
-  if (!userProfile && loading && !token) {
-    return (
-      <Redirect to={{ pathname: "/login", state: { from: props.location } }} />
-    );
-  }
+  // if (!userProfile && loading && !token) {
+  //   return (
+  //     <Redirect to={{ pathname: "/login", state: { from: props.location } }} />
+  //   );
+  // }
 
   return <>{props.children}</>;
 };

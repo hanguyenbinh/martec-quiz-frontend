@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react"
-import { withTranslation } from "react-i18next"
 import { useHistory } from "react-router-dom"
 
 const Navdata = (props) => {
-	const T = props.t
 	const history = useHistory()
 
 	//state data
@@ -146,13 +144,13 @@ const Navdata = (props) => {
 		},
 		{
 			id: "submitData",
-			label: T("Submit Data"),
+			label: ("Submit Data"),
 			link: "/submit-data",
 			parentId: "submitData"
 		},
 		{
 			id: "submissionsHistory",
-			label: T("Submission(s) History"),
+			label: ("Submission(s) History"),
 			link: "/submissions-history",
 			parentId: "submissionsHistory"
 		}
@@ -1321,4 +1319,4 @@ const Navdata = (props) => {
 	]
 	return <React.Fragment>{menuItems}</React.Fragment>
 }
-export default withTranslation()(Navdata)
+export default (Navdata)

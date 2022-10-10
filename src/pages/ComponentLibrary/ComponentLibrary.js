@@ -1,4 +1,6 @@
 import React from "react"
+import { withTranslation } from "react-i18next"
+import { withRouter } from "react-router-dom"
 import { Col, Container, Row } from "reactstrap"
 import BreadCrumb from "../../Components/Common/BreadCrumb"
 import AppChart from "./components/AppChart"
@@ -129,4 +131,4 @@ const ComponentLibrary = () => {
 	)
 }
 
-export default ComponentLibrary
+export default withRouter((withTranslation()(ComponentLibrary)))

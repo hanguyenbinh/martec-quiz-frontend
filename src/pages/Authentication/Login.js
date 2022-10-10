@@ -85,11 +85,11 @@ const Login = (props) => {
         <React.Fragment>
             <ParticlesAuth>
                 <div className="auth-page-content">
-                    <Container>
+                    <Container className='main-container'>
                         <Row>
                             <Col lg={12}>
                                 <div className="text-center mt-sm-5 mb-4 text-white-50">
-                                    <p className="mt-3 fs-15 fw-medium">{T('Application Name')}</p>
+                                    <p className="mt-3 fs-15 fw-medium"></p>
                                 </div>
                             </Col>
                         </Row>
@@ -100,7 +100,7 @@ const Login = (props) => {
                                     <Card className="mt-4">
                                         <CardBody className="p-4">
                                             <div className="text-center mt-2">
-                                                <h5 className="text-primary">{T('Welcome Back!')}</h5>
+                                                <h5 className="text-primary">{T('Application Name')}</h5>
                                             </div>
                                             {error && error ? (<Alert color="danger"> {error} </Alert>) : null}
                                             <div className="p-2 mt-4">
@@ -141,7 +141,7 @@ const Login = (props) => {
                                 ) : (<Card className="mt-4">
                                     <CardBody className="p-4">
                                         <div className="text-center mt-2">
-                                            <h5 className="text-primary">{T('Welcome Back!')}</h5>
+                                            <h5 className="text-primary">{T('Application Name')}</h5>
                                         </div>
                                         {error && error ? (<Alert color="danger"> {error} </Alert>) : null}
                                         <div className="p-2 mt-4">

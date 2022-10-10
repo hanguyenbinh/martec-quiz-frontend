@@ -1,5 +1,5 @@
 import React, { useEffect } from "react"
-import { Link } from "react-router-dom"
+import { Link, withRouter } from "react-router-dom"
 import SimpleBar from "simplebar-react"
 //import logo
 import logoSm from "../assets/images/logo-sm.png"
@@ -86,4 +86,4 @@ const Sidebar = (props) => {
 	)
 }
 
-export default withTranslation()(Sidebar)
+export default withRouter( withTranslation()(Sidebar))
