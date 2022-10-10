@@ -1,8 +1,10 @@
 import React from 'react';
+import { withTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { Card, CardBody, Col, DropdownItem, DropdownMenu, DropdownToggle, Row, Table, UncontrolledDropdown } from 'reactstrap';
 
-const DocumentsTab = () => {
+const DocumentsTab = (props) => {
+    const T = props.t
     return (
         <React.Fragment>
             <Card>
@@ -19,7 +21,7 @@ const DocumentsTab = () => {
                                             <th scope="col">File Name</th>
                                             <th scope="col">Type</th>
                                             <th scope="col">Size</th>
-                                            <th scope="col">Upload Date</th>
+                                            <th scope="col">{T("Upload Date")}</th>
                                             <th scope="col" style={{ width: "120px" }}>Action</th>
                                         </tr>
                                     </thead>
@@ -218,4 +220,4 @@ const DocumentsTab = () => {
     );
 };
 
-export default DocumentsTab;
+export default withTranslation()(DocumentsTab) ;

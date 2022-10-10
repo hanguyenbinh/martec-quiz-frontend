@@ -4,7 +4,9 @@ import {
   LOGOUT_USER,
   LOGOUT_USER_SUCCESS,
   API_ERROR,
-  RESET_LOGIN_FLAG
+  RESET_LOGIN_FLAG,
+  LOGIN_INITIATE,
+  LOGIN_INITIATE_SUCCESS
 } from "./actionTypes";
 
 const initialState = {
@@ -20,6 +22,16 @@ const login = (state = initialState, action) => {
         loading: true,
       };
       break;
+    case LOGIN_INITIATE:
+      state = {
+        ...state,
+        loading: true
+      }
+    case LOGIN_INITIATE_SUCCESS:
+      state = {
+        ...state,
+        loading: false
+      }
     case LOGIN_SUCCESS:
       state = {
         ...state,

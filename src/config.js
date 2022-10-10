@@ -8,6 +8,6 @@ module.exports = {
     APP_ID: "",
   },
   api: {
-    API_URL: "https://api-node.themesbrand.website",
+    API_URL: "https://apidev.hkca-esg.com/hkca-esg-admin/v1",
   }
 };

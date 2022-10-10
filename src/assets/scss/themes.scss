@@ -26,6 +26,7 @@ body {
     outline: none;
   }
 }
+
 .noUi-horizontal .noUi-handle {
   height: 16px !important;
   width: 16px !important;
@@ -33,16 +34,19 @@ body {
   right: -10px !important;
   top: -7px !important;
 }
+
 .noUi-connect,
 .noUi-horizontal {
   height: 2px !important;
 }
+
 .noUi-handle {
   background: #0ab39c !important;
   border: 2px solid var(--vz-card-bg) !important;
   -webkit-box-shadow: none !important;
   box-shadow: none !important;
 }
+
 .noUi-target {
   background: #fafafa !important;
   border-radius: 4px !important;
@@ -52,6 +56,7 @@ body {
   box-shadow: none !important;
   height: 4px !important;
 }
+
 .dropzone .dz-message {
   text-align: center;
 }
@@ -63,6 +68,7 @@ body {
   font-size: 12px !important;
   margin-right: 2px;
 }
+
 .fc-event {
   border: none !important;
 }
@@ -71,6 +77,7 @@ body {
   .fc-toolbar {
     display: block !important;
     text-align: center;
+
     .fc-left,
     .fc-right,
     .fc-center {
@@ -80,28 +87,34 @@ body {
       margin: 10px 0;
     }
   }
+
   .fc {
     .fc-toolbar {
-      > * {
-        > * {
+      >* {
+        >* {
           float: none;
         }
       }
     }
   }
+
   .fc-today-button {
     display: none;
   }
 }
+
 .flatpickr-calendar.open {
   z-index: 1090 !important;
 }
+
 .upcoming-scheduled .flatpickr-input[readonly] {
   display: none;
 }
+
 .ql-container.ql-snow {
   height: 250px;
 }
+
 .rangeslider-horizontal .rangeslider__fill {
   background-color: #405189 !important;
 }
@@ -111,27 +124,28 @@ body {
 //   max-height: 43px !important;
 // }
 
-@each $color, $value in $theme-colors {
+@each $color,
+$value in $theme-colors {
   .simplebar-track-#{$color} {
-    .simplebar-scrollbar:before{
-      background: $value !important; 
+    .simplebar-scrollbar:before {
+      background: $value  !important;
     }
-  }   
+  }
 }
 
 // chat
-.chat-conversation .chat-list .message-box-drop{
-  .nav-btn{
-      font-size: 18px;
-      padding: 4px;
-      color: $gray-600;
+.chat-conversation .chat-list .message-box-drop {
+  .nav-btn {
+    font-size: 18px;
+    padding: 4px;
+    color: $gray-600;
   }
 }
 
 // authentication
 
-#tsparticles{
-  canvas{
+#tsparticles {
+  canvas {
     position: absolute !important;
   }
 }
@@ -144,7 +158,7 @@ body {
 
 // Emoji Picker
 
-.pickerEmoji{
+.pickerEmoji {
   position: absolute;
   bottom: -100px;
   left: 10%;
@@ -153,13 +167,24 @@ body {
 
 // Toast
 .Toastify {
-  .Toastify__toast{
+  .Toastify__toast {
     min-height: 43px;
   }
+
   .Toastify__close-button {
     top: 6px;
   }
+
   .Toastify__close-button--light {
     color: $light;
   }
+}
+
+
+.app-title {
+  color: white;
+  font-size: 0.8rem;
+  line-height: 53px;
+  display: block;
+  padding: 30px 0;
 }

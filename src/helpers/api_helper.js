@@ -73,8 +73,10 @@ class APIClient {
   /**
    * post given data to url
    */
-  create = (url, data) => {
-    return axios.post(url, data);
+  create = (url, data, accessToken = '') => {
+    return axios.post(url, data, {
+      accessToken
+    });
   };
   /**
    * Updates data

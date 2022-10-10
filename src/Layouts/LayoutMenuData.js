@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react"
+import { withTranslation } from "react-i18next"
 import { useHistory } from "react-router-dom"
 
-const Navdata = () => {
+const Navdata = (props) => {
+	const T = props.t
 	const history = useHistory()
+
 	//state data
 	const [isDashboard, setIsDashboard] = useState(false)
 	const [isApps, setIsApps] = useState(false)
@@ -142,16 +145,16 @@ const Navdata = () => {
 			icon: "mdi mdi-speedometer"
 		},
 		{
-			id: "uploadESGData",
-			label: "Upload ESG Data",
-			link: "/upload-esg-data",
-			parentId: "uploadESGData"
+			id: "submitData",
+			label: T("Submit Data"),
+			link: "/submit-data",
+			parentId: "submitData"
 		},
 		{
-			id: "uploadHistoryList",
-			label: "Upload History",
-			link: "/upload-history-list",
-			parentId: "uploadHistoryList"
+			id: "submissionsHistory",
+			label: T("Submission(s) History"),
+			link: "/submissions-history",
+			parentId: "submissionsHistory"
 		}
 		// {
 		// 	id: "dashboard",
@@ -1318,4 +1321,4 @@ const Navdata = () => {
 	]
 	return <React.Fragment>{menuItems}</React.Fragment>
 }
-export default Navdata
+export default withTranslation()(Navdata)

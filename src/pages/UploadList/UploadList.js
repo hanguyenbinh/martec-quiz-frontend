@@ -1,8 +1,10 @@
 import React from "react"
+import { withTranslation } from "react-i18next"
 import { Button, Card, Col, Container, Row } from "reactstrap"
 import BreadCrumb from "../../Components/Common/BreadCrumb"
 
-const UploadList = () => {
+const UploadList = (props) => {
+	const T = props.t
 
 	const data = [{
 		upload_date_time: "22 Aug 01 16:00:01",
@@ -10,28 +12,28 @@ const UploadList = () => {
 		uploaded_by: "KSL Admin",
 		blockchain_hash: "asjhhlckjdj;qwer433f324",
 		link: "",
-		ver: "ver 1"
+		ver: "1"
 	},{
 		upload_date_time: "22 Aug 01 16:00:01",
 		as_of_date: "2022 Jul",
 		uploaded_by: "KSL Admin",
 		blockchain_hash: "asjhhlckjdj;qwer433f324",
 		link: "",
-		ver: "ver 1"
+		ver: "1"
 	},{
 		upload_date_time: "22 Aug 01 16:00:01",
 		as_of_date: "2022 Jul",
 		uploaded_by: "KSL Admin",
 		blockchain_hash: "asjhhlckjdj;qwer433f324",
 		link: "",
-		ver: "ver 1"
+		ver: "1"
 	},{
 		upload_date_time: "22 Aug 01 16:00:01",
 		as_of_date: "2022 Jul",
 		uploaded_by: "KSL Admin",
 		blockchain_hash: "asjhhlckjdj;qwer433f324",
 		link: "",
-		ver: "ver 1"
+		ver: "1"
 	}]
 
 	return (
@@ -42,12 +44,12 @@ const UploadList = () => {
 			<table className="table">
 				<thead>
 					<tr>
-						<th scope="col">Upload Date Time</th>
-						<th scope="col">As-of Date</th>
-						<th scope="col">Uploaded by</th>
-						<th scope="col">Blockchain Hash</th>
-						<th scope="col">View</th>
-						<th scope="col">Version</th>
+						<th scope="col">{T('Submission Date')}</th>
+						<th scope="col">{T('Year of Records')}</th>
+						<th scope="col">{T('Submitted By')}</th>
+						<th scope="col">{T('Hash Value')}</th>
+						<th scope="col">{T('View')}</th>
+						<th scope="col">{T('Version')}</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -75,4 +77,4 @@ const UploadList = () => {
 	)
 }
 
-export default UploadList
+export default withTranslation()(UploadList)

@@ -193,6 +193,7 @@
   padding: 0 1.3rem;
   text-align: center;
   transition: all .1s ease-out;
+  color: white !important;
 
   @media (max-width: 767.98px) {
       display: none;
@@ -336,10 +337,18 @@
           span.logo-lg {
               display: none;
           }
+          span.app-title{
+            font-size: 1.5rem;
+            color: white;
+          }
 
           span.logo-sm {
               display: inline-block;
           }
+      }
+      .app-title{
+        font-size: 1.5rem;
+        color: white;
       }
 
       .btn-vertical-sm-hover {
@@ -463,6 +472,10 @@
                   span.logo-lg {
                       display: inline-block;
                   }
+                  span.app-title{
+                    font-size: 1.5rem;
+                    color: white;
+                  }
 
                   span.logo-sm {
                       display: none;
@@ -532,6 +545,10 @@
       .logo {
           span.logo-lg {
               display: none;
+          }
+          span.app-title{
+            font-size: 1.5rem;
+            color: white;
           }
 
           span.logo-sm {

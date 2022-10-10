@@ -13,8 +13,10 @@ import avatar8 from "../../../assets/images/users/avatar-8.jpg";
 import avatar6 from "../../../assets/images/users/avatar-6.jpg";
 import image4 from "../../../assets/images/small/img-4.jpg";
 import image5 from "../../../assets/images/small/img-5.jpg";
+import { withTranslation } from 'react-i18next';
 
-const Comments = () => {
+const Comments = (props) => {
+    const T = props.t
     const [activeTab, setActiveTab] = useState('1');
     const toggleTab = (tab) => {
         if (activeTab !== tab) {
@@ -142,7 +144,7 @@ const Comments = () => {
                                             <th scope="col">File Name</th>
                                             <th scope="col">Type</th>
                                             <th scope="col">Size</th>
-                                            <th scope="col">Upload Date</th>
+                                            <th scope="col">{T("Upload Date")}</th>
                                             <th scope="col">Action</th>
                                         </tr>
                                     </thead>
@@ -338,4 +340,4 @@ const Comments = () => {
     );
 };
 
-export default Comments;
+export default withTranslation()(Comments);

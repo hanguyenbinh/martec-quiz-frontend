@@ -12,8 +12,10 @@ import VerticalLayout from "./VerticalLayouts"
 import TwoColumnLayout from "./TwoColumnLayout"
 import { Container } from "reactstrap"
 import HorizontalLayout from "./HorizontalLayout"
+import { withTranslation } from "react-i18next"
 
-const Sidebar = ({ layoutType }) => {
+const Sidebar = (props) => {
+	const layoutType = props
 	useEffect(() => {
 		var verticalOverlay = document.getElementsByClassName("vertical-overlay")
 		if (verticalOverlay) {
@@ -41,27 +43,24 @@ const Sidebar = ({ layoutType }) => {
 			document.documentElement.setAttribute("data-sidebar-size", "sm-hover")
 		}
 	}
+	console.log(layoutType);
 	return (
 		<React.Fragment>
 			<div className="app-menu navbar-menu">
 				<div className="navbar-brand-box">
-					<Link to="/" className="logo logo-dark">
-						<span className="logo-sm">
-							<img src={logo} alt="" height="22" />
-						</span>
-						<span className="logo-lg">
+
+					<Link to="/" className="logo logo-light">
+						{/* <span className="logo-lg">
 							<img src={logo} alt="" height="17" />
+						</span> */}
+						<span className="app-title">
+							{props.t('Application Name')}
 						</span>
 					</Link>
 
-					<Link to="/" className="logo logo-light">
-						<span className="logo-sm">
-							<img src={logo} alt="" height="22" />
-						</span>
-						<span className="logo-lg">
-							<img src={logo} alt="" height="17" />
-						</span>
-					</Link>
+
+
+
 					<button
 						onClick={addEventListenerOnSmHoverMenu}
 						type="button"
@@ -71,37 +70,20 @@ const Sidebar = ({ layoutType }) => {
 						<i className="ri-record-circle-line"></i>
 					</button>
 				</div>
-				{layoutType === "horizontal" ? (
-					<div id="scrollbar">
+				<React.Fragment>
+					<SimpleBar id="scrollbar" className="h-100">
 						<Container fluid>
-							<div id="two-column-menu"></div>
 							<ul className="navbar-nav" id="navbar-nav">
-								<HorizontalLayout />
+								<VerticalLayout layoutType={layoutType} />
 							</ul>
 						</Container>
-					</div>
-				) : layoutType === "twocolumn" ? (
-					<React.Fragment>
-						<TwoColumnLayout layoutType={layoutType} />
-						<div className="sidebar-background"></div>
-					</React.Fragment>
-				) : (
-					<React.Fragment>
-						<SimpleBar id="scrollbar" className="h-100">
-							<Container fluid>
-								<div id="two-column-menu"></div>
-								<ul className="navbar-nav" id="navbar-nav">
-									<VerticalLayout layoutType={layoutType} />
-								</ul>
-							</Container>
-						</SimpleBar>
-						<div className="sidebar-background"></div>
-					</React.Fragment>
-				)}
+					</SimpleBar>
+					<div className="sidebar-background"></div>
+				</React.Fragment>
 			</div>
 			<div className="vertical-overlay"></div>
 		</React.Fragment>
 	)
 }
 
-export default Sidebar
+export default withTranslation()(Sidebar)

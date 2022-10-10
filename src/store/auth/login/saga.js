@@ -1,41 +1,71 @@
-import { call, put, takeEvery, takeLatest } from "redux-saga/effects";
+import { call, put, takeEvery } from "redux-saga/effects";
 
 // Login Redux States
-import { LOGIN_USER, LOGOUT_USER, SOCIAL_LOGIN } from "./actionTypes";
-import { apiError, loginSuccess, logoutUserSuccess } from "./actions";
+import { LOGIN_CHALLENGE, LOGIN_INITIATE, LOGIN_USER, LOGOUT_USER } from "./actionTypes";
+import { apiError, loginInitiateSuccess, loginSuccess, logoutUserSuccess } from "./actions";
 
 //Include Both Helper File with needed methods
 import { getFirebaseBackend } from "../../../helpers/firebase_helper";
 import {
-  postFakeLogin,
-  postJwtLogin,
-  postSocialLogin,
+  postChallenge,
+  postInitiate,
+  postLogin,
 } from "../../../helpers/fakebackend_helper";
 
 const fireBaseBackend = getFirebaseBackend();
 
-function* loginUser({ payload: { user, history } }) {
+function* loginUser({ payload: { email, history } }) {
   try {
-    if (process.env.REACT_APP_DEFAULTAUTH === "firebase") {
+    if (process.env.REACT_APP_API_URL) {
+      const accessToken = sessionStorage.getItem('accessToken')
       const response = yield call(
-        fireBaseBackend.loginUser,
-        user.email,
-        user.password
-      );
-      yield put(loginSuccess(response));
-    } else if (process.env.REACT_APP_DEFAULTAUTH === "jwt") {
-      const response = yield call(postJwtLogin, {
-        email: user.email,
-        password: user.password,
-      });
+        postLogin,
+        {
+          email,
+        },
+        accessToken);
       sessionStorage.setItem("authUser", JSON.stringify(response));
-      yield put(loginSuccess(response));
-    } else if (process.env.REACT_APP_API_URL) {
-      const response = yield call(postFakeLogin, {
-        email: user.email,
-        password: user.password,
+      if (response.status === "success") {
+        yield put(loginSuccess(response));
+        history.push("/dashboard");
+      } else {
+        yield put(apiError(response));
+      }
+    }
+  } catch (error) {
+    yield put(apiError(error));
+  }
+}
+
+function* loginInitiate({ payload: { email, history } }) {
+  try {
+    console.log(email)
+    if (process.env.REACT_APP_API_URL) {
+      const response = yield call(postInitiate, {
+        email,
       });
-    sessionStorage.setItem("authUser", JSON.stringify(response));
+      console.log('loginInitiate', response);
+      sessionStorage.setItem("challengeId", JSON.stringify(response));
+      if (response.status === 200) {
+        yield put(loginInitiateSuccess({challengeId: response.data.challengeId}));
+      } else {
+        yield put(apiError(response));
+      }
+    }
+  } catch (error) {
+    yield put(apiError(error));
+  }
+}
+
+function* loginChallenge({ payload: { email, challengeValue, history } }) {
+  try {
+    if (process.env.REACT_APP_API_URL) {
+      const challengeId = sessionStorage.getItem('challengeId');
+      const response = yield call(postChallenge, {
+        email,
+        challengeValue,
+      });
+      sessionStorage.setItem("accessToken", JSON.stringify(response));
       if (response.status === "success") {
         yield put(loginSuccess(response));
         history.push("/dashboard");
@@ -62,32 +92,11 @@ function* logoutUser() {
   }
 }
 
-function* socialLogin({ payload: { data, history, type } }) {
-  try {
-    if (process.env.REACT_APP_DEFAULTAUTH === "firebase") {
-      const fireBaseBackend = getFirebaseBackend();
-      const response = yield call(
-        fireBaseBackend.socialLoginUser,
-        data,
-        type,
-      );
-      sessionStorage.setItem("authUser", JSON.stringify(response));
-      yield put(loginSuccess(response));
-    } else {
-      const response = yield call(postSocialLogin, data);
-      sessionStorage.setItem("authUser", JSON.stringify(response));
-      yield put(loginSuccess(response));
-    }
-    history.push("/dashboard");
-  } catch (error) {
-    yield put(apiError(error));
-  }
-}
-
 function* authSaga() {
   yield takeEvery(LOGIN_USER, loginUser);
-  yield takeLatest(SOCIAL_LOGIN, socialLogin);
   yield takeEvery(LOGOUT_USER, logoutUser);
+  yield takeEvery(LOGIN_INITIATE, loginInitiate);
+  yield takeEvery(LOGIN_CHALLENGE, loginChallenge);
 }
 
 export default authSaga;

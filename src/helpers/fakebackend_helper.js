@@ -1,4 +1,5 @@
 import { APIClient } from "./api_helper";
+import accessToken from "./jwt-token-access/accessToken";
 import * as url from "./url_helper";
 
 const api = new APIClient();
@@ -20,6 +21,11 @@ export const postFakeRegister = data => api.create(url.POST_FAKE_REGISTER, data)
 
 // Login Method
 export const postFakeLogin = data => api.create(url.POST_FAKE_LOGIN, data);
+
+// Get Otp Method
+export const postInitiate = data => api.create(url.POST_INITIATE, data);
+
+export const postChallenge = data => api.create(url.POST_CHALLENGE, data);
 
 // postForgetPwd
 export const postFakeForgetPwd = data => api.create(url.POST_FAKE_PASSWORD_FORGET, data);
@@ -55,6 +61,7 @@ export const postJwtRegister = (url, data) => {
 };
 
 // Login Method
+export const postLogin = data => api.create(url.POST_LOGIN, data, accessToken);
 export const postJwtLogin = data => api.create(url.POST_FAKE_JWT_LOGIN, data);
 
 // postForgetPwd

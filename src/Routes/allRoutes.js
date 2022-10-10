@@ -226,8 +226,8 @@ import UploadList from "../pages/UploadList"
 
 const authProtectedRoutes = [
 	{ path: "/dashboard", component: ComponentLibrary },
-	{ path: "/upload-esg-data", component: UploadESGData },
-	{ path: "/upload-history-list", component: UploadList },
+	{ path: "/submit-data", component: UploadESGData },
+	{ path: "/submissions-history", component: UploadList },
 
 	{ path: "/dashboard-analytics", component: DashboardAnalytics },
 	{ path: "/dashboard-crm", component: DashboardCrm },

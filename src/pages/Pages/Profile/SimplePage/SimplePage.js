@@ -25,8 +25,10 @@ import smallImage7 from '../../../../assets/images/small/img-7.jpg';
 import smallImage9 from '../../../../assets/images/small/img-9.jpg';
 
 import { projects, document } from '../../../../common/data';
+import { withTranslation } from 'react-i18next';
 
-const SimplePage = () => {
+const SimplePage = (props) => {
+    const T = props.t
 
     SwiperCore.use([Autoplay]);
 
@@ -1948,7 +1950,7 @@ const SimplePage = () => {
                                                                         <th scope="col">File Name</th>
                                                                         <th scope="col">Type</th>
                                                                         <th scope="col">Size</th>
-                                                                        <th scope="col">Upload Date</th>
+                                                                        <th scope="col">{T("Upload Date")}</th>
                                                                         <th scope="col">Action</th>
                                                                     </tr>
                                                                 </thead>
@@ -2011,4 +2013,4 @@ const SimplePage = () => {
     );
 };
 
-export default SimplePage;
+export default withTranslation()(SimplePage);

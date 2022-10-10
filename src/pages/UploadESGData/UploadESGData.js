@@ -40,7 +40,7 @@ const SimpleForm = () => {
 			}
 		})
 		if (isConfirmed) {
-			history.push("/upload-history-list")
+			history.push("/submissions-history")
 		}
 	}
 
