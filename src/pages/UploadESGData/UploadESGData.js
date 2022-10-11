@@ -12,7 +12,6 @@ import {
 	Row
 } from "reactstrap"
 import BreadCrumb from "../../Components/Common/BreadCrumb"
-import PreviewCardHeader from "../../Components/Common/PreviewCardHeader"
 import { alertService } from "../../services"
 
 const SimpleForm = () => {

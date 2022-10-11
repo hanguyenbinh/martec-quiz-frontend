@@ -6,7 +6,8 @@ import {
 	API_ERROR,
 	RESET_LOGIN_FLAG,
 	LOGIN_INITIATE,
-	LOGIN_INITIATE_SUCCESS
+	LOGIN_INITIATE_SUCCESS,
+	LOGIN_CHALLENGE_SUCCESS
 } from "./actionTypes"
 
 const initialState = {
@@ -23,21 +24,32 @@ const login = (state = initialState, action) => {
 			}
 			break
 		case LOGIN_INITIATE:
+			console.log('reducer LOGIN_INITIATE', action)
 			state = {
 				...state,
+				email: action.payload.email,
 				loading: true
 			}
+			break;
 		case LOGIN_INITIATE_SUCCESS:
 			state = {
 				...state,
+				challengeId: action.payload.challengeId,
 				loading: false
 			}
+			break;
 		case LOGIN_SUCCESS:
 			state = {
 				...state,
 				loading: false
 			}
 			break
+		case LOGIN_CHALLENGE_SUCCESS:
+			state = {
+				...state,
+				loading: false
+			}
+			break;
 		case LOGOUT_USER:
 			state = { ...state, isUserLogout: false }
 			break

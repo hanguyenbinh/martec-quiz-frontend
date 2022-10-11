@@ -1,4 +1,5 @@
 export default function authHeader() {
+  console.log('authHeader')
   const obj = JSON.parse(sessionStorage.getItem("authUser"))
 
   if (obj && obj.accessToken) {

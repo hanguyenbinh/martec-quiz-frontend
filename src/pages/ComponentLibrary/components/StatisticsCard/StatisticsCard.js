@@ -15,6 +15,7 @@ const StatisticsCard = (props) => {
 		reduced: "danger",
 		balanced: "warning"
 	}
+	console.log(ranking)
 
 	return (
 		<Card>
@@ -62,17 +63,17 @@ const StatisticsCard = (props) => {
 
 StatisticsCard.propTypes = {
 	title: PropTypes.string.isRequired,
-	score: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+	score: PropTypes.number.isRequired,
 	unit: PropTypes.string,
 	icon: PropTypes.any,
 	ranking: PropTypes.shape({
 		rank: PropTypes.number.isRequired,
-		total: PropTypes.string.isRequired
+		total: PropTypes.number.isRequired
 	}),
 	stats: PropTypes.shape({
 		number: PropTypes.number.isRequired,
 		unit: PropTypes.string,
-		status: PropTypes.oneOfType(["increased", "reduced", "balanced"])
+		status: PropTypes.oneOf(["increased", "reduced", "balanced"])
 			.isRequired,
 		subText: PropTypes.string
 	}).isRequired

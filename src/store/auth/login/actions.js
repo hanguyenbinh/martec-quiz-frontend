@@ -8,7 +8,8 @@ import {
   RESET_LOGIN_FLAG,
   LOGIN_INITIATE,
   LOGIN_INITIATE_SUCCESS,
-  LOGIN_CHALLENGE
+  LOGIN_CHALLENGE,
+  LOGIN_CHALLENGE_SUCCESS
 } from "./actionTypes";
 
 export const loginUser = (user, history) => {
@@ -25,10 +26,10 @@ export const loginInitiate = (email, history) => {
   };
 };
 
-export const loginChallenge = (otp, history) => {
+export const loginChallenge = (obj, history) => {
   return {
     type: LOGIN_CHALLENGE,
-    payload: { otp, history },
+    payload: { ...obj, history },
   };
 };
 
@@ -39,8 +40,15 @@ export const loginSuccess = user => {
   };
 };
 
+export const loginChallengeSuccess = accessToken => {
+  return {
+    type: LOGIN_CHALLENGE_SUCCESS,
+    payload: accessToken,
+  };
+};
+
 export const loginInitiateSuccess = response => {
-  console.log(response);
+  console.log('loginInitiateSuccess', response);
   return {
     type: LOGIN_INITIATE_SUCCESS,
     payload: response,

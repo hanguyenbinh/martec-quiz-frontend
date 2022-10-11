@@ -2,26 +2,21 @@ import { useEffect, useState } from "react";
 import { getLoggedinUser } from "../../helpers/api_helper";
 
 const useProfile = () => {
-  const userProfileSession = getLoggedinUser();
-  var token =
-  userProfileSession &&
-  userProfileSession["token"];
-  const [loading, setLoading] = useState(userProfileSession ? false : true);
+  const accessToken = getLoggedinUser();
+  const [loading, setLoading] = useState(accessToken ? false : true);
   const [userProfile, setUserProfile] = useState(
-    userProfileSession ? userProfileSession : null
+    accessToken ? { accessToken } : null
   );
 
   useEffect(() => {
-    const userProfileSession = getLoggedinUser();
-    var token =
-      userProfileSession &&
-      userProfileSession["token"];
-    setUserProfile(userProfileSession ? userProfileSession : null);
-    setLoading(token ? false : true);
+    const accessToken = getLoggedinUser();
+
+    setUserProfile(accessToken ? accessToken : null);
+    setLoading(accessToken ? false : true);
   }, []);
 
 
-  return { userProfile, loading,token };
+  return { userProfile, loading, accessToken };
 };
 
 export { useProfile };

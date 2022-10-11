@@ -44,11 +44,10 @@ function* loginInitiate({ payload: { email, history } }) {
       const response = yield call(postInitiate, {
         email,
       });
-      console.log('loginInitiate', response);
-      sessionStorage.setItem("challengeId", JSON.stringify(response));
+      sessionStorage.setItem("challengeId", JSON.stringify(response));      
       if (response.status === 200) {
         yield put(loginInitiateSuccess({challengeId: response.data.challengeId}));
-        history.push("/dashboard");
+        history.push("/login");
       } else {
         yield put(apiError(response));
       }
@@ -58,16 +57,18 @@ function* loginInitiate({ payload: { email, history } }) {
   }
 }
 
-function* loginChallenge({ payload: { email, challengeValue, history } }) {
+function* loginChallenge({ payload: { email, challengeId, otp, history } }) {
   try {
+    console.log('saga loginChallenge', email, challengeId, otp)
     if (process.env.REACT_APP_API_URL) {
-      const challengeId = sessionStorage.getItem('challengeId');
       const response = yield call(postChallenge, {
         email,
-        challengeValue,
+        challengeId,
+        challengeValue: otp,
       });
-      sessionStorage.setItem("accessToken", JSON.stringify(response));
-      if (response.status === "success") {
+      console.log('saga loginChallenge', response)      
+      if (response.status === 200) {
+        sessionStorage.setItem("accessToken", JSON.stringify(response.data.accesstoken));
         yield put(loginSuccess(response));
         history.push("/dashboard");
       } else {

@@ -48,7 +48,7 @@ const AppChart = (props) => {
 		props
 
 	return (
-		<Row className={classes.gutters} noGutters>
+		<Row className={classes.gutters}>
 			<Col
 				md={12}
 				lg={
@@ -81,7 +81,7 @@ const AppChart = (props) => {
 			</Col>
 			{Array.isArray(statisticsCards) && statisticsCards.length > 0 && (
 				<Col md={12} lg={3}>
-					<Row className={classes.gutters} noGutters>
+					<Row className={classes.gutters}>
 						{statisticsCards.map((statisticsCard, statisticsCardIndex) => (
 							<Col key={statisticsCardIndex} md={6} lg={12}>
 								<Card className="m-0">
@@ -118,21 +118,19 @@ AppChart.propTypes = {
 			content: PropTypes.any
 		})
 	),
-	data: PropTypes.arrayOf(
-		PropTypes.shape({
-			labels: PropTypes.array,
-			datasets: PropTypes.arrayOf(
-				PropTypes.shape({
-					type: PropTypes.oneOfType(["bar", "line"]),
-					label: PropTypes.string,
-					borderColor: PropTypes.string,
-					borderWidth: PropTypes.number,
-					fill: PropTypes.bool,
-					data: PropTypes.array
-				})
-			)
-		})
-	),
+	data: PropTypes.shape({
+		labels: PropTypes.array,
+		datasets: PropTypes.arrayOf(
+			PropTypes.shape({
+				type: PropTypes.oneOf(["bar", "line"]),
+				label: PropTypes.string,
+				borderColor: PropTypes.string,
+				borderWidth: PropTypes.number,
+				fill: PropTypes.bool,
+				data: PropTypes.array
+			})
+		)
+	}),
 	onOptionChange: PropTypes.func
 }
 

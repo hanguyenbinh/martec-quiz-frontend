@@ -5,66 +5,59 @@ import ParticlesAuth from "../AuthenticationInner/ParticlesAuth";
 //redux
 import { useSelector, useDispatch } from "react-redux";
 
-import { Redirect, useHistory, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 // Formik validation
 import * as Yup from "yup";
 import { useFormik } from "formik";
 
 // actions
-import { loginChallenge, loginInitiate, loginUser, resetLoginFlag } from "../../store/actions";
+import { loginInitiate, loginUser, resetLoginFlag } from "../../store/actions";
 import { withTranslation } from 'react-i18next';
 
-
-const Login = (props) => {
-	const history = useHistory();
-
-	const { email } = useSelector(state => ({
-		email: state.Login.email
-	}))
-	const { challengeId } = useSelector(state => ({
-		challengeId: state.Login.challengeId
-	}))
-	React.useEffect(()=>{
-		if (!email || !challengeId) {
-			history.push('/get-otp', { from: props.location})
-		}
-	},[email, challengeId])
-	
+const GetOtp = (props) => {
 	const T = props.t;
 	const dispatch = useDispatch();
-	const [otp, setOtp] = useState('')
+	const { user } = useSelector(state => ({
+		user: state.Account.user,
+	}));
 
+	const [userLogin, setUserLogin] = useState([]);
+	const [userOtp, setUserOtp] = useState([])
+
+	useEffect(() => {
+		if (user && user) {
+			setUserLogin({
+				email: user.user.email,
+				// password: user.user.confirm_password
+			});
+		}
+	}, [user]);
 
 	const validation = useFormik({
 		// enableReinitialize : use this flag when initial values needs to be changed
 		enableReinitialize: true,
 
 		initialValues: {
-			otpCode: otp,
-			// password: userLogin.password || "123456" || '',
+			email: userLogin.email || "hanguyenbinh201282@gmail.com" || '',
 		},
 		validationSchema: Yup.object({
-			otpCode: Yup.string().length(6).required("Please Enter Your Code"),
+			email: Yup.string().required("Please Enter Your Email"),
 		}),
 		onSubmit: (values) => {
-			dispatch(loginChallenge({
-				email,
-				challengeId,
-				otp: values.otpCode
-			}, props.history));
+			dispatch(loginInitiate(values.email, props.history));
 		}
 	});
+
 
 	const { error } = useSelector(state => ({
 		error: state.Login.error,
 	}));
 
-
 	useEffect(() => {
 		setTimeout(() => {
 			dispatch(resetLoginFlag());
-		}, 10 * 60 * 1000);
+		}, 3000);
 	}, [dispatch, error]);
 
 	document.title = T('Application Name');
@@ -101,24 +94,24 @@ const Login = (props) => {
 												<div className="mb-3">
 													<Label htmlFor="email" className="form-label">{T('Email')}</Label>
 													<Input
-														name="otpCode"
+														name="email"
 														className="form-control"
-														placeholder="Enter Otp Code"
-														// type="otpCode"
+														placeholder="Enter email"
+														type="email"
 														onChange={validation.handleChange}
 														onBlur={validation.handleBlur}
-														value={validation.values.otpCode || ""}
+														value={validation.values.email || ""}
 														invalid={
-															validation.touched.otpCode && validation.errors.otpCode ? true : false
+															validation.touched.email && validation.errors.email ? true : false
 														}
 													/>
-													{validation.touched.otpCode && validation.errors.otpCode ? (
-														<FormFeedback type="invalid">{validation.errors.otpCode}</FormFeedback>
+													{validation.touched.email && validation.errors.email ? (
+														<FormFeedback type="invalid">{validation.errors.email}</FormFeedback>
 													) : null}
 												</div>
 
 												<div className="mt-4">
-													<Button color="success" className="btn btn-success w-100" type="submit">{T('Login')}</Button>
+													<Button color="success" className="btn btn-success w-100" type="submit">{T('Get OTP')}</Button>
 												</div>
 											</Form>
 										</div>
@@ -133,4 +126,4 @@ const Login = (props) => {
 	);
 };
 
-export default withRouter(withTranslation()(Login));
+export default withRouter(withTranslation()(GetOtp));
