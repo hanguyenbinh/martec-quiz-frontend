@@ -99,12 +99,12 @@ const Layout = (props) => {
 		window.addEventListener("scroll", scrollNavigation, true)
 	})
 	function scrollNavigation() {
-		var scrollup = document.documentElement.scrollTop
-		if (scrollup > 50) {
-			setHeaderClass("topbar-shadow")
-		} else {
-			setHeaderClass("")
-		}
+		// var scrollup = document.documentElement.scrollTop
+		// if (scrollup > 50) {
+		// 	setHeaderClass("topbar-shadow")
+		// } else {
+		// 	setHeaderClass("")
+		// }
 	}
 
 	return (

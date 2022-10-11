@@ -1,3 +1,4 @@
+import AppFormInput from "../../Components/Common/AppFormInput"
 import React from "react"
 import { useHistory } from "react-router-dom"
 import {
@@ -7,61 +8,24 @@ import {
 	CardHeader,
 	Col,
 	Container,
+	Form,
 	Input,
 	Label,
 	Row
 } from "reactstrap"
 import BreadCrumb from "../../Components/Common/BreadCrumb"
 import { alertService } from "../../services"
+import { FastField, Formik, useFormikContext } from "formik"
 
 const SimpleForm = () => {
 	const history = useHistory()
 
-	const handleSubmit = async () => {
-		const { isConfirmed } = await alertService.fireDialog({
-			title: "Confirmation Page",
-			content: (
-				<div className="text-center">
-					<p className="mb-0">Version 1</p>
-					<p className="mb-0">Year of Record: 2022</p>
-					<p className="mb-0">Year of Record: 2022</p>
-					<p className="mb-0">...</p>
-					<p className="mb-0">
-						<b>Energy Consumption</b>
-					</p>
-					<p className="mb-0">Petrol Usage: 1.2 tonne</p>
-					<p>Diesel: 3 tonne</p>
-					<p className="mb-0 ">
-						<b>
-							By clicking the 'confirm' button, you acknowledge that the
-							submitted details are correct.
-							<br /> Please check your details carefully before continuing.
-							<br />
-							<br />
-							The contents will subsequently be hashed and stored on Blockchain
-						</b>
-					</p>
-				</div>
-			),
-			confirmButtonProps: {
-				text: "Confirm"
-			},
-			cancelButtonProps: {
-				show: true,
-				text: "Cancel"
-			}
-		})
-		if (isConfirmed) {
-			history.push("/submissions-history")
-		}
-	}
+	const { values, handleSubmit } = useFormikContext()
 
 	return (
-		<form>
+		<Form onSubmit={handleSubmit}>
 			<div className="mb-3 d-flex justify-content-end">
-				<Button onClick={handleSubmit} type="button">
-					Upload
-				</Button>
+				<Button type="submit">Upload</Button>
 			</div>
 			<Card>
 				<CardHeader className="align-items-center d-flex">
@@ -70,79 +34,63 @@ const SimpleForm = () => {
 				<CardBody>
 					<Row className="mb-3">
 						<Col sm={12} md={3}>
-							<div>
-								<Label htmlFor="form-name" className="form-label">
-									Year of Record
-								</Label>
-								<Input
-									className="form-control"
-									defaultValue="2022"
-									htmlFor="form-name"
-								/>
-							</div>
+							<FastField name="yearOfRecord">
+								{({ field }) => (
+									<AppFormInput label="Year of Record" {...field} />
+								)}
+							</FastField>
 						</Col>
 						<Col sm={12} md={3}>
-							<div>
-								<Label htmlFor="form-name" className="form-label">
-									Project Type
-								</Label>
-								<select htmlFor="form-name" className="form-select">
-									<option selected>building</option>
-									<option>civil</option>
-									<option>piling</option>
-									<option>foundation</option>
-									<option>building RMAA</option>
-									<option>civil R&M</option>
-								</select>
-							</div>
+							<FastField name="projectType">
+								{({ field }) => (
+									<AppFormInput label="Project Type" {...field} type="select">
+										<option value={""}>-- Select --</option>
+										{[
+											"Building",
+											"Civil",
+											"Piling",
+											"Foundation",
+											"Building RMAA",
+											"Civil R&M"
+										].map((txt) => (
+											<option key={txt} value={txt}>
+												{txt}
+											</option>
+										))}
+									</AppFormInput>
+								)}
+							</FastField>
 						</Col>
 						<Col sm={12} md={3}>
-							<div>
-								<Label htmlFor="form-name" className="form-label">
-									Gross value of construction work
-								</Label>
-								<Input
-									className="form-control"
-									defaultValue="100,000,000.00"
-									htmlFor="form-name"
-								/>
-							</div>
+							<FastField name="grossValueOfConstructionWork">
+								{({ field }) => (
+									<AppFormInput
+										label="Gross value of construction work"
+										{...field}
+									/>
+								)}
+							</FastField>
 						</Col>
 						<Col sm={12} md={3}>
-							<div>
-								<Label htmlFor="form-name" className="form-label">
-									No of projects
-								</Label>
-								<Input
-									className="form-control"
-									defaultValue={"100"}
-									htmlFor="form-name"
-								/>
-							</div>
+							<FastField name="noOfProject">
+								{({ field }) => (
+									<AppFormInput label="No of project" {...field} />
+								)}
+							</FastField>
 						</Col>
 						<Col sm={12} md={3}>
-							<div>
-								<Label htmlFor="form-name" className="form-label">
-									Employment Size
-								</Label>
-								<Input
-									className="form-control"
-									defaultValue={"1200"}
-									htmlFor="form-name"
-								/>
-							</div>
+							<FastField name="employeeSize">
+								{({ field }) => (
+									<AppFormInput label="Employment Size" {...field} />
+								)}
+							</FastField>
 						</Col>
 						<Col sm={12} md={3}>
-							<div>
-								<Label htmlFor="form-name" className="form-label">
-									Company Size
-								</Label>
-								<select htmlFor="form-name" className="form-select">
-									<option selected>A</option>
-									<option>B</option>
-									<option>C</option>
-								</select>
-							</div>
+							<FastField name="companySizeZ">
+								{({ field }) => (
+									<AppFormInput label="Company Size" {...field} />
+								)}
+							</FastField>
 						</Col>
 					</Row>
 				</CardBody>
@@ -155,102 +103,38 @@ const SimpleForm = () => {
 				<CardBody>
 					<Row className="mb-3">
 						<Col sm={12} md={3}>
-							<div>
-								<Label htmlFor="form-name" className="form-label">
-									Petrol Usage
-								</Label>
-								<Input
-									className="form-control"
-									defaultValue={"1350.01 tonne"}
-									htmlFor="form-name"
-								/>
-							</div>
+							<FastField name="petrolUsage">
+								{({ field }) => (
+									<AppFormInput label="Petrol Usage" {...field} />
+								)}
+							</FastField>
 						</Col>
 						<Col sm={12} md={3}>
-							<div>
-								<Label htmlFor="form-name" className="form-label">
-									Diesel Usage
-								</Label>
-								<Input
-									className="form-control"
-									defaultValue={"1350.01 tonne"}
-									htmlFor="form-name"
-								/>
-							</div>
+							<FastField name="dieselUsage">
+								{({ field }) => (
+									<AppFormInput label="Diesel Usage" {...field} />
+								)}
+							</FastField>
 						</Col>
 						<Col sm={12} md={3}>
-							<div>
-								<Label htmlFor="form-name" className="form-label">
-									Amount of electricity (HKE)
-								</Label>
-								<Input
-									className="form-control"
-									defaultValue={"1350.01 tonne"}
-									htmlFor="form-name"
-								/>
-							</div>
+							<FastField name="amountOfElectricityHKE">
+								{({ field }) => (
+									<AppFormInput
+										label="Amount of electricity (HKE)"
+										{...field}
+									/>
+								)}
+							</FastField>
 						</Col>
 						<Col sm={12} md={3}>
-							<div>
-								<Label htmlFor="form-name" className="form-label">
-									Amount of electricity (CLP)
-								</Label>
-								<Input
-									className="form-control"
-									defaultValue={"1350.01 tonne"}
-									htmlFor="form-name"
-								/>
-							</div>
-						</Col>
-					</Row>
-				</CardBody>
-			</Card>
-
-			<Card>
-				<CardHeader className="align-items-center d-flex">
-					<h4 className="card-title mb-0 flex-grow-1">Carbon Footprint</h4>
-				</CardHeader>
-				<CardBody>
-					<Row className="mb-3">
-						<Col sm={12} md={3}>
-							<div>
-								<Label htmlFor="form-name" className="form-label"></Label>
-								<Input
-									className="form-control"
-									defaultValue={"1350.01 tonne"}
-									htmlFor="form-name"
-								/>
-							</div>
-						</Col>
-						<Col sm={12} md={3}>
-							<div>
-								<Label htmlFor="form-name" className="form-label"></Label>
-								<Input
-									className="form-control"
-									defaultValue={"1350.01 tonne"}
-									htmlFor="form-name"
-								/>
-							</div>
-						</Col>
-						<Col sm={12} md={3}>
-							<div>
-								<Label htmlFor="form-name" className="form-label"></Label>
-								<Input
-									className="form-control"
-									defaultValue={"Usage of electricity - HKE"}
-									htmlFor="form-name"
-								/>
-							</div>
-						</Col>
-						<Col sm={12} md={3}>
-							<div>
-								<Label htmlFor="form-name" className="form-label"></Label>
-								<Input
-									className="form-control"
-									defaultValue={"Usage of electricity - CLP"}
-									htmlFor="form-name"
-								/>
-							</div>
+							<FastField name="amountOfElectricityCLP">
+								{({ field }) => (
+									<AppFormInput
+										label="Amount of electricity (CLP)"
+										{...field}
+									/>
+								)}
+							</FastField>
 						</Col>
 					</Row>
 				</CardBody>
@@ -263,16 +147,11 @@ const SimpleForm = () => {
 				<CardBody>
 					<Row className="mb-3">
 						<Col sm={12} md={3}>
-							<div>
-								<Label htmlFor="form-name" className="form-label">
-									Annual Water Consumption
-								</Label>
-								<Input
-									className="form-control"
-									defaultValue={"1231211.9"}
-									htmlFor="form-name"
-								/>
-							</div>
+							<FastField name="annualWaterConsumption">
+								{({ field }) => (
+									<AppFormInput label="Annual Water Consumption" {...field} />
+								)}
+							</FastField>
 						</Col>
 					</Row>
 				</CardBody>
@@ -287,40 +166,34 @@ const SimpleForm = () => {
 				<CardBody>
 					<Row className="mb-3">
 						<Col sm={12} md={3}>
-							<div>
-								<Label htmlFor="form-name" className="form-label">
-									Total weight of inert waste disposed
-								</Label>
-								<Input
-									className="form-control"
-									defaultValue={"1234.12"}
-									htmlFor="form-name"
-								/>
-							</div>
+							<FastField name="totalWeightof_InertWasteDisposedPerAnnum">
+								{({ field }) => (
+									<AppFormInput
+										label="Total weight of inert waste disposed"
+										{...field}
+									/>
+								)}
+							</FastField>
 						</Col>
 						<Col sm={12} md={3}>
-							<div>
-								<Label htmlFor="form-name" className="form-label">
-									Total weight of non-inert waste disposed per annum
-								</Label>
-								<Input
-									className="form-control"
-									defaultValue={"1234.12"}
-									htmlFor="form-name"
-								/>
-							</div>
+							<FastField name="totalWeightOf_Non_InertWasteDisposedPerAnnum">
+								{({ field }) => (
+									<AppFormInput
+										label="Total weight of non-inert waste disposed per annum"
+										{...field}
+									/>
+								)}
+							</FastField>
 						</Col>
 						<Col sm={12} md={3}>
-							<div>
-								<Label htmlFor="form-name" className="form-label">
-									Total weight of mixed waste disposed per annum
-								</Label>
-								<Input
-									className="form-control"
-									defaultValue={"1234.12"}
-									htmlFor="form-name"
-								/>
-							</div>
+							<FastField name="totalWeightOf_Mixed_WasteDisposedPerAnnum">
+								{({ field }) => (
+									<AppFormInput
+										label="Total weight of mixed waste disposed per annum"
+										{...field}
+									/>
+								)}
+							</FastField>
 						</Col>
 					</Row>
 				</CardBody>
@@ -333,41 +206,32 @@ const SimpleForm = () => {
 				<CardBody>
 					<Row className="mb-3">
 						<Col sm={12} md={3}>
-							<div>
-								<Label htmlFor="form-name" className="form-label">
-									No of Industrial Accidents
-								</Label>
-								<Input
-									className="form-control"
-									defaultValue={"4"}
-									htmlFor="form-name"
-								/>
-							</div>
+							<FastField name="noOfIndustrialAccidents">
+								{({ field }) => (
+									<AppFormInput label="No of Industrial Accidents" {...field} />
+								)}
+							</FastField>
 						</Col>
 						<Col sm={12} md={3}>
-							<div>
-								<Label htmlFor="form-name" className="form-label">
-									No of occupational Incident
-								</Label>
-								<Input
-									className="form-control"
-									defaultValue={"5"}
-									htmlFor="form-name"
-								/>
-							</div>
+							<FastField name="noOfOccupationalIncident">
+								{({ field }) => (
+									<AppFormInput
+										label="No of occupational Incident"
+										{...field}
+									/>
+								)}
+							</FastField>
 						</Col>
 						<Col sm={12} md={3}>
-							<div>
-								<Label htmlFor="form-name" className="form-label">
-									Number, type and magnitude of advance health and safety
-									technologies used
-								</Label>
-								<Input
-									className="form-control"
-									defaultValue={""}
-									htmlFor="form-name"
-								/>
-							</div>
+							<FastField name="numberTypeAndMagitudeOfAdvanceHealthAndSafetyTechnologiesUsed">
+								{({ field }) => (
+									<AppFormInput
+										label="Number, type and magnitude of advance health and safety
+										technologies used"
+										{...field}
+									/>
+								)}
+							</FastField>
 						</Col>
 					</Row>
 				</CardBody>
@@ -382,113 +246,71 @@ const SimpleForm = () => {
 				<CardBody>
 					<Row className="mb-3">
 						<Col sm={12} md={3}>
-							<div>
-								<Label htmlFor="form-name" className="form-label">
-									No of hours of training
-								</Label>
-								<Input
-									className="form-control"
-									defaultValue={"35.5"}
-									htmlFor="form-name"
-								/>
-							</div>
+							<FastField name="noOfHoursOfTranning">
+								{({ field }) => (
+									<AppFormInput label="No of hours of training" {...field} />
+								)}
+							</FastField>
 						</Col>
 						<Col sm={12} md={3}>
-							<div>
-								<Label htmlFor="form-name" className="form-label">
-									No of project management staff
-								</Label>
-								<Input
-									className="form-control"
-									defaultValue={"10"}
-									htmlFor="form-name"
-								/>
-							</div>
+							<FastField name="noOfTechnicalStaff">
+								{({ field }) => (
+									<AppFormInput label="No of technical staff" {...field} />
+								)}
+							</FastField>
 						</Col>
 						<Col sm={12} md={3}>
-							<div>
-								<Label htmlFor="form-name" className="form-label">
-									No of technical staff
-								</Label>
-								<Input
-									className="form-control"
-									defaultValue={"10"}
-									htmlFor="form-name"
-								/>
-							</div>
+							<FastField name="noOfDirectLabor">
+								{({ field }) => (
+									<AppFormInput label="No of direct labor" {...field} />
+								)}
+							</FastField>
 						</Col>
 						<Col sm={12} md={3}>
-							<div>
-								<Label htmlFor="form-name" className="form-label">
-									No of direct labor
-								</Label>
-								<Input
-									className="form-control"
-									defaultValue={"10"}
-									htmlFor="form-name"
-								/>
-							</div>
-						</Col>
-						<Col sm={12} md={3}>
-							<div>
-								<Label htmlFor="form-name" className="form-label">
-									No of staff joining YMS or similar
-								</Label>
-								<Input
-									className="form-control"
-									defaultValue={"10"}
-									htmlFor="form-name"
-								/>
-							</div>
+							<FastField name="noOfStaffJoiningYMSOrSimilar">
+								{({ field }) => (
+									<AppFormInput
+										label="No of staff joining YMS or similar"
+										{...field}
+									/>
+								)}
+							</FastField>
 						</Col>
 
 						<Col sm={12} md={3}>
-							<div>
-								<Label htmlFor="form-name" className="form-label">
-									No of young staff (age {"<"} 40)
-								</Label>
-								<Input
-									className="form-control"
-									defaultValue={"10"}
-									htmlFor="form-name"
-								/>
-							</div>
+							<FastField name="noOfYoungStaff">
+								{({ field }) => (
+									<AppFormInput
+										label="No of young staff (age < 40)"
+										{...field}
+									/>
+								)}
+							</FastField>
 						</Col>
 						<Col sm={12} md={3}>
-							<div>
-								<Label htmlFor="form-name" className="form-label">
-									No of manhours in community service
-								</Label>
-								<Input
-									className="form-control"
-									defaultValue={"10"}
-									htmlFor="form-name"
-								/>
-							</div>
+							<FastField name="noOfManhoursInCommunityService">
+								{({ field }) => (
+									<AppFormInput
+										label="No of manhours in community service"
+										{...field}
+									/>
+								)}
+							</FastField>
 						</Col>
 						<Col sm={12} md={3}>
-							<div>
-								<Label htmlFor="form-name" className="form-label">
-									No of staff
-								</Label>
-								<Input
-									className="form-control"
-									defaultValue={"10"}
-									htmlFor="form-name"
-								/>
-							</div>
+							<FastField name="noOfStaff">
+								{({ field }) => <AppFormInput label="No of staff" {...field} />}
+							</FastField>
 						</Col>
 						<Col sm={12} md={3}>
-							<div>
-								<Label htmlFor="form-name" className="form-label">
-									Money to support community service
-								</Label>
-								<Input
-									className="form-control"
-									defaultValue={"120,000.2"}
-									htmlFor="form-name"
-								/>
-							</div>
+							<FastField name="moneyToSupportCommunityService">
+								{({ field }) => (
+									<AppFormInput
+										label="Money to support community service"
+										{...field}
+									/>
+								)}
+							</FastField>
 						</Col>
 					</Row>
 				</CardBody>
@@ -501,6 +323,11 @@ const SimpleForm = () => {
 				<CardBody>
 					<Row className="mb-3">
 						<Col sm={12} md={3}>
+							<FastField name="moneyToSupportCommunityService">
+								{({ field }) => (
+									<AppFormInput label="No of resignations" {...field} />
+								)}
+							</FastField>
 							<div>
 								<Label htmlFor="form-name" className="form-label">
 									No of resignations
@@ -835,18 +662,115 @@ const SimpleForm = () => {
 					</Row>
 				</CardBody>
 			</Card>
-		</form>
+		</Form>
 	)
 }
 
 const UploadESGData = () => {
+	const handleSubmit = async (values) => {
+		const { isConfirmed } = await alertService.fireDialog({
+			title: "Confirmation Page",
+			content: (
+				<div className="text-center">
+					<p className="mb-0">Version 1</p>
+					<p className="mb-0">Year of Record: 2022</p>
+					<p className="mb-0">Year of Record: 2022</p>
+					<p className="mb-0">...</p>
+					<p className="mb-0">
+						<b>Energy Consumption</b>
+					</p>
+					<p className="mb-0">Petrol Usage: 1.2 tonne</p>
+					<p>Diesel: 3 tonne</p>
+					<p className="mb-0 ">
+						<b>
+							By clicking the 'confirm' button, you acknowledge that the
+							submitted details are correct.
+							<br /> Please check your details carefully before continuing.
+							<br />
+							<br />
+							The contents will subsequently be hashed and stored on Blockchain
+						</b>
+					</p>
+				</div>
+			),
+			confirmButtonProps: {
+				text: "Confirm"
+			},
+			cancelButtonProps: {
+				show: true,
+				text: "Cancel"
+			}
+		})
+		if (isConfirmed) {
+			// history.push("/submissions-history")
+		}
+		console.log(values)
+		// ... handle api on redux
+	}
+
+	const initialValues = React.useMemo(() => {
+		return {
+			companySizeZ: "",
+			yearOfRecord: "",
+			projectType: "",
+			grossValueOfConstructionWork: "",
+			noOfProject: "",
+			petrolUsage: "",
+			dieselUsage: "",
+			amountOfElectricityHKE: "",
+			amountOfElectricityCLP: "",
+			annualWaterConsumption: "",
+			totalWeightof_InertWasteDisposedPerAnnum: "",
+			totalWeightOf_Non_InertWasteDisposedPerAnnum: "",
+			totalWeightOf_Mixed_WasteDisposedPerAnnum: "",
+			noOfIndustrialAccidents: "",
+			noOfOccupationalIncident: "",
+			numberTypeAndMagitudeOfAdvanceHealthAndSafetyTechnologiesUsed: "",
+			noOfHoursOfTranningPMStaff: "",
+			noOfPMStaff: "",
+			noOfHoursOfTranningTechnicalStaff: "",
+			noOfTechnicalStaff: "",
+			noOfHoursOfTranning: "",
+			noOfDirectLabor: "",
+			noOfStaffJoiningYMSOrSimilar: "",
+			noOfYoungStaff: "",
+			noOfManhoursInCommunityService: "",
+			moneyToSupportCommunityService: "",
+			employeeSize: "",
+			noOfStaff: "",
+			noOfSupportingStaff: "",
+			noOfResignationsManagementStaff: "",
+			noOfResignationsTechnicalStaff: "",
+			noOfResignationsDirectStaff: "",
+			noOfResignationsSupportingStaff: "",
+			clickYesWhenOneOfFollowingIsAdopted: "",
+			numberAndTypeOfOrganisationAndParticipation: "",
+			noOfHourOfAnticorruptionTranningNewStaff: "",
+			noOfNewStaff: "",
+			noOfHourAnticorruptionTranningExistingStaff: "",
+			noExistingStaff: "",
+			numberOfConvictionsRelatedToTheEnvironment: "",
+			noOfEnvironmentalProfessionals: "",
+			noOfEnvironmentalPersonnel: "",
+			clickYesWhenOnOfFollowingIsAdopted: "",
+			noOfConvictionsRelatedToHealthyAndSafety: "",
+			suspensionNoticesDueToSafetyIssues: "",
+			numberAndTypeOfAsWellAsAchivementResultedFromParticipation: "",
+			noOfSafetyTraningHoursManagementStaff: "",
+			noOfSafetyTraningHoursOperationalStaff: "",
+			noOfSafetyTraningHoursDirectLabour: ""
+		}
+	}, [])
+
 	return (
-		<div className="page-content">
-			<Container fluid>
-				<BreadCrumb title="Upload ESG Data" />
-				<SimpleForm />
-			</Container>
-		</div>
+		<Formik initialValues={initialValues} onSubmit={handleSubmit}>
+			<div className="page-content">
+				<Container fluid>
+					<BreadCrumb title="Upload ESG Data" />
+					<SimpleForm />
+				</Container>
+			</div>
+		</Formik>
 	)
 }
 
