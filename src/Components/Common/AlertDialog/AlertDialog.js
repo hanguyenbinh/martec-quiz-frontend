@@ -24,6 +24,7 @@ const AlertDialog = (props) => {
 	const [open, setOpen] = React.useState(false)
 	const [options, setOptions] = React.useState({
 		title: "",
+		size: "sm",
 		content: "",
 		actions: null,
 		confirmButtonProps: { ...confirmButtonPropsConstants },
@@ -31,6 +32,7 @@ const AlertDialog = (props) => {
 	})
 	const {
 		title,
+		size,
 		content,
 		actions,
 		confirmButtonProps: {
@@ -42,7 +44,7 @@ const AlertDialog = (props) => {
 			text: cancelButtonPropsText,
 			show: cancelButtonPropsShow,
 			...otherCancelButtonProps
-		}
+		},
 	} = options
 
 	const handleClose = (params) => {
@@ -84,6 +86,7 @@ const AlertDialog = (props) => {
 
 	return (
 		<Modal
+			size={size}
 			isOpen={open}
 			toggle={() => handleClose({ isConfirmed: false })}
 			centered

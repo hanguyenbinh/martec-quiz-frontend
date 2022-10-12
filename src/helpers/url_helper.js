@@ -5,6 +5,9 @@ export const POST_FAKE_REGISTER = "/auth/signup";
 export const POST_FAKE_LOGIN = "/auth/signin";
 export const POST_INITIATE = '/auth/initiate';
 export const POST_CHALLENGE = '/auth/challenge';
+
+export const POST_ESG_DATA = '/company'
+export const GET_ESG_DATA = '/company'
 export const POST_LOGIN = 'auth/login';
 export const POST_FAKE_JWT_LOGIN = "/post-jwt-login";
 export const POST_FAKE_PASSWORD_FORGET = "/auth/forgot-password";

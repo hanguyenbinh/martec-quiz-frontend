@@ -13,7 +13,7 @@ const AppFormInput = React.forwardRef((props, ref) => {
 		name,
 		className,
 		classes: innerClasses,
-		children,
+		options,
 		inputProps,
 		inputRef,
 		type,
@@ -22,9 +22,9 @@ const AppFormInput = React.forwardRef((props, ref) => {
 		onBlur,
 		error,
 		helperText,
+		value,
 		...rest
 	} = props
-
 	const htmlId = inputProps?.id || lodash.uniqueId(`app${`-${name}`}-input`)
 
 	return (
@@ -46,6 +46,7 @@ const AppFormInput = React.forwardRef((props, ref) => {
 			</Label>
 			<Input
 				{...inputProps}
+				value={value}
 				name={name}
 				className={cx(!!innerClasses?.input && innerClasses.input)}
 				id={htmlId}
@@ -57,7 +58,7 @@ const AppFormInput = React.forwardRef((props, ref) => {
 				valid={error === false}
 				invalid={error === true}
 			>
-				{type === "select" ? children : undefined}
+				{type === "select" ? options.map((option, index) => (<option key={`${name}${index}`} value={option.value}>{option.label}</option>)) : undefined}
 			</Input>
 			{!!helperText && (
 				<FormText

@@ -1,6 +1,7 @@
 import { APIClient } from "./api_helper";
 import accessToken from "./jwt-token-access/accessToken";
 import * as url from "./url_helper";
+import { api as _api } from "../config";
 
 const api = new APIClient();
 
@@ -26,6 +27,10 @@ export const postFakeLogin = data => api.create(url.POST_FAKE_LOGIN, data);
 export const postInitiate = data => api.create(url.POST_INITIATE, data);
 
 export const postChallenge = data => api.create(url.POST_CHALLENGE, data);
+
+export const postESGData = data => api.create(_api.PORTAL_URL + url.POST_ESG_DATA, data);
+
+export const getAPISubmissionForms = () => api.get(_api.PORTAL_URL + url.GET_ESG_DATA, {});
 
 // postForgetPwd
 export const postFakeForgetPwd = data => api.create(url.POST_FAKE_PASSWORD_FORGET, data);

@@ -9,25 +9,24 @@ import { logoutUser } from "../store/actions"
 
 const AuthProtected = (props) => {
 	const dispatch = useDispatch()
-	const { userProfile, loading, token } = useProfile()
-	console.log(userProfile, loading, token)
+	const { loading, token, email } = useProfile()
 	useEffect(() => {
-		if (userProfile && !loading && token) {
+		if (!loading && token && email) {
 			setAuthorization(token)
-		} else if (!userProfile && loading && !token) {
+		} else if (loading && !token) {
 			dispatch(logoutUser())
 		}
-	}, [token, userProfile, loading, dispatch])
+	}, [token, loading, dispatch])
 
 	/*
-    redirect is un-auth access protected routes via url
-    */
+		redirect is un-auth access protected routes via url
+		*/
 
-	// if (!userProfile && loading && !token) {
-	//   return (
-	//     <Redirect to={{ pathname: "/get-otp", state: { from: props.location } }} />
-	//   );
-	// }
+	if (loading && (!token || !email)) {
+		return (
+			<Redirect to={{ pathname: "/get-otp", state: { from: props.location } }} />
+		);
+	}
 
 	return <>{props.children}</>
 }

@@ -9,5 +9,6 @@ module.exports = {
   },
   api: {
     API_URL: "https://apidev.hkca-esg.com/hkca-esg-admin/v1",
+    PORTAL_URL: 'http://localhost:3001/api'
   }
 };

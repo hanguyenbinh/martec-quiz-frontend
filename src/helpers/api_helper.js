@@ -8,8 +8,8 @@ axios.defaults.headers.post["Content-Type"] = "application/json";
 
 // content type
 const token = JSON.parse(sessionStorage.getItem("authUser")) ? JSON.parse(sessionStorage.getItem("authUser")).token : null;
-if(token)
-axios.defaults.headers.common["Authorization"] = "Bearer " + token;
+if (token)
+  axios.defaults.headers.common["Authorization"] = "Bearer " + token;
 
 // intercepting to capture errors
 axios.interceptors.response.use(
@@ -93,7 +93,13 @@ class APIClient {
 }
 const getLoggedinUser = () => {
   const accessToken = sessionStorage.getItem("accessToken");
+  console.log('accesstoken', accessToken)
   return accessToken;
 };
+const getLoggedinUserEmail = () => {
+  const email = sessionStorage.getItem("email");
+  console.log('email', email)
+  return email;
+};
 
-export { APIClient, setAuthorization, getLoggedinUser };
+export { APIClient, setAuthorization, getLoggedinUser, getLoggedinUserEmail };

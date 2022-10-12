@@ -9,8 +9,8 @@ import GetOtp from "../pages/Authentication/GetOtp"
 
 
 import ComponentLibrary from "../pages/ComponentLibrary"
-import UploadESGData from "../pages/UploadESGData"
-import UploadList from "../pages/UploadList"
+import UploadESGData from "../pages/SubmissionForm"
+import UploadList from "../pages/SubmissionHistory"
 
 
 const authProtectedRoutes = [
