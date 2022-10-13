@@ -1,0 +1,40 @@
+import {
+  GET_LATEST_DATA,
+  GET_LATEST_DATA_ERROR,
+  GET_LATEST_DATA_SUCCESS
+} from "./actionType";
+
+const INIT_STATE = {
+  latestSubmissionData: [],
+  chartData: [],
+  audiencesMetricsData: [],
+  userDeviceData: [],
+  audiencesSessionsData: [],
+  error: {},
+  isLoading: false
+};
+
+const Dashboard = (state = INIT_STATE, action) => {
+  switch (action.type) {
+    case GET_LATEST_DATA:
+      return {
+        ...state,
+        isLoading: true
+      }
+    case GET_LATEST_DATA_ERROR:
+      return {
+        ...state,
+        error: action.payload.data,
+        isLoading: false
+      }
+    case GET_LATEST_DATA_SUCCESS:
+      return {
+        ...state,
+        latestSubmissionData: action.payload.data,
+        isLoading: false
+      }
+    default:
+      return state;
+  }
+};
+export default Dashboard;

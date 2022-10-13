@@ -8,6 +8,7 @@ import Login from "./auth/login/reducer";
 import Account from "./auth/register/reducer";
 import ForgetPassword from "./auth/forgetpwd/reducer";
 import Profile from "./auth/profile/reducer";
+import Dashboard from "./dashboard/reducer";
 
 // //Calendar
 // import Calendar from "./calendar/reducer";
@@ -86,7 +87,8 @@ const rootReducer = combineReducers({
     // DashboardProject,
     // DashboardNFT,
     // Team
-    SubmissionForm
+    SubmissionForm,
+    Dashboard
 });
 
 export default rootReducer;

@@ -1,5 +1,7 @@
-import React from "react"
+import { getLatestData } from "../../store/dashboard/actions"
+import React, { useEffect } from "react"
 import { withTranslation } from "react-i18next"
+import { useDispatch } from "react-redux"
 import { withRouter } from "react-router-dom"
 import { Col, Container, Row } from "reactstrap"
 import BreadCrumb from "../../Components/Common/BreadCrumb"
@@ -30,7 +32,15 @@ export const data = {
 	]
 }
 
-const ComponentLibrary = () => {
+const DashBoard = (props) => {
+	const T = props.t ? props.t : (v) => v;
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		const email = sessionStorage.getItem("email");
+		console.log('Dashboard', email)
+		dispatch(getLatestData(email))
+	}, [])
 	const statistics = [
 		{
 			title: "Environment",
@@ -131,4 +141,4 @@ const ComponentLibrary = () => {
 	)
 }
 
-export default withRouter((withTranslation()(ComponentLibrary)))
+export default withRouter((withTranslation()(DashBoard)))

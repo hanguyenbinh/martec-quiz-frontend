@@ -10,11 +10,11 @@ import BreadCrumb from "../../Components/Common/BreadCrumb"
 import { alertService } from "../../services"
 import { Formik, useFormikContext } from "formik"
 import { withTranslation } from "react-i18next"
-import SubmissionGroup from "../ComponentLibrary/components/SubmissionGroup"
+import SubmissionGroup from "../DashBoard/components/SubmissionGroup"
 import * as Yup from 'yup';
 import { useDispatch, useSelector } from "react-redux"
 import { submitESGData } from "../../store/submissionForm/actions"
-import { data } from "../ComponentLibrary/ComponentLibrary"
+import { data } from "../DashBoard/DashBoard"
 
 const submissionFormSchema = Yup.object().shape({
 	companySize: Yup.string().required('Required'),
@@ -363,6 +363,7 @@ const UploadESGData = (props) => {
 	const email = sessionStorage.getItem("email");
 	const handleSubmit = async (values) => {
 		const { isConfirmed } = await alertService.fireDialog({
+			
 			title: "Confirmation Page",
 			content: (
 				<div className="text-center">					

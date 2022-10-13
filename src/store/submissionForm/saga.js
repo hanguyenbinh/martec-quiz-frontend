@@ -16,7 +16,7 @@ function* submitESGData({ payload: { data, history } }) {
         data);
       if (response.status === true) {
         yield put(submitESGDataSuccess(response));
-        // history.push("/dashboard");
+        history.push("/submissions-history");
       } else {
         yield put(portalApiError(response));
       }
@@ -26,12 +26,12 @@ function* submitESGData({ payload: { data, history } }) {
   }
 }
 
-function* getSubmissionForms({ payload: { history } }) {
+function* getSubmissionForms({ payload: { email, history } }) {
   try {
     if (process.env.REACT_APP_API_URL) {
       const response = yield call(
         getAPISubmissionForms,
-        {});
+        email);
       if (response.status === true) {
         yield put(getSubmissionFormsSuccess(response.data));
         // history.push("/dashboard");

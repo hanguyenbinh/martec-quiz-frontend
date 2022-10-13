@@ -22,10 +22,10 @@ export const submitESGDataSuccess = response => {
   };
 };
 
-export const getSumissionForms = () => {
+export const getSumissionForms = (email) => {
   return {
     type: GET_SUBMISSION_FORM,
-    payload: {}
+    payload: { email }
   }
 }
 

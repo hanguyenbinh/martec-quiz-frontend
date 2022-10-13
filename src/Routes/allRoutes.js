@@ -8,13 +8,13 @@ import Register from "../pages/Authentication/Register"
 import GetOtp from "../pages/Authentication/GetOtp"
 
 
-import ComponentLibrary from "../pages/ComponentLibrary"
+import DashBoard from "../pages/DashBoard"
 import UploadESGData from "../pages/SubmissionForm"
 import UploadList from "../pages/SubmissionHistory"
 
 
 const authProtectedRoutes = [
-	{ path: "/dashboard", component: ComponentLibrary },
+	{ path: "/dashboard", component: DashBoard },
 	{ path: "/submit-data", component: UploadESGData },
 	{ path: "/submissions-history", component: UploadList },
 

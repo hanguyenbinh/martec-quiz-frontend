@@ -24,7 +24,7 @@ const AlertDialog = (props) => {
 	const [open, setOpen] = React.useState(false)
 	const [options, setOptions] = React.useState({
 		title: "",
-		size: "sm",
+		size: "lg",
 		content: "",
 		actions: null,
 		confirmButtonProps: { ...confirmButtonPropsConstants },

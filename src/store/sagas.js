@@ -4,6 +4,7 @@ import LayoutSaga from "./layouts/saga";
 //Auth
 import AccountSaga from "./auth/register/saga";
 import AuthSaga from "./auth/login/saga";
+import DashboardSaga from "./dashboard/saga";
 // import ForgetSaga from "./auth/forgetpwd/saga";
 // import ProfileSaga from "./auth/profile/saga";
 
@@ -78,6 +79,7 @@ export default function* rootSaga() {
     // fork(dashboardProjectSaga),
     // fork(dashboardNFTSaga),
     // fork(teamSaga),
-    fork(submissionFormSaga)
+    fork(submissionFormSaga),
+    fork(DashboardSaga)
   ]);
 }
