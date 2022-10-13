@@ -132,7 +132,7 @@ const SubmissionHistory = (props) => {
 			},
 			{
 				name: 'noOfYoungStaff',
-				label: T('"	No of young staff (age < 40)"')
+				label: T('No of young staff (age < 40)')
 			},
 			]
 		},
@@ -289,7 +289,7 @@ const SubmissionHistory = (props) => {
 										submissionForm.fields.map((field, _index) => (
 											<Col key={`submission_form_detail_${index}${_index}`} sm={12} md={3}>
 												<Label>{field.label}</Label>
-												<div>{data[field.name]}</div>
+												<div>{data[field.name] === true ? 'Yes': data[field.name] === false ? 'No': data[field.name]}</div>
 											</Col>
 										))
 									}

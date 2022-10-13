@@ -17,7 +17,7 @@ import { submitESGData } from "../../store/submissionForm/actions"
 import { data } from "../ComponentLibrary/ComponentLibrary"
 
 const submissionFormSchema = Yup.object().shape({
-	companySize: Yup.number().required('Required'),
+	companySize: Yup.string().required('Required'),
 	yearOfRecord: Yup.string().required('Required'),
 	projectType: Yup.string().required('Required'),
 	grossValueOfConstructionWork: Yup.number().required('Required'),
@@ -77,6 +77,12 @@ const SubmissionForm = (props) => {
 				{
 					name: 'companySize',
 					label: T('Company Size'),
+					type: 'select',
+					options: [
+						{label: 'Group A', value: 'Group A'},
+						{label: 'Group B', value: 'Group B'},
+						{label: 'Group C', value: 'Group C'}
+					]
 				},
 				{
 					name: 'yearOfRecord',
@@ -145,7 +151,7 @@ const SubmissionForm = (props) => {
 			},
 			{
 				name: 'noOfOccupationalIncident',
-				label: T('No of occupational Incident')
+				label: T('No of occupational Incidents')
 			},
 			{
 				name: 'numberTypeAndMagitudeOfAdvanceHealthAndSafetyTechnologiesUsed',
@@ -185,7 +191,7 @@ const SubmissionForm = (props) => {
 			},
 			{
 				name: 'noOfYoungStaff',
-				label: T('"	No of young staff (age < 40)"')
+				label: T('No of young staff (age < 40)')
 			},
 			]
 		},
@@ -197,7 +203,7 @@ const SubmissionForm = (props) => {
 			},
 			{
 				name: 'moneyToSupportCommunityService',
-				label: T('Money to support community service')
+				label: T('Money to support community service (HKD)')
 			},
 			]
 		},
@@ -257,7 +263,7 @@ const SubmissionForm = (props) => {
 			},
 			{
 				name: 'noOfHourOfAnticorruptionTranningNewStaff',
-				label: T('No of hour of  anticorruption training - new staff')
+				label: T('No of hours of anticorruption training - new staff')
 			},
 			{
 				name: 'noOfNewStaff',
@@ -265,7 +271,7 @@ const SubmissionForm = (props) => {
 			},
 			{
 				name: 'noOfHourAnticorruptionTranningExistingStaff',
-				label: T('no of hour anticorruption training - existing staff')
+				label: T('no of hours anticorruption training - existing staff')
 			},
 			{
 				name: 'noExistingStaff',
@@ -328,19 +334,26 @@ const SubmissionForm = (props) => {
 	]
 	const history = useHistory()
 
-	const { values, handleSubmit } = useFormikContext()
+	const { values, handleSubmit, resetForm } = useFormikContext()
+	const handleReset = () => {
+		console.log(resetForm);
+		if (window.confirm('Do you want to reset?')) {
+			resetForm();
+		}
+	};
 
 	return (
 		<Form
 			onSubmit={handleSubmit}
-
 		>
-			<div className="mb-3 d-flex justify-content-end">
-				<Button type="submit">Upload</Button>
-			</div>
+
 			{submissionGroups.map((group, index) => (
 				<SubmissionGroup key={`SubmissionForm_${index}`} title={group.title} fields={group.fields}></SubmissionGroup>
 			))}
+			<div className="mb-3 d-flex justify-content-end">
+				<Button type='reset' onClick={handleReset}>Reset</Button>
+				<Button type="submit">Submit</Button>
+			</div>
 		</Form>
 	)
 }
@@ -352,15 +365,7 @@ const UploadESGData = (props) => {
 		const { isConfirmed } = await alertService.fireDialog({
 			title: "Confirmation Page",
 			content: (
-				<div className="text-center">
-					{/* <p className="mb-0">Version 1</p> */}
-					<p className="mb-0">Year of Record: {values.yearOfRecord}</p>
-					<p className="mb-0">...</p>
-					<p className="mb-0">
-						<b>Energy Consumption</b>
-					</p>
-					<p className="mb-0">Petrol Usage: {values.petrolUsage}</p>
-					<p>Diesel: {values.dieselUsage}</p>
+				<div className="text-center">					
 					<p className="mb-0 ">
 						<b>
 							By clicking the 'confirm' button, you acknowledge that the
@@ -391,7 +396,7 @@ const UploadESGData = (props) => {
 
 	const initialValues = React.useMemo(() => {
 		return {
-			companySize: '1',
+			companySize: 'Group A',
 			yearOfRecord: '1',
 			projectType: '1',
 			grossValueOfConstructionWork: '1',
@@ -447,7 +452,7 @@ const UploadESGData = (props) => {
 		<Formik initialValues={initialValues} validationSchema={submissionFormSchema} onSubmit={handleSubmit}>
 			<div className="page-content">
 				<Container fluid>
-					<BreadCrumb title="Upload ESG Data" />
+					<BreadCrumb title="Submit data" />
 					<SubmissionForm />
 				</Container>
 			</div>
