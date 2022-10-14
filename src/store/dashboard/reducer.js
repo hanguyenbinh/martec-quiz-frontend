@@ -11,12 +11,15 @@ const INIT_STATE = {
   userDeviceData: [],
   audiencesSessionsData: [],
   error: {},
+  latestSubmissionData: [],
+  allSubmissions: [],
   isLoading: false
 };
 
 const Dashboard = (state = INIT_STATE, action) => {
   switch (action.type) {
     case GET_LATEST_DATA:
+      console.log('reducer GET_LATEST_DATA')
       return {
         ...state,
         isLoading: true
@@ -28,9 +31,11 @@ const Dashboard = (state = INIT_STATE, action) => {
         isLoading: false
       }
     case GET_LATEST_DATA_SUCCESS:
+      console.log('reducer', action)
       return {
         ...state,
-        latestSubmissionData: action.payload.data,
+        latestSubmissionData: action.payload.data.submissions,
+        allSubmissions: action.payload.data.allSubmissions,
         isLoading: false
       }
     default:

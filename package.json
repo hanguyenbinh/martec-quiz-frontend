@@ -43,7 +43,7 @@
     "lodash": "^4.17.21",
     "lord-icon-element": "^3.3.3",
     "lottie-web": "^5.8.1",
-    "mathjs": "^11.2.1",
+    "mathjs": "^11.3.0",
     "moment": "^2.29.4",
     "node-sass": "^7.0.1",
     "nouislider-react": "^3.4.1",

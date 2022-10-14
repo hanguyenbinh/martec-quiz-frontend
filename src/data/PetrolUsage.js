@@ -1,5 +1,5 @@
 var math = require('mathjs');
-class PetrolUsage {
+export class PetrolUsage {
     constructor({
         companyName,
         companySize,
@@ -9,16 +9,7 @@ class PetrolUsage {
         noOfProject,
         petrolUsage,
         noOfIndustrialAccidents,
-        employeeSize,
-        usageOfCombustiblefuelPetrol,
-        usageOfCombustiblefuelPetrol_NormalDistribution,
-        usageOfCombustiblefuelPetrol_Score,
-        co2EmissionsOfCombustiblefuelPetrol,
-        co2EmissionsOfCombustiblefuelPetrol_NormalDistribution,
-        co2EmissionsOfCombustiblefuelPetrol_Score,
-        co2EmissionsOfCombustiblefuelDiesel,
-        co2EmissionsOfCombustiblefuelDiesel_NormalDistribution,
-        co2EmissionsOfCombustiblefuelDiesel_Score,
+        employeeSize
     }) {
         this.companyName = companyName;
         this.companySize = companySize;
@@ -29,15 +20,18 @@ class PetrolUsage {
         this.petrolUsage = petrolUsage;
         this.noOfIndustrialAccidents = noOfIndustrialAccidents;
         this.employeeSize = employeeSize;
-        this.usageOfCombustiblefuelPetrol = usageOfCombustiblefuelPetrol;
-        this.usageOfCombustiblefuelPetrol_NormalDistribution = usageOfCombustiblefuelPetrol_NormalDistribution;
-        this.usageOfCombustiblefuelPetrol_Score = usageOfCombustiblefuelPetrol_Score;
-        this.co2EmissionsOfCombustiblefuelPetrol = co2EmissionsOfCombustiblefuelPetrol;
-        this.co2EmissionsOfCombustiblefuelPetrol_NormalDistribution = co2EmissionsOfCombustiblefuelPetrol_NormalDistribution;
-        this.co2EmissionsOfCombustiblefuelPetrol_Score = co2EmissionsOfCombustiblefuelPetrol_Score;
-        this.co2EmissionsOfCombustiblefuelDiesel_NormalDistribution = co2EmissionsOfCombustiblefuelDiesel_NormalDistribution;
-        this.co2EmissionsOfCombustiblefuelDiesel = co2EmissionsOfCombustiblefuelDiesel;
-        this.co2EmissionsOfCombustiblefuelDiesel_Score = co2EmissionsOfCombustiblefuelDiesel_Score;
+        // this.usageOfCombustiblefuelPetrol = usageOfCombustiblefuelPetrol;
+        // this.usageOfCombustiblefuelPetrol_NormalDistribution = usageOfCombustiblefuelPetrol_NormalDistribution;
+        // this.usageOfCombustiblefuelPetrol_Score = usageOfCombustiblefuelPetrol_Score;
+        // this.co2EmissionsOfCombustiblefuelPetrol = co2EmissionsOfCombustiblefuelPetrol;
+        // this.co2EmissionsOfCombustiblefuelPetrol_NormalDistribution = co2EmissionsOfCombustiblefuelPetrol_NormalDistribution;
+        // this.co2EmissionsOfCombustiblefuelPetrol_Score = co2EmissionsOfCombustiblefuelPetrol_Score;
+        // this.co2EmissionsOfCombustiblefuelDiesel_NormalDistribution = co2EmissionsOfCombustiblefuelDiesel_NormalDistribution;
+        // this.co2EmissionsOfCombustiblefuelDiesel = co2EmissionsOfCombustiblefuelDiesel;
+        // this.co2EmissionsOfCombustiblefuelDiesel_Score = co2EmissionsOfCombustiblefuelDiesel_Score;
+        this.calUsageOfCombustibleFuelPetrol()
+        this.calCo2EmissionsOfCombustibleFuelPetrol();
+        this.calCo2EmissionsOfCombustibleFuelDiesel();
     }
 
     calUsageOfCombustibleFuelPetrol() {
@@ -161,7 +155,7 @@ let PaulX = new PetrolUsage({
 let arr_object = [Gammon, HipHang, DDL, TGSam, PaulX];
 
 function average(arrValue) {
-    return arrValue.reduce((a,b) => a+b)/arrValue.length;
+    return arrValue.reduce((a, b) => a + b) / arrValue.length;
 }
 
 function averageSTDEV(arrValue) {

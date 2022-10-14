@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 
 import cx from "classnames"
 
@@ -24,6 +24,7 @@ import {
 	CardBody,
 	CardHeader,
 	Col,
+	Dropdown,
 	DropdownItem,
 	DropdownMenu,
 	DropdownToggle,
@@ -44,9 +45,22 @@ ChartJS.register(
 )
 
 const AppChart = (props) => {
-	const { title, options, optionValue, statisticsCards, data, onOptionChange } =
+	const { title, options, optionValue, statisticsCards, data, onOptionChange, selectedItem, setSelectedItem, submissionData } =
 		props
 
+	console.log('AppChart', submissionData);
+	const [dropdownOpen, setDropdownOpen] = useState(false);
+	const toggle = () => setDropdownOpen((prevState) => !prevState);
+	const handleOnclickItem = (item) => {
+		setSelectedItem(item.label);
+		if (item.onClick) {
+			item.onClick();
+		}
+	}
+
+
+
+	console.log('AppChart', selectedItem);
 	return (
 		<Row className={classes.gutters}>
 			<Col
@@ -60,17 +74,15 @@ const AppChart = (props) => {
 						<h4 className="card-title mb-0 flex-grow-1">{title}</h4>
 						<div className="flex-shrink-0">
 							{Array.isArray(options) && options.length > 0 && (
-								<select
-									className={cx(`form-select`, classes.select)}
-									value={optionValue}
-									onChange={(event) => onOptionChange(event.target.value)}
-								>
-									{options.map((option) => (
-										<option key={option.value} value={option.value}>
-											{option.label}
-										</option>
-									))}
-								</select>
+								<Dropdown isOpen={dropdownOpen} toggle={toggle} direction={'down'}>
+									<DropdownToggle caret size="lg">{selectedItem}</DropdownToggle>
+									<DropdownMenu>
+										{options.map((option) => {
+											return option.isHeader ? (<DropdownItem header>{option.label}</DropdownItem>) : (<DropdownItem onClick={() => handleOnclickItem(option)}>{option.label}</DropdownItem>)
+										})}
+									</DropdownMenu>
+
+								</Dropdown>
 							)}
 						</div>
 					</CardHeader>

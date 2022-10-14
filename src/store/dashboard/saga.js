@@ -6,22 +6,23 @@ import { getLatestDataSuccess, getLatestDataError } from "./actions";
 
 //Include Both Helper File with needed methods
 import {
-  getAllData,
+  getAllData, getAPILatestSubmissionForms,
 }
   from "../../helpers/fakebackend_helper";
 
-function* getLatesSubmissionData({ payload: { email } }) {
+function* getLatestSubmissionData({ payload: { email } }) {
   try {
-    const response = yield call(getAllData, email);
+    console.log('saga getLat')
+    const response = yield call(getAPILatestSubmissionForms, email);
 
-    if (response.status === true) yield put(getLatestDataSuccess(GET_LATEST_DATA_SUCCESS, response));
+    if (response.status === true) yield put(getLatestDataSuccess(response.data));
     else yield put(getLatestDataError(GET_LATEST_DATA_ERROR, response));
   } catch (error) {
     yield put(getLatestDataError(GET_LATEST_DATA_ERROR, error));
   }
 }
 function* DashboardSaga() {
-  yield takeEvery(GET_LATEST_DATA, getLatesSubmissionData);
+  yield takeEvery(GET_LATEST_DATA, getLatestSubmissionData);
 }
 
 export default DashboardSaga;
