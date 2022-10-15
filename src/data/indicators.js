@@ -160,15 +160,15 @@ export class Indicators {
   }
 
   calNumberOfEnvironmentalConvictions() {
-    this.NumberOfEnvironmentalConvictions = 0;
+    this.NumberOfEnvironmentalConvictions = this.numberOfConvictionsRelatedToTheEnvironment;
   }
 
   calCommitmentToInvestingInEnvironmentalExpertiseEnvironmentalProfessionalsStaffPer100MHKD() {
-    this.CommitmentToInvestingInEnvironmentalExpertiseEnvironmentalProfessionalsStaffPer100MHKD = 0;
+    this.CommitmentToInvestingInEnvironmentalExpertiseEnvironmentalProfessionalsStaffPer100MHKD = (this.noOfEnvironmentalProfessionals * 100000000) / this.grossValueOfConstructionWork;
   }
 
   calCommitmentToInvestingInEnvironmentalExpertiseEnvironmentalPersonnelStaffPer100MHKD() {
-    this.CommitmentToInvestingInEnvironmentalExpertiseEnvironmentalPersonnelStaffPer100MHKD = 0;
+    this.CommitmentToInvestingInEnvironmentalExpertiseEnvironmentalPersonnelStaffPer100MHKD = (this.noOfEnvironmentalPersonnel * 100000000) / this.grossValueOfConstructionWork;
   }
 
   calCommitmentToAdoptingNovelHealthAndSafetyManagementMeasures() {
@@ -176,27 +176,27 @@ export class Indicators {
   }
 
   calNumberOfSafetyConvictions() {
-    this.NumberOfSafetyConvictions = 0;
+    this.NumberOfSafetyConvictions = this.noOfConvictionsRelatedToHealthyAndSafety;
   }
 
   calNumberOfSuspensionNotices() {
-    this.NumberOfSuspensionNotices = 0;
+    this.NumberOfSuspensionNotices = this.suspensionNoticesDueToSafetyIssues;
   }
 
   calActivenessInParticipatingInSiteSafetyPromotionCampaignsAndAwards() {
-    this.ActivenessInParticipatingInSiteSafetyPromotionCampaignsAndAwards = 0;
+    this.ActivenessInParticipatingInSiteSafetyPromotionCampaignsAndAwards = this.numberAndTypeOfAsWellAsAchivementResultedFromParticipation;
   }
 
   calCommitmentToSafetyTrainingHoursPerManagementStaff() {
-    this.CommitmentToSafetyTrainingHoursPerManagementStaff = 0;
+    this.CommitmentToSafetyTrainingHoursPerManagementStaff = this.noOfSafetyTraningHoursManagementStaff / this.noOfSafetyTraningHoursOperationalStaff;
   }
 
   calCommitmentToSafetyTrainingHoursPerOperationalStaff() {
-    this.CommitmentToSafetyTrainingHoursPerOperationalStaff = 0;
+    this.CommitmentToSafetyTrainingHoursPerOperationalStaff = this.noOfSafetyTraningHoursOperationalStaff / this.noOfTechnicalStaff;
   }
 
   calCommitmentToSafetyTrainingHoursPerDirectLabour() {
-    this.CommitmentToSafetyTrainingHoursPerDirectLabour = 0;
+    this.CommitmentToSafetyTrainingHoursPerDirectLabour = this.noOfSafetyTraningHoursDirectLabour / this.noOfDirectLabor;
   }
 
 }

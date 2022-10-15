@@ -25,9 +25,9 @@ const chartOptions = [
 	{ label: 'Water Consumption', isHeader: true },
 	{ label: 'Usage of fresh water (m3 per 100M HKD)', isHeader: false },
 	{ label: 'Non-hazardous Waste Produced', isHeader: true },
-	{ label: '"Amount of inert waste disposed (tonne per 100M HKD)"', isHeader: false },
-	{ label: '"Amount of noninert waste placed disposed (tonne per 100M HKD)"', isHeader: false },
-	{ label: '"Amount of mixed waste placed disposed (tonne per 100M HKD)"', isHeader: false },
+	{ label: 'Amount of inert waste disposed (tonne per 100M HKD)', isHeader: false },
+	{ label: 'Amount of noninert waste placed disposed (tonne per 100M HKD)', isHeader: false },
+	{ label: 'Amount of mixed waste placed disposed (tonne per 100M HKD)', isHeader: false },
 	{ label: 'Health and Safety', isHeader: true },
 	{ label: 'Accident rate (No per 1,000 workers)', isHeader: false },
 	{ label: 'Incident rate (No per 1,000 workers)', isHeader: false },
@@ -113,29 +113,53 @@ const DashBoard = (props) => {
 
 	const [chartData, setChartData] = useState(data);
 
+	const [statisticCards, setStatisticCards] = useState([])
+
 	const handleChangeItem = (newItem) => {
 		const key = camelize(newItem)
 		const firstSubmission = submissionData[0];
 		const type = firstSubmission ? firstSubmission.projectType : '';
 		const size = firstSubmission ? firstSubmission.companySize : '';
 		console.log('handleChangeItem', type, size)
-		const indicatorsValue = submissionData.map(item => ({ year: item.yearOfRecord, value: item[key] }))
+		const indicatorsValue = submissionData.map(item => ({ year: item.yearOfRecord, value: item[key], projectType: item.projectType }))
 		const _chartDataUs = [];
 		const _chartDataAverage = [];
+		const _statisticCards = [];
 		labels.forEach(year => {
+			const statistic = {};
 			const exist = indicatorsValue.find(item => item.year === year);
-			if (!exist) _chartDataUs.push(0);
-			else _chartDataUs.push(exist.value);
-
-			if (averageData[year]) {
-				console.log('function', averageData[year][key])
-				if (averageData[year][key]) _chartDataAverage.push(averageData[year][key](type, size));
-				else _chartDataAverage.push(0);
+			console.log('exist', exist);
+			if (!exist) {
+				statistic.value = 0;
+				statistic.projectType = ''
+				_chartDataUs.push(0);
 			}
 			else {
+				_chartDataUs.push(exist.value);
+				statistic.projectType = exist.projectType;
+				statistic.value = exist.value
+			}
+
+			if (averageData[year]) {
+				if (averageData[year][key]) {
+					const _average = averageData[year][key](type, size);
+					_chartDataAverage.push(_average);
+					statistic.averageValue = _average;
+				}
+				else {
+					statistic.averageValue = 0
+					_chartDataAverage.push(0);
+				}
+			}
+			else {
+				statistic.averageValue = 0
 				_chartDataAverage.push(0);
 			}
+			statistic.year = year;
+			_statisticCards.push(statistic);
 		})
+
+		setStatisticCards(_statisticCards);
 
 		setChartData(preState => {
 			return {
@@ -196,14 +220,14 @@ const DashBoard = (props) => {
 	const statistics = [
 		{
 			title: "Environment",
-			score: 39,
+			score: '-',
 			unit: "pt",
 			ranking: {
-				rank: 3,
-				total: 20
+				rank: '-',
+				total: '-'
 			},
 			stats: {
-				number: 3,
+				number: '-',
 				unit: "rank",
 				status: "increased",
 				subText: "vs. last year"
@@ -211,14 +235,14 @@ const DashBoard = (props) => {
 		},
 		{
 			title: "Social",
-			score: 23,
+			score: '-',
 			unit: "pt",
 			ranking: {
-				rank: 10,
-				total: 20
+				rank: '-',
+				total: '-'
 			},
 			stats: {
-				number: 2,
+				number: '-',
 				unit: "rank",
 				status: "reduced",
 				subText: "vs. last year"
@@ -226,14 +250,14 @@ const DashBoard = (props) => {
 		},
 		{
 			title: "Governance",
-			score: 18,
+			score: '-',
 			unit: "pt",
 			ranking: {
-				rank: 7,
-				total: 20
+				rank: '-',
+				total: '-'
 			},
 			stats: {
-				number: 2,
+				number: '-',
 				unit: "rank",
 				status: "balanced",
 				subText: "vs. last year"
@@ -242,18 +266,17 @@ const DashBoard = (props) => {
 	]
 
 
-	const statisticCards = [{
-		title: 'CLP C02 emission',
-		subtitle: '(Year 2022)',
-		content: <>
-			<p>56 m³/$100M</p>
-			<p>Average 20m³/$100M</p>
+	// const statisticCards = [{
+	// 	title: 'CLP C02 emission',
+	// 	subtitle: '(Year 2022)',
+	// 	content: <>
+	// 		<p>56 m³/$100M</p>
+	// 		<p>Average 20m³/$100M</p>
 
-			<p>12kWh higher than average</p>
-		</>
-	},
-
-	]
+	// 		<p>12kWh higher than average</p>
+	// 	</>
+	// },
+	// ]
 
 	return (
 		<div className="page-content">
