@@ -8,9 +8,10 @@ import Register from "../pages/Authentication/Register"
 import GetOtp from "../pages/Authentication/GetOtp"
 
 
-import DashBoard from "../pages/DashBoard"
+import DashBoard from "src/pages/DashBoard"
 import UploadESGData from "../pages/SubmissionForm"
 import UploadList from "../pages/SubmissionHistory"
+import LandingPage from "src/pages/LandingPage"
 
 
 const authProtectedRoutes = [
@@ -198,15 +199,21 @@ const authProtectedRoutes = [
 	// { path: "/profile", component: UserProfile },
 
 	// this route should be at the end of all other routes
-	// eslint-disable-next-line react/display-name
+	// eslint-disable-next-line react/display-name	
 	{
 		path: "/",
 		exact: true,
-		component: () => <Redirect to="/dashboard" />
-	}
+		component: () => <Redirect to="/dashboard" />,
+	},
 ]
 
 const publicRoutes = [
+	// {
+	// 	path: "/",
+	// 	exact: true,
+	// 	component: () => <Redirect to="/home" />
+	// },
+	{ path: '/home', component: LandingPage },
 	// Authentication Page
 	{ path: "/logout", component: Logout },
 	{ path: "/login", component: Login },

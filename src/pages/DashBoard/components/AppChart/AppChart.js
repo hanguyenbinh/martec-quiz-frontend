@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 
 import cx from "classnames"
 
@@ -45,17 +45,24 @@ ChartJS.register(
 )
 
 const AppChart = (props) => {
-	const { title, options, optionValue, statisticsCards, data, onOptionChange, selectedItem, setSelectedItem, submissionData } =
+	const { title, options, optionValue, statisticsCards, data, selectedItem, setSelectedItem, submissionData } =
 		props
 
-	console.log('AppChart', statisticsCards);
+	console.log('AppChart', statisticsCards[statisticsCards.length - 1]);
 	const [dropdownOpen, setDropdownOpen] = useState(false);
 	const toggle = () => setDropdownOpen((prevState) => !prevState);
 
 	const [dropdownYearOpen, setDropdownYearOpen] = useState(false);
 	const toggleYear = () => setDropdownYearOpen((prevState) => !prevState);
-	const [selectedYear, setSelectedYear] = useState(statisticsCards[0] ? statisticsCards[0] : {});
 
+
+	const [selectedYear, setSelectedYear] = useState(null);
+
+	useEffect(() => {
+		const statistic = statisticsCards[statisticsCards.length - 1];
+		setSelectedYear(statistic);
+
+	}, [statisticsCards])
 
 	const handleOnclickItem = (item) => {
 		setSelectedItem(item.label);
@@ -65,12 +72,10 @@ const AppChart = (props) => {
 	}
 
 	const handleOnclickYearItem = (item) => {
+		console.log('handleOnclickYearItem', item)
 		setSelectedYear(item);
 	}
 
-
-
-	console.log('AppChart', selectedItem);
 	return (
 		<Row className={classes.gutters}>
 			<Col
@@ -101,7 +106,7 @@ const AppChart = (props) => {
 					</CardBody>
 				</Card>
 			</Col>
-			{Array.isArray(statisticsCards) && statisticsCards.length > 0 && (
+			{selectedYear && (
 				<Col md={12} lg={3}>
 					<Row className={classes.gutters}>
 						<Col md={6} lg={12}>
@@ -167,7 +172,6 @@ AppChart.propTypes = {
 			})
 		)
 	}),
-	onOptionChange: PropTypes.func
 }
 
 export default React.memo(AppChart)

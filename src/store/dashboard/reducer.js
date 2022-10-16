@@ -5,7 +5,6 @@ import {
 } from "./actionType";
 
 const INIT_STATE = {
-  latestSubmissionData: [],
   chartData: [],
   audiencesMetricsData: [],
   userDeviceData: [],

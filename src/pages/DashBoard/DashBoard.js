@@ -91,7 +91,7 @@ export const data = {
 const DashBoard = (props) => {
 	const T = props.t ? props.t : (v) => v;
 	const dispatch = useDispatch();
-	const [selectedItem, setSelectedItem] = useState(chartOptions[0].label);
+	const [selectedItem, setSelectedItem] = useState(chartOptions[1].label);
 
 
 	const camelize = function camelize(str) {
@@ -110,9 +110,7 @@ const DashBoard = (props) => {
 
 	const [submissionData, setSubmissionData] = useState([])
 	const [averageData, setAverageData] = useState({})
-
 	const [chartData, setChartData] = useState(data);
-
 	const [statisticCards, setStatisticCards] = useState([])
 
 	const handleChangeItem = (newItem) => {
@@ -120,7 +118,6 @@ const DashBoard = (props) => {
 		const firstSubmission = submissionData[0];
 		const type = firstSubmission ? firstSubmission.projectType : '';
 		const size = firstSubmission ? firstSubmission.companySize : '';
-		console.log('handleChangeItem', type, size)
 		const indicatorsValue = submissionData.map(item => ({ year: item.yearOfRecord, value: item[key], projectType: item.projectType }))
 		const _chartDataUs = [];
 		const _chartDataAverage = [];
@@ -128,7 +125,6 @@ const DashBoard = (props) => {
 		labels.forEach(year => {
 			const statistic = {};
 			const exist = indicatorsValue.find(item => item.year === year);
-			console.log('exist', exist);
 			if (!exist) {
 				statistic.value = 0;
 				statistic.projectType = ''
@@ -189,7 +185,6 @@ const DashBoard = (props) => {
 
 
 	useEffect(() => {
-		console.log('latestSubmissionData changed', latestSubmissionData)
 		const indicators = [];
 		const averages = {};
 
@@ -210,8 +205,11 @@ const DashBoard = (props) => {
 		})
 		setSubmissionData(indicators);
 		setAverageData(averages);
-		console.log('averages', averages)
 	}, [latestSubmissionData])
+
+	useEffect(() => {
+		handleChangeItem(chartOptions[1].label)
+	}, [submissionData, averageData])
 
 	useEffect(() => {
 		const email = sessionStorage.getItem("email");
@@ -264,19 +262,6 @@ const DashBoard = (props) => {
 			}
 		}
 	]
-
-
-	// const statisticCards = [{
-	// 	title: 'CLP C02 emission',
-	// 	subtitle: '(Year 2022)',
-	// 	content: <>
-	// 		<p>56 m³/$100M</p>
-	// 		<p>Average 20m³/$100M</p>
-
-	// 		<p>12kWh higher than average</p>
-	// 	</>
-	// },
-	// ]
 
 	return (
 		<div className="page-content">
