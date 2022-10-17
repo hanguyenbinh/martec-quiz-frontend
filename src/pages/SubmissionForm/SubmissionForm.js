@@ -87,6 +87,19 @@ const SubmissionForm = (props) => {
 				{
 					name: 'yearOfRecord',
 					label: T('Year of Record'),
+					type: 'select',
+					options: [
+						{ label: '2022', value: '2022' },
+						{ label: '2021', value: '2021' },
+						{ label: '2020', value: '2020' },
+						{ label: '2019', value: '2019' },
+						{ label: '2018', value: '2018' },
+						{ label: '2017', value: '2017' },
+						{ label: '2016', value: '2016' },
+						{ label: '2015', value: '2015' },
+
+
+					]
 				},
 				{
 					name: 'projectType',
@@ -139,7 +152,7 @@ const SubmissionForm = (props) => {
 			title: T('Waste Production'),
 			fields: [{
 				name: 'totalWeightof_InertWasteDisposedPerAnnum',
-				label: T('Total weight of non-inert waste disposed per annum (Tonne)')
+				label: T('Total weight of inert waste disposed per annum (Tonne)')
 			},
 			{
 				name: 'totalWeightOf_Non_InertWasteDisposedPerAnnum',
@@ -252,11 +265,11 @@ const SubmissionForm = (props) => {
 			fields: [
 				{
 					name: 'IsAdoptedSupplyChainManagement',
-					label: T(`Click Yes when one of followings is adopted:
-				Migrated to six sigma system				
-				Developed framework for risk-based quality management system				
-				adopted total quality management				
-				practicing strategic, alliancing or partnering based risk sharing approaches
+					label: T(`Click Yes when one of followings is adopted: 
+					i.Migrated to six sigma system 
+					ii.Developed framework for risk-based quality management system 
+					iii.Adopted total quality management 
+					iv.Practicing strategic, alliancing or partnering based risk sharing approaches
 				`),
 					type: 'select',
 					options: [{ value: true, label: 'Yes' }, { value: false, label: 'No' }]
@@ -308,8 +321,8 @@ const SubmissionForm = (props) => {
 			fields: [{
 				name: 'IsAdoptedHealthAndSafety',
 				label: T(`Click yes when one of followings is adopted:
-				Migrated to ISO 45001
-				Developed framework for design for safety`),
+				i.Migrated to ISO 45001
+				ii.Developed framework for design for safety`),
 				type: 'select',
 				options: [{ value: true, label: 'Yes' }, { value: false, label: 'No' }]
 			},

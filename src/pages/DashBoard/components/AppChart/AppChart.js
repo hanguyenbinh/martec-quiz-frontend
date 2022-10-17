@@ -59,7 +59,7 @@ const AppChart = (props) => {
 	const [selectedYear, setSelectedYear] = useState(null);
 
 	useEffect(() => {
-		const statistic = statisticsCards[statisticsCards.length - 1];
+		const statistic = statisticsCards[0];
 		setSelectedYear(statistic);
 
 	}, [statisticsCards])

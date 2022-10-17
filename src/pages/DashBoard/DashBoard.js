@@ -155,7 +155,7 @@ const DashBoard = (props) => {
 			_statisticCards.push(statistic);
 		})
 
-		setStatisticCards(_statisticCards);
+		setStatisticCards(_statisticCards.reverse());
 
 		setChartData(preState => {
 			return {
