@@ -1,0 +1,186 @@
+//
+// _nft-landing.scss
+//
+
+.bookmark-icon {
+    .btn {
+        color: $text-muted;
+        background-color: $light;
+        box-shadow: $box-shadow;
+        font-size: $font-size-base;
+
+        &:hover,
+        &.active {
+            color: $danger;
+        }
+    }
+}
+
+.explore-box {
+    border-radius: 9px;
+    overflow: hidden;
+
+    .explore-img {
+        height: 280px;
+        object-fit: cover;
+    }
+
+    .explore-place-bid-img {
+        position: relative;
+        overflow: hidden;
+        z-index: 0;
+
+        .bg-overlay {
+            position: absolute;
+            right: 0;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            background-color: rgba($dark, 0.4);
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+
+        .place-bid-btn {
+            top: 50%;
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+            .btn {
+                opacity: 0;
+                bottom: -25px;
+                transition: 0.5s ease;
+            }
+        }
+    }
+
+    &:hover {
+        .explore-place-bid-img {
+            .place-bid-btn {
+                .btn {
+                    opacity: 1;
+                    bottom: 0;
+                }
+            }
+
+            .bg-overlay {
+                opacity: 1;
+            }
+        }
+    }
+
+    .discount-time {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        text-align: center;
+        background-color: rgba($white, 0.4);
+        backdrop-filter: blur(5px);
+        padding: 8px;
+    }
+}
+
+//
+.nft-hero {
+    // background-image: url('../../images/nft/bg-home.jpg');
+    // background-size: cover;
+    // background-position: bottom;
+    padding: 222px 0 150px 0;
+
+    .bg-overlay {
+        background-color: #05175f;
+        opacity: 0.85;
+    }
+}
+
+.aboutus {
+    margin-top: 20em;
+}
+
+.member-login-button {
+    margin-left: 25em;
+}
+
+.about-card {
+    height: 16em;
+}
+
+.about-card-title {
+    height: 4em;
+}
+
+#explorecard-list {
+    .list-element {
+        display: none;
+
+        &:nth-child(-n+10) {
+            display: block;
+        }
+    }
+}
+
+video {
+    object-fit: cover;
+
+    width: 100vw;
+    // height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.big-text {
+    font-size: 1.5em;
+}
+
+.button-big-text {
+    font-size: 1em;
+}
+
+.how-to-start-step-1 {
+    color: white;
+    background-color: orange;
+    padding: 1em;
+    height: 17.5em;
+}
+
+.how-to-start-step-2 {
+    color: white;
+    background-color: green;
+    padding: 1em;
+    height: 17.5em;
+}
+
+.how-to-start-step-3 {
+    color: white;
+    background-color: #2E75B6;
+    padding: 1em;
+    height: 17.5em;
+}
+
+.how-to-start-step-4 {
+    color: white;
+    background-color: #C55A11;
+    padding: 1em;
+    height: 17.5em;
+}
+
+.how-to-img {
+    height: 17.5em;
+}
+
+.bottom-button {
+    position: absolute;
+    left: 1em;
+    bottom: 1em;
+}
+
+.step-name {
+    margin-top: 1em
+}
+
+.footer {
+    background-image: url("../../images/landing/footer.png");
+}
