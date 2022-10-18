@@ -91,7 +91,7 @@ const SubmissionHistory = (props) => {
 			title: T('Health and Safety'),
 			fields: [{
 				name: 'noOfIndustrialAccidents',
-				label: T('No.of industrial accidents')
+				label: T('No of industrical accidents')
 			},
 			{
 				name: 'noOfOccupationalIncident',
@@ -143,7 +143,7 @@ const SubmissionHistory = (props) => {
 			title: T('Community Investment'),
 			fields: [{
 				name: 'noOfManhoursInCommunityService',
-				label: T('No. of manhours in community service')
+				label: T('No of manhours in community service')
 			},
 			{
 				name: 'moneyToSupportCommunityService',
@@ -188,12 +188,15 @@ const SubmissionHistory = (props) => {
 			fields: [
 				{
 					name: 'IsAdoptedSupplyChainManagement',
-					label: T(`Click Yes when one of followings is adopted: 
-					i.Migrated to six sigma system 
-					ii.Developed framework for risk-based quality management system 
-					iii.Adopted total quality management 
-					iv.Practicing strategic, alliancing or partnering based risk sharing approaches
-				`)
+					label: (
+						<>
+							<p>{T('Click Yes when one of followings is adopted:')}</p>
+							<p>{T('i.Migrated to six sigma system')}</p>
+							<p>{T('ii.Developed framework for risk-based quality management system')}</p>
+							<p>{T('iii.Adopted total quality management')}</p>
+							<p>{T('iv.Practicing strategic, alliancing or partnering based risk sharing approaches')}</p>
+						</>
+					)
 				}
 			]
 		},
@@ -241,9 +244,14 @@ const SubmissionHistory = (props) => {
 			title: T('In-house Codes and Guidelines Governing-  Health and Safety'),
 			fields: [{
 				name: 'IsAdoptedHealthAndSafety',
-				label: T(`Click yes when one of followings is adopted:
-				i.Migrated to ISO 45001
-				ii.Developed framework for design for safety`)
+				label: (
+					<>
+						<p>{T('Click Yes when one of followings is adopted:')}</p>
+						<p>{T('i.Migrated to ISO 45001')}</p>
+						<p>{T('ii.Developed framework for design for safety')}</p>
+
+					</>
+				),
 			},
 			{
 				name: 'noOfConvictionsRelatedToHealthyAndSafety',
@@ -279,6 +287,7 @@ const SubmissionHistory = (props) => {
 	const handleViewSubmission = async (i) => {
 		const data = submissionForms[i];
 		const { isConfirmed } = await alertService.fireDialog({
+			showConfirmButton: false,
 			title: "Submission detail",
 			size: "xl",
 			content: (
@@ -308,6 +317,9 @@ const SubmissionHistory = (props) => {
 			cancelButtonProps: {
 				show: true,
 				text: "Close"
+			},
+			confirmButtonProps: {
+				show: false
 			}
 		})
 	}

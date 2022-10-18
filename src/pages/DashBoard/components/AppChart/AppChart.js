@@ -93,7 +93,7 @@ const AppChart = (props) => {
 									<DropdownToggle caret size="lg">{selectedItem}</DropdownToggle>
 									<DropdownMenu>
 										{options.map((option) => {
-											return option.isHeader ? (<DropdownItem header>{option.label}</DropdownItem>) : (<DropdownItem onClick={() => handleOnclickItem(option)}>{option.label}</DropdownItem>)
+											return option.isHeader ? (<DropdownItem header>{option.label}</DropdownItem>) : (<DropdownItem active={selectedItem === option.label} onClick={() => handleOnclickItem(option)}>{option.label}</DropdownItem>)
 										})}
 									</DropdownMenu>
 
@@ -124,13 +124,13 @@ const AppChart = (props) => {
 
 										</Dropdown>
 									</div>
-									<div className="flex-grow-1">
-										<p><span>Your value:</span><span>{selectedYear.value}</span></p>
-										<p><span>Average value:</span><span>{selectedYear.averageValue}</span></p>
-										<p><span>Basis:</span><span>{selectedYear.projectType}</span></p>
+									<div className="flex-grow-1 p-4">
+										<p><span>Your value:&nbsp;</span><span>{selectedYear.value.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span></p>
+										<p><span>Average value:&nbsp;</span><span>{selectedYear.averageValue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span></p>
+										<p><span>Basis:&nbsp;</span><span>{selectedYear.projectType}</span></p>
 										{selectedYear.value < selectedYear.averageValue ?
-											(<p>You are {selectedYear.averageValue - selectedYear.value} below the average</p>)
-											: <p>You are {selectedYear.value - selectedYear.averageValue} higher the average</p>}
+											(<p>You are {(selectedYear.averageValue - selectedYear.value).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} below the average</p>)
+											: <p>You are {(selectedYear.value - selectedYear.averageValue).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} higher the average</p>}
 									</div>
 								</CardBody>
 							</Card>

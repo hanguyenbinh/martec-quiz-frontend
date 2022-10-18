@@ -13,8 +13,8 @@ const HowToStart = () => {
             <section className="section bg-light" id="marketplace">
                 <Container>
                     <Row className="justify-content-center">
-                        <div className="text-center mb-5">
-                            <h2 className="mb-3 fw-semibold lh-base">How To Start</h2>
+                        <div className="text-center mb-1">
+                            <h2 className="mb-1 fw-semibold lh-base">How To Start</h2>
                         </div>
                     </Row>
 

@@ -28,24 +28,29 @@ import esglogo from '../../assets/images/landing/esglogo.jpeg'
 
 import gifImg01 from "../../assets/images/nft/gif/img-1.gif";
 
+import esgIcon1 from '../../assets/images/landing/1.png';
+import esgIcon2 from '../../assets/images/landing/2.png';
+import esgIcon3 from '../../assets/images/landing/3.png';
+import esgIcon4 from '../../assets/images/landing/4.png';
+
 const connectData = [
     {
-        img: metamask,
+        img: esgIcon1,
         title: "ESG Recognition Scheme Platform",
         textContent: "",
     },
     {
-        img: esglogo,
+        img: esgIcon2,
         title: "ESG BUILD FUN App",
         textContent: "",
     },
     {
-        img: binance,
+        img: esgIcon3,
         title: "Financial Incentives",
         textContent: "",
     },
     {
-        img: binance,
+        img: esgIcon4,
         title: "Individual Reward",
         textContent: "",
     },

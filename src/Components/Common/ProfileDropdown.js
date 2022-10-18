@@ -10,6 +10,7 @@ const ProfileDropdown = () => {
     const { user } = useSelector(state => ({
         user: state.Profile.user,
     }));
+    const email = sessionStorage.getItem("email");
 
     const [userName, setUserName] = useState("Admin");
 
@@ -30,17 +31,17 @@ const ProfileDropdown = () => {
             <Dropdown isOpen={isProfileDropdown} toggle={toggleProfileDropdown} className="ms-sm-3 header-item topbar-user">
                 <DropdownToggle tag="button" type="button" className="btn shadow-none">
                     <span className="d-flex align-items-center">
-                        <img className="rounded-circle header-profile-user" src={avatar1}
-                            alt="Header Avatar" />
+                        {/* <img className="rounded-circle header-profile-user" src={avatar1}
+                            alt="Header Avatar" /> */}
                         <span className="text-start ms-xl-2">
-                            <span className="d-none d-xl-inline-block ms-1 fw-medium user-name-text">{userName}</span>
-                            <span className="d-none d-xl-block ms-1 fs-12 text-muted user-name-sub-text">Founder</span>
+                            <span className="d-none d-xl-inline-block ms-1 fw-medium user-name-text">Logged in as: </span>
+                            <span className="d-none d-xl-block ms-1 fs-12 text-muted user-name-sub-text">{email}</span>
                         </span>
                     </span>
                 </DropdownToggle>
                 <DropdownMenu className="dropdown-menu-end">
 
-                    <h6 className="dropdown-header">Welcome {userName}!</h6>
+                    <h6 className="dropdown-header">Welcome {email}!</h6>
                     {/* <DropdownItem href="/profile"><i className="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i>
                         <span className="align-middle">Profile</span></DropdownItem>
                     <DropdownItem href="/apps-chat"><i

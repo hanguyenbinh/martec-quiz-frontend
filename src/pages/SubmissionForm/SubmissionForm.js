@@ -168,7 +168,7 @@ const SubmissionForm = (props) => {
 			title: T('Health and Safety'),
 			fields: [{
 				name: 'noOfIndustrialAccidents',
-				label: T('No.of industrial accidents')
+				label: T('No of industrical accidents')
 			},
 			{
 				name: 'noOfOccupationalIncident',
@@ -220,7 +220,7 @@ const SubmissionForm = (props) => {
 			title: T('Community Investment'),
 			fields: [{
 				name: 'noOfManhoursInCommunityService',
-				label: T('No. of manhours in community service')
+				label: T('No of manhours in community service')
 			},
 			{
 				name: 'moneyToSupportCommunityService',
@@ -265,12 +265,15 @@ const SubmissionForm = (props) => {
 			fields: [
 				{
 					name: 'IsAdoptedSupplyChainManagement',
-					label: T(`Click Yes when one of followings is adopted: 
-					i.Migrated to six sigma system 
-					ii.Developed framework for risk-based quality management system 
-					iii.Adopted total quality management 
-					iv.Practicing strategic, alliancing or partnering based risk sharing approaches
-				`),
+					label: (
+						<>
+							<p>{T('Click Yes when one of followings is adopted:')}</p>
+							<p>{T('i.Migrated to six sigma system')}</p>
+							<p>{T('ii.Developed framework for risk-based quality management system')}</p>
+							<p>{T('iii.Adopted total quality management')}</p>
+							<p>{T('iv.Practicing strategic, alliancing or partnering based risk sharing approaches')}</p>
+						</>
+					),
 					type: 'select',
 					options: [{ value: true, label: 'Yes' }, { value: false, label: 'No' }]
 				}
@@ -320,9 +323,14 @@ const SubmissionForm = (props) => {
 			title: T('In-house Codes and Guidelines Governing-  Health and Safety'),
 			fields: [{
 				name: 'IsAdoptedHealthAndSafety',
-				label: T(`Click yes when one of followings is adopted:
-				i.Migrated to ISO 45001
-				ii.Developed framework for design for safety`),
+				label: (
+					<>
+						<p>{T('Click Yes when one of followings is adopted:')}</p>
+						<p>{T('i.Migrated to ISO 45001')}</p>
+						<p>{T('ii.Developed framework for design for safety')}</p>
+
+					</>
+				),
 				type: 'select',
 				options: [{ value: true, label: 'Yes' }, { value: false, label: 'No' }]
 			},
@@ -372,7 +380,7 @@ const SubmissionForm = (props) => {
 				<SubmissionGroup key={`SubmissionForm_${index}`} title={group.title} fields={group.fields}></SubmissionGroup>
 			))}
 			<div className="mb-3 d-flex justify-content-end">
-				<Button type='reset' onClick={handleReset}>Reset</Button>
+				<Button type='reset' onClick={handleReset}>Reset</Button>&nbsp;&nbsp;&nbsp;
 				<Button type="submit">Submit</Button>
 			</div>
 		</Form>
