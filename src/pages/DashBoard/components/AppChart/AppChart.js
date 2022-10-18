@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 
 import cx from "classnames"
 
@@ -45,12 +45,25 @@ ChartJS.register(
 )
 
 const AppChart = (props) => {
-	const { title, options, optionValue, statisticsCards, data, onOptionChange, selectedItem, setSelectedItem, submissionData } =
+	const { title, options, optionValue, statisticsCards, data, selectedItem, setSelectedItem, submissionData } =
 		props
 
-	console.log('AppChart', submissionData);
+	console.log('AppChart', statisticsCards[statisticsCards.length - 1]);
 	const [dropdownOpen, setDropdownOpen] = useState(false);
 	const toggle = () => setDropdownOpen((prevState) => !prevState);
+
+	const [dropdownYearOpen, setDropdownYearOpen] = useState(false);
+	const toggleYear = () => setDropdownYearOpen((prevState) => !prevState);
+
+
+	const [selectedYear, setSelectedYear] = useState(null);
+
+	useEffect(() => {
+		const statistic = statisticsCards[0];
+		setSelectedYear(statistic);
+
+	}, [statisticsCards])
+
 	const handleOnclickItem = (item) => {
 		setSelectedItem(item.label);
 		if (item.onClick) {
@@ -58,9 +71,11 @@ const AppChart = (props) => {
 		}
 	}
 
+	const handleOnclickYearItem = (item) => {
+		console.log('handleOnclickYearItem', item)
+		setSelectedYear(item);
+	}
 
-
-	console.log('AppChart', selectedItem);
 	return (
 		<Row className={classes.gutters}>
 			<Col
@@ -91,22 +106,36 @@ const AppChart = (props) => {
 					</CardBody>
 				</Card>
 			</Col>
-			{Array.isArray(statisticsCards) && statisticsCards.length > 0 && (
+			{selectedYear && (
 				<Col md={12} lg={3}>
 					<Row className={classes.gutters}>
-						{statisticsCards.map((statisticsCard, statisticsCardIndex) => (
-							<Col key={statisticsCardIndex} md={6} lg={12}>
-								<Card className="m-0">
-									<CardBody className="d-flex flex-column">
-										<div className="text-center">
-											<h4>{statisticsCard.title}</h4>
-											<p>{statisticsCard.subTitle}</p>
-										</div>
-										<div className="flex-grow-1">{statisticsCard.content}</div>
-									</CardBody>
-								</Card>
-							</Col>
-						))}
+						<Col md={6} lg={12}>
+							<Card className="m-0">
+								<CardBody className="d-flex flex-column">
+									<div className="text-center">
+										<h4>{selectedItem}</h4>
+										<Dropdown isOpen={dropdownYearOpen} toggle={toggleYear} direction={'down'}>
+											<DropdownToggle caret size="lg">{selectedYear.year}</DropdownToggle>
+											<DropdownMenu>
+												{statisticsCards.map((option, key) => {
+													return (<DropdownItem key={'option_' + key} onClick={() => handleOnclickYearItem(option)}>{option.year}</DropdownItem>)
+												})}
+											</DropdownMenu>
+
+										</Dropdown>
+									</div>
+									<div className="flex-grow-1">
+										<p><span>Your value:</span><span>{selectedYear.value}</span></p>
+										<p><span>Average value:</span><span>{selectedYear.averageValue}</span></p>
+										<p><span>Basis:</span><span>{selectedYear.projectType}</span></p>
+										{selectedYear.value < selectedYear.averageValue ?
+											(<p>You are {selectedYear.averageValue - selectedYear.value} below the average</p>)
+											: <p>You are {selectedYear.value - selectedYear.averageValue} higher the average</p>}
+									</div>
+								</CardBody>
+							</Card>
+						</Col>
+
 					</Row>
 				</Col>
 			)}
@@ -123,13 +152,13 @@ AppChart.propTypes = {
 		})
 	),
 	optionValue: PropTypes.any,
-	statisticsCards: PropTypes.arrayOf(
-		PropTypes.shape({
-			title: PropTypes.string,
-			subTitle: PropTypes.string,
-			content: PropTypes.any
-		})
-	),
+	// statisticsCards: PropTypes.arrayOf(
+	// 	PropTypes.shape({
+	// 		title: PropTypes.string,
+	// 		subTitle: PropTypes.string,
+	// 		content: PropTypes.any
+	// 	})
+	// ),
 	data: PropTypes.shape({
 		labels: PropTypes.array,
 		datasets: PropTypes.arrayOf(
@@ -143,7 +172,6 @@ AppChart.propTypes = {
 			})
 		)
 	}),
-	onOptionChange: PropTypes.func
 }
 
 export default React.memo(AppChart)

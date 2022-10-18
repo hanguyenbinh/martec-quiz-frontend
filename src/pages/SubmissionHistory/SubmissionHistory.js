@@ -7,6 +7,7 @@ import { Button, Card, CardBody, CardHeader, Col, Container, Label, Row } from "
 import BreadCrumb from "../../Components/Common/BreadCrumb"
 import * as moment from 'moment';
 import { alertService } from "../../services"
+import classes from "./SubmissionHistory.module.scss"
 
 const SubmissionHistory = (props) => {
 	const T = props.t
@@ -14,7 +15,6 @@ const SubmissionHistory = (props) => {
 
 	useEffect(() => {
 		const email = sessionStorage.getItem("email");
-
 		dispatch(getSumissionForms(email, props.history))
 	}, [])
 	const { submissionForms } = useSelector(state => ({
@@ -188,11 +188,11 @@ const SubmissionHistory = (props) => {
 			fields: [
 				{
 					name: 'IsAdoptedSupplyChainManagement',
-					label: T(`Click Yes when one of followings is adopted:
-				Migrated to six sigma system				
-				Developed framework for risk-based quality management system				
-				adopted total quality management				
-				practicing strategic, alliancing or partnering based risk sharing approaches
+					label: T(`Click Yes when one of followings is adopted: 
+					i.Migrated to six sigma system 
+					ii.Developed framework for risk-based quality management system 
+					iii.Adopted total quality management 
+					iv.Practicing strategic, alliancing or partnering based risk sharing approaches
 				`)
 				}
 			]
@@ -242,8 +242,8 @@ const SubmissionHistory = (props) => {
 			fields: [{
 				name: 'IsAdoptedHealthAndSafety',
 				label: T(`Click yes when one of followings is adopted:
-				Migrated to ISO 45001
-				Developed framework for design for safety`)
+				i.Migrated to ISO 45001
+				ii.Developed framework for design for safety`)
 			},
 			{
 				name: 'noOfConvictionsRelatedToHealthyAndSafety',
@@ -273,12 +273,14 @@ const SubmissionHistory = (props) => {
 		},
 	]
 
+	const md = [12, 6, 4, 3]
+
 
 	const handleViewSubmission = async (i) => {
 		const data = submissionForms[i];
 		const { isConfirmed } = await alertService.fireDialog({
 			title: "Submission detail",
-			size: "lg",
+			size: "xl",
 			content: (
 				<div className="text-center">
 					{submissionGroups && submissionGroups.map((submissionForm, index) => (
@@ -291,7 +293,7 @@ const SubmissionHistory = (props) => {
 									{
 										submissionForm.fields.map((field, _index) => (
 											<Col key={`submission_form_detail_${index}${_index}`} sm={12} md={3}>
-												<Label>{field.label}</Label>
+												<Label><div style={{ textDecoration: 'underline' }}>{field.label}</div></Label>
 												<div>{data[field.name] === true ? 'Yes' : data[field.name] === false ? 'No' : data[field.name]}</div>
 											</Col>
 										))

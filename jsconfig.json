@@ -9,11 +9,7 @@
 		"sourceMap": true,
 		"jsx": "react",
 		"allowSyntheticDefaultImports": true,
-		"baseUrl": ".",
-		"paths": {
-			"@/*": ["src/*"],
-			"@@/*": ["./*"]
-		}
+		"baseUrl": "."
 	},
 	"include": ["src/**/*"]
 }

@@ -90,6 +90,7 @@ const AlertDialog = (props) => {
 			isOpen={open}
 			toggle={() => handleClose({ isConfirmed: false })}
 			centered
+			style={{ width: '100%' }}
 		>
 			{![null, undefined, ""].includes(content) && (
 				<ModalBody>

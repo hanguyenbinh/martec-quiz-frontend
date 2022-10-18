@@ -132,6 +132,7 @@ export class Average {
         values.push(item.AccidentRateNoPer1000Workers);
       }
     })
+    console.log('AccidentRateNoPer1000Workers', values, projectType, companySize)
     return this.average(values);
   }
 
@@ -357,7 +358,14 @@ export class Average {
   }
 
   average(arrValue) {
-    return arrValue.reduce((a, b) => a + b) / arrValue.length;
+    try {
+      return arrValue.reduce((a, b) => a + b) / arrValue.length;
+    }
+    catch (error) {
+      console.log('average error', error);
+      console.log(arrValue);
+      return 0;
+    }
   }
 
   averageSTDEV(arrValue) {

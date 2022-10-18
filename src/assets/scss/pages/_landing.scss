@@ -64,13 +64,13 @@
         &:hover,
         &.active,
         &:focus {
-          color: $success  !important;
+          color: $success !important;
         }
       }
 
       &.active {
         .nav-link {
-          color: $success  !important;
+          color: $success !important;
         }
       }
     }
@@ -79,7 +79,7 @@
   }
 
   .nav-link.active {
-    color: $success  !important;
+    color: $success !important;
   }
 
   &.is-sticky {
@@ -250,7 +250,21 @@
     }
 
     footer.bg-dark {
-      background-color: $card-bg  !important;
+      background-image: url(../../images/landing/footer.png);
     }
   }
+}
+
+.footer {
+  background-image: url('../../images/landing/footer.png');
+  background-size: contain;
+  height: max-content;
+  font-size: 0.8em;
+}
+
+.copyright {
+  position: absolute;
+  left: 1.5em;
+  bottom: 0;
+  color: white;
 }
