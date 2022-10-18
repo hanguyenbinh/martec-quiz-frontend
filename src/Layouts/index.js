@@ -48,8 +48,8 @@ const Layout = (props) => {
 		leftSidebarImageType: state.Layout.leftSidebarImageType
 	}))
 	/*
-    layout settings
-    */
+		layout settings
+		*/
 	useEffect(() => {
 		if (
 			layoutType ||
@@ -85,8 +85,8 @@ const Layout = (props) => {
 		dispatch
 	])
 	/*
-    call dark/light mode
-    */
+		call dark/light mode
+		*/
 	const onChangeLayoutMode = (value) => {
 		if (changeLayoutMode) {
 			dispatch(changeLayoutMode(value))
@@ -118,7 +118,7 @@ const Layout = (props) => {
 				<Sidebar layoutType={layoutType} />
 				<div className="main-content">
 					{props.children}
-					<Footer />
+					{/* <Footer /> */}
 				</div>
 			</div>
 			{/* <RightSidebar /> */}
