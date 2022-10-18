@@ -194,7 +194,7 @@ const DashBoard = (props) => {
 		})
 		labels.forEach(year => {
 			const allIndicators = [];
-			allSubmissions.forEach(submission => {
+			allSubmissions && allSubmissions.forEach(submission => {
 				if (submission.yearOfRecord === year) {
 					allIndicators.push(new Indicators(submission))
 				}
