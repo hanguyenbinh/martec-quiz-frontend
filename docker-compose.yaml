@@ -6,4 +6,6 @@ services:
             context: .
             dockerfile: ./Dockerfile
         ports:
-            - 54434:80        
+            - 54434:80
+        environment:
+        - PORTAL_URL=http://218.255.16.134:54433/v1
