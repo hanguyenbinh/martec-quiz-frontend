@@ -9,7 +9,7 @@ import Footer from 'src/Layouts/Footer';
 import SupportingOrganisation from './SupportingOrganisation';
 
 const index = () => {
-    document.title = " Landing | Velzon - React Admin & Dashboard Template";
+    document.title = "ESG Recognition Scheme Platform | HKCA";
 
     return (
         <React.Fragment>

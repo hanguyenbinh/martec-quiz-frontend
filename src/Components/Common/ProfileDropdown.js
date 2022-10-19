@@ -41,7 +41,7 @@ const ProfileDropdown = () => {
                 </DropdownToggle>
                 <DropdownMenu className="dropdown-menu-end">
 
-                    <h6 className="dropdown-header">Welcome {email}!</h6>
+                    {/* <h6 className="dropdown-header">Welcome {email}!</h6> */}
                     {/* <DropdownItem href="/profile"><i className="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i>
                         <span className="align-middle">Profile</span></DropdownItem>
                     <DropdownItem href="/apps-chat"><i

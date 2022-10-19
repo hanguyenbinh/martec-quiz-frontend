@@ -89,14 +89,14 @@ const SubmissionForm = (props) => {
 					label: T('Year of Record'),
 					type: 'select',
 					options: [
-						{ label: '2022', value: '2022' },
-						{ label: '2021', value: '2021' },
-						{ label: '2020', value: '2020' },
-						{ label: '2019', value: '2019' },
-						{ label: '2018', value: '2018' },
-						{ label: '2017', value: '2017' },
-						{ label: '2016', value: '2016' },
-						{ label: '2015', value: '2015' },
+						{ label: '2022.04-2023.03', value: '2022' },
+						{ label: '2021.04-2022.03', value: '2021' },
+						{ label: '2020.04-2021.03', value: '2020' },
+						{ label: '2019.04-2020.03', value: '2019' },
+						{ label: '2018.04-2019.03', value: '2018' },
+						{ label: '2017.04-2018.03', value: '2017' },
+						{ label: '2016.04-2017.03', value: '2016' },
+						{ label: '2015.04-2016.03', value: '2015' },
 
 
 					]
@@ -111,6 +111,7 @@ const SubmissionForm = (props) => {
 						{ label: 'Piling & foundation', value: 'Piling & foundation' },
 						{ label: 'Building RMAA', value: 'Building RMAA' },
 						{ label: 'Civil R&M', value: 'Civil R&M' },
+						{ label: 'Supplier', value: 'Supplier' }
 					]
 				},
 				{
@@ -128,11 +129,11 @@ const SubmissionForm = (props) => {
 			title: T('Energy/Water Consumption'),
 			fields: [{
 				name: 'petrolUsage',
-				label: T('Petrol Usage (Tonne)')
+				label: T('Petrol Usage (Litres)')
 			},
 			{
 				name: 'dieselUsage',
-				label: T('Diesel Usage (Tonne)')
+				label: T('Diesel Usage (Litres)')
 			},
 			{
 				name: 'amountOfElectricityHKE',

@@ -14,12 +14,6 @@ const SupportingOrganisation = () => {
                 <Container>
                     <Row className="justify-content-center">
                         <div className="text-center mb-1">
-                            <h2 className="mb-1 fw-semibold lh-base">Supporting Organisation</h2>
-                        </div>
-                    </Row>
-
-                    <Row className="justify-content-center">
-                        <div className="text-center mb-1">
                             <h2 className="mb-1 fw-semibold lh-base">Disclaimer</h2>
                         </div>
                     </Row>

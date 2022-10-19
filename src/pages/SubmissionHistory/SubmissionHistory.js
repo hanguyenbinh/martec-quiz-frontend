@@ -51,11 +51,11 @@ const SubmissionHistory = (props) => {
 			title: T('Energy/Water Consumption'),
 			fields: [{
 				name: 'petrolUsage',
-				label: T('Petrol Usage (Tonne)')
+				label: T('Petrol Usage (Litres)')
 			},
 			{
 				name: 'dieselUsage',
-				label: T('Diesel Usage (Tonne)')
+				label: T('Diesel Usage (Litres)')
 			},
 			{
 				name: 'amountOfElectricityHKE',
@@ -333,7 +333,7 @@ const SubmissionHistory = (props) => {
 						<thead>
 							<tr>
 								<th scope="col">{T('Submission Date')}</th>
-								<th scope="col">{T('Year of Records')}</th>
+								<th scope="col">{T('Financial Year')}</th>
 								<th scope="col">{T('Submitted By')}</th>
 								<th scope="col">{T('Hash Value')}</th>
 								<th scope="col">{T('View')}</th>

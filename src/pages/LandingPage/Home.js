@@ -13,13 +13,13 @@ const Home = () => {
 
                 </video>
                 {/* <div className='video-overlay'></div> */}
-                <div className="bg-overlay"></div>
+                {/* <div className="bg-overlay"></div> */}
                 <Container>
                     <Row className="justify-content-center">
                         <Col lg={12} sm={10}>
                             <div className="text-center">
                                 {/* <h1 className="display-4 fw-medium mb-4 lh-base text-success">ESG</h1> */}
-                                <h1 className="display-4 fw-medium mb-4 lh-base text-success">Environment Social Governance</h1>
+                                {/* <h1 className="display-4 fw-medium mb-4 lh-base text-success">Environment Social Governance</h1> */}
                             </div>
                         </Col>
                     </Row>
