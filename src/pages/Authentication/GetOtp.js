@@ -39,7 +39,7 @@ const GetOtp = (props) => {
 		enableReinitialize: true,
 
 		initialValues: {
-			email: userLogin.email || "hanguyenbinh201282@gmail.com" || '',
+			email: userLogin.email || '',
 		},
 		validationSchema: Yup.object({
 			email: Yup.string().required("Please Enter Your Email"),

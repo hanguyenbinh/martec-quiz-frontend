@@ -2,11 +2,6 @@ import React from 'react';
 import Navbar from "./Navbar";
 import Home from "./Home";
 import AboutUs from './AboutUs';
-import Features from './Features';
-import Trending from "./Trending ";
-import DiscoverItems from "./DiscoverItems";
-import TopCreator from "./TopCreator ";
-import CTA from './CTA';
 import MajorIndicators from './MajorIndicators';
 import IncentivesReward from './IncentivesReward';
 import HowToStart from './HowToStart';
@@ -25,11 +20,6 @@ const index = () => {
                 <MajorIndicators />
                 <IncentivesReward />
                 <HowToStart />
-                {/* <Features />
-                <Trending />
-                <DiscoverItems />
-                <TopCreator />
-                <CTA /> */}
                 <SupportingOrganisation></SupportingOrganisation>
                 <Footer />
             </div>

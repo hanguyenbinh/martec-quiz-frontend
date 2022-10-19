@@ -9,9 +9,7 @@ import logo from "../assets/images/logo.png";
 
 //Import Components
 import VerticalLayout from "./VerticalLayouts"
-import TwoColumnLayout from "./TwoColumnLayout"
 import { Container } from "reactstrap"
-import HorizontalLayout from "./HorizontalLayout"
 import { withTranslation } from "react-i18next"
 
 const Sidebar = (props) => {
@@ -86,4 +84,4 @@ const Sidebar = (props) => {
 	)
 }
 
-export default withRouter( withTranslation()(Sidebar))
+export default withRouter(withTranslation()(Sidebar))

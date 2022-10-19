@@ -11,8 +11,8 @@ const AboutUs = () => {
                 <Container>
                     <Row className="justify-content-center">
                         <Col lg={8}>
-                            <div className="text-center mb-5">
-                                <h2 className="mb-3 fw-semibold lh-base">About</h2>
+                            <div className="text-center mb-1">
+                                <h2 className="mb-1 fw-semibold lh-base">About</h2>
                                 <h3 className="text-muted fw-semibold lh-base">ESG Recognition Scheme</h3>
                                 <p className="text-muted ">
                                     Sustainable development is becoming critical for all corporates across all industries. There has been a global trend of growing awareness about the Environmental, Social, and Governance (ESG) standards and has increasingly gone mainstream.
@@ -28,7 +28,7 @@ const AboutUs = () => {
                                 <Card className="text-center border">
                                     <CardBody className="py-5 px-4 about-card">
                                         <h4 className='about-card-title'> {item.title}</h4>
-                                        <img src={item.img} alt="" height="55" className="mb-3 pb-2" />
+                                        <img src={item.img} alt="" height="110" className="mb-3 pb-2" />
                                     </CardBody>
                                 </Card>
                             </Col>

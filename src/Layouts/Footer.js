@@ -8,11 +8,11 @@ import footer from "src/assets/images/landing/footer.png";
 const Footer = () => {
     return (
         <React.Fragment>
-            <footer className="footer py-5 position-relative">
+            <footer className="footer pb-5 pt-1 position-relative">
                 <Container>
-                    <Row>
+                    <Row className='mb-5 mt-1'>
                         <h5>Contact Us</h5>
-                        <div className="text-muted mt-3">
+                        <div className="text-muted">
                             <ul className="list-unstyled ff-secondary footer-list">
                                 <li>(852) 2572 4414</li>
                                 <li>(852) 2572 7104</li>

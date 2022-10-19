@@ -90,13 +90,21 @@
     padding: 222px 0 150px 0;
 
     .bg-overlay {
-        background-color: #05175f;
+        background-color: #054119;
         opacity: 0.85;
+        height: 31.3vw;
+        position: fixed;
     }
 }
 
+.green-text {
+    color: #054119;
+}
+
 .aboutus {
-    margin-top: 20em;
+    margin-top: 4em;
+    background-color: white;
+    // opacity: 0.85;
 }
 
 .member-login-button {
@@ -122,6 +130,8 @@
 }
 
 video {
+    // background-color: #2E75B6;
+    // opacity: 0.50;
     object-fit: cover;
 
     width: 100vw;
@@ -130,6 +140,8 @@ video {
     top: 0;
     left: 0;
 }
+
+
 
 .big-text {
     font-size: 1.5em;
@@ -168,7 +180,9 @@ video {
 }
 
 .how-to-img {
-    height: 17.5em;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
 }
 
 .bottom-button {
