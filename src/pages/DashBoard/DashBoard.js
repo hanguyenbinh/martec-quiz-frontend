@@ -10,7 +10,8 @@ import StatisticsCard from "./components/StatisticsCard"
 import { Indicators } from "../../data/indicators"
 import { Average } from "../../data/average"
 
-const labels = ["2015.04-2016.03", "2016.04-2017.03", "2017.04-2018.03", "2018.04-2019.03", "2019.04-2020.03", "2020.04-2021.03", "2021.04-2022.03", "2022.04-2023.03"]
+const labelsData = ["2015.04-2016.03", "2016.04-2017.03", "2017.04-2018.03", "2018.04-2019.03", "2019.04-2020.03", "2020.04-2021.03", "2021.04-2022.03", "2022.04-2023.03"]
+const labels = ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022']
 const chartOptions = [
 	{ label: 'Energy Consumption', isHeader: true },
 	{ label: 'Usage of combustible fuel - Petrol (kWh per 100M HKD)', isHeader: false },
@@ -67,7 +68,7 @@ const chartOptions = [
 ]
 
 export const data = {
-	labels,
+	labelsData,
 	datasets: [
 		{
 			type: "line",
@@ -75,7 +76,7 @@ export const data = {
 			borderColor: "#3577f1",
 			borderWidth: 4,
 			fill: false,
-			data: labels.map(() => Math.round(Math.random() * 100))
+			data: []
 		},
 		{
 			type: "line",
@@ -83,7 +84,7 @@ export const data = {
 			borderColor: "#f06548",
 			borderWidth: 4,
 			fill: true,
-			data: labels.map(() => Math.round(Math.random() * 100))
+			data: []
 		}
 	]
 }
@@ -159,7 +160,7 @@ const DashBoard = (props) => {
 
 		setChartData(preState => {
 			return {
-				labels,
+				labelsData,
 				datasets: [
 					{
 						type: "line",
