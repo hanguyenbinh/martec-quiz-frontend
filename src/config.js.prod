@@ -1,0 +1,14 @@
+module.exports = {
+  google: {
+    API_KEY: "",
+    CLIENT_ID: "",
+    SECRET: "",
+  },
+  facebook: {
+    APP_ID: "",
+  },
+  api: {
+    API_URL: "https://api.hkca-esg.com/hkca-esg-admin/v1",
+    PORTAL_URL: "https://api.hkca-esg.com/hkca-esg-admin-web-backend/api"
+  }
+};
