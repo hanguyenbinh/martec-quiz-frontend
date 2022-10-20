@@ -36,9 +36,8 @@ const StatisticsCard = (props) => {
 				<div className="d-flex align-items-center justify-content-between">
 					<p className="m-0">
 						<span
-							className={`badge bg-light text-${
-								colorStatusMap[stats.status]
-							} mb-0`}
+							className={`badge bg-light text-${colorStatusMap[stats.status]
+								} mb-0`}
 						>
 							{stats.status === "increased" && (
 								<i className="ri-arrow-up-line align-middle"></i>
@@ -61,22 +60,22 @@ const StatisticsCard = (props) => {
 	)
 }
 
-StatisticsCard.propTypes = {
-	title: PropTypes.string.isRequired,
-	score: PropTypes.number.isRequired,
-	unit: PropTypes.string,
-	icon: PropTypes.any,
-	ranking: PropTypes.shape({
-		rank: PropTypes.number.isRequired,
-		total: PropTypes.number.isRequired
-	}),
-	stats: PropTypes.shape({
-		number: PropTypes.number.isRequired,
-		unit: PropTypes.string,
-		status: PropTypes.oneOf(["increased", "reduced", "balanced"])
-			.isRequired,
-		subText: PropTypes.string
-	}).isRequired
-}
+// StatisticsCard.propTypes = {
+// 	title: PropTypes.string.isRequired,
+// 	score: PropTypes.number.isRequired,
+// 	unit: PropTypes.string,
+// 	icon: PropTypes.any,
+// 	ranking: PropTypes.shape({
+// 		rank: PropTypes.number.isRequired,
+// 		total: PropTypes.number.isRequired
+// 	}),
+// 	stats: PropTypes.shape({
+// 		number: PropTypes.number.isRequired,
+// 		unit: PropTypes.string,
+// 		status: PropTypes.oneOf(["increased", "reduced", "balanced"])
+// 			.isRequired,
+// 		subText: PropTypes.string
+// 	}).isRequired
+// }
 
 export default StatisticsCard

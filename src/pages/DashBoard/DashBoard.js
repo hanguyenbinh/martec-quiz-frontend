@@ -68,7 +68,7 @@ const chartOptions = [
 ]
 
 export const data = {
-	labelsData,
+	labels: labelsData,
 	datasets: [
 		{
 			type: "line",
@@ -155,12 +155,15 @@ const DashBoard = (props) => {
 			statistic.year = year;
 			_statisticCards.push(statistic);
 		})
+		console.log('_statisticCards', _statisticCards)
+		console.log('_chartDataUs', _chartDataUs)
+		console.log('_chartDataAverage', _chartDataAverage)
 
 		setStatisticCards(_statisticCards.reverse());
 
 		setChartData(preState => {
 			return {
-				labelsData,
+				labels: labelsData,
 				datasets: [
 					{
 						type: "line",
