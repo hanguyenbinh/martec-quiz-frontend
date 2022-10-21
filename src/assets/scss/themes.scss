@@ -128,7 +128,7 @@ body {
 $value in $theme-colors {
   .simplebar-track-#{$color} {
     .simplebar-scrollbar:before {
-      background: $value  !important;
+      background: $value !important;
     }
   }
 }
@@ -183,8 +183,28 @@ $value in $theme-colors {
 
 .app-title {
   color: white;
-  font-size: 0.8rem;
+  font-size: 1rem;
   line-height: 53px;
   display: block;
   padding: 30px 0;
+}
+
+.view-submission-label {
+  text-align: left;
+  // text-decoration: underline;
+}
+
+.view-submission-value {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.line-0 {
+  background-color: whitesmoke;
+}
+
+.line-1 {
+  background-color: white;
+  ;
 }

@@ -27,7 +27,7 @@ const HowToStart = () => {
                     <Row>
                         <Col className='how-to-start-step-1 big-text' lg={6}>
                             <p>Submit a completed the application form to HKCA secretariat</p>
-                            <p>The user account of the ESG Recognition Scheme Platform will be given to the eligible applicants</p>
+                            <p>The user account of the ESG Recognition Scheme will be given to the eligible applicants</p>
                             <Button className='button-big-text bottom-button' color='warning'>Join Now</Button>
                         </Col>
                         <Col lg={6}>
@@ -42,7 +42,7 @@ const HowToStart = () => {
                     </Row>
                     <Row>
                         <Col className='how-to-start-step-2 big-text' lg={6}>
-                            <p>Provide ESG information via the ESG Recognition Scheme Platform to generate the dashboard</p>
+                            <p>Provide ESG information via the ESG Recognition Scheme to generate the dashboard</p>
                             <Button className='button-big-text bottom-button' color='success'>Submit Data</Button>
                         </Col>
                         <Col lg={6}>
