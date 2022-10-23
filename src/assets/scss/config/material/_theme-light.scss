@@ -1,38 +1,38 @@
 // :root CSS variables
 
-:root{
+:root {
 
   // body
   --#{$variable-prefix}body-bg : #{$body-bg};
   --#{$variable-prefix}body-color: #{$body-color};
   --#{$variable-prefix}body-color-rgb: #{to-rgb($body-color)};
 
-    //vertical light
-  --#{$variable-prefix}vertical-menu-bg:                      #{$white};
-  --#{$variable-prefix}vertical-menu-item-color:              #{darken($gray-600, 10%)};
-  --#{$variable-prefix}vertical-menu-item-hover-color:        #{$primary};
-  --#{$variable-prefix}vertical-menu-item-active-color:       #{$primary};
-  --#{$variable-prefix}vertical-menu-sub-item-color:          #{darken($gray-600, 4%)};
-  --#{$variable-prefix}vertical-menu-sub-item-hover-color:    #{$primary};
-  --#{$variable-prefix}vertical-menu-sub-item-active-color:   #{$primary};
-  --#{$variable-prefix}vertical-menu-title-color:             #919da9;
-  
+  //vertical light
+  --#{$variable-prefix}vertical-menu-bg: #{$white};
+  --#{$variable-prefix}vertical-menu-item-color: #{darken($gray-600, 10%)};
+  --#{$variable-prefix}vertical-menu-item-hover-color: #{$primary};
+  --#{$variable-prefix}vertical-menu-item-active-color: #{$primary};
+  --#{$variable-prefix}vertical-menu-sub-item-color: #{darken($gray-600, 4%)};
+  --#{$variable-prefix}vertical-menu-sub-item-hover-color: #{$primary};
+  --#{$variable-prefix}vertical-menu-sub-item-active-color: #{$primary};
+  --#{$variable-prefix}vertical-menu-title-color: #919da9;
+
   //vertical dark
-  --#{$variable-prefix}vertical-menu-bg-dark:                 #151529;
-  --#{$variable-prefix}vertical-menu-item-color-dark:          #a3a6b7;
-  --#{$variable-prefix}vertical-menu-item-hover-color-dark:    #{$white};
-  --#{$variable-prefix}vertical-menu-item-active-color-dark:  #{$white};
-  --#{$variable-prefix}vertical-menu-sub-item-color-dark:     #a3a6b7;
+  --#{$variable-prefix}vertical-menu-bg-dark: #{darken($green, 50%)};
+  --#{$variable-prefix}vertical-menu-item-color-dark: #a3a6b7;
+  --#{$variable-prefix}vertical-menu-item-hover-color-dark: #{$white};
+  --#{$variable-prefix}vertical-menu-item-active-color-dark: #{$white};
+  --#{$variable-prefix}vertical-menu-sub-item-color-dark: #a3a6b7;
   --#{$variable-prefix}vertical-menu-sub-item-hover-color-dark: #{$white};
   --#{$variable-prefix}vertical-menu-sub-item-active-color-dark: #{$white};
-  --#{$variable-prefix}vertical-menu-title-color-dark:         #{darken($gray-600, 10%)};
+  --#{$variable-prefix}vertical-menu-title-color-dark: #{darken($gray-600, 10%)};
 
   // Topbar - (Default Light)
-  --#{$variable-prefix}header-bg:  #{$white};
-  --#{$variable-prefix}header-item-color:  #e9ecef;
+  --#{$variable-prefix}header-bg: #{$white};
+  --#{$variable-prefix}header-item-color: #e9ecef;
   // Topbar - Dark
-  --#{$variable-prefix}header-bg-dark:  #1C1C36;
-  --#{$variable-prefix}header-item-color-dark:  var(--#{$variable-prefix}vertical-menu-item-color-dark);
+  --#{$variable-prefix}header-bg-dark: #1C1C36;
+  --#{$variable-prefix}header-item-color-dark: var(--#{$variable-prefix}vertical-menu-item-color-dark);
 
   // Topbar Search
   --#{$variable-prefix}topbar-search-bg: #f3f3f9;
@@ -51,13 +51,13 @@
 
   // twocolumn menu
   --#{$variable-prefix}twocolumn-menu-iconview-bg: #{$white};
-  --#{$variable-prefix}twocolumn-menu-bg:  #{$white};
+  --#{$variable-prefix}twocolumn-menu-bg: #{$white};
   // two column dark
   --#{$variable-prefix}twocolumn-menu-iconview-bg-dark: var(--#{$variable-prefix}vertical-menu-bg-dark);
-  --#{$variable-prefix}twocolumn-menu-bg-dark:  #1C1C36;
+  --#{$variable-prefix}twocolumn-menu-bg-dark: #1C1C36;
   --#{$variable-prefix}twocolumn-menu-item-color-dark: var(--#{$variable-prefix}vertical-menu-item-color-dark);
-  --#{$variable-prefix}twocolumn-menu-item-active-color-dark:  #{$white};
-  --#{$variable-prefix}twocolumn-menu-item-active-bg-dark:  #{rgba($white, .15)};
+  --#{$variable-prefix}twocolumn-menu-item-active-color-dark: #{$white};
+  --#{$variable-prefix}twocolumn-menu-item-active-bg-dark: #{rgba($white, .15)};
 
   // boxed 
   --#{$variable-prefix}boxed-body-bg: #{darken($body-bg, 4%)};
@@ -66,8 +66,8 @@
   --#{$variable-prefix}heading-color: #{$gray-700};
 
   // material shadow
-  --#{$variable-prefix}box-shadow: 0 3px 3px rgba(56,65,74,0.1);
-  
+  --#{$variable-prefix}box-shadow: 0 3px 3px rgba(56, 65, 74, 0.1);
+
   // component variable
 
   // theme-color
@@ -81,7 +81,7 @@
   --#{$variable-prefix}link-hover-color: #{$primary};
 
   // Border variable
-  --#{$variable-prefix}border-color:  #{$gray-300};
+  --#{$variable-prefix}border-color: #{$gray-300};
 
   // dropdown
   --#{$variable-prefix}dropdown-bg: #{$white};

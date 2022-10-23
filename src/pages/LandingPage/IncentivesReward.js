@@ -24,7 +24,7 @@ const IncentivesReward = () => {
                     <Row>
                         <Col lg={4}>
                             <h3>Joining Incentive</h3>
-                            <p>Financial Incentives will be given to the encourage the corporates which participate in this scheme and utilizes the ESG Recognition Scheme Platform.</p>
+                            <p>Financial Incentives will be given to the encourage the corporates which participate in this scheme and utilizes the ESG Recognition Scheme.</p>
                         </Col>
                         <Col lg={4}>
                             <h3>Innovation & Technology Subsidy</h3>

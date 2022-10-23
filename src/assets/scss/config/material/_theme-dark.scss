@@ -38,7 +38,7 @@
 
   //vertical light
   --#{$variable-prefix}vertical-menu-bg: #{$white};
-  --#{$variable-prefix}vertical-menu-item-color: #{darken($green-400, 16%)};
+  --#{$variable-prefix}vertical-menu-item-color: #{darken($gray-400, 16%)};
   --#{$variable-prefix}vertical-menu-item-hover-color: #{$primary};
   --#{$variable-prefix}vertical-menu-item-active-color: #{$primary};
   --#{$variable-prefix}vertical-menu-sub-item-color: #{darken($gray-400, 12%)};
@@ -47,7 +47,7 @@
   --#{$variable-prefix}vertical-menu-title-color: #{$gray-400};
 
   //vertical dark
-  --#{$variable-prefix}vertical-menu-bg-dark: #{$gray-200};
+  --#{$variable-prefix}vertical-menu-bg-dark: #{$green};
   --#{$variable-prefix}vertical-menu-item-color-dark: #{$gray-400};
   --#{$variable-prefix}vertical-menu-item-hover-color-dark: #{$white};
   --#{$variable-prefix}vertical-menu-item-active-color-dark: #{$white};

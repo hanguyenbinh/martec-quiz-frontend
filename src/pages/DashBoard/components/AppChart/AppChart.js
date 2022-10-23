@@ -85,9 +85,9 @@ const AppChart = (props) => {
 				}
 			>
 				<Card className={cx("m-0", classes.chart)}>
-					<CardHeader className="align-items-center d-flex">
-						<h4 className="card-title mb-0 flex-grow-1">{title}</h4>
-						<div className="flex-shrink-0">
+					<CardHeader className="align-items-center d-flex justify-content-between">
+						<h4 className="m-0">{title}</h4>
+						<div>
 							{Array.isArray(options) && options.length > 0 && (
 								<Dropdown isOpen={dropdownOpen} toggle={toggle} direction={'down'}>
 									<DropdownToggle caret size="lg">{selectedItem}</DropdownToggle>
@@ -100,9 +100,10 @@ const AppChart = (props) => {
 								</Dropdown>
 							)}
 						</div>
+						<span></span>
 					</CardHeader>
-					<CardBody className={cx(`p-0`, classes.chartContent)} style={{ width: '120vh' }}>
-						<Chart data={data} />
+					<CardBody className={cx(`p-0`, classes.chartContent)}>
+						<Chart height={120} data={data} />
 					</CardBody>
 				</Card>
 			</Col>

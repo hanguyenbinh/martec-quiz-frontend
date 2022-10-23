@@ -7,11 +7,21 @@ import { Button, Card, CardBody, CardHeader, Col, Container, Label, Row } from "
 import BreadCrumb from "../../Components/Common/BreadCrumb"
 import * as moment from 'moment';
 import { alertService } from "../../services"
-import classes from "./SubmissionHistory.module.scss"
 
 const SubmissionHistory = (props) => {
 	const T = props.t
 	const dispatch = useDispatch();
+
+	const yearData = {
+		'2022': '2022.04-2023.03',
+		'2021': '2021.04-2022.03',
+		'2020': '2020.04-2021.03',
+		'2019': '2019.04-2020.03',
+		'2018': '2018.04-2019.03',
+		'2017': '2017.04-2018.03',
+		'2016': '2016.04-2017.03',
+		'2015': '2015.04-2016.03',
+	}
 
 	useEffect(() => {
 		const email = sessionStorage.getItem("email");
@@ -190,11 +200,11 @@ const SubmissionHistory = (props) => {
 					name: 'IsAdoptedSupplyChainManagement',
 					label: (
 						<>
-							<p>{T('Click Yes when one of followings is adopted:')}</p>
-							<p>{T('i.Migrated to six sigma system')}</p>
-							<p>{T('ii.Developed framework for risk-based quality management system')}</p>
-							<p>{T('iii.Adopted total quality management')}</p>
-							<p>{T('iv.Practicing strategic, alliancing or partnering based risk sharing approaches')}</p>
+							{T('Click Yes when one of followings is adopted:')}
+							<li>{T('i.Migrated to six sigma system')}</li>
+							<li>{T('ii.Developed framework for risk-based quality management system')}</li>
+							<li>{T('iii.Adopted total quality management')}</li>
+							<li>{T('iv.Practicing strategic, alliancing or partnering based risk sharing approaches')}</li>
 						</>
 					)
 				}
@@ -246,9 +256,9 @@ const SubmissionHistory = (props) => {
 				name: 'IsAdoptedHealthAndSafety',
 				label: (
 					<>
-						<p>{T('Click Yes when one of followings is adopted:')}</p>
-						<p>{T('i.Migrated to ISO 45001')}</p>
-						<p>{T('ii.Developed framework for design for safety')}</p>
+						{T('Click Yes when one of followings is adopted:')}
+						<li>{T('i.Migrated to ISO 45001')}</li>
+						<li>{T('ii.Developed framework for design for safety')}</li>
 
 					</>
 				),
@@ -295,16 +305,18 @@ const SubmissionHistory = (props) => {
 								<h4 className="card-title mb-0 flex-grow-1">{submissionForm.title}</h4>
 							</CardHeader>
 							<CardBody>
-								<Row className="mb-3">
-									{
-										submissionForm.fields.map((field, _index) => (
-											<Col key={`submission_form_detail_${index}${_index}`} sm={12} md={3}>
-												<Label><div style={{ textDecoration: 'underline' }}>{field.label}</div></Label>
-												<div>{data[field.name] === true ? 'Yes' : data[field.name] === false ? 'No' : data[field.name]}</div>
+								{
+									submissionForm.fields.map((field, _index) => (
+										<Row key={`submission_form_detail_${index}${_index}`} className={`mb-3 mt-3 line-${_index % 2}`}>
+											<Col>
+												<div className="view-submission-label">{field.label}</div>
 											</Col>
-										))
-									}
-								</Row>
+											<Col className="view-submission-value">
+												{data[field.name] === true ? 'Yes' : data[field.name] === false ? 'No' : (field.name === 'yearOfRecord' ? (yearData[data[field.name]]) : (data[field.name]))}
+											</Col>
+										</Row>
+									))
+								}
 							</CardBody>
 						</Card>
 					))}
@@ -341,7 +353,7 @@ const SubmissionHistory = (props) => {
 							{submissionForms && submissionForms.map((d, dIndex) => (
 								<tr key={dIndex}>
 									<th>{moment(d.createdAt).format('YYYY-MM-DD')}</th>
-									<td>{d.yearOfRecord}</td>
+									<td>{yearData[d.yearOfRecord]}</td>
 									<td>{d.email}</td>
 									<td>{d.hashValue}</td>
 									<td>
