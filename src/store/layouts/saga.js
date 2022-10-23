@@ -34,7 +34,7 @@ function* changeLayoutTheme({ payload: layout }) {
         }
         yield call(changeHTMLAttribute, "data-layout", layout);
     } catch (error) {
-        // console.log(error);
+        // ////console.logdisabled(error);
     }
 }
 
@@ -47,7 +47,7 @@ function* changeLayoutMode({ payload: mode }) {
     try {
         yield call(changeHTMLAttribute, "data-layout-mode", mode);
     } catch (error) {
-        // console.log(error);
+        // ////console.logdisabled(error);
     }
 }
 
@@ -55,11 +55,11 @@ function* changeLayoutMode({ payload: mode }) {
  * Changes the left sidebar theme
  * @param {*} param0
  */
-function* changeLeftSidebarTheme({ payload: theme }) {   
+function* changeLeftSidebarTheme({ payload: theme }) {
     try {
         yield call(changeHTMLAttribute, "data-sidebar", theme);
     } catch (error) {
-        // console.log(error);
+        // ////console.logdisabled(error);
     }
 }
 
@@ -76,7 +76,7 @@ function* changeLayoutWidth({ payload: layoutWidth }) {
         }
         // yield call(changeHTMLAttribute, "data-sidebar-size", layoutWidth);
     } catch (error) {
-        // console.log(error);
+        // ////console.logdisabled(error);
     }
 }
 
@@ -88,7 +88,7 @@ function* changeLayoutPosition({ payload: layoutposition }) {
     try {
         yield call(changeHTMLAttribute, "data-layout-position", layoutposition);
     } catch (error) {
-        // console.log(error);
+        // ////console.logdisabled(error);
     }
 }
 
@@ -100,7 +100,7 @@ function* changeTopbarTheme({ payload: topbarTheme }) {
     try {
         yield call(changeHTMLAttribute, "data-topbar", topbarTheme);
     } catch (error) {
-        // console.log(error);
+        // ////console.logdisabled(error);
     }
 }
 
@@ -108,11 +108,11 @@ function* changeTopbarTheme({ payload: topbarTheme }) {
  * Changes the topbar themes
  * @param {*} param0
  */
- function* changeSidebarImageType({ payload: leftsidebarImagetype }) {
+function* changeSidebarImageType({ payload: leftsidebarImagetype }) {
     try {
         yield call(changeHTMLAttribute, "data-sidebar-image", leftsidebarImagetype);
     } catch (error) {
-        // console.log(error);
+        // ////console.logdisabled(error);
     }
 }
 
@@ -139,7 +139,7 @@ function* changeLeftsidebarSizeType({ payload: leftsidebarSizetype }) {
                 yield call(changeHTMLAttribute, "data-sidebar-size", "lg");
         }
     } catch (error) {
-        // console.log(error);
+        // ////console.logdisabled(error);
     }
 }
 
@@ -151,7 +151,7 @@ function* changeLeftSidebarViewType({ payload: leftsidebarViewtype }) {
     try {
         yield call(changeHTMLAttribute, "data-layout-style", leftsidebarViewtype);
     } catch (error) {
-        // console.log(error);
+        // ////console.logdisabled(error);
     }
 }
 

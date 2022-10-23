@@ -1,7 +1,7 @@
 import { GET_SUBMISSION_FORM, GET_SUBMISSION_FORM_SUCCESS, SUBMIT_FORM_DATA, SUBMIT_FORM_DATA_ERROR, SUBMIT_FORM_DATA_SUCCESS } from "./actionTypes";
 
 export const postSubmissionForm = (data, history) => {
-  console.log('action postSubmissionForm')
+  ////console.logdisabled('action postSubmissionForm')
   return {
     type: SUBMIT_FORM_DATA,
     payload: { data, history },
@@ -9,7 +9,7 @@ export const postSubmissionForm = (data, history) => {
 };
 
 export const portalApiError = error => {
-  console.log('portalApiError', error)
+  ////console.logdisabled('portalApiError', error)
   return {
     type: SUBMIT_FORM_DATA_ERROR,
     payload: error,

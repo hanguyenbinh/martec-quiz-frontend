@@ -10,7 +10,7 @@ import { logoutUser } from "../store/actions"
 const AuthProtected = (props) => {
 	const dispatch = useDispatch()
 	const { loading, accessToken, email } = useProfile()
-	console.log('AuthProtected', loading, accessToken, email)
+	////console.logdisabled('AuthProtected', loading, accessToken, email)
 	useEffect(() => {
 		if (!loading && accessToken && email) {
 			setAuthorization(accessToken)

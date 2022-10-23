@@ -8,7 +8,7 @@ const initialState = {
 const SubmissionForm = (state = initialState, action) => {
 	switch (action.type) {
 		case SUBMIT_FORM_DATA:
-			console.log('reducer submissionForm')
+			////console.logdisabled('reducer submissionForm')
 			state = {
 				...state,
 				loading: true
@@ -21,7 +21,7 @@ const SubmissionForm = (state = initialState, action) => {
 			}
 			break;
 		case SUBMIT_FORM_DATA_ERROR:
-			console.log('SUBMIT_FORM_DATA_ERROR', action)
+			////console.logdisabled('SUBMIT_FORM_DATA_ERROR', action)
 			state = {
 				...state,
 				error: action.payload,
@@ -35,7 +35,7 @@ const SubmissionForm = (state = initialState, action) => {
 			};
 			break;
 		case GET_SUBMISSION_FORM_SUCCESS:
-			console.log('GET_SUBMISSION_FORM_SUCCESS', action)
+			////console.logdisabled('GET_SUBMISSION_FORM_SUCCESS', action)
 			state = {
 				...state,
 				loading: false,

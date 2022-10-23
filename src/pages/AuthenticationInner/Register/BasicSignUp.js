@@ -30,7 +30,7 @@ const BasicSignUp = () => {
                 .required("This field is required"),
         }),
         onSubmit: (values) => {
-            // console.log(values);
+            // ////console.logdisabled(values);
         }
     });
 

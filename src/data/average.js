@@ -13,6 +13,8 @@ export class Average {
         values.push(item.UsageOfCombustibleFuelPetrolKWhPer100MHKD);
       }
     })
+    //console.log(this.indicators.filter(item => item.projectType === projectType))
+    //console.log(projectType, values)
     return this.average(values);
   }
 
@@ -23,7 +25,7 @@ export class Average {
         values.push(item.UsageOfCombustibleFuelDieselKWhPer100MHKD);
       }
     })
-    console.log('UsageOfCombustibleFuelDieselKWhPer100MHKD', values);
+    ////console.logdisabled('UsageOfCombustibleFuelDieselKWhPer100MHKD', values);
     return this.average(values);
   }
   UsageOfElectricityHKEKWhPer100MHKD(projectType, companySize) {
@@ -50,10 +52,13 @@ export class Average {
     const values = []
     this.indicators.forEach(item => {
       if (item.projectType === projectType) {
+        ////console.logdisabled(item.yearOfRecord)
         values.push(item.CO2EmissionsOfCombustibleFuelPetrolM3Per100MHKD);
       }
     })
-    return this.average(values);
+    ////console.logdisabled('CO2EmissionsOfCombustibleFuelPetrolM3Per100MHKD', this.indicators, values)
+    const result = this.average(values);
+    return result
   }
 
   CO2EmissionsOfCombustibleFuelDieselM3Per100MHKD(projectType, companySize) {
@@ -132,7 +137,7 @@ export class Average {
         values.push(item.AccidentRateNoPer1000Workers);
       }
     })
-    console.log('AccidentRateNoPer1000Workers', values, projectType, companySize)
+    ////console.logdisabled('AccidentRateNoPer1000Workers', values, projectType, companySize)
     return this.average(values);
   }
 
@@ -362,8 +367,8 @@ export class Average {
       return arrValue.reduce((a, b) => a + b) / arrValue.length;
     }
     catch (error) {
-      console.log('average error', error);
-      console.log(arrValue);
+      // ////console.logdisabled('average error', error);
+      // ////console.logdisabled(arrValue);
       return 0;
     }
   }

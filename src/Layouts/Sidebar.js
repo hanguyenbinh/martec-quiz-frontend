@@ -41,7 +41,7 @@ const Sidebar = (props) => {
 			document.documentElement.setAttribute("data-sidebar-size", "sm-hover")
 		}
 	}
-	console.log(layoutType);
+	////console.logdisabled(layoutType);
 	return (
 		<React.Fragment>
 			<div className="app-menu navbar-menu">

@@ -9,26 +9,26 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
 const BasicPasswReset = () => {
-    document.title="Reset Password | Velzon - React Admin & Dashboard Template";
+    document.title = "Reset Password | Velzon - React Admin & Dashboard Template";
 
     const validation = useFormik({
         enableReinitialize: true,
-        
+
         initialValues: {
             email: "",
         },
         validationSchema: Yup.object({
             email: Yup.string().required("Please Enter Your Email")
-            .matches("Please include an @ in the email address"),
+                .matches("Please include an @ in the email address"),
         }),
         onSubmit: (values) => {
-            // console.log(values);
+            // ////console.logdisabled(values);
         }
     });
 
     return (
         <ParticlesAuth>
-            <div className="auth-page-content">                
+            <div className="auth-page-content">
                 <Container>
                     <Row>
                         <Col lg={12}>
@@ -67,20 +67,20 @@ const BasicPasswReset = () => {
                                         <Form onSubmit={validation.handleSubmit}>
                                             <div className="mb-4">
                                                 <Label className="form-label">Email</Label>
-                                                <Input 
-                                                type="email" 
-                                                className="form-control" 
-                                                id="email"
-                                                placeholder="Enter Email" 
-                                                name="email"
-                                                value={validation.values.email}
-                                                onBlur={validation.handleBlur}
-                                                onChange={validation.handleChange}
-                                                invalid={validation.errors.email && validation.touched.email ? true : false}
+                                                <Input
+                                                    type="email"
+                                                    className="form-control"
+                                                    id="email"
+                                                    placeholder="Enter Email"
+                                                    name="email"
+                                                    value={validation.values.email}
+                                                    onBlur={validation.handleBlur}
+                                                    onChange={validation.handleChange}
+                                                    invalid={validation.errors.email && validation.touched.email ? true : false}
                                                 />
                                                 {validation.errors.email && validation.touched.email ? (
                                                     <FormFeedback type="invalid">{validation.errors.email}</FormFeedback>
-                                                ): null}
+                                                ) : null}
                                             </div>
 
                                             <div className="text-center mt-4">

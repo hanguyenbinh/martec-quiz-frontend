@@ -88,7 +88,7 @@ export class Indicators {
   }
 
   calAmountOfMixedWastePlacedDisposed() {
-    this.AmountOfMixedWastePlacedDisposedTonnePer100MHKD = this.amountOfMixedWastePlacedDisposed * 100000000 / this.grossValueOfConstructionWork
+    this.AmountOfMixedWastePlacedDisposedTonnePer100MHKD = this.totalWeightof_InertWasteDisposedPerAnnum * 100000000 / this.grossValueOfConstructionWork
   }
 
   calAccidentRate() {
@@ -104,19 +104,19 @@ export class Indicators {
   }
 
   calAverageHoursOfTrainingPerannumPerManagementAndProjectMgtStaff() {
-    this.AverageHoursOfTrainingPerAnnumPerManagementAndProjectMgtStaff = 0;
+    this.AverageHoursOfTrainingPerAnnumPerManagementAndProjectMgtStaff = this.noOfHoursOfTranningPMStaff / this.noOfPMStaff;
   }
 
   calAverageHoursOfTrainingPerannumPerTechnicalStaff() {
-    this.AverageHoursOfTrainingPerAnnumPerTechnicalStaff = 0
+    this.AverageHoursOfTrainingPerAnnumPerTechnicalStaff = this.noOfHoursOfTranningTechnicalStaff / this.noOfTechnicalStaff
   }
 
   calAverageHoursOfTrainingPerannumPerDirectLabour() {
-    this.AverageHoursOfTrainingPerAnnumPerDirectLabour = 0
+    this.AverageHoursOfTrainingPerAnnumPerDirectLabour = this.noOfHoursOfTranning / this.noOfDirectLabor
   }
 
   calProportionOfYoungStaffBeingNurtured() {
-    this.ProportionOfYoungStaffBeingNurtured = this.noOfHoursOfTranning / this.noOfYoungStaff;
+    this.ProportionOfYoungStaffBeingNurtured = this.noOfStaffJoiningYMSOrSimilar / this.noOfYoungStaff;
   }
 
   calAmountOfTimeDevotedToCommunityService() {
@@ -144,7 +144,7 @@ export class Indicators {
   }
 
   calCommitmentToAdoptNovelQualityAndRiskManagementMeasuresSystems() {
-    this.CommitmentToAdoptNovelQualityAndRiskManagementMeasuresSystems = 0;
+    this.CommitmentToAdoptNovelQualityAndRiskManagementMeasuresSystems = this.IsAdoptedSupplyChainManagement;
   }
 
   calActivenessInPromotingAnticorruption() {
@@ -172,7 +172,7 @@ export class Indicators {
   }
 
   calCommitmentToAdoptingNovelHealthAndSafetyManagementMeasures() {
-    this.CommitmentToAdoptingNovelHealthAndSafetyManagementMeasures = 0;
+    this.CommitmentToAdoptingNovelHealthAndSafetyManagementMeasures = this.IsAdoptedHealthAndSafety;
   }
 
   calNumberOfSafetyConvictions() {

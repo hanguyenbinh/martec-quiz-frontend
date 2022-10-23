@@ -8,7 +8,7 @@ import { getSubmissionHistoryApi, postSubmission } from "../../helpers/fakebacke
 
 
 function* postSubmissionForm({ payload: { data, history } }) {
-  console.log('saga postSubmissionForm', data)
+  ////console.logdisabled('saga postSubmissionForm', data)
   try {
     if (process.env.REACT_APP_API_URL) {
       const response = yield call(

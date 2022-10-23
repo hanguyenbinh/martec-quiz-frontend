@@ -48,7 +48,7 @@ export const loginChallengeSuccess = accessToken => {
 };
 
 export const loginInitiateSuccess = response => {
-  console.log('loginInitiateSuccess', response);
+  ////console.logdisabled('loginInitiateSuccess', response);
   return {
     type: LOGIN_INITIATE_SUCCESS,
     payload: response,

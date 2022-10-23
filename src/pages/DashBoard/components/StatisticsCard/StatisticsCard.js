@@ -15,7 +15,7 @@ const StatisticsCard = (props) => {
 		reduced: "danger",
 		balanced: "warning"
 	}
-	console.log(ranking)
+	////console.logdisabled(ranking)
 
 	return (
 		<Card>

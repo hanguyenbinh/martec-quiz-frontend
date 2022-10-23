@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import { useHistory } from "react-router-dom"
 import {
 	Alert,
@@ -15,58 +15,57 @@ import SubmissionGroup from "../DashBoard/components/SubmissionGroup"
 import * as Yup from 'yup';
 import { useDispatch, useSelector } from "react-redux"
 import { postSubmissionForm } from "../../store/submissionForm/actions"
-import { data } from "../DashBoard/DashBoard"
 
 const submissionFormSchema = Yup.object().shape({
 	companySize: Yup.string().required('Required'),
 	yearOfRecord: Yup.string().required('Required'),
 	projectType: Yup.string().required('Required'),
-	grossValueOfConstructionWork: Yup.number().required('Required'),
-	noOfProject: Yup.number().required('Required'),
-	petrolUsage: Yup.number().required('Required'),
-	dieselUsage: Yup.number().required('Required'),
-	amountOfElectricityHKE: Yup.number().required('Required'),
-	amountOfElectricityCLP: Yup.number().required('Required'),
-	annualWaterConsumption: Yup.number().required('Required'),
-	totalWeightof_InertWasteDisposedPerAnnum: Yup.number().required('Required'),
-	totalWeightOf_Non_InertWasteDisposedPerAnnum: Yup.number().required('Required'),
-	totalWeightOf_Mixed_WasteDisposedPerAnnum: Yup.number().required('Required'),
-	noOfIndustrialAccidents: Yup.number().required('Required'),
-	noOfOccupationalIncident: Yup.number().required('Required'),
+	grossValueOfConstructionWork: Yup.string().required('Required'),
+	noOfProject: Yup.string().required('Required'),
+	petrolUsage: Yup.string().required('Required'),
+	dieselUsage: Yup.string().required('Required'),
+	amountOfElectricityHKE: Yup.string().required('Required'),
+	amountOfElectricityCLP: Yup.string().required('Required'),
+	annualWaterConsumption: Yup.string().required('Required'),
+	totalWeightof_InertWasteDisposedPerAnnum: Yup.string().required('Required'),
+	totalWeightOf_Non_InertWasteDisposedPerAnnum: Yup.string().required('Required'),
+	totalWeightOf_Mixed_WasteDisposedPerAnnum: Yup.string().required('Required'),
+	noOfIndustrialAccidents: Yup.string().required('Required'),
+	noOfOccupationalIncident: Yup.string().required('Required'),
 	numberTypeAndMagitudeOfAdvanceHealthAndSafetyTechnologiesUsed: Yup.string().required('Required'),
-	noOfHoursOfTranningPMStaff: Yup.number().required('Required'),
-	noOfPMStaff: Yup.number().required('Required'),
-	noOfHoursOfTranningTechnicalStaff: Yup.number().required('Required'),
-	noOfTechnicalStaff: Yup.number().required('Required'),
-	noOfHoursOfTranning: Yup.number().required('Required'),
-	noOfDirectLabor: Yup.number().required('Required'),
-	noOfStaffJoiningYMSOrSimilar: Yup.number().required('Required'),
-	noOfYoungStaff: Yup.number().required('Required'),
-	noOfManhoursInCommunityService: Yup.number().required('Required'),
-	moneyToSupportCommunityService: Yup.number().required('Required'),
-	employeeSize: Yup.number().required('Required'),
-	noOfStaff: Yup.number().required('Required'),
-	noOfSupportingStaff: Yup.number().required('Required'),
-	noOfResignationsManagementStaff: Yup.number().required('Required'),
-	noOfResignationsTechnicalStaff: Yup.number().required('Required'),
-	noOfResignationsDirectStaff: Yup.number().required('Required'),
-	noOfResignationsSupportingStaff: Yup.number().required('Required'),
+	noOfHoursOfTranningPMStaff: Yup.string().required('Required'),
+	noOfPMStaff: Yup.string().required('Required'),
+	noOfHoursOfTranningTechnicalStaff: Yup.string().required('Required'),
+	noOfTechnicalStaff: Yup.string().required('Required'),
+	noOfHoursOfTranning: Yup.string().required('Required'),
+	noOfDirectLabor: Yup.string().required('Required'),
+	noOfStaffJoiningYMSOrSimilar: Yup.string().required('Required'),
+	noOfYoungStaff: Yup.string().required('Required'),
+	noOfManhoursInCommunityService: Yup.string().required('Required'),
+	moneyToSupportCommunityService: Yup.string().required('Required'),
+	employeeSize: Yup.string().required('Required'),
+	noOfStaff: Yup.string().required('Required'),
+	noOfSupportingStaff: Yup.string().required('Required'),
+	noOfResignationsManagementStaff: Yup.string().required('Required'),
+	noOfResignationsTechnicalStaff: Yup.string().required('Required'),
+	noOfResignationsDirectStaff: Yup.string().required('Required'),
+	noOfResignationsSupportingStaff: Yup.string().required('Required'),
 	IsAdoptedSupplyChainManagement: Yup.bool().required('Required'),
 	numberAndTypeOfOrganisationAndParticipation: Yup.string().required('Required'),
-	noOfHourOfAnticorruptionTranningNewStaff: Yup.number().required('Required'),
-	noOfNewStaff: Yup.number().required('Required'),
-	noOfHourAnticorruptionTranningExistingStaff: Yup.number().required('Required'),
-	noExistingStaff: Yup.number().required('Required'),
-	numberOfConvictionsRelatedToTheEnvironment: Yup.number().required('Required'),
-	noOfEnvironmentalProfessionals: Yup.number().required('Required'),
-	noOfEnvironmentalPersonnel: Yup.number().required('Required'),
+	noOfHourOfAnticorruptionTranningNewStaff: Yup.string().required('Required'),
+	noOfNewStaff: Yup.string().required('Required'),
+	noOfHourAnticorruptionTranningExistingStaff: Yup.string().required('Required'),
+	noExistingStaff: Yup.string().required('Required'),
+	numberOfConvictionsRelatedToTheEnvironment: Yup.string().required('Required'),
+	noOfEnvironmentalProfessionals: Yup.string().required('Required'),
+	noOfEnvironmentalPersonnel: Yup.string().required('Required'),
 	IsAdoptedHealthAndSafety: Yup.bool().required('Required'),
-	noOfConvictionsRelatedToHealthyAndSafety: Yup.number().required('Required'),
-	suspensionNoticesDueToSafetyIssues: Yup.number().required('Required'),
+	noOfConvictionsRelatedToHealthyAndSafety: Yup.string().required('Required'),
+	suspensionNoticesDueToSafetyIssues: Yup.string().required('Required'),
 	numberAndTypeOfAsWellAsAchivementResultedFromParticipation: Yup.string().required('Required'),
-	noOfSafetyTraningHoursManagementStaff: Yup.number().required('Required'),
-	noOfSafetyTraningHoursOperationalStaff: Yup.number().required('Required'),
-	noOfSafetyTraningHoursDirectLabour: Yup.number().required('Required'),
+	noOfSafetyTraningHoursManagementStaff: Yup.string().required('Required'),
+	noOfSafetyTraningHoursOperationalStaff: Yup.string().required('Required'),
+	noOfSafetyTraningHoursDirectLabour: Yup.string().required('Required'),
 });
 
 const SubmissionForm = (props) => {
@@ -102,20 +101,20 @@ const SubmissionForm = (props) => {
 
 					]
 				},
-				{
-					name: 'projectType',
-					label: T('Project Type'),
-					type: 'select',
-					options: [
-						{ label: 'Not Specified', value: 'Not Specified' },
-						{ label: 'Building', value: 'Building' },
-						{ label: 'Civil', value: 'Civil' },
-						{ label: 'Piling & foundation', value: 'Piling & foundation' },
-						{ label: 'Building RMAA', value: 'Building RMAA' },
-						{ label: 'Civil R&M', value: 'Civil R&M' },
-						{ label: 'Supplier', value: 'Supplier' },
-					]
-				},
+				// {
+				// 	name: 'projectType',
+				// 	label: T('Project Type'),
+				// 	type: 'select',
+				// 	options: [
+				// 		{ label: 'Not Specified', value: 'Not Specified' },
+				// 		{ label: 'Building', value: 'Building' },
+				// 		{ label: 'Civil', value: 'Civil' },
+				// 		{ label: 'Piling & foundation', value: 'Piling & foundation' },
+				// 		{ label: 'Building RMAA', value: 'Building RMAA' },
+				// 		{ label: 'Civil R&M', value: 'Civil R&M' },
+				// 		{ label: 'Supplier', value: 'Supplier' },
+				// 	]
+				// },
 				{
 					name: 'grossValueOfConstructionWork',
 					label: T('Gross value of construction work (HKD)')
@@ -368,7 +367,7 @@ const SubmissionForm = (props) => {
 
 	const { values, handleSubmit, resetForm } = useFormikContext()
 	const handleReset = () => {
-		console.log(resetForm);
+		////console.logdisabled(resetForm);
 		if (window.confirm('Do you want to reset?')) {
 			resetForm();
 		}
@@ -396,8 +395,21 @@ const UploadESGData = (props) => {
 	const { error } = useSelector(state => ({
 		error: state.SubmissionForm.error,
 	}));
-	console.log('uploadESGdata', error)
-	useEffect(() => { }, [error])
+	const [errorMessage, setErrorMessage] = useState('')
+	////console.logdisabled('uploadESGdata', error)
+	useEffect(() => {
+		let message = '';
+		if (error.message) {
+			message += error.message;
+			if (error.data && error.data.sqlMessage) {
+				message += ': ' + error.data.sqlMessage
+			}
+		}
+		else {
+			message = error.toString();
+		}
+		setErrorMessage(message);
+	}, [error])
 	const handleSubmit = async (values) => {
 		const { isConfirmed } = await alertService.fireDialog({
 
@@ -435,61 +447,63 @@ const UploadESGData = (props) => {
 			companySize: 'Group A',
 			yearOfRecord: '2022',
 			projectType: 'Building',
-			grossValueOfConstructionWork: 500000000,
-			noOfProject: 10,
-			petrolUsage: 20,
-			dieselUsage: 20,
-			amountOfElectricityHKE: 386006,
-			amountOfElectricityCLP: 192011,
-			annualWaterConsumption: 2685800,
-			totalWeightof_InertWasteDisposedPerAnnum: 43400,
-			totalWeightOf_Non_InertWasteDisposedPerAnnum: 10000,
-			totalWeightOf_Mixed_WasteDisposedPerAnnum: 20000,
-			noOfIndustrialAccidents: 5,
-			noOfOccupationalIncident: 10,
-			numberTypeAndMagitudeOfAdvanceHealthAndSafetyTechnologiesUsed: 2,
-			noOfHoursOfTranningPMStaff: 50,
-			noOfPMStaff: 40,
-			noOfHoursOfTranningTechnicalStaff: 150,
-			noOfTechnicalStaff: 50,
-			noOfHoursOfTranning: 200,
+			grossValueOfConstructionWork: '500000000',
+			noOfProject: '10',
+			petrolUsage: '20',
+			dieselUsage: '20',
+			amountOfElectricityHKE: '386006',
+			amountOfElectricityCLP: '192011',
+			annualWaterConsumption: '2685800',
+			totalWeightof_InertWasteDisposedPerAnnum: '43400',
+			totalWeightOf_Non_InertWasteDisposedPerAnnum: '10000',
+			totalWeightOf_Mixed_WasteDisposedPerAnnum: '20000',
+			noOfIndustrialAccidents: '5',
+			noOfOccupationalIncident: '10',
+			numberTypeAndMagitudeOfAdvanceHealthAndSafetyTechnologiesUsed: '2',
+			noOfHoursOfTranningPMStaff: '50',
+			noOfPMStaff: '40',
+			noOfHoursOfTranningTechnicalStaff: '150',
+			noOfTechnicalStaff: '50',
+			noOfHoursOfTranning: '200',
 			noOfDirectLabor: 50,
-			noOfStaffJoiningYMSOrSimilar: 10,
-			noOfYoungStaff: 40,
-			noOfManhoursInCommunityService: 200,
-			moneyToSupportCommunityService: 200000,
-			employeeSize: 1000,
-			noOfStaff: 1000,
-			noOfSupportingStaff: 120,
-			noOfResignationsManagementStaff: 2,
-			noOfResignationsTechnicalStaff: 8,
-			noOfResignationsDirectStaff: 10,
-			noOfResignationsSupportingStaff: 13,
+			noOfStaffJoiningYMSOrSimilar: '10',
+			noOfYoungStaff: '40',
+			noOfManhoursInCommunityService: '200',
+			moneyToSupportCommunityService: '200000',
+			employeeSize: '1000',
+			noOfStaff: '1000',
+			noOfSupportingStaff: '120',
+			noOfResignationsManagementStaff: '2',
+			noOfResignationsTechnicalStaff: '8',
+			noOfResignationsDirectStaff: '10',
+			noOfResignationsSupportingStaff: '13',
 			IsAdoptedSupplyChainManagement: true,
-			numberAndTypeOfOrganisationAndParticipation: 3,
-			noOfHourOfAnticorruptionTranningNewStaff: 20,
-			noOfNewStaff: 40,
-			noOfHourAnticorruptionTranningExistingStaff: 50,
-			noExistingStaff: 100,
-			numberOfConvictionsRelatedToTheEnvironment: 1,
-			noOfEnvironmentalProfessionals: 3,
-			noOfEnvironmentalPersonnel: 5,
+			numberAndTypeOfOrganisationAndParticipation: '3',
+			noOfHourOfAnticorruptionTranningNewStaff: '20',
+			noOfNewStaff: '40',
+			noOfHourAnticorruptionTranningExistingStaff: '50',
+			noExistingStaff: '100',
+			numberOfConvictionsRelatedToTheEnvironment: '1',
+			noOfEnvironmentalProfessionals: '3',
+			noOfEnvironmentalPersonnel: '5',
 			IsAdoptedHealthAndSafety: false,
-			noOfConvictionsRelatedToHealthyAndSafety: 1,
-			suspensionNoticesDueToSafetyIssues: 0,
-			numberAndTypeOfAsWellAsAchivementResultedFromParticipation: 3,
-			noOfSafetyTraningHoursManagementStaff: 30,
-			noOfSafetyTraningHoursOperationalStaff: 50,
-			noOfSafetyTraningHoursDirectLabour: 100
+			noOfConvictionsRelatedToHealthyAndSafety: '1',
+			suspensionNoticesDueToSafetyIssues: '0',
+			numberAndTypeOfAsWellAsAchivementResultedFromParticipation: '3',
+			noOfSafetyTraningHoursManagementStaff: '30',
+			noOfSafetyTraningHoursOperationalStaff: '50',
+			noOfSafetyTraningHoursDirectLabour: '100'
 		}
 	}, [])
+
+	//console.log('submission form error', error);
 
 	return (
 		<Formik initialValues={initialValues} validationSchema={submissionFormSchema} onSubmit={handleSubmit}>
 			<div className="page-content">
 				<Container fluid>
 					<BreadCrumb title="Submit data" />
-					{error && error ? (<Alert color="danger"> {error} </Alert>) : null}
+					{error && error ? (<Alert color="danger"> {errorMessage} </Alert>) : null}
 					<SubmissionForm />
 				</Container>
 			</div>

@@ -1135,14 +1135,14 @@
 
                     .icon-dual {
                         color: $vertical-menu-item-active-color-dark;
-                        fill: rgba($white , 0.10);
+                        fill: rgba($white, 0.10);
                     }
                 }
             }
 
             svg {
                 color: $vertical-menu-item-color-gradient;
-                fill: rgba($white , 0.10);
+                fill: rgba($white, 0.10);
             }
 
             &:hover {
@@ -1150,7 +1150,7 @@
 
                 .icon-dual {
                     color: $vertical-menu-item-hover-color-dark;
-                    fill: rgba($white , 0.16);
+                    fill: rgba($white, 0.16);
                 }
             }
 
@@ -1162,7 +1162,7 @@
 
                 .icon-dual {
                     color: $vertical-menu-item-hover-color-dark;
-                    fill: rgba($white , 0.16);
+                    fill: rgba($white, 0.16);
                 }
             }
         }
@@ -1343,4 +1343,9 @@
     .sidebar-background {
         background-image: url('../../images/sidebar/img-4.jpg');
     }
+}
+
+.carousel-item {
+    max-width: 100%;
+    height: 2rem;
 }

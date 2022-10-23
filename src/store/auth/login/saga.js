@@ -39,7 +39,7 @@ function* loginUser({ payload: { email, history } }) {
 
 function* loginInitiate({ payload: { email, history } }) {
   try {
-    console.log(email)
+    ////console.logdisabled(email)
     if (process.env.REACT_APP_API_URL) {
       const response = yield call(postInitiate, {
         email,
@@ -59,14 +59,14 @@ function* loginInitiate({ payload: { email, history } }) {
 
 function* loginChallenge({ payload: { email, challengeId, otp, history } }) {
   try {
-    console.log('saga loginChallenge', email, challengeId, otp)
+    ////console.logdisabled('saga loginChallenge', email, challengeId, otp)
     if (process.env.REACT_APP_API_URL) {
       const response = yield call(postChallenge, {
         email,
         challengeId,
         challengeValue: otp,
       });
-      console.log('saga loginChallenge', response)
+      ////console.logdisabled('saga loginChallenge', response)
       if (response.status === 200) {
         sessionStorage.setItem("accessToken", JSON.stringify(response.data.accesstoken));
         sessionStorage.setItem('email', email);

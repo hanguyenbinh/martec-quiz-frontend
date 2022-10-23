@@ -29,7 +29,6 @@ import {
 	DropdownMenu,
 	DropdownToggle,
 	Row,
-	UncontrolledDropdown
 } from "reactstrap"
 
 ChartJS.register(
@@ -45,10 +44,10 @@ ChartJS.register(
 )
 
 const AppChart = (props) => {
-	const { title, options, optionValue, statisticsCards, data, selectedItem, setSelectedItem, submissionData } =
+	const { title, options, statisticsCards, data, selectedItem, setSelectedItem } =
 		props
 
-	console.log('AppChart', statisticsCards[statisticsCards.length - 1]);
+	////console.logdisabled('AppChart', statisticsCards[statisticsCards.length - 1]);
 	const [dropdownOpen, setDropdownOpen] = useState(false);
 	const toggle = () => setDropdownOpen((prevState) => !prevState);
 
@@ -66,14 +65,21 @@ const AppChart = (props) => {
 
 	const handleOnclickItem = (item) => {
 		setSelectedItem(item.label);
-		if (item.onClick) {
-			item.onClick();
-		}
 	}
 
+
 	const handleOnclickYearItem = (item) => {
-		console.log('handleOnclickYearItem', item)
+		////console.logdisabled('handleOnclickYearItem', item)
 		setSelectedYear(item);
+	}
+
+	const isBoolean = (value) => {
+		//console.log(typeof value)
+		return (typeof value) == 'boolean';
+	}
+
+	const isNull = (value) => {
+		return value === null || value === undefined;
 	}
 
 	return (
@@ -126,10 +132,10 @@ const AppChart = (props) => {
 										</Dropdown>
 									</div>
 									<div className="flex-grow-1 p-4">
-										<p><span>Your value:&nbsp;</span><span>{selectedYear.value.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span></p>
-										<p><span>Average value:&nbsp;</span><span>{selectedYear.averageValue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span></p>
-										<p><span>Basis:&nbsp;</span><span>{selectedYear.projectType}</span></p>
-										{selectedYear.value < selectedYear.averageValue ?
+										<p><span>Your value:&nbsp;</span><span>{!isNull(selectedYear.value) ? isBoolean(selectedYear.value) ? selectedYear.value.toString() : selectedYear.value.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : ''}</span></p>
+										<p><span>Average value:&nbsp;</span><span>{!isNull(selectedYear.averageValue) ? selectedYear.averageValue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : 'N/A'}</span></p>
+										<p><span>Basis:&nbsp;</span><span>{!isNull(selectedYear.projectType) ? selectedYear.projectType : ''}</span></p>
+										{(isNull(selectedYear.value) || isNull(selectedYear.averageValue)) ? null : selectedYear.value < selectedYear.averageValue ?
 											(<p>You are {(selectedYear.averageValue - selectedYear.value).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} below the average</p>)
 											: <p>You are {(selectedYear.value - selectedYear.averageValue).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} higher the average</p>}
 									</div>

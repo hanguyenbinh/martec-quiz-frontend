@@ -24,7 +24,7 @@ const login = (state = initialState, action) => {
 			}
 			break
 		case LOGIN_INITIATE:
-			console.log('reducer LOGIN_INITIATE', action)
+			////console.logdisabled('reducer LOGIN_INITIATE', action)
 			state = {
 				...state,
 				email: action.payload.email,
@@ -57,7 +57,7 @@ const login = (state = initialState, action) => {
 			state = { ...state, isUserLogout: true }
 			break
 		case API_ERROR:
-			console.log('API error', action)
+			////console.logdisabled('API error', action)
 			state = {
 				...state,
 				error: action.payload,

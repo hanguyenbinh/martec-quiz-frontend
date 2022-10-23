@@ -10,9 +10,9 @@ import {
 }
   from "../../helpers/fakebackend_helper";
 
-function* getLatestSubmissionData({ payload: { email } }) {
+function* getsubmissions({ payload: { email } }) {
   try {
-    console.log('saga getLat')
+    ////console.logdisabled('saga getLat')
     const response = yield call(getAPILatestSubmissionForms, email);
 
     if (response.status === true) yield put(getLatestDataSuccess(response.data));
@@ -22,7 +22,7 @@ function* getLatestSubmissionData({ payload: { email } }) {
   }
 }
 function* DashboardSaga() {
-  yield takeEvery(GET_LATEST_DATA, getLatestSubmissionData);
+  yield takeEvery(GET_LATEST_DATA, getsubmissions);
 }
 
 export default DashboardSaga;

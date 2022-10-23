@@ -12,7 +12,7 @@ const CoverPasswCreate = () => {
     document.title = "Create New Password | Velzon - React Admin & Dashboard Template";
 
     const [passwordShow, setPasswordShow] = useState(false);
-    const [confrimPasswordShow, setConfrimPasswordShow] = useState(false);   
+    const [confrimPasswordShow, setConfrimPasswordShow] = useState(false);
 
     const validation = useFormik({
         enableReinitialize: true,
@@ -39,7 +39,7 @@ const CoverPasswCreate = () => {
                 .required("Confirm Password Required"),
         }),
         onSubmit: (values) => {
-            // console.log(values);
+            // ////console.logdisabled(values);
         }
     });
     return (
@@ -101,7 +101,7 @@ const CoverPasswCreate = () => {
                                                                     <FormFeedback type="invalid">{validation.errors.confrim_password}</FormFeedback>
                                                                 ) : null}
                                                                 <Button color="link" onClick={() => setConfrimPasswordShow(!confrimPasswordShow)} className="position-absolute end-0 top-0 text-decoration-none text-muted password-addon">
-                                                                <i className="ri-eye-fill align-middle"></i></Button>
+                                                                    <i className="ri-eye-fill align-middle"></i></Button>
                                                             </div>
                                                         </div>
 

@@ -101,10 +101,10 @@ const DashBoard = (props) => {
 		});
 		return result.replace(/[^a-zA-Z0-9]/g, '');
 	}
-	const { latestSubmissionData } = useSelector(state => ({
-		latestSubmissionData: state.Dashboard.latestSubmissionData,
+	const { submissions } = useSelector(state => ({
+		submissions: state.Dashboard.submissions,
 	}));
-
+	//console.log(submissions);
 	const { allSubmissions } = useSelector(state => ({
 		allSubmissions: state.Dashboard.allSubmissions,
 	}));
@@ -116,6 +116,52 @@ const DashBoard = (props) => {
 
 	const handleChangeItem = (newItem) => {
 		const key = camelize(newItem)
+		//console.log('key', key)
+		if (key === 'CommitmentToAdoptNovelQualityAndRiskManagementMeasuresSystems' || key === 'CommitmentToAdoptingNovelHealthAndSafetyManagementMeasures') {
+			const statistics = labels.map(year => {
+				const submission = submissionData.find(item => item.yearOfRecord === year);
+				if (submission) {
+					return {
+						year,
+						projectType: submission.projectType,
+						value: submission[key],
+						averageValue: null,
+					}
+				}
+				else {
+					return {
+						year,
+					}
+				}
+			});
+			setStatisticCards(statistics.reverse());
+
+			setChartData(preState => {
+				return {
+					labels: labelsData,
+					datasets: [
+						{
+							type: "line",
+							label: "US",
+							borderColor: "#3577f1",
+							borderWidth: 4,
+							fill: false,
+							data: []
+						},
+						{
+							type: "line",
+							label: "Peer's average",
+							borderColor: "#f06548",
+							borderWidth: 4,
+							fill: true,
+							data: []
+						}
+					]
+				}
+			});
+			setSelectedItem(newItem)
+			return;
+		}
 		const firstSubmission = submissionData[0];
 		const type = firstSubmission ? firstSubmission.projectType : '';
 		const size = firstSubmission ? firstSubmission.companySize : '';
@@ -155,10 +201,6 @@ const DashBoard = (props) => {
 			statistic.year = year;
 			_statisticCards.push(statistic);
 		})
-		console.log('_statisticCards', _statisticCards)
-		console.log('_chartDataUs', _chartDataUs)
-		console.log('_chartDataAverage', _chartDataAverage)
-
 		setStatisticCards(_statisticCards.reverse());
 
 		setChartData(preState => {
@@ -192,13 +234,13 @@ const DashBoard = (props) => {
 		const indicators = [];
 		const averages = {};
 
-		latestSubmissionData && latestSubmissionData.forEach(submission => {
+		submissions && submissions.forEach(submission => {
 			const indicator = new Indicators(submission);
 			indicators.push(indicator);
 		})
 		labels.forEach(year => {
 			const allIndicators = [];
-			allSubmissions.forEach(submission => {
+			allSubmissions && allSubmissions.forEach(submission => {
 				if (submission.yearOfRecord === year) {
 					allIndicators.push(new Indicators(submission))
 				}
@@ -209,7 +251,7 @@ const DashBoard = (props) => {
 		})
 		setSubmissionData(indicators);
 		setAverageData(averages);
-	}, [latestSubmissionData])
+	}, [submissions])
 
 	useEffect(() => {
 		handleChangeItem(chartOptions[1].label)
@@ -266,11 +308,24 @@ const DashBoard = (props) => {
 			}
 		}
 	]
+	const keyMembers = [
+		'Kum Shing',
+		'Gammon',
+		'Techoy',
+		'Yau Lee',
+		'Hip Hing',
+		'Kwan Lee',
+		'Chu Wo',
+		'Paul Y.',
+		'China State',
+		'Dragages',
+		'Alliance',
+		'Kim Hung']
 
 	return (
 		<div className="page-content">
 			<Container fluid>
-				<BreadCrumb title="Dashboards" />
+				<BreadCrumb title="Dashboards" carousel={keyMembers} />
 				<Row>
 					{statistics.map((statistic, statisticIndex) => (
 						<Col key={statisticIndex} sm={12} md={6} lg={4}>

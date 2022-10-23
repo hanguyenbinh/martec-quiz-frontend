@@ -40,7 +40,7 @@ axios.interceptors.response.use(
  * @param {*} token
  */
 const setAuthorization = (token) => {
-  console.log('setAuthorization', token)
+  ////console.logdisabled('setAuthorization', token)
   axios.defaults.headers["accesstoken"] = token;
 };
 
@@ -112,12 +112,12 @@ class APIClient {
 }
 const getLoggedinUser = () => {
   const accessToken = sessionStorage.getItem("accessToken");
-  console.log('accesstoken', accessToken)
+  ////console.logdisabled('accesstoken', accessToken)
   return accessToken;
 };
 const getLoggedinUserEmail = () => {
   const email = sessionStorage.getItem("email");
-  console.log('email', email)
+  ////console.logdisabled('email', email)
   return email;
 };
 
