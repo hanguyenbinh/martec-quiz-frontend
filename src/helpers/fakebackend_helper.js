@@ -28,9 +28,12 @@ export const postInitiate = data => api.create(url.POST_INITIATE, data);
 
 export const postChallenge = data => api.create(url.POST_CHALLENGE, data);
 
-export const postESGData = data => api.create(_api.PORTAL_URL + url.POST_ESG_DATA, data);
+export const postSubmission = data => {
 
-export const getAPISubmissionForms = (email) => api.get(_api.PORTAL_URL + url.GET_ESG_DATA, { email });
+  return api.create(_api.PORTAL_URL + url.POST_ESG_DATA, data);
+}
+
+export const getSubmissionHistoryApi = (email) => api.get(_api.PORTAL_URL + url.GET_ESG_DATA, { email });
 
 export const getAPILatestSubmissionForms = (email) => api.get(_api.PORTAL_URL + url.GET_LATEST_ESG_DATA, { email });
 

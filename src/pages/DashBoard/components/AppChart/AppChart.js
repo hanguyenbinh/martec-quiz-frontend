@@ -101,7 +101,7 @@ const AppChart = (props) => {
 							)}
 						</div>
 					</CardHeader>
-					<CardBody className={cx(`p-0`, classes.chartContent)}>
+					<CardBody className={cx(`p-0`, classes.chartContent)} style={{ width: '120vh' }}>
 						<Chart data={data} />
 					</CardBody>
 				</Card>

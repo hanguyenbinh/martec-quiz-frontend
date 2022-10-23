@@ -40,8 +40,22 @@ axios.interceptors.response.use(
  * @param {*} token
  */
 const setAuthorization = (token) => {
-  axios.defaults.headers.common["Authorization"] = "Bearer " + token;
+  console.log('setAuthorization', token)
+  axios.defaults.headers["accesstoken"] = token;
 };
+
+axios.interceptors.request.use(
+  function (config) {
+    const accessToken = getLoggedinUser();
+    if (accessToken) {
+      config.headers["accesstoken"] = accessToken;
+    }
+    return config;
+  },
+  function (error) {
+    return Promise.reject(error);
+  }
+);
 
 class APIClient {
   /**
@@ -73,10 +87,15 @@ class APIClient {
   /**
    * post given data to url
    */
-  create = (url, data, accessToken = '') => {
-    return axios.post(url, data, {
-      accessToken
-    });
+  create = (url, data) => {
+    const options = {}
+    const email = getLoggedinUserEmail();
+    if (email) {
+      options.params = {
+        email
+      }
+    }
+    return axios.post(url, data, options);
   };
   /**
    * Updates data

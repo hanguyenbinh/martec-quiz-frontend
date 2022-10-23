@@ -25,12 +25,12 @@ const Login = (props) => {
 	const { challengeId } = useSelector(state => ({
 		challengeId: state.Login.challengeId
 	}))
-	React.useEffect(()=>{
+	React.useEffect(() => {
 		if (!email || !challengeId) {
-			history.push('/get-otp', { from: props.location})
+			history.push('/get-otp', { from: props.location })
 		}
-	},[email, challengeId])
-	
+	}, [email, challengeId])
+
 	const T = props.t;
 	const dispatch = useDispatch();
 	const [otp, setOtp] = useState('')

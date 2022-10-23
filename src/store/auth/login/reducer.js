@@ -57,9 +57,10 @@ const login = (state = initialState, action) => {
 			state = { ...state, isUserLogout: true }
 			break
 		case API_ERROR:
+			console.log('API error', action)
 			state = {
 				...state,
-				error: action.payload.data,
+				error: action.payload,
 				loading: false,
 				isUserLogout: false
 			}

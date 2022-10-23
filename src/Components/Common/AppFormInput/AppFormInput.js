@@ -75,25 +75,25 @@ const AppFormInput = React.forwardRef((props, ref) => {
 	)
 })
 
-AppFormInput.propTypes = {
-	label: PropTypes.string,
-	className: PropTypes.string,
-	classes: PropTypes.shape({
-		root: PropTypes.string,
-		label: PropTypes.string,
-		input: PropTypes.string,
-		helperText: PropTypes.string
-	}),
-	name: PropTypes.string,
-	value: PropTypes.any,
-	placeholder: PropTypes.string,
-	type: PropTypes.oneOf(["password", "text", "number", "email", "select"]),
-	multiple: PropTypes.bool,
-	error: PropTypes.bool,
-	helperText: PropTypes.string,
-	onChange: PropTypes.func,
-	onBlur: PropTypes.func
-}
+// AppFormInput.propTypes = {
+// 	label: PropTypes.string,
+// 	className: PropTypes.string,
+// 	classes: PropTypes.shape({
+// 		root: PropTypes.string,
+// 		label: PropTypes.string,
+// 		input: PropTypes.string,
+// 		helperText: PropTypes.string
+// 	}),
+// 	name: PropTypes.string,
+// 	value: PropTypes.any,
+// 	placeholder: PropTypes.string,
+// 	type: PropTypes.oneOf(["password", "text", "number", "email", "select"]),
+// 	multiple: PropTypes.bool,
+// 	error: PropTypes.bool,
+// 	helperText: PropTypes.string,
+// 	onChange: PropTypes.func,
+// 	onBlur: PropTypes.func
+// }
 
 AppFormInput.displayName = "AppFormInput"
 

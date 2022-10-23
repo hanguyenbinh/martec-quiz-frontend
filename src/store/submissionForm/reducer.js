@@ -21,9 +21,10 @@ const SubmissionForm = (state = initialState, action) => {
 			}
 			break;
 		case SUBMIT_FORM_DATA_ERROR:
+			console.log('SUBMIT_FORM_DATA_ERROR', action)
 			state = {
 				...state,
-				error: action.payload.data,
+				error: action.payload,
 				loading: false,
 			}
 			break;

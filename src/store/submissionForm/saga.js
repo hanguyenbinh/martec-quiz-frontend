@@ -2,20 +2,20 @@ import { call, put, takeEvery } from "redux-saga/effects";
 
 // Login Redux States
 import { GET_SUBMISSION_FORM, SUBMIT_FORM_DATA } from "./actionTypes";
-import { getSubmissionFormsSuccess, portalApiError, submitESGDataSuccess, } from "./actions";
+import { getSubmissionFormsSuccess, portalApiError, postSubmissionFormSuccess, } from "./actions";
 
-import { getAPISubmissionForms, postESGData } from "../../helpers/fakebackend_helper";
+import { getSubmissionHistoryApi, postSubmission } from "../../helpers/fakebackend_helper";
 
 
-function* submitESGData({ payload: { data, history } }) {
-  console.log('saga submitESGData', data)
+function* postSubmissionForm({ payload: { data, history } }) {
+  console.log('saga postSubmissionForm', data)
   try {
     if (process.env.REACT_APP_API_URL) {
       const response = yield call(
-        postESGData,
+        postSubmission,
         data);
       if (response.status === true) {
-        yield put(submitESGDataSuccess(response));
+        yield put(postSubmissionFormSuccess(response));
         history.push("/submissions-history");
       } else {
         yield put(portalApiError(response));
@@ -30,8 +30,7 @@ function* getSubmissionForms({ payload: { email, history } }) {
   try {
     if (process.env.REACT_APP_API_URL) {
       const response = yield call(
-        getAPISubmissionForms,
-        email);
+        getSubmissionHistoryApi, email);
       if (response.status === true) {
         yield put(getSubmissionFormsSuccess(response.data));
         // history.push("/dashboard");
@@ -46,7 +45,7 @@ function* getSubmissionForms({ payload: { email, history } }) {
 
 
 function* submissionFormSaga() {
-  yield takeEvery(SUBMIT_FORM_DATA, submitESGData);
+  yield takeEvery(SUBMIT_FORM_DATA, postSubmissionForm);
   yield takeEvery(GET_SUBMISSION_FORM, getSubmissionForms);
 }
 

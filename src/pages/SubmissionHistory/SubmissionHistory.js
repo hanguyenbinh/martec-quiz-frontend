@@ -281,9 +281,6 @@ const SubmissionHistory = (props) => {
 		},
 	]
 
-	const md = [12, 6, 4, 3]
-
-
 	const handleViewSubmission = async (i) => {
 		const data = submissionForms[i];
 		const { isConfirmed } = await alertService.fireDialog({

@@ -45,11 +45,11 @@ export class Indicators {
   }
 
   calUsageOfCombustibleFuelPetrol() {
-    this.UsageOfCombustibleFuelPetrolKWhPer100MHKD = (this.petrolUsage * 47.1 * 277.78 * 100000000) / this.grossValueOfConstructionWork;
+    this.UsageOfCombustibleFuelPetrolKWhPer100MHKD = (this.petrolUsage * 9.691 * 100000000) / this.grossValueOfConstructionWork;
   }
 
   calUsageOfCombustibleFuelDiesel() {
-    this.UsageOfCombustibleFuelDieselKWhPer100MHKD = this.dieselUsage * 45.66 * 277.78 * 100000000 / this.grossValueOfConstructionWork;
+    this.UsageOfCombustibleFuelDieselKWhPer100MHKD = this.dieselUsage * 10.703 * 100000000 / this.grossValueOfConstructionWork;
   }
 
   calUsageOfElectricityHKE() {
@@ -61,10 +61,10 @@ export class Indicators {
   }
 
   calCo2EmissionsOfCombustibleFuelPetrol() {
-    this.CO2EmissionsOfCombustibleFuelPetrolM3Per100MHKD = (this.petrolUsage * 2.36 * 1350 * 100000000) / this.grossValueOfConstructionWork / 1000;
+    this.CO2EmissionsOfCombustibleFuelPetrolM3Per100MHKD = (this.petrolUsage * 2.36 * 556.2 * 100000000) / this.grossValueOfConstructionWork / 1000;
   }
   calCo2EmissionsOfCombustibleFuelDiesel() {
-    this.CO2EmissionsOfCombustibleFuelDieselM3Per100MHKD = (this.petrolUsage * 2.614 * 1185 * 100000000) / this.grossValueOfConstructionWork / 1000;
+    this.CO2EmissionsOfCombustibleFuelDieselM3Per100MHKD = (this.petrolUsage * 2.614 * 556.2 * 100000000) / this.grossValueOfConstructionWork / 1000;
   }
 
   calCo2EmissionsOfElectricityHKE() {

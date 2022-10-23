@@ -1,6 +1,7 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { useHistory } from "react-router-dom"
 import {
+	Alert,
 	Button,
 	Container,
 	Form,
@@ -13,7 +14,7 @@ import { withTranslation } from "react-i18next"
 import SubmissionGroup from "../DashBoard/components/SubmissionGroup"
 import * as Yup from 'yup';
 import { useDispatch, useSelector } from "react-redux"
-import { submitESGData } from "../../store/submissionForm/actions"
+import { postSubmissionForm } from "../../store/submissionForm/actions"
 import { data } from "../DashBoard/DashBoard"
 
 const submissionFormSchema = Yup.object().shape({
@@ -106,12 +107,13 @@ const SubmissionForm = (props) => {
 					label: T('Project Type'),
 					type: 'select',
 					options: [
+						{ label: 'Not Specified', value: 'Not Specified' },
 						{ label: 'Building', value: 'Building' },
 						{ label: 'Civil', value: 'Civil' },
 						{ label: 'Piling & foundation', value: 'Piling & foundation' },
 						{ label: 'Building RMAA', value: 'Building RMAA' },
 						{ label: 'Civil R&M', value: 'Civil R&M' },
-						{ label: 'Supplier', value: 'Supplier' }
+						{ label: 'Supplier', value: 'Supplier' },
 					]
 				},
 				{
@@ -391,6 +393,11 @@ const SubmissionForm = (props) => {
 const UploadESGData = (props) => {
 	const dispatch = useDispatch();
 	const email = sessionStorage.getItem("email");
+	const { error } = useSelector(state => ({
+		error: state.SubmissionForm.error,
+	}));
+	console.log('uploadESGdata', error)
+	useEffect(() => { }, [error])
 	const handleSubmit = async (values) => {
 		const { isConfirmed } = await alertService.fireDialog({
 
@@ -418,9 +425,7 @@ const UploadESGData = (props) => {
 			}
 		})
 		if (isConfirmed) {
-
-			dispatch(submitESGData({ ...values, email }, props.history))
-			// history.push("/submissions-history")
+			dispatch(postSubmissionForm({ ...values, email }, props.history))
 		}
 		// ... handle api on redux
 	}
@@ -484,6 +489,7 @@ const UploadESGData = (props) => {
 			<div className="page-content">
 				<Container fluid>
 					<BreadCrumb title="Submit data" />
+					{error && error ? (<Alert color="danger"> {error} </Alert>) : null}
 					<SubmissionForm />
 				</Container>
 			</div>
