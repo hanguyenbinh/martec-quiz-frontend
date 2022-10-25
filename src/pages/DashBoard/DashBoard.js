@@ -326,13 +326,13 @@ const DashBoard = (props) => {
 		<div className="page-content">
 			<Container fluid>
 				<BreadCrumb title="Dashboards" carousel={keyMembers} />
-				<Row>
+				{/* <Row>
 					{statistics.map((statistic, statisticIndex) => (
 						<Col key={statisticIndex} sm={12} md={6} lg={4}>
 							<StatisticsCard {...statistic} />
 						</Col>
 					))}
-				</Row>
+				</Row> */}
 				<Row>
 					<AppChart
 						statisticsCards={statisticCards}
