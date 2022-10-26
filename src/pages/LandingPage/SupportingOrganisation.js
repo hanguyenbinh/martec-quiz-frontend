@@ -14,7 +14,7 @@ const SupportingOrganisation = () => {
                 <Container>
                     <Row className="justify-content-center">
                         <div className="text-center mb-1">
-                            <h2 className="mb-1 fw-semibold lh-base">Disclaimer</h2>
+                            <h4 className="mb-1 fw-semibold lh-base">Disclaimer</h4>
                         </div>
                     </Row>
 
@@ -30,7 +30,7 @@ const SupportingOrganisation = () => {
 
                     <Row className="justify-content-center">
                         <div className="text-center mb-1">
-                            <h2 className="mb-1 fw-semibold lh-base">Provision of Data</h2>
+                            <h4 className="mb-1 fw-semibold lh-base">Provision of Data</h4>
                         </div>
                     </Row>
 

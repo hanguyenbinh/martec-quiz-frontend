@@ -36,7 +36,7 @@ import esgIcon4 from '../../assets/images/landing/4.png';
 const connectData = [
     {
         img: esgIcon1,
-        title: "ESG Recognition Scheme",
+        title: "ESG Recognition Scheme Platform",
         textContent: "",
     },
     {

@@ -27,7 +27,7 @@ const AboutUs = () => {
                             <Col key={key} lg={3}>
                                 <Card className="text-center border">
                                     <CardBody className="py-5 px-4 about-card">
-                                        <h4 className='about-card-title'> {item.title}</h4>
+                                        <h5 className='about-card-title'> {item.title}</h5>
                                         <img src={item.img} alt="" height="110" className="mb-3 pb-2" />
                                     </CardBody>
                                 </Card>

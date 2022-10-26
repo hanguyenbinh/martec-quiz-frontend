@@ -21,8 +21,8 @@ const MajorIndicators = () => {
                         </Col>
                     </Row>
                     <Row className='justify-content-center'>
-                        <div className="mb-5">
-                            <h2 className="mb-3 fw-semibold lh-base">ESG Recognition Scheme Platform</h2>
+                        <div className="mb-3">
+                            <h3 className="mb-3 fw-semibold lh-base">Major Indicators of the Platform</h3>
                         </div>
                     </Row>
                     <Row>
