@@ -26,7 +26,7 @@ const JoinUs = () => {
 
 
                     <Row className='justify-content-center'>
-                        <p>The ESG Recognition Scheme is now open for application. All HKCA members are welcome to participate.</p>
+                        <p>The ESG Recognition Scheme Platform is now open for application. All HKCA members are welcome to participate.</p>
                     </Row>
 
                     <Row className="justify-content-center">
@@ -36,7 +36,7 @@ const JoinUs = () => {
                     </Row>
 
                     <Row className="justify-content-center">
-                        <p>Guide to Application for ESG Recognition Scheme (Download PDF - TBC)</p>
+                        <p>Guide to Application for ESG Recognition Scheme Platform (Download PDF - TBC)</p>
                         <p>Application Form (Download PDF - TBC)</p>
                         <p></p>
                     </Row>

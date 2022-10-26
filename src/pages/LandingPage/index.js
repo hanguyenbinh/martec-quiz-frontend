@@ -9,7 +9,7 @@ import Footer from 'src/Layouts/Footer';
 import SupportingOrganisation from './SupportingOrganisation';
 
 const index = () => {
-    document.title = "ESG Recognition Scheme Platform | HKCA";
+    document.title = "ESG Recognition Scheme Platform Platform | HKCA";
 
     return (
         <React.Fragment>
