@@ -1,19 +1,20 @@
 import { call, put, takeEvery } from "redux-saga/effects";
 
 // Crypto Redux States
-import { GET_LATEST_DATA_SUCCESS, GET_LATEST_DATA_ERROR, GET_LATEST_DATA } from "./actionType";
+import { GET_LATEST_DATA_ERROR, GET_LATEST_DATA } from "./actionType";
 import { getLatestDataSuccess, getLatestDataError } from "./actions";
 
 //Include Both Helper File with needed methods
 import {
-  getAllData, getAPILatestSubmissionForms,
+  getAPILatestSubmissionForms,
 }
   from "../../helpers/fakebackend_helper";
 
 function* getsubmissions({ payload: { email } }) {
   try {
-    ////console.logdisabled('saga getLat')
+    console.log('saga getLat')
     const response = yield call(getAPILatestSubmissionForms, email);
+    console.log(response)
 
     if (response.status === true) yield put(getLatestDataSuccess(response.data));
     else yield put(getLatestDataError(GET_LATEST_DATA_ERROR, response));

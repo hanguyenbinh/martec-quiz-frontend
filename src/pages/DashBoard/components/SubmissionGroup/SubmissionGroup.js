@@ -22,7 +22,7 @@ const SubmissionGroup = (props) => {
 								<FastField name={_field.name}>
 									{({ field, meta }) => {
 										return (
-											<AppFormInput options={_field.options} type={_field.type} error={!!meta.error ? true : undefined} helperText={meta.error} label={_field.label} name={_field.name} {...field} />
+											<AppFormInput options={_field.options} type={_field.type} error={!!meta.error && meta.touched ? true : undefined} helperText={!!meta.error && meta.touched ? meta.error : ''} label={_field.label} name={_field.name} {...field} />
 										)
 									}}
 								</FastField>

@@ -37,7 +37,10 @@ export const postSubmission = data => {
 
 export const getSubmissionHistoryApi = (email) => api.get(_api.PORTAL_URL + url.GET_ESG_DATA, { email });
 
-export const getAPILatestSubmissionForms = (email) => api.get(portalUrl + url.GET_LATEST_ESG_DATA, { email });
+export const getAPILatestSubmissionForms = (email) => {
+  console.log('getAPILatestSubmissionForms')
+  return api.get(_api.PORTAL_URL + url.GET_LATEST_ESG_DATA, { email })
+};
 
 // postForgetPwd
 export const postFakeForgetPwd = data => api.create(url.POST_FAKE_PASSWORD_FORGET, data);

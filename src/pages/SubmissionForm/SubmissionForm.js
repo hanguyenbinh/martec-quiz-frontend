@@ -444,14 +444,14 @@ const UploadESGData = (props) => {
 
 	const initialValues = React.useMemo(() => {
 		return {
-			companySize: '',
+			companySize: 'Group A',
 			yearOfRecord: '2022',
-			projectType: '',
+			projectType: 'Corporate',
 			grossValueOfConstructionWork: '',
 			noOfProject: '',
 			petrolUsage: '',
 			dieselUsage: '',
-			amountOfElectricityHKE: '38606',
+			amountOfElectricityHKE: 38606,
 			amountOfElectricityCLP: '',
 			annualWaterConsumption: '',
 			totalWeightof_InertWasteDisposedPerAnnum: '',

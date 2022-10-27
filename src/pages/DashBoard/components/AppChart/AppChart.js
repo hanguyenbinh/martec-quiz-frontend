@@ -101,8 +101,8 @@ const AppChart = (props) => {
 								<Dropdown isOpen={dropdownOpen} toggle={toggle} direction={'down'}>
 									<DropdownToggle caret size="lg">{selectedItem}</DropdownToggle>
 									<DropdownMenu>
-										{options.map((option) => {
-											return option.isHeader ? (<DropdownItem header>{option.label}</DropdownItem>) : (<DropdownItem active={selectedItem === option.label} onClick={() => handleOnclickItem(option)}>{option.label}</DropdownItem>)
+										{options.map((option, key) => {
+											return option.isHeader ? (<DropdownItem key={'indication_dropdown_' + key} header>{option.label}</DropdownItem>) : (<DropdownItem key={'indication_dropdown_' + key} active={selectedItem === option.label} onClick={() => handleOnclickItem(option)}>{option.label}</DropdownItem>)
 										})}
 									</DropdownMenu>
 
@@ -127,8 +127,8 @@ const AppChart = (props) => {
 										<Dropdown isOpen={dropdownYearOpen} toggle={toggleYear} direction={'down'}>
 											<DropdownToggle caret size="lg">{selectedYear.year}</DropdownToggle>
 											<DropdownMenu>
-												{statisticsCards.map((option, key) => {
-													return (<DropdownItem key={'option_' + key} onClick={() => handleOnclickYearItem(option)}>{option.year}</DropdownItem>)
+												{statisticsCards.map((option, index) => {
+													return (<DropdownItem key={'option_indicators_' + index} onClick={() => handleOnclickYearItem(option)}>{option.year}</DropdownItem>)
 												})}
 											</DropdownMenu>
 
@@ -138,8 +138,10 @@ const AppChart = (props) => {
 										<p>
 											<span>Your value:&nbsp;</span>
 											<span>{!isNull(selectedYear.value) ? isBoolean(selectedYear.value) ? selectedYear.value.toString() : selectedYear.value.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : ''}
-											</span>{selectedYear.value > 4 ? (<span><img src={indicatorIcon}
-												className="me-3 rounded-circle avatar-xs" alt="user-pic" /></span>) : null}</p>
+											</span>
+											{/* {selectedYear.value > 4 ? (<span><img src={indicatorIcon}
+												className="me-3 rounded-circle avatar-xs" alt="user-pic" /></span>) : null} */}
+										</p>
 										<p><span>Average value:&nbsp;</span><span>{!isNull(selectedYear.averageValue) ? selectedYear.averageValue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : 'N/A'}</span></p>
 										<p><span>Basis:&nbsp;</span><span>{!isNull(selectedYear.projectType) ? selectedYear.projectType : ''}</span></p>
 										{(isNull(selectedYear.value) || isNull(selectedYear.averageValue)) ? null : selectedYear.value < selectedYear.averageValue ?

@@ -4,7 +4,7 @@ import {
 
 // common success
 export const getLatestData = (email) => {
-  ////console.logdisabled('action getLatestData')
+  console.log('action getLatestData', email)
   return {
     type: GET_LATEST_DATA,
     payload: { email },

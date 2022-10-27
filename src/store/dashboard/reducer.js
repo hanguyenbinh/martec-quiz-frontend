@@ -18,7 +18,7 @@ const INIT_STATE = {
 const Dashboard = (state = INIT_STATE, action) => {
   switch (action.type) {
     case GET_LATEST_DATA:
-      ////console.logdisabled('reducer GET_LATEST_DATA')
+      console.log('reducer GET_LATEST_DATA')
       return {
         ...state,
         isLoading: true

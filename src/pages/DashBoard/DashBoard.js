@@ -109,6 +109,8 @@ const DashBoard = (props) => {
 		allSubmissions: state.Dashboard.allSubmissions,
 	}));
 
+	console.log(allSubmissions, submissions);
+
 	const [submissionData, setSubmissionData] = useState([])
 	const [averageData, setAverageData] = useState({})
 	const [chartData, setChartData] = useState(data);
@@ -259,6 +261,7 @@ const DashBoard = (props) => {
 
 	useEffect(() => {
 		const email = sessionStorage.getItem("email");
+		console.log('dashboard', email);
 		dispatch(getLatestData(email))
 	}, [])
 	const statistics = [
