@@ -451,7 +451,7 @@ const UploadESGData = (props) => {
 			noOfProject: '',
 			petrolUsage: '',
 			dieselUsage: '',
-			amountOfElectricityHKE: 38606,
+			amountOfElectricityHKE: '',
 			amountOfElectricityCLP: '',
 			annualWaterConsumption: '',
 			totalWeightof_InertWasteDisposedPerAnnum: '',
