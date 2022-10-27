@@ -101,20 +101,20 @@ const SubmissionForm = (props) => {
 
 					]
 				},
-				// {
-				// 	name: 'projectType',
-				// 	label: T('Project Type'),
-				// 	type: 'select',
-				// 	options: [
-				// 		{ label: 'Not Specified', value: 'Not Specified' },
-				// 		{ label: 'Building', value: 'Building' },
-				// 		{ label: 'Civil', value: 'Civil' },
-				// 		{ label: 'Piling & foundation', value: 'Piling & foundation' },
-				// 		{ label: 'Building RMAA', value: 'Building RMAA' },
-				// 		{ label: 'Civil R&M', value: 'Civil R&M' },
-				// 		{ label: 'Supplier', value: 'Supplier' },
-				// 	]
-				// },
+				{
+					name: 'projectType',
+					label: T('Project Type'),
+					type: 'select',
+					options: [
+						{ label: 'Corporate', value: 'Corporate' },
+						{ label: 'Building', value: 'Building' },
+						{ label: 'Civil', value: 'Civil' },
+						{ label: 'Piling & foundation', value: 'Piling & foundation' },
+						{ label: 'Building RMAA', value: 'Building RMAA' },
+						{ label: 'Civil R&M', value: 'Civil R&M' },
+						{ label: 'Supplier', value: 'Supplier' },
+					]
+				},
 				{
 					name: 'grossValueOfConstructionWork',
 					label: T('Gross value of construction work (HKD)')
