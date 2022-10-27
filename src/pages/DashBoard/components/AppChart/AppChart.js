@@ -30,6 +30,7 @@ import {
 	DropdownToggle,
 	Row,
 } from "reactstrap"
+import indicatorIcon from 'src/assets/images/dashboard/indicator-icon.png';
 
 ChartJS.register(
 	LinearScale,
@@ -42,6 +43,8 @@ ChartJS.register(
 	LineController,
 	BarController
 )
+
+
 
 const AppChart = (props) => {
 	const { title, options, statisticsCards, data, selectedItem, setSelectedItem } =
@@ -132,7 +135,11 @@ const AppChart = (props) => {
 										</Dropdown>
 									</div>
 									<div className="flex-grow-1 p-4">
-										<p><span>Your value:&nbsp;</span><span>{!isNull(selectedYear.value) ? isBoolean(selectedYear.value) ? selectedYear.value.toString() : selectedYear.value.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : ''}</span></p>
+										<p>
+											<span>Your value:&nbsp;</span>
+											<span>{!isNull(selectedYear.value) ? isBoolean(selectedYear.value) ? selectedYear.value.toString() : selectedYear.value.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : ''}
+											</span>{selectedYear.value > 4 ? (<span><img src={indicatorIcon}
+												className="me-3 rounded-circle avatar-xs" alt="user-pic" /></span>) : null}</p>
 										<p><span>Average value:&nbsp;</span><span>{!isNull(selectedYear.averageValue) ? selectedYear.averageValue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : 'N/A'}</span></p>
 										<p><span>Basis:&nbsp;</span><span>{!isNull(selectedYear.projectType) ? selectedYear.projectType : ''}</span></p>
 										{(isNull(selectedYear.value) || isNull(selectedYear.averageValue)) ? null : selectedYear.value < selectedYear.averageValue ?
