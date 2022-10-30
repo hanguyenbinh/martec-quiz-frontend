@@ -104,10 +104,10 @@ const fakeBackend = () => {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         if (validUser["length"] === 1) {
-          // You have to generate AccessToken by jwt. but this is fakeBackend so, right now its dummy
+          // You have to generate accessToken by jwt. but this is fakeBackend so, right now its dummy
           const token = accessToken;
 
-          // JWT AccessToken
+          // JWT accessToken
           const tokenObj = { accessToken: token }; // Token Obj
           const validUserObj = { ...validUser[0], ...tokenObj }; // validUser Obj
 
@@ -164,10 +164,10 @@ const fakeBackend = () => {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         if (user && user.token) {
-          // You have to generate AccessToken by jwt. but this is fakeBackend so, right now its dummy
+          // You have to generate accessToken by jwt. but this is fakeBackend so, right now its dummy
           const token = accessToken;
 
-          // JWT AccessToken
+          // JWT accessToken
           const tokenObj = { accessToken: token }; // Token Obj
           const validUserObj = { ...user[0], ...tokenObj }; // validUser Obj
 

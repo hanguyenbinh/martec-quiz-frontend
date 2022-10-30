@@ -7,9 +7,9 @@ axios.defaults.baseURL = api.API_URL;
 axios.defaults.headers.post["Content-Type"] = "application/json";
 
 // content type
-const token = JSON.parse(sessionStorage.getItem("authUser")) ? JSON.parse(sessionStorage.getItem("authUser")).token : null;
-if (token)
-  axios.defaults.headers.common["Authorization"] = "Bearer " + token;
+// const token = JSON.parse(sessionStorage.getItem("accessToken")) ? JSON.parse(sessionStorage.getItem("accessToken")).token : null;
+// if (token)
+//   axios.defaults.headers["Authorization"] = "Bearer " + token;
 
 // intercepting to capture errors
 axios.interceptors.response.use(
@@ -40,15 +40,16 @@ axios.interceptors.response.use(
  * @param {*} token
  */
 const setAuthorization = (token) => {
-  ////console.logdisabled('setAuthorization', token)
-  axios.defaults.headers["accesstoken"] = token;
+  // console.log('setAuthorization', token)
+  // axios.defaults.headers["Authorization"] = "Bearer " + token;
 };
 
 axios.interceptors.request.use(
   function (config) {
     const accessToken = getLoggedinUser();
     if (accessToken) {
-      config.headers["accesstoken"] = accessToken;
+      config.headers["Authorization"] = "Bearer " + accessToken;
+
     }
     return config;
   },
@@ -112,7 +113,7 @@ class APIClient {
 }
 const getLoggedinUser = () => {
   const accessToken = sessionStorage.getItem("accessToken");
-  ////console.logdisabled('accesstoken', accessToken)
+  ////console.logdisabled('accessToken', accessToken)
   return accessToken;
 };
 const getLoggedinUserEmail = () => {

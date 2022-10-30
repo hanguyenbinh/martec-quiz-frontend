@@ -39,18 +39,16 @@ function* loginUser({ payload: { email, history } }) {
 
 function* loginInitiate({ payload: { email, history } }) {
   try {
-    ////console.logdisabled(email)
-    if (process.env.REACT_APP_API_URL) {
-      const response = yield call(postInitiate, {
-        email,
-      });
-      sessionStorage.setItem("challengeId", JSON.stringify(response));
-      if (response.status === 200) {
-        yield put(loginInitiateSuccess({ challengeId: response.data.challengeId }));
-        history.push("/login");
-      } else {
-        yield put(apiError(response));
-      }
+    const response = yield call(postInitiate, {
+      email,
+    });
+
+    if (response.status === true) {
+      sessionStorage.setItem("challengeId", JSON.stringify(response.data.data.challenge_id));
+      yield put(loginInitiateSuccess({ challengeId: response.data.data.challenge_id }));
+      history.push("/login");
+    } else {
+      yield put(apiError(response));
     }
   } catch (error) {
     yield put(apiError(error));
@@ -59,16 +57,14 @@ function* loginInitiate({ payload: { email, history } }) {
 
 function* loginChallenge({ payload: { email, challengeId, otp, history } }) {
   try {
-    ////console.logdisabled('saga loginChallenge', email, challengeId, otp)
     if (process.env.REACT_APP_API_URL) {
       const response = yield call(postChallenge, {
         email,
         challengeId,
         challengeValue: otp,
       });
-      ////console.logdisabled('saga loginChallenge', response)
-      if (response.status === 200) {
-        sessionStorage.setItem("accessToken", JSON.stringify(response.data.accesstoken));
+      if (response.status === true) {
+        sessionStorage.setItem("accessToken", response.data.accessToken);
         sessionStorage.setItem('email', email);
         yield put(loginSuccess(response));
         history.push("/dashboard");

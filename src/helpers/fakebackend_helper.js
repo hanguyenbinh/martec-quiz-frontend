@@ -17,8 +17,6 @@ export const isUserAuthenticated = () => {
   return getLoggedInUser() !== null;
 };
 
-const portalUrl = process.env.PORTAL_URL ? process.env.PORTAL_URL : _api.PORTAL_URL
-
 // Register Method
 export const postFakeRegister = data => api.create(url.POST_FAKE_REGISTER, data);
 
