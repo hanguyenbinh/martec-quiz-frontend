@@ -30,14 +30,14 @@ export const postChallenge = data => api.create(url.POST_CHALLENGE, data);
 
 export const postSubmission = data => {
 
-  return api.create(_api.PORTAL_URL + url.POST_ESG_DATA, data);
+  return api.create(url.POST_ESG_DATA, data);
 }
 
-export const getSubmissionHistoryApi = (email) => api.get(_api.PORTAL_URL + url.GET_ESG_DATA, { email });
+export const getSubmissionHistoryApi = (email) => api.get(url.GET_ESG_DATA, { email });
 
 export const getAPILatestSubmissionForms = (email) => {
   console.log('getAPILatestSubmissionForms')
-  return api.get(_api.PORTAL_URL + url.GET_LATEST_ESG_DATA, { email })
+  return api.get(url.GET_LATEST_ESG_DATA, { email })
 };
 
 // postForgetPwd
