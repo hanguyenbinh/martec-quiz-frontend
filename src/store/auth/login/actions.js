@@ -9,7 +9,10 @@ import {
   LOGIN_INITIATE,
   LOGIN_INITIATE_SUCCESS,
   LOGIN_CHALLENGE,
-  LOGIN_CHALLENGE_SUCCESS
+  LOGIN_CHALLENGE_SUCCESS,
+  REGISTER_CHALLENGE,
+  REGISTER_CHALLENGE_SUCCESS,
+  REGISTER_INITIATE
 } from "./actionTypes";
 
 export const loginUser = (user, history) => {
@@ -26,12 +29,35 @@ export const loginInitiate = (email, history) => {
   };
 };
 
+export const registerInitiate = (email, history) => {
+  return {
+    type: REGISTER_INITIATE,
+    payload: { email, history },
+  };
+};
+
 export const loginChallenge = (obj, history) => {
   return {
     type: LOGIN_CHALLENGE,
     payload: { ...obj, history },
   };
 };
+
+export const registerChallenge = (obj, history) => {
+  return {
+    type: REGISTER_CHALLENGE,
+    payload: { ...obj, history },
+  };
+};
+
+export const registerChallengeSuccess = accessToken => {
+  console.log('registerChallengeSuccess', accessToken)
+  return {
+    type: REGISTER_CHALLENGE_SUCCESS,
+    payload: { accessToken },
+  };
+};
+
 
 export const loginSuccess = user => {
   return {
@@ -48,7 +74,6 @@ export const loginChallengeSuccess = accessToken => {
 };
 
 export const loginInitiateSuccess = response => {
-  ////console.logdisabled('loginInitiateSuccess', response);
   return {
     type: LOGIN_INITIATE_SUCCESS,
     payload: response,

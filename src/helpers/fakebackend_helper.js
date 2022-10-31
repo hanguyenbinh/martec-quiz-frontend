@@ -26,7 +26,9 @@ export const postFakeLogin = data => api.create(url.POST_FAKE_LOGIN, data);
 // Get Otp Method
 export const postInitiate = data => api.create(url.POST_INITIATE, data);
 
-export const postChallenge = data => api.create(url.POST_CHALLENGE, data);
+export const postChallengeLogin = data => api.create(url.POST_CHALLENGE_LOGIN, data);
+
+export const postChallengeRegister = data => api.create(url.POST_CHALLENGE, data);
 
 export const postSubmission = data => {
 
@@ -76,6 +78,8 @@ export const postJwtRegister = (url, data) => {
 // Login Method
 export const postLogin = data => api.create(url.POST_LOGIN, data, accessToken);
 export const postJwtLogin = data => api.create(url.POST_FAKE_JWT_LOGIN, data);
+
+export const postRegisterUser = data => api.create(url.POST_REGISTER_USER, data)
 
 // postForgetPwd
 export const postJwtForgetPwd = data => api.create(url.POST_FAKE_JWT_PASSWORD_FORGET, data);

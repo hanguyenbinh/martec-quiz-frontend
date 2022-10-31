@@ -4,12 +4,16 @@ export const POST_FAKE_REGISTER = "/auth/signup";
 //LOGIN
 export const POST_FAKE_LOGIN = "/auth/signin";
 export const POST_INITIATE = '/auth/get-otp';
-export const POST_CHALLENGE = '/auth/challenge-login';
+export const POST_CHALLENGE_LOGIN = '/auth/challenge-login';
+export const POST_CHALLENGE = '/auth/challenge';
 
 export const POST_ESG_DATA = '/company'
 export const GET_ESG_DATA = '/company'
 export const GET_LATEST_ESG_DATA = '/company/latest'
 export const POST_LOGIN = 'auth/login';
+
+export const POST_REGISTER_USER = 'auth/register-user';
+
 export const POST_FAKE_JWT_LOGIN = "/post-jwt-login";
 export const POST_FAKE_PASSWORD_FORGET = "/auth/forgot-password";
 export const POST_FAKE_JWT_PASSWORD_FORGET = "/jwt-forget-pwd";

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { isArray } from "lodash";
 import { api } from "../config";
 
 // default
@@ -17,20 +18,26 @@ axios.interceptors.response.use(
     return response.data ? response.data : response;
   },
   function (error) {
+    console.log('axios.interceptors.response.', error.response.data.message);
     // Any status codes that falls outside the range of 2xx cause this function to trigger
+    let errorMsg = '';
+    if (isArray(error.response.data.message)) {
+      errorMsg = error.response.data.message.join(', ')
+    }
+    else errorMsg = error.response.data.message;
     let message;
     switch (error.status) {
       case 500:
-        message = "Internal Server Error";
+        message = "Internal Server Error: " + errorMsg;
         break;
       case 401:
-        message = "Invalid credentials";
+        message = "Invalid credentials: " + errorMsg;
         break;
       case 404:
-        message = "Sorry! the data you are looking for could not be found";
+        message = "Sorry! the data you are looking for could not be found: " + errorMsg;
         break;
       default:
-        message = error.message || error;
+        message = errorMsg;
     }
     return Promise.reject(message);
   }
