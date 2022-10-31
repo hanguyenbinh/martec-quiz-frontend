@@ -9,33 +9,35 @@ import { getFirebaseBackend } from "../../../helpers/firebase_helper";
 import {
   postFakeRegister,
   postJwtRegister,
+  postRegisterUser,
 } from "../../../helpers/fakebackend_helper";
+import { isArray } from "lodash";
 
 // initialize relavant method of both Auth
 const fireBaseBackend = getFirebaseBackend();
 
 // Is user register successfull then direct plot user in redux.
-function* registerUser({ payload: { user } }) {
+function* registerUser({ payload: { user, history } }) {
   try {
-    if (process.env.REACT_APP_DEFAULTAUTH === "firebase") {
-      const response = yield call(
-        fireBaseBackend.registerUser,
-        user.email,
-        user.password
-      );
+    console.log('registerUser', user)
+    const response = yield call(
+      postRegisterUser,
+      {
+        ...user,
+        orgId: user.id,
+        orgName: user.org_name,
+        id: undefined,
+        token: user.accessToken
+
+      });
+    if (response.status === true) {
       yield put(registerUserSuccessful(response));
-    } else if (process.env.REACT_APP_DEFAULTAUTH === "jwt") {
-      const response = yield call(postJwtRegister, "/post-jwt-register", user);
-      yield put(registerUserSuccessful(response));
-    } else if (process.env.REACT_APP_API_URL) {
-      const response = yield call(postFakeRegister, user);
-      if (response.message === "success") {
-        yield put(registerUserSuccessful(response));
-      } else {
-        yield put(registerUserFailed(response));
-      }
+      // history.push("/login");
+    } else {
+      yield put(registerUserFailed(response.message + ': ' + response.data.errmsg));
     }
   } catch (error) {
+    console.log('error', error)
     yield put(registerUserFailed(error));
   }
 }

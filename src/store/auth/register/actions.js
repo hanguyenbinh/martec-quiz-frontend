@@ -6,6 +6,7 @@ import {
 } from "./actionTypes"
 
 export const registerUser = user => {
+  console.log(user);
   return {
     type: REGISTER_USER,
     payload: { user },
@@ -20,6 +21,7 @@ export const registerUserSuccessful = user => {
 }
 
 export const registerUserFailed = user => {
+  console.log('registerFail', user)
   return {
     type: REGISTER_USER_FAILED,
     payload: user,

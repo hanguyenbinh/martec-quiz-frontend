@@ -4,7 +4,6 @@ import { Redirect } from "react-router-dom"
 import Login from "../pages/Authentication/Login"
 import ForgetPasswordPage from "../pages/Authentication/ForgetPassword"
 import Logout from "../pages/Authentication/Logout"
-import Register from "../pages/Authentication/Register"
 import GetOtp from "../pages/Authentication/GetOtp"
 
 
@@ -12,6 +11,9 @@ import DashBoard from "src/pages/DashBoard"
 import UploadESGData from "../pages/SubmissionForm"
 import UploadList from "../pages/SubmissionHistory"
 import LandingPage from "src/pages/LandingPage"
+import GetOtpRegister from "../pages/Authentication/GetOtpRegister"
+import GetTokenRegister from "src/pages/Authentication/GetTokenRegister"
+import UserRegister from "src/pages/Authentication/UserRegister"
 
 
 const authProtectedRoutes = [
@@ -219,8 +221,9 @@ const publicRoutes = [
 	{ path: "/login", component: Login },
 	{ path: "/get-otp", component: GetOtp },
 	{ path: "/forgot-password", component: ForgetPasswordPage },
-	{ path: "/register", component: Register }
-
+	{ path: "/register", component: GetOtpRegister },
+	{ path: "/register-challenge", component: GetTokenRegister },
+	{ path: "/user-register", component: UserRegister }
 	// //AuthenticationInner pages
 	// { path: "/auth-signin-basic", component: BasicSignIn },
 	// { path: "/auth-signin-cover", component: CoverSignIn },

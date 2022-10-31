@@ -7,15 +7,19 @@ import {
 	RESET_LOGIN_FLAG,
 	LOGIN_INITIATE,
 	LOGIN_INITIATE_SUCCESS,
-	LOGIN_CHALLENGE_SUCCESS
+	LOGIN_CHALLENGE_SUCCESS,
+	REGISTER_CHALLENGE_SUCCESS,
+	REGISTER_INITIATE
 } from "./actionTypes"
 
 const initialState = {
 	error: "",
-	loading: false
+	loading: false,
+	accessToken: '',
+	org: null,
 }
 
-const login = (state = initialState, action) => {
+const Login = (state = initialState, action) => {
 	switch (action.type) {
 		case LOGIN_USER:
 			state = {
@@ -23,6 +27,7 @@ const login = (state = initialState, action) => {
 				loading: true
 			}
 			break
+		case REGISTER_INITIATE:
 		case LOGIN_INITIATE:
 			////console.logdisabled('reducer LOGIN_INITIATE', action)
 			state = {
@@ -41,12 +46,16 @@ const login = (state = initialState, action) => {
 		case LOGIN_SUCCESS:
 			state = {
 				...state,
-				loading: false
+				loading: false,
+				...action.payload.data
 			}
 			break
+		case REGISTER_CHALLENGE_SUCCESS:
 		case LOGIN_CHALLENGE_SUCCESS:
+			console.log('REGISTER_CHALLENGE_SUCCESS', action)
 			state = {
 				...state,
+				accessToken: action.payload.accessToken,
 				loading: false
 			}
 			break;
@@ -57,7 +66,7 @@ const login = (state = initialState, action) => {
 			state = { ...state, isUserLogout: true }
 			break
 		case API_ERROR:
-			////console.logdisabled('API error', action)
+			console.log('API_ERROR', action)
 			state = {
 				...state,
 				error: action.payload,
@@ -78,4 +87,4 @@ const login = (state = initialState, action) => {
 	return state
 }
 
-export default login
+export default Login

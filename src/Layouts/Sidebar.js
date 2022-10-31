@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import { Link, withRouter } from "react-router-dom"
 import SimpleBar from "simplebar-react"
 //import logo
@@ -11,9 +11,11 @@ import logo from "../assets/images/logo.png";
 import VerticalLayout from "./VerticalLayouts"
 import { Container } from "reactstrap"
 import { withTranslation } from "react-i18next"
+import { useSelector } from "react-redux"
 
 const Sidebar = (props) => {
 	const layoutType = props
+	const [orgLogo, setOrgLogo] = useState('');
 	useEffect(() => {
 		var verticalOverlay = document.getElementsByClassName("vertical-overlay")
 		if (verticalOverlay) {
@@ -21,6 +23,8 @@ const Sidebar = (props) => {
 				document.body.classList.remove("vertical-sidebar-enable")
 			})
 		}
+		const logo = sessionStorage.getItem('orglogo');
+		setOrgLogo(logo);
 	})
 
 	const addEventListenerOnSmHoverMenu = () => {
@@ -48,9 +52,9 @@ const Sidebar = (props) => {
 				<div className="navbar-brand-box">
 
 					<Link to="/" className="logo logo-light">
-						{/* <span className="logo-lg">
-							<img src={logo} alt="" height="17" />
-						</span> */}
+						<span className="logo-lg">
+							<img src={orgLogo} alt="" height="17" />
+						</span>
 						<span className="app-title">
 							{props.t('Application Name')}
 						</span>
