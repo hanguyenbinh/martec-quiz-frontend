@@ -69,7 +69,7 @@ const Login = (state = initialState, action) => {
 			console.log('API_ERROR', action)
 			state = {
 				...state,
-				error: action.payload,
+				error: `${action.payload.message}: ${action.payload.data.errmsg}`,
 				loading: false,
 				isUserLogout: false
 			}

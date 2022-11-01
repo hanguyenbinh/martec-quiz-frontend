@@ -1,21 +1,14 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect } from "react"
 import { Link, withRouter } from "react-router-dom"
 import SimpleBar from "simplebar-react"
-//import logo
-import logoSm from "../assets/images/logo-sm.png"
-import logoDark from "../assets/images/logo-dark.png"
-import logoLight from "../assets/images/logo-light.png"
-import logo from "../assets/images/logo.png";
 
 //Import Components
 import VerticalLayout from "./VerticalLayouts"
 import { Container } from "reactstrap"
 import { withTranslation } from "react-i18next"
-import { useSelector } from "react-redux"
 
 const Sidebar = (props) => {
 	const layoutType = props
-	const [orgLogo, setOrgLogo] = useState('');
 	useEffect(() => {
 		var verticalOverlay = document.getElementsByClassName("vertical-overlay")
 		if (verticalOverlay) {
@@ -24,7 +17,6 @@ const Sidebar = (props) => {
 			})
 		}
 		const logo = sessionStorage.getItem('orglogo');
-		setOrgLogo(logo);
 	})
 
 	const addEventListenerOnSmHoverMenu = () => {
@@ -50,14 +42,8 @@ const Sidebar = (props) => {
 		<React.Fragment>
 			<div className="app-menu navbar-menu">
 				<div className="navbar-brand-box">
-
-					<Link to="/" className="logo logo-light">
-						<span className="logo-lg">
-							<img src={orgLogo} alt="" height="17" />
-						</span>
-						<span className="app-title">
-							{props.t('Application Name')}
-						</span>
+					<Link to="/" className="app-title">
+						{props.t('Application Name')}
 					</Link>
 
 

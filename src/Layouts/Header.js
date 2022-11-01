@@ -1,25 +1,20 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import { Dropdown, DropdownMenu, DropdownToggle, Form } from "reactstrap"
 
-//import images
-import logoSm from "../assets/images/logo-sm.png"
-import logoDark from "../assets/images/logo-dark.png"
-import logoLight from "../assets/images/logo-light.png"
-import logo from "../assets/images/logo.png"
 
 //import Components
-import SearchOption from "../Components/Common/SearchOption"
-import LanguageDropdown from "../Components/Common/LanguageDropdown"
-import WebAppsDropdown from "../Components/Common/WebAppsDropdown"
-import MyCartDropdown from "../Components/Common/MyCartDropdown"
-import FullScreenDropdown from "../Components/Common/FullScreenDropdown"
-import NotificationDropdown from "../Components/Common/NotificationDropdown"
 import ProfileDropdown from "../Components/Common/ProfileDropdown"
-import LightDark from "../Components/Common/LightDark"
+import { useSelector } from "react-redux"
 
 const Header = ({ onChangeLayoutMode, layoutModeType, headerClass }) => {
 	const [search, setSearch] = useState(false)
+	const [orgLogo, setOrgLogo] = useState('');
+	useEffect(() => {
+		const logo = sessionStorage.getItem('orglogo');
+		setOrgLogo(logo);
+	})
+
 	const toogleSearch = () => {
 		setSearch(!search)
 	}
@@ -68,26 +63,6 @@ const Header = ({ onChangeLayoutMode, layoutModeType, headerClass }) => {
 				<div className="layout-width">
 					<div className="navbar-header">
 						<div className="d-flex">
-							<div className="navbar-brand-box horizontal-logo">
-								<Link to="/" className="logo logo-dark">
-									<span className="logo-sm">
-										<img src={logo} alt="" height="22" />
-									</span>
-									<span className="logo-lg">
-										<img src={logo} alt="" height="17" />
-									</span>
-								</Link>
-
-								<Link to="/" className="logo logo-light">
-									<span className="logo-sm">
-										<img src={logoSm} alt="" height="22" />
-									</span>
-									<span className="logo-lg">
-										<img src={logo} alt="" height="17" />
-									</span>
-								</Link>
-							</div>
-
 							<button
 								onClick={toogleMenuBtn}
 								type="button"
@@ -100,6 +75,17 @@ const Header = ({ onChangeLayoutMode, layoutModeType, headerClass }) => {
 									<span></span>
 								</span>
 							</button>
+
+							<div className="navbar-brand-box">
+								<Link to="/" className="logo logo-light">
+									<span className="logo-sm">
+										<img src={orgLogo} alt="" height="22" />
+									</span>
+									<span className="logo-lg">
+										<img src={orgLogo} alt="" height="17" />
+									</span>
+								</Link>
+							</div>
 
 							{/* <SearchOption /> */}
 						</div>
