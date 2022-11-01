@@ -5,7 +5,6 @@ import { Dropdown, DropdownMenu, DropdownToggle, Form } from "reactstrap"
 
 //import Components
 import ProfileDropdown from "../Components/Common/ProfileDropdown"
-import { useSelector } from "react-redux"
 
 const Header = ({ onChangeLayoutMode, layoutModeType, headerClass }) => {
 	const [search, setSearch] = useState(false)
@@ -76,18 +75,19 @@ const Header = ({ onChangeLayoutMode, layoutModeType, headerClass }) => {
 								</span>
 							</button>
 
-							<div className="navbar-brand-box">
-								<Link to="/" className="logo logo-light">
-									<span className="logo-sm">
-										<img src={orgLogo} alt="" height="22" />
-									</span>
-									<span className="logo-lg">
-										<img src={orgLogo} alt="" height="17" />
-									</span>
-								</Link>
-							</div>
+
 
 							{/* <SearchOption /> */}
+						</div>
+						<div className="d-flex">
+							<Link to="/" className="logo logo-light">
+								<span className="logo-sm">
+									<img src={orgLogo} alt="" height="22" />
+								</span>
+								<span className="logo-lg">
+									<img src={orgLogo} alt="" height="17" />
+								</span>
+							</Link>
 						</div>
 
 						<div className="d-flex align-items-center">

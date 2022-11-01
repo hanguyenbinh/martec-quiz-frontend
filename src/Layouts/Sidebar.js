@@ -16,7 +16,6 @@ const Sidebar = (props) => {
 				document.body.classList.remove("vertical-sidebar-enable")
 			})
 		}
-		const logo = sessionStorage.getItem('orglogo');
 	})
 
 	const addEventListenerOnSmHoverMenu = () => {
@@ -37,17 +36,16 @@ const Sidebar = (props) => {
 			document.documentElement.setAttribute("data-sidebar-size", "sm-hover")
 		}
 	}
-	////console.logdisabled(layoutType);
+
 	return (
 		<React.Fragment>
 			<div className="app-menu navbar-menu">
 				<div className="navbar-brand-box">
 					<Link to="/" className="app-title">
-						{props.t('Application Name')}
+						<span className="app-title">
+							{props.t('Application Name')}
+						</span>
 					</Link>
-
-
-
 
 					<button
 						onClick={addEventListenerOnSmHoverMenu}
