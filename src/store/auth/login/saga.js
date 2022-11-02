@@ -1,4 +1,5 @@
 import { call, put, takeEvery } from "redux-saga/effects";
+import axios from "axios";
 
 // Login Redux States
 import { LOGIN_CHALLENGE, LOGIN_INITIATE, LOGIN_USER, LOGOUT_USER, REGISTER_CHALLENGE, REGISTER_INITIATE } from "./actionTypes";
@@ -12,6 +13,7 @@ import {
   postInitiate,
   postLogin,
 } from "../../../helpers/fakebackend_helper";
+import { getLoggedinUser } from "src/helpers/api_helper";
 
 const fireBaseBackend = getFirebaseBackend();
 
@@ -115,13 +117,8 @@ function* registerChallenge({ payload: { email, challengeId, otp, history } }) {
 
 function* logoutUser() {
   try {
-    sessionStorage.removeItem("authUser");
-    if (process.env.REACT_APP_DEFAULTAUTH === "firebase") {
-      const response = yield call(fireBaseBackend.logout);
-      yield put(logoutUserSuccess(LOGOUT_USER, response));
-    } else {
-      yield put(logoutUserSuccess(LOGOUT_USER, true));
-    }
+    sessionStorage.clear();
+    yield put(logoutUserSuccess(LOGOUT_USER, true));
   } catch (error) {
     yield put(apiError(LOGOUT_USER, error));
   }

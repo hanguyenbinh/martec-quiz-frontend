@@ -53,6 +53,7 @@ const setAuthorization = (token) => {
 
 axios.interceptors.request.use(
   function (config) {
+    console.log('axios.interceptors.request.use')
     const accessToken = getLoggedinUser();
     if (accessToken) {
       config.headers["Authorization"] = "Bearer " + accessToken;
