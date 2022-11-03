@@ -133,7 +133,7 @@ export class Average {
   AccidentRateNoPer1000Workers(projectType, companySize) {
     const values = []
     this.indicators.forEach(item => {
-      if (item.projectType === projectType && item.projectType === companySize) {
+      if (item.projectType === projectType && item.companySize === companySize) {
         values.push(item.AccidentRateNoPer1000Workers);
       }
     })
@@ -144,7 +144,7 @@ export class Average {
   IncidentRateNoPer1000Workers(projectType, companySize) {
     const values = []
     this.indicators.forEach(item => {
-      if (item.projectType === projectType && item.projectType === companySize) {
+      if (item.projectType === projectType && item.companySize === companySize) {
         values.push(item.IncidentRateNoPer1000Workers);
       }
     })
@@ -154,10 +154,11 @@ export class Average {
   UseOfAdvanceHealthAndSafetyTechnologies(projectType, companySize) {
     const values = []
     this.indicators.forEach(item => {
-      if (item.projectType === projectType && item.projectType === companySize) {
+      if (item.projectType === projectType && item.companySize === companySize) {
         values.push(item.UseOfAdvanceHealthAndSafetyTechnologies);
       }
     })
+    console.log('UseOfAdvanceHealthAndSafetyTechnologies', values, projectType, companySize)
     return this.average(values);
   }
 

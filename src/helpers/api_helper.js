@@ -18,7 +18,11 @@ axios.interceptors.response.use(
     return response.data ? response.data : response;
   },
   function (error) {
-    console.log('axios.interceptors.response.', error.response.data.message);
+    console.log('axios.interceptors.response.', error.response.data);
+    if (error.response.data.statusCode === 401) {
+      sessionStorage.clear();
+      window.location = '/get-otp';
+    }
     // Any status codes that falls outside the range of 2xx cause this function to trigger
     let errorMsg = '';
     if (isArray(error.response.data.message)) {
