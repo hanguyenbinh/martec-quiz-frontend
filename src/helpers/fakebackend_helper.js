@@ -26,6 +26,8 @@ export const postFakeLogin = data => api.create(url.POST_FAKE_LOGIN, data);
 // Get Otp Method
 export const postInitiate = data => api.create(url.POST_INITIATE, data);
 
+export const postInitiateRegister = data => api.create(url.POST_INITIATE_REGISTER, data);
+
 export const postChallengeLogin = data => api.create(url.POST_CHALLENGE_LOGIN, data);
 
 export const postChallengeRegister = data => api.create(url.POST_CHALLENGE, data);
@@ -34,6 +36,7 @@ export const postSubmission = data => {
 
   return api.create(url.POST_ESG_DATA, data);
 }
+
 
 export const getSubmissionHistoryApi = (email) => api.get(url.GET_ESG_DATA, { email });
 
@@ -81,6 +84,7 @@ export const postJwtLogin = data => api.create(url.POST_FAKE_JWT_LOGIN, data);
 
 export const postRegisterUser = data => api.create(url.POST_REGISTER_USER, data)
 
+
 // postForgetPwd
 export const postJwtForgetPwd = data => api.create(url.POST_FAKE_JWT_PASSWORD_FORGET, data);
 
@@ -89,7 +93,7 @@ export const postSocialLogin = data => api.create(url.SOCIAL_LOGIN, data);
 
 // Calendar
 // get Events
-export const getEvents = () => api.get(url.GET_EVENTS);
+export const getEventsApi = () => api.get(url.GET_EVENTS_API);
 
 // get Events
 export const getCategories = () => api.get(url.GET_CATEGORIES);

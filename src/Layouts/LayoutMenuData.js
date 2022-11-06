@@ -153,6 +153,12 @@ const Navdata = (props) => {
 			label: ("Submission(s) History"),
 			link: "/submissions-history",
 			parentId: "submissionsHistory"
+		},
+		{
+			id: "events",
+			label: ("Events"),
+			link: "/events",
+			parentId: "events"
 		}
 
 	]

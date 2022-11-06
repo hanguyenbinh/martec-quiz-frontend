@@ -194,5 +194,6 @@
     "Submission Date": "Submission Date",
     "Financial Year": "Financial Year",
     "Submitted By": "Submitted By",
-    "Hash Value": "Hash Value"
+    "Hash Value": "Hash Value",
+    "THE_EMAIL_IS_NOT_REGISTERED": "Your email has not been invited to this platform, please contact your administrator"
 }

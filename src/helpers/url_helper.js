@@ -4,6 +4,7 @@ export const POST_FAKE_REGISTER = "/auth/signup";
 //LOGIN
 export const POST_FAKE_LOGIN = "/auth/signin";
 export const POST_INITIATE = '/auth/get-otp';
+export const POST_INITIATE_REGISTER = '/auth/get-otp-register';
 export const POST_CHALLENGE_LOGIN = '/auth/challenge-login';
 export const POST_CHALLENGE = '/auth/challenge';
 
@@ -12,7 +13,9 @@ export const GET_ESG_DATA = '/company'
 export const GET_LATEST_ESG_DATA = '/company/latest'
 export const POST_LOGIN = 'auth/login';
 
-export const POST_REGISTER_USER = 'auth/register-user';
+export const GET_EVENTS_API = "/events";
+
+export const POST_REGISTER_USER = 'auth/register-admin';
 
 export const POST_FAKE_JWT_LOGIN = "/post-jwt-login";
 export const POST_FAKE_PASSWORD_FORGET = "/auth/forgot-password";
@@ -27,8 +30,8 @@ export const POST_SUBMISSION = '/submissions/upload-data'
 export const POST_EDIT_JWT_PROFILE = "/post-jwt-profile";
 export const POST_EDIT_PROFILE = "/user";
 
-// Calendar
-export const GET_EVENTS = "/events";
+
+
 export const GET_CATEGORIES = "/categories";
 export const GET_UPCOMMINGEVENT = "/upcommingevents";
 export const ADD_NEW_EVENT = "/add/event";

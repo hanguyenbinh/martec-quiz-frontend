@@ -40,6 +40,7 @@ const Login = (state = initialState, action) => {
 			state = {
 				...state,
 				challengeId: action.payload.challengeId,
+				error: null,
 				loading: false
 			}
 			break;
@@ -65,15 +66,19 @@ const Login = (state = initialState, action) => {
 		case LOGOUT_USER_SUCCESS:
 			state = { ...state, isUserLogout: true }
 			break
-		case API_ERROR:
-			console.log('API_ERROR', action)
+		case API_ERROR: {
+			let _error = action.payload.message;
+			if (action.payload.data?.errmsg) {
+				_error += `: ${action.payload.data.errmsg}`;
+			}
 			state = {
 				...state,
-				error: `${action.payload.message}: ${action.payload.data.errmsg}`,
+				error: _error,
 				loading: false,
 				isUserLogout: false
 			}
 			break
+		}
 		case RESET_LOGIN_FLAG:
 			state = {
 				...state,

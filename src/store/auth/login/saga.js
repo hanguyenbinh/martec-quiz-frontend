@@ -11,6 +11,7 @@ import {
   postChallengeLogin,
   postChallengeRegister,
   postInitiate,
+  postInitiateRegister,
   postLogin,
 } from "../../../helpers/fakebackend_helper";
 import { getLoggedinUser } from "src/helpers/api_helper";
@@ -58,7 +59,7 @@ function* loginInitiate({ payload: { email, history } }) {
 
 function* registerInitiate({ payload: { email, history } }) {
   try {
-    const response = yield call(postInitiate, {
+    const response = yield call(postInitiateRegister, {
       email,
     });
 
@@ -125,7 +126,6 @@ function* logoutUser() {
 }
 
 function* authSaga() {
-  yield takeEvery(LOGIN_USER, loginUser);
   yield takeEvery(LOGOUT_USER, logoutUser);
   yield takeEvery(LOGIN_INITIATE, loginInitiate);
   yield takeEvery(LOGIN_CHALLENGE, loginChallenge);

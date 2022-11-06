@@ -60,11 +60,24 @@ const AppChart = (props) => {
 
 	const [selectedYear, setSelectedYear] = useState(null);
 
+	const [difference, setDifference] = useState(NaN);
+
 	useEffect(() => {
 		const statistic = statisticsCards[0];
 		setSelectedYear(statistic);
 
 	}, [statisticsCards])
+
+	useEffect(() => {
+		if (selectedYear && selectedYear.averageValue && selectedYear.value) {
+			const _diff = selectedYear.averageValue - selectedYear.value;
+			console.log(_diff)
+			setDifference(_diff);
+		}
+		else {
+			setDifference(NaN);
+		}
+	}, [selectedYear])
 
 	const handleOnclickItem = (item) => {
 		setSelectedItem(item.label);
@@ -72,7 +85,6 @@ const AppChart = (props) => {
 
 
 	const handleOnclickYearItem = (item) => {
-		////console.logdisabled('handleOnclickYearItem', item)
 		setSelectedYear(item);
 	}
 
@@ -144,9 +156,14 @@ const AppChart = (props) => {
 										</p>
 										<p><span>Average value:&nbsp;</span><span>{!isNull(selectedYear.averageValue) ? selectedYear.averageValue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : 'N/A'}</span></p>
 										<p><span>Basis:&nbsp;</span><span>{!isNull(selectedYear.projectType) ? selectedYear.projectType : ''}</span></p>
-										{(isNull(selectedYear.value) || isNull(selectedYear.averageValue)) ? null : selectedYear.value < selectedYear.averageValue ?
-											(<p>You are {(selectedYear.averageValue - selectedYear.value).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} below the average</p>)
-											: <p>You are {(selectedYear.value - selectedYear.averageValue).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} higher the average</p>}
+
+										{isNaN(difference) ? null : (
+											<span>
+												{difference > 0 ? <p>You are {difference.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} below the average</p>
+													: <p>You are {difference.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} higher the average</p>}
+											</span>
+										)}
+
 									</div>
 								</CardBody>
 							</Card>

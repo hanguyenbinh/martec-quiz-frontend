@@ -7,4 +7,5 @@ export * from "./auth/forgetpwd/actions";
 export * from "./auth/profile/actions";
 export * from "./submissionForm/actions";
 export * from './dashboard/actions';
+export * from './events/actions';
 

@@ -15,13 +15,6 @@ import {
   REGISTER_INITIATE
 } from "./actionTypes";
 
-export const loginUser = (user, history) => {
-  return {
-    type: LOGIN_USER,
-    payload: { user, history },
-  };
-};
-
 export const loginInitiate = (email, history) => {
   return {
     type: LOGIN_INITIATE,

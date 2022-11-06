@@ -182,20 +182,7 @@ const fakeBackend = () => {
     });
   });
 
-  // Calendar
-  mock.onGet(url.GET_EVENTS).reply(() => {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        if (events) {
-          // Passing fake JSON data as response
-          const data = [...events, ...defaultevent];
-          resolve([200, data]);
-        } else {
-          reject([400, "Cannot get events"]);
-        }
-      });
-    });
-  });
+  // Calendar  
 
   mock.onGet(url.GET_CATEGORIES).reply(() => {
     return new Promise((resolve, reject) => {

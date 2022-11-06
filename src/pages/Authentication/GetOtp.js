@@ -29,7 +29,6 @@ const GetOtp = (props) => {
 		if (user && user) {
 			setUserLogin({
 				email: user.user.email,
-				// password: user.user.confirm_password
 			});
 		}
 	}, [user]);
@@ -54,11 +53,9 @@ const GetOtp = (props) => {
 		error: state.Login.error,
 	}));
 
+
 	useEffect(() => {
-		setTimeout(() => {
-			dispatch(resetLoginFlag());
-		}, 3000);
-	}, [dispatch, error]);
+	}, [error]);
 
 	document.title = T('Application Name');
 	return (
@@ -81,7 +78,7 @@ const GetOtp = (props) => {
 										<div className="text-center mt-2">
 											<h5 className="text-primary">{T('Welcome Back!')}</h5>
 										</div>
-										{error && error ? (<Alert color="danger"> {error} </Alert>) : null}
+										{error && error ? (<Alert color="danger"> {T(error)} </Alert>) : null}
 										<div className="p-2 mt-4">
 											<Form
 												onSubmit={(e) => {

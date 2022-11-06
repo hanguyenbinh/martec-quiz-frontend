@@ -74,20 +74,17 @@ const Header = ({ onChangeLayoutMode, layoutModeType, headerClass }) => {
 									<span></span>
 								</span>
 							</button>
+							<div className="header-item">
+								<img src={orgLogo} alt="" height="32" />
+
+							</div>
 
 
 
 							{/* <SearchOption /> */}
 						</div>
-						<div className="d-flex">
-							<Link to="/" className="logo logo-light">
-								<span className="logo-sm">
-									<img src={orgLogo} alt="" height="22" />
-								</span>
-								<span className="logo-lg">
-									<img src={orgLogo} alt="" height="17" />
-								</span>
-							</Link>
+						<div>
+
 						</div>
 
 						<div className="d-flex align-items-center">

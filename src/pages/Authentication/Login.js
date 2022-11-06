@@ -12,7 +12,7 @@ import * as Yup from "yup";
 import { useFormik } from "formik";
 
 // actions
-import { loginChallenge, loginInitiate, loginUser, resetLoginFlag } from "../../store/actions";
+import { loginChallenge, resetLoginFlag } from "../../store/actions";
 import { withTranslation } from 'react-i18next';
 
 
