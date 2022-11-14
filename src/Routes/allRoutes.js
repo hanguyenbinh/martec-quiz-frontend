@@ -15,6 +15,7 @@ import GetOtpRegister from "../pages/Authentication/GetOtpRegister"
 import GetTokenRegister from "src/pages/Authentication/GetTokenRegister"
 import UserRegister from "src/pages/Authentication/UserRegister"
 import Events from "src/pages/Events"
+import Prizes from "src/pages/Prizes"
 
 
 const authProtectedRoutes = [
@@ -22,6 +23,7 @@ const authProtectedRoutes = [
 	{ path: "/submit-data", component: UploadESGData },
 	{ path: "/submissions-history", component: UploadList },
 	{ path: "/events", component: Events },
+	{ path: "/prizes", component: Prizes },
 
 	// this route should be at the end of all other routes
 	// eslint-disable-next-line react/display-name	

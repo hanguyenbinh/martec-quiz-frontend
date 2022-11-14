@@ -10,6 +10,7 @@ import ForgetPassword from "./auth/forgetpwd/reducer";
 import Profile from "./auth/profile/reducer";
 import Dashboard from "./dashboard/reducer";
 import Events from './events/reducer';
+import Prizes from './prizes/reducer'
 
 
 
@@ -24,7 +25,8 @@ const rootReducer = combineReducers({
     Profile,
     SubmissionForm,
     Dashboard,
-    Events
+    Events,
+    Prizes
 });
 
 export default rootReducer;

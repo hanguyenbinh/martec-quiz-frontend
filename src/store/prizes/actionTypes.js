@@ -1,0 +1,4 @@
+export const GET_PRIZES = "GET_PRIZES"
+export const GET_PRIZES_SUCCESS = "GET_PRIZES_SUCCESS"
+export const GET_PRIZES_ERROR = "GET_PRIZES_ERROR"
+

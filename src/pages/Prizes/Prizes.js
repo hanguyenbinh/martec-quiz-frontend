@@ -1,26 +1,26 @@
-import { getSumissionForms } from "../../store/actions"
 import React, { useState } from "react"
 import { useEffect } from "react"
 import { withTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { Button, Card, CardBody, CardHeader, Col, Container, Label, Row } from "reactstrap"
+import { Card, CardBody, CardImg, CardTitle, Col, Container, Row } from "reactstrap"
 import BreadCrumb from "../../Components/Common/BreadCrumb"
-import * as moment from 'moment';
 import { alertService } from "../../services"
-import { getEvents } from "src/store/events/actions"
+import { getPrizes } from "src/store/prizes/actions"
 
-const Events = (props) => {
+import classes from 'src/assets/scss/pages/_prizes.scss'
+
+const Prizes = (props) => {
 	const T = props.t
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		dispatch(getEvents(props.history))
+		dispatch(getPrizes(props.history))
 	}, [])
-	const { events } = useSelector(state => ({
-		events: state.Events.events,
+	const { prizes } = useSelector(state => ({
+		prizes: state.Prizes.prizes,
 	}));
 	const { error } = useSelector(state => ({
-		error: state.Events.error,
+		error: state.Prizes.error,
 	}));
 	const [errorMessage, setErrorMessage] = useState('')
 	useEffect(() => {
@@ -78,36 +78,40 @@ const Events = (props) => {
 		// 	}
 		// })
 	}
+	console.log(prizes)
+
+	const style = { width: "150px" };
+
 
 	return (
 		<div className="page-content">
 			<Container fluid>
-				<BreadCrumb title={T("Events")} />
+				<BreadCrumb title={T("Prizes")} />
 				<Card>
-					<table className="table">
-						<thead>
-							<tr>
-								<th scope="col">{T('Event Name')}</th>
-								<th scope="col">{T('Description')}</th>
-								<th scope="col">{T('Status')}</th>
-								<th scope="col">{T('Start-End Date')}</th>
-							</tr>
-						</thead>
-						<tbody>
-							{events && events.length > 0 && events.map((d, dIndex) => (
-								<tr key={dIndex}>
-									<th>{d.event_name}</th>
-									<td>{d.event_desc}</td>
-									<td>{d.status}</td>
-									<td>{d.start_date} - {d.end_date}</td>
-								</tr>
-							))}
-						</tbody>
-					</table>
+
+					{prizes && prizes.length > 0 && prizes.map((d, dIndex) => (
+						<Row key={d.prize_uuid} className="align-items-center">
+							<Col xs="4">
+								<img src={d.image_path} className='prize-image' />
+								<h5>{d.prize_name}</h5>
+							</Col>
+							<Col xs="4">
+								<h5>{T("Item Left")}: {d.in_stock_qty}</h5>
+								<h5>{T("Status")}: {d.status_text}</h5>
+								<h5>{T("Valid until")}: {d.expired_date}</h5>
+
+							</Col>
+							<Col xs="4">
+								<Row className="justify-content-center"><img src={d.qr_code_path} className='prize-image' /></Row>
+								<Row className="justify-content-center">{T("Redemption Code")}</Row>
+							</Col>
+						</Row>
+					))}
+
 				</Card>
 			</Container>
 		</div>
 	)
 }
 
-export default withTranslation()(Events)
+export default withTranslation()(Prizes)

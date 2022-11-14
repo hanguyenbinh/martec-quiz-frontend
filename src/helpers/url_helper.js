@@ -14,6 +14,9 @@ export const GET_LATEST_ESG_DATA = '/company/latest'
 export const POST_LOGIN = 'auth/login';
 
 export const GET_EVENTS_API = "/events";
+export const GET_EVENT_API = "/events/:id";
+export const GET_PRIZES_API = "/prizes";
+export const GET_PRIZE_API = "/prizes/:id";
 
 export const POST_REGISTER_USER = 'auth/register-admin';
 
