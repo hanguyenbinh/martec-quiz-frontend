@@ -95,6 +95,9 @@ export const postSocialLogin = data => api.create(url.SOCIAL_LOGIN, data);
 // get Events
 export const getEventsApi = () => api.get(url.GET_EVENTS_API);
 
+// get Prizes
+export const getPrizesApi = () => api.get(url.GET_PRIZES_API);
+
 // get Events
 export const getCategories = () => api.get(url.GET_CATEGORIES);
 

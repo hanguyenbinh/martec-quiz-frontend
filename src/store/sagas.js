@@ -7,6 +7,7 @@ import AuthSaga from "./auth/login/saga";
 import DashboardSaga from "./dashboard/saga";
 import submissionFormSaga from "./submissionForm/saga";
 import EventsSaga from './events/saga'
+import PrizessSaga from './prizes/saga'
 
 export default function* rootSaga() {
   yield all([
@@ -35,6 +36,7 @@ export default function* rootSaga() {
     // fork(teamSaga),
     fork(submissionFormSaga),
     fork(DashboardSaga),
-    fork(EventsSaga)
+    fork(EventsSaga),
+    fork(PrizessSaga)
   ]);
 }
