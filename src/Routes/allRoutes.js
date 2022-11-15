@@ -15,6 +15,7 @@ import GetOtpRegister from "../pages/Authentication/GetOtpRegister"
 import GetTokenRegister from "src/pages/Authentication/GetTokenRegister"
 import UserRegister from "src/pages/Authentication/UserRegister"
 import Events from "src/pages/Events"
+import SpecialDashBoard from "src/pages/SpecialDashBoard"
 
 
 const authProtectedRoutes = [
@@ -46,7 +47,8 @@ const publicRoutes = [
 	{ path: "/forgot-password", component: ForgetPasswordPage },
 	{ path: "/register", component: GetOtpRegister },
 	{ path: "/register-challenge", component: GetTokenRegister },
-	{ path: "/user-register", component: UserRegister }
+	{ path: "/user-register", component: UserRegister },
+	{ path: "/special-dashboard", component: SpecialDashBoard }
 	// //AuthenticationInner pages
 	// { path: "/auth-signin-basic", component: BasicSignIn },
 	// { path: "/auth-signin-cover", component: CoverSignIn },
