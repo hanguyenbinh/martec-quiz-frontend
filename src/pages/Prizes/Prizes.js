@@ -8,6 +8,7 @@ import { alertService } from "../../services"
 import { getPrizes } from "src/store/prizes/actions"
 
 import classes from 'src/assets/scss/pages/_prizes.scss'
+import { ToastContainer } from "react-toastify"
 
 const Prizes = (props) => {
 	const T = props.t
@@ -93,7 +94,7 @@ const Prizes = (props) => {
 				<Card>
 
 					{prizes && prizes.length > 0 && prizes.map((d, dIndex) => (
-						<Row key={d.prize_uuid} className="align-items-center">
+						<Row key={d.prize_id} className="align-items-center">
 							<Col xs="4">
 								<img src={d.image_path} className='prize-image' />
 								<h5>{d.prize_name}</h5>
@@ -118,6 +119,7 @@ const Prizes = (props) => {
 					))}
 
 				</Card>
+				<ToastContainer></ToastContainer>
 			</Container>
 		</div>
 	)

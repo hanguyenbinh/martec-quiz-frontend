@@ -103,6 +103,11 @@ export const geteventNaturesApi = (id) => api.get(url.GET_EVENT_NATURE_API);
 // get Prizes
 export const getPrizesApi = () => api.get(url.GET_PRIZES_API);
 
+export const getPrizeApi = (id) => api.get(url.GET_PRIZE_API.replace(':id', id));
+
+export const updatePrizeApi = (prize) => api.create(url.GET_PRIZE_API.replace(':id', prize.id), prize.data);
+
+
 // get Events
 export const getCategories = () => api.get(url.GET_CATEGORIES);
 

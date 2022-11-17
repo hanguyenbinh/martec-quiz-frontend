@@ -1,10 +1,12 @@
-import { GET_PRIZES, GET_PRIZES_ERROR, GET_PRIZES_SUCCESS } from "./actionTypes"
+import { GET_PRIZES, PRIZE_API_ERROR, GET_PRIZES_SUCCESS, GET_PRIZE, GET_PRIZE_SUCCESS, UPDATE_PRIZE, UPDATE_PRIZE_SUCCESS } from "./actionTypes"
 
 const initialState = {
 	error: "",
 	loading: false,
 	prizes: [
-	]
+	],
+	prize: null,
+	prizeId: ''
 }
 
 const Prizes = (state = initialState, action) => {
@@ -23,14 +25,45 @@ const Prizes = (state = initialState, action) => {
 				prizes: action.payload?.data?.rows
 			}
 			break;
-		case GET_PRIZES_ERROR:
-			console.log('GET_PRIZES_ERROR', action)
+
+		case GET_PRIZE:
+			state = {
+				...state,
+				loading: true,
+				prizeId: action.payload.prizeId
+			}
+			break
+		case GET_PRIZE_SUCCESS:
+			state = {
+				...state,
+				loading: false,
+				prize: action.payload?.data
+			}
+			break;
+
+		case UPDATE_PRIZE:
+			state = {
+				...state,
+				loading: true,
+				prizeId: action.payload.prizeId
+			}
+			break
+		case UPDATE_PRIZE_SUCCESS:
+			state = {
+				...state,
+				loading: false,
+				prize: action.payload?.data
+			}
+			break;
+		case PRIZE_API_ERROR:
+			console.log('PRIZE_API_ERROR', action)
 			state = {
 				...state,
 				error: action.payload,
 				loading: false,
 			}
 			break;
+
 		default:
 			state = { ...state }
 			break

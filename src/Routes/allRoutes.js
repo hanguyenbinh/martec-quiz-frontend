@@ -28,7 +28,7 @@ const authProtectedRoutes = [
 	{ path: "/events", component: Events },
 	{ path: "/edit-event/:id", component: UpdateEvent },
 	{ path: "/prizes", component: Prizes },
-	{ path: "/edit-prize", component: UpdatePrize },
+	{ path: "/edit-prize/:id", component: UpdatePrize },
 
 	// this route should be at the end of all other routes
 	// eslint-disable-next-line react/display-name	

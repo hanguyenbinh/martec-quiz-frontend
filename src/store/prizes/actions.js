@@ -1,4 +1,4 @@
-import { GET_PRIZES, GET_PRIZES_ERROR, GET_PRIZES_SUCCESS } from "./actionTypes";
+import { GET_PRIZES, PRIZE_API_ERROR, GET_PRIZES_SUCCESS, GET_PRIZE, GET_PRIZE_SUCCESS, UPDATE_PRIZE, UPDATE_PRIZE_SUCCESS } from "./actionTypes";
 
 export const getPrizes = () => {
   return {
@@ -14,10 +14,38 @@ export const getPrizesSuccess = response => {
   }
 }
 
-
-export const getPrizesError = response => {
+export const getPrize = (id, history) => {
   return {
-    type: GET_PRIZES_ERROR,
+    type: GET_PRIZE,
+    payload: { id, history }
+  }
+}
+
+export const getPrizeSuccess = response => {
+  return {
+    type: GET_PRIZE_SUCCESS,
+    payload: response
+  }
+}
+
+export const updatePrize = (id, data, history) => {
+  return {
+    type: UPDATE_PRIZE,
+    payload: { id, data, history }
+  }
+}
+
+export const updatePrizeSuccess = response => {
+  return {
+    type: UPDATE_PRIZE_SUCCESS,
+    payload: response
+  }
+}
+
+
+export const prizeAPIError = response => {
+  return {
+    type: PRIZE_API_ERROR,
     payload: response
   }
 }

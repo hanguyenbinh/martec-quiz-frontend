@@ -11,9 +11,11 @@ function* getEvents({ payload: { history } }) {
       yield put(getEventsSuccess(response));
     } else {
       yield put(eventAPIError(response));
+      toast.error(response.data.errmsg, { autoClose: 3000 });
     }
   } catch (error) {
     yield put(eventAPIError(error));
+    toast.error(error, { autoClose: 3000 });
   }
 }
 
@@ -26,9 +28,11 @@ function* getEvent({ payload: { id, history } }) {
       yield put(getEventDetailsSuccess(response));
     } else {
       yield put(eventAPIError(response));
+      toast.error(response.data.errmsg, { autoClose: 3000 });
     }
   } catch (error) {
     yield put(eventAPIError(error));
+    toast.error(error, { autoClose: 3000 });
   }
 }
 
@@ -40,9 +44,11 @@ function* geteventNatures({ payload: { } }) {
       yield put(geteventNaturesSuccess(response));
     } else {
       yield put(eventAPIError(response));
+      toast.error(response.data.errmsg, { autoClose: 3000 });
     }
   } catch (error) {
     yield put(eventAPIError(error));
+    toast.error(error, { autoClose: 3000 });
   }
 }
 
@@ -56,17 +62,19 @@ function* updateEvent({ payload: { id, data, history } }) {
       toast.success("Event is updated successfully", { autoClose: 3000 });
     } else {
       yield put(eventAPIError(response));
+      toast.error(response.data.errmsg, { autoClose: 3000 });
     }
   } catch (error) {
     yield put(eventAPIError(error));
+    toast.error(error, { autoClose: 3000 });
   }
 }
 
-function* evetnsSaga() {
+function* eventSaga() {
   yield takeEvery(GET_EVENTS, getEvents);
   yield takeEvery(GET_EVENT_DETAILS, getEvent);
   yield takeEvery(GET_EVENT_NATURE, geteventNatures);
   yield takeEvery(UPDATE_EVENT, updateEvent);
 }
 
-export default evetnsSaga;
+export default eventSaga;

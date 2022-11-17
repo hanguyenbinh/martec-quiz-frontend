@@ -6,6 +6,7 @@ import { useEffect } from "react"
 import { withTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory, useLocation, useParams } from "react-router-dom"
+import { ToastContainer } from "react-toastify"
 
 import {
 	Button,
@@ -430,9 +431,14 @@ function UpdateEvent(props) {
 	console.log('get event', event);
 
 	return (
-		<Formik innerRef={formikRef} initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
-			<EventEditForm />
-		</Formik>
+		<div>
+			<Formik innerRef={formikRef} initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
+				<EventEditForm />
+
+			</Formik>
+			<ToastContainer></ToastContainer>
+		</div>
+
 	)
 }
 export default UpdateEvent
