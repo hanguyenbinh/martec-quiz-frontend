@@ -6,6 +6,7 @@ export const POST_FAKE_LOGIN = "/auth/signin";
 export const POST_INITIATE = '/auth/get-otp';
 export const POST_INITIATE_REGISTER = '/auth/get-otp-register';
 export const POST_CHALLENGE_LOGIN = '/auth/challenge-login';
+export const GET_ORGANISATIONS_URL = '/auth/get-orgs';
 export const POST_CHALLENGE = '/auth/challenge';
 
 export const POST_ESG_DATA = '/company'

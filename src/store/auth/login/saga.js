@@ -2,12 +2,13 @@ import { call, put, takeEvery } from "redux-saga/effects";
 import axios from "axios";
 
 // Login Redux States
-import { LOGIN_CHALLENGE, LOGIN_INITIATE, LOGIN_USER, LOGOUT_USER, REGISTER_CHALLENGE, REGISTER_INITIATE } from "./actionTypes";
-import { apiError, loginInitiateSuccess, loginSuccess, logoutUserSuccess, registerChallengeSuccess } from "./actions";
+import { GET_ORGANISATIONS, LOGIN_CHALLENGE, LOGIN_INITIATE, LOGIN_USER, LOGOUT_USER, REGISTER_CHALLENGE, REGISTER_INITIATE } from "./actionTypes";
+import { apiError, getOrganisationsSuccess, loginInitiateSuccess, loginSuccess, logoutUserSuccess, registerChallengeSuccess } from "./actions";
 
 //Include Both Helper File with needed methods
 import { getFirebaseBackend } from "../../../helpers/firebase_helper";
 import {
+  getOrganisationsApi,
   postChallengeLogin,
   postChallengeRegister,
   postInitiate,
@@ -75,12 +76,13 @@ function* registerInitiate({ payload: { email, history } }) {
   }
 }
 
-function* loginChallenge({ payload: { email, challengeId, otp, history } }) {
+function* loginChallenge({ payload: { orgId, email, challengeId, otp, history } }) {
   try {
     const response = yield call(postChallengeLogin, {
       email,
       challengeId,
       challengeValue: otp,
+      orgId
     });
     if (response.status === true) {
       sessionStorage.setItem("accessToken", response.data.accessToken);
@@ -125,12 +127,26 @@ function* logoutUser() {
   }
 }
 
+function* getOrganisations({ payload: { } }) {
+  try {
+    const response = yield call(getOrganisationsApi, {});
+    if (response.status === true) {
+      yield put(getOrganisationsSuccess(response));
+    } else {
+      yield put(apiError(response));
+    }
+  } catch (error) {
+    yield put(apiError(error));
+  }
+}
+
 function* authSaga() {
   yield takeEvery(LOGOUT_USER, logoutUser);
   yield takeEvery(LOGIN_INITIATE, loginInitiate);
   yield takeEvery(LOGIN_CHALLENGE, loginChallenge);
   yield takeEvery(REGISTER_INITIATE, registerInitiate);
   yield takeEvery(REGISTER_CHALLENGE, registerChallenge);
+  yield takeEvery(GET_ORGANISATIONS, getOrganisations);
 }
 
 export default authSaga;

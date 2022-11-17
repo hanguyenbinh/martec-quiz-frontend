@@ -12,13 +12,15 @@ import {
   LOGIN_CHALLENGE_SUCCESS,
   REGISTER_CHALLENGE,
   REGISTER_CHALLENGE_SUCCESS,
-  REGISTER_INITIATE
+  REGISTER_INITIATE,
+  GET_ORGANISATIONS,
+  GET_ORGANISATIONS_SUCCESS
 } from "./actionTypes";
 
-export const loginInitiate = (email, history) => {
+export const loginInitiate = (email, orgId, history) => {
   return {
     type: LOGIN_INITIATE,
-    payload: { email, history },
+    payload: { orgId, email, history },
   };
 };
 
@@ -33,6 +35,20 @@ export const loginChallenge = (obj, history) => {
   return {
     type: LOGIN_CHALLENGE,
     payload: { ...obj, history },
+  };
+};
+
+export const getOrganisations = () => {
+  return {
+    type: GET_ORGANISATIONS,
+    payload: {},
+  };
+};
+
+export const getOrganisationsSuccess = response => {
+  return {
+    type: GET_ORGANISATIONS_SUCCESS,
+    payload: response,
   };
 };
 

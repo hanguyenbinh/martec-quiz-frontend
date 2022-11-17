@@ -30,6 +30,8 @@ export const postInitiateRegister = data => api.create(url.POST_INITIATE_REGISTE
 
 export const postChallengeLogin = data => api.create(url.POST_CHALLENGE_LOGIN, data);
 
+export const getOrganisationsApi = data => api.get(url.GET_ORGANISATIONS_URL, data);
+
 export const postChallengeRegister = data => api.create(url.POST_CHALLENGE, data);
 
 export const postSubmission = data => {

@@ -12,7 +12,7 @@ import * as Yup from "yup";
 import { useFormik } from "formik";
 
 // actions
-import { loginInitiate, loginUser, resetLoginFlag } from "../../store/actions";
+import { getOrganisations, loginInitiate, loginUser, resetLoginFlag } from "../../store/actions";
 import { withTranslation } from 'react-i18next';
 
 const GetOtp = (props) => {
@@ -20,6 +20,10 @@ const GetOtp = (props) => {
 	const dispatch = useDispatch();
 	const { user } = useSelector(state => ({
 		user: state.Account.user,
+	}));
+	const { error, organisations } = useSelector(state => ({
+		error: state.Login.error,
+		organisations: state.Login.organisations
 	}));
 
 	const [userLogin, setUserLogin] = useState([]);
@@ -39,23 +43,25 @@ const GetOtp = (props) => {
 
 		initialValues: {
 			email: userLogin.email || '',
+			orgId: organisations[0] ? organisations[0].id : '',
 		},
 		validationSchema: Yup.object({
 			email: Yup.string().required("Please Enter Your Email"),
 		}),
 		onSubmit: (values) => {
-			dispatch(loginInitiate(values.email, props.history));
+			dispatch(loginInitiate(values.email, values.orgId, props.history));
 		}
 	});
 
 
-	const { error } = useSelector(state => ({
-		error: state.Login.error,
-	}));
+
 
 
 	useEffect(() => {
-	}, [error]);
+	}, [error, organisations]);
+	useEffect(() => {
+		dispatch(getOrganisations())
+	}, [])
 
 	document.title = T('Application Name');
 	return (
@@ -105,6 +111,22 @@ const GetOtp = (props) => {
 													{validation.touched.email && validation.errors.email ? (
 														<FormFeedback type="invalid">{validation.errors.email}</FormFeedback>
 													) : null}
+												</div>
+
+												<div className="mb-3">
+													<Label htmlFor="orgId" className="form-label">{T('Organisation')}</Label>
+													<Input
+														name="orgId"
+														className="form-control"
+														type="select"
+														onChange={validation.handleChange}
+														onBlur={validation.handleBlur}
+														value={validation.values.orgId || ""}
+													>
+														{
+															organisations.map((item, key) => <option key={key} value={item.id}>{item.org_name}</option>)
+														}
+													</Input>
 												</div>
 
 												<div className="mt-4">

@@ -9,7 +9,9 @@ import {
 	LOGIN_INITIATE_SUCCESS,
 	LOGIN_CHALLENGE_SUCCESS,
 	REGISTER_CHALLENGE_SUCCESS,
-	REGISTER_INITIATE
+	REGISTER_INITIATE,
+	GET_ORGANISATIONS,
+	GET_ORGANISATIONS_SUCCESS
 } from "./actionTypes"
 
 const initialState = {
@@ -17,6 +19,8 @@ const initialState = {
 	loading: false,
 	accessToken: '',
 	org: null,
+	organisations: [],
+	orgId: ''
 }
 
 const Login = (state = initialState, action) => {
@@ -29,11 +33,12 @@ const Login = (state = initialState, action) => {
 			break
 		case REGISTER_INITIATE:
 		case LOGIN_INITIATE:
-			////console.logdisabled('reducer LOGIN_INITIATE', action)
+			console.log('reducer LOGIN_INITIATE', action)
 			state = {
 				...state,
 				email: action.payload.email,
-				loading: true
+				loading: true,
+				orgId: action.payload.orgId
 			}
 			break;
 		case LOGIN_INITIATE_SUCCESS:
@@ -85,6 +90,22 @@ const Login = (state = initialState, action) => {
 				error: null
 			}
 			break
+		case GET_ORGANISATIONS:
+			state = {
+				...state,
+				loading: true,
+				error: false
+			}
+			break;
+		case GET_ORGANISATIONS_SUCCESS:
+			console.log('GET_ORGANISATIONS_SUCCESS', action.payload)
+			state = {
+				...state,
+				loading: false,
+				error: false,
+				organisations: action.payload.data
+			}
+			break;
 		default:
 			state = { ...state }
 			break

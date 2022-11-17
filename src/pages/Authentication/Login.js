@@ -12,24 +12,24 @@ import * as Yup from "yup";
 import { useFormik } from "formik";
 
 // actions
-import { loginChallenge, resetLoginFlag } from "../../store/actions";
+import { getOrganisations, loginChallenge, resetLoginFlag } from "../../store/actions";
 import { withTranslation } from 'react-i18next';
 
 
 const Login = (props) => {
 	const history = useHistory();
 
-	const { email } = useSelector(state => ({
-		email: state.Login.email
-	}))
-	const { challengeId } = useSelector(state => ({
-		challengeId: state.Login.challengeId
+
+	const { challengeId, email, orgId } = useSelector(state => ({
+		email: state.Login.email,
+		challengeId: state.Login.challengeId,
+		orgId: state.Login.orgId
 	}))
 	React.useEffect(() => {
 		if (!email || !challengeId) {
 			history.push('/get-otp', { from: props.location })
 		}
-	}, [email, challengeId])
+	}, [email, challengeId, orgId])
 
 	const T = props.t;
 	const dispatch = useDispatch();
@@ -48,7 +48,9 @@ const Login = (props) => {
 			otpCode: Yup.string().length(6).required("Please Enter Your Code"),
 		}),
 		onSubmit: (values) => {
+			console.log('submit', orgId)
 			dispatch(loginChallenge({
+				orgId,
 				email,
 				challengeId,
 				otp: values.otpCode
@@ -66,6 +68,7 @@ const Login = (props) => {
 			dispatch(resetLoginFlag());
 		}, 10 * 60 * 1000);
 	}, [dispatch, error]);
+
 
 	document.title = T('Application Name');
 	return (
@@ -99,12 +102,11 @@ const Login = (props) => {
 												action="#">
 
 												<div className="mb-3">
-													<Label htmlFor="email" className="form-label">{T('Email')}</Label>
+													<Label htmlFor="otpCode" className="form-label">{T('Otp code')}</Label>
 													<Input
 														name="otpCode"
 														className="form-control"
 														placeholder="Enter Otp Code"
-														// type="otpCode"
 														onChange={validation.handleChange}
 														onBlur={validation.handleBlur}
 														value={validation.values.otpCode || ""}
@@ -116,6 +118,7 @@ const Login = (props) => {
 														<FormFeedback type="invalid">{validation.errors.otpCode}</FormFeedback>
 													) : null}
 												</div>
+
 
 												<div className="mt-4">
 													<Button color="success" className="btn btn-success w-100" type="submit">{T('Login')}</Button>
