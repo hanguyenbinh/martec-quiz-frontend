@@ -58,7 +58,7 @@ function* updateEvent({ payload: { id, data, history } }) {
       updateEventApi, { data, id });
     if (response.status === true) {
       yield put(updateEventSuccess(response));
-      history.push('/events')
+      // history.push('/events')
       toast.success("Event is updated successfully", { autoClose: 3000 });
     } else {
       yield put(eventAPIError(response));

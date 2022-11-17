@@ -42,7 +42,7 @@ function* updatePrize({ payload: { id, data, history } }) {
       updatePrizeApi, { id, data });
     if (response.status === true) {
       yield put(updatePrizeSuccess(response));
-      history.push('/prizes')
+      // history.push('/prizes')
       toast.success("Prize is updated successfully", { autoClose: 3000 });
     } else {
       yield put(prizeAPIError(response));

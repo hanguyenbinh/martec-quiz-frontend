@@ -117,8 +117,9 @@ const Events = (props) => {
 						</tbody>
 					</table>
 				</Card>
+				<ToastContainer></ToastContainer>
 			</Container>
-			<ToastContainer></ToastContainer>
+
 		</div>
 	)
 }
