@@ -102,12 +102,6 @@ class APIClient {
    */
   create = (url, data) => {
     const options = {}
-    const email = getLoggedinUserEmail();
-    if (email) {
-      options.params = {
-        email
-      }
-    }
     return axios.post(url, data, options);
   };
   /**

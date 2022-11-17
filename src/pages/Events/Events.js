@@ -7,7 +7,8 @@ import { Button, Card, CardBody, CardHeader, Col, Container, Label, Row } from "
 import BreadCrumb from "../../Components/Common/BreadCrumb"
 import * as moment from 'moment';
 import { alertService } from "../../services"
-import { getEvents } from "src/store/events/actions"
+import { getEvent, getEvents } from "src/store/events/actions"
+import { ToastContainer } from "react-toastify"
 
 const Events = (props) => {
 	const T = props.t
@@ -79,6 +80,10 @@ const Events = (props) => {
 		// })
 	}
 
+	const handleEditEvent = (id) => {
+		props.history.push('/edit-event/' + id)
+	}
+
 	return (
 		<div className="page-content">
 			<Container fluid>
@@ -91,6 +96,7 @@ const Events = (props) => {
 								<th scope="col">{T('Description')}</th>
 								<th scope="col">{T('Status')}</th>
 								<th scope="col">{T('Start-End Date')}</th>
+								<th scope="col">{T('Action')}</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -100,12 +106,19 @@ const Events = (props) => {
 									<td>{d.event_desc}</td>
 									<td>{d.status}</td>
 									<td>{d.start_date} - {d.end_date}</td>
+									<td>
+										<button>{T('View')}</button>
+										<button onClick={() => {
+											handleEditEvent(d.event_id);
+										}}>{T('Edit')}</button>
+									</td>
 								</tr>
 							))}
 						</tbody>
 					</table>
 				</Card>
 			</Container>
+			<ToastContainer></ToastContainer>
 		</div>
 	)
 }

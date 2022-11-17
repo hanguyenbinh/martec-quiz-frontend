@@ -95,6 +95,11 @@ export const postSocialLogin = data => api.create(url.SOCIAL_LOGIN, data);
 // get Events
 export const getEventsApi = () => api.get(url.GET_EVENTS_API);
 
+export const getEventApi = (id) => api.get(url.GET_EVENT_API.replace(':id', id));
+
+export const geteventNaturesApi = (id) => api.get(url.GET_EVENT_NATURE_API);
+
+
 // get Prizes
 export const getPrizesApi = () => api.get(url.GET_PRIZES_API);
 
@@ -108,7 +113,7 @@ export const getUpCommingEvent = () => api.get(url.GET_UPCOMMINGEVENT);
 export const addNewEvent = event => api.create(url.ADD_NEW_EVENT, event);
 
 // update Event
-export const updateEvent = event => api.update(url.UPDATE_EVENT, event);
+export const updateEventApi = event => api.create(url.UPDATE_EVENT.replace(':id', event.id), event.data);
 
 // delete Event
 export const deleteEvent = event => api.delete(url.DELETE_EVENT, { headers: { event } });

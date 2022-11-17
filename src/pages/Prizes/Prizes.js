@@ -81,6 +81,9 @@ const Prizes = (props) => {
 	console.log(prizes)
 
 	const style = { width: "150px" };
+	const handleEditPrize = (id) => {
+		props.history.push('/edit-prize/' + id)
+	}
 
 
 	return (
@@ -95,7 +98,7 @@ const Prizes = (props) => {
 								<img src={d.image_path} className='prize-image' />
 								<h5>{d.prize_name}</h5>
 							</Col>
-							<Col xs="4">
+							<Col xs="2">
 								<h5>{T("Item Left")}: {d.in_stock_qty}</h5>
 								<h5>{T("Status")}: {d.status_text}</h5>
 								<h5>{T("Valid until")}: {d.expired_date}</h5>
@@ -104,6 +107,12 @@ const Prizes = (props) => {
 							<Col xs="4">
 								<Row className="justify-content-center"><img src={d.qr_code_path} className='prize-image' /></Row>
 								<Row className="justify-content-center">{T("Redemption Code")}</Row>
+							</Col>
+							<Col xs="2">
+								<button>{T('View')}</button>
+								<button onClick={() => {
+									handleEditPrize(d.prize_id);
+								}}>{T('Edit')}</button>
 							</Col>
 						</Row>
 					))}

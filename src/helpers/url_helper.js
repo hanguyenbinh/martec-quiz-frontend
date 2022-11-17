@@ -15,6 +15,7 @@ export const POST_LOGIN = 'auth/login';
 
 export const GET_EVENTS_API = "/events";
 export const GET_EVENT_API = "/events/:id";
+export const GET_EVENT_NATURE_API = "/events/event-nature";
 export const GET_PRIZES_API = "/prizes";
 export const GET_PRIZE_API = "/prizes/:id";
 
@@ -38,7 +39,7 @@ export const POST_EDIT_PROFILE = "/user";
 export const GET_CATEGORIES = "/categories";
 export const GET_UPCOMMINGEVENT = "/upcommingevents";
 export const ADD_NEW_EVENT = "/add/event";
-export const UPDATE_EVENT = "/update/event";
+export const UPDATE_EVENT = "/events/:id";
 export const DELETE_EVENT = "/delete/event";
 
 // Chat
