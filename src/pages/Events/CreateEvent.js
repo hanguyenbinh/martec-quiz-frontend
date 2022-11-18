@@ -25,10 +25,10 @@ import {
 } from "reactstrap"
 
 import BreadCrumb from "src/Components/Common/BreadCrumb"
-import { getEvent, geteventNatures, updateEvent } from "src/store/actions"
+import { geteventNatures, createEvent } from "src/store/actions"
 import { dailyCheckinLimits, nextCheckinTimes } from './constant'
 
-import classes from "./UpdateEvent.module.scss"
+import classes from "./CreateEvent.module.scss"
 
 function EventEditForm() {
 	const history = useHistory();
@@ -340,17 +340,9 @@ function EventEditForm() {
 												})
 											}
 										</Input>
-										<p className="mb-0">times</p>
+										<p className="mb-0">hours later</p>
 									</div>
 								</FormGroup>
-							</Col>
-							<Col sm={12} md={4}>
-								<h6>QR Code</h6>
-								<div className={`${classes.banner} mb-3`}>
-									<img src={values.qr_code_path} className={classes.bannerImg} alt="" />
-								</div>
-								<div className="d-flex justify-content-center"><a className="btn btn-secondary" href={values.qr_code_path}>Download</a></div>
-
 							</Col>
 						</Row>
 					</CardBody>
@@ -366,32 +358,28 @@ function EventEditForm() {
 	)
 }
 
-function UpdateEvent(props) {
+function CreateEvent(props) {
 	const T = props.t ? props.t : (v) => v;
 	const dispatch = useDispatch();
 	const formikRef = useRef()
 	const params = useParams();
 	useEffect(() => {
 		dispatch(geteventNatures());
-		dispatch(getEvent(params.id, props.history))
 	}, [])
-	const { event } = useSelector(state => ({
-		event: state.Events.event,
-	}));
+
 
 
 	const initialValues = React.useMemo(() => {
 		return {
-			...event,
-			banner_file: event.image_path || ''
+			banner_file: ''
 		}
-	}, [event])
+	}, [])
 
 	const validationSchema = React.useMemo(() => {
 		return
 	}, [])
 	const handleSubmit = (values) => {
-		console.log(values);
+		console.log('create event', values);
 		const formData = new FormData();
 		if (values.banner_file) {
 			formData.append('image', values.banner_file);
@@ -414,16 +402,14 @@ function UpdateEvent(props) {
 		formData.append('max_total_check_in', values.max_total_check_in);
 		formData.append('check_in_interval', values.check_in_interval);
 
-		dispatch(updateEvent(values.event_id, formData, props.history))
+		dispatch(createEvent(formData, props.history))
 	}
 
 	useEffect(() => {
-		console.log('event changed', initialValues)
 		formikRef.current.resetForm({
 			values: initialValues
 		});
 	}, [initialValues])
-	console.log('get event', event);
 
 	return (
 		<div>
@@ -436,4 +422,4 @@ function UpdateEvent(props) {
 
 	)
 }
-export default UpdateEvent
+export default CreateEvent

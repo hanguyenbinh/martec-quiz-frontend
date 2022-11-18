@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import { useEffect } from "react"
 import { withTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { Card, CardBody, CardImg, CardTitle, Col, Container, Row } from "reactstrap"
+import { Button, Card, CardBody, CardImg, CardTitle, Col, Container, Row } from "reactstrap"
 import BreadCrumb from "../../Components/Common/BreadCrumb"
 import { alertService } from "../../services"
 import { getPrizes } from "src/store/prizes/actions"
@@ -81,16 +81,24 @@ const Prizes = (props) => {
 	}
 	console.log(prizes)
 
-	const style = { width: "150px" };
 	const handleEditPrize = (id) => {
 		props.history.push('/edit-prize/' + id)
 	}
+
+	const handleCreatePrize = (id) => {
+		props.history.push('/create-prize')
+	}
+
 
 
 	return (
 		<div className="page-content">
 			<Container fluid>
 				<BreadCrumb title={T("Prizes")} />
+				<div className="d-flex justify-content-end mb-3"><Button onClick={() => {
+					handleCreatePrize()
+				}
+				}>{T('Create')}</Button></div>
 				<Card>
 
 					{prizes && prizes.length > 0 && prizes.map((d, dIndex) => (
@@ -110,7 +118,7 @@ const Prizes = (props) => {
 								<Row className="justify-content-center">{T("Redemption Code")}</Row>
 							</Col>
 							<Col xs="2">
-								<button>{T('View')}</button>
+								{/* <button>{T('View')}</button> */}
 								<button onClick={() => {
 									handleEditPrize(d.prize_id);
 								}}>{T('Edit')}</button>

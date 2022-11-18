@@ -2,7 +2,7 @@ import { call, put, takeEvery } from "redux-saga/effects";
 import axios from "axios";
 
 // Login Redux States
-import { GET_ORGANISATIONS, LOGIN_CHALLENGE, LOGIN_INITIATE, LOGIN_USER, LOGOUT_USER, REGISTER_CHALLENGE, REGISTER_INITIATE } from "./actionTypes";
+import { GET_ORGANISATIONS, LOGIN_CHALLENGE, LOGIN_INITIATE, LOGOUT_USER, REGISTER_CHALLENGE, REGISTER_INITIATE } from "./actionTypes";
 import { apiError, getOrganisationsSuccess, loginInitiateSuccess, loginSuccess, logoutUserSuccess, registerChallengeSuccess } from "./actions";
 
 //Include Both Helper File with needed methods
@@ -15,7 +15,6 @@ import {
   postInitiateRegister,
   postLogin,
 } from "../../../helpers/fakebackend_helper";
-import { getLoggedinUser } from "src/helpers/api_helper";
 
 const fireBaseBackend = getFirebaseBackend();
 

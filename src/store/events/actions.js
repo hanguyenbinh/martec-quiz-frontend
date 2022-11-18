@@ -1,4 +1,4 @@
-import { GET_EVENTS, API_EVENT_ERROR, GET_EVENTS_SUCCESS, GET_EVENT_DETAILS, GET_EVENT_DETAILS_SUCCESS, GET_EVENT_NATURE, GET_EVENT_NATURE_SUCCESS, UPDATE_EVENT, UPDATE_EVENT_SUCCESS } from "./actionTypes";
+import { GET_EVENTS, API_EVENT_ERROR, GET_EVENTS_SUCCESS, GET_EVENT_DETAILS, GET_EVENT_DETAILS_SUCCESS, GET_EVENT_NATURE, GET_EVENT_NATURE_SUCCESS, UPDATE_EVENT, UPDATE_EVENT_SUCCESS, CREATE_EVENT, CREATE_EVENT_SUCCESS } from "./actionTypes";
 
 export const getEvents = () => {
   return {
@@ -36,6 +36,8 @@ export const updateEvent = (id, data, history) => {
   }
 }
 
+
+
 export const updateEventSuccess = response => {
   return {
     type: UPDATE_EVENT_SUCCESS,
@@ -43,6 +45,19 @@ export const updateEventSuccess = response => {
   }
 }
 
+export const createEvent = (data, history) => {
+  return {
+    type: CREATE_EVENT,
+    payload: { data, history }
+  }
+}
+
+export const createEventSuccess = response => {
+  return {
+    type: CREATE_EVENT_SUCCESS,
+    payload: response
+  }
+}
 
 export const getEventsSuccess = response => {
   return {

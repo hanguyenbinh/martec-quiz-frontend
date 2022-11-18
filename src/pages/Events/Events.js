@@ -83,11 +83,19 @@ const Events = (props) => {
 	const handleEditEvent = (id) => {
 		props.history.push('/edit-event/' + id)
 	}
+	const handleCreateEvent = () => {
+		props.history.push('/create-event');
+	}
 
 	return (
 		<div className="page-content">
 			<Container fluid>
 				<BreadCrumb title={T("Events")} />
+				<div className="d-flex justify-content-end mb-3"><Button onClick={() => {
+					handleCreateEvent()
+				}
+				}>{T('Create')}</Button></div>
+
 				<Card>
 					<table className="table">
 						<thead>
@@ -107,7 +115,9 @@ const Events = (props) => {
 									<td>{d.status}</td>
 									<td>{d.start_date} - {d.end_date}</td>
 									<td>
-										<button>{T('View')}</button>
+										{/* <button onClick={() => {
+										}
+										}>{T('View')}</button> */}
 										<button onClick={() => {
 											handleEditEvent(d.event_id);
 										}}>{T('Edit')}</button>

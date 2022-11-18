@@ -1,4 +1,4 @@
-import { GET_PRIZES, PRIZE_API_ERROR, GET_PRIZES_SUCCESS, GET_PRIZE, GET_PRIZE_SUCCESS, UPDATE_PRIZE, UPDATE_PRIZE_SUCCESS } from "./actionTypes"
+import { GET_PRIZES, PRIZE_API_ERROR, GET_PRIZES_SUCCESS, GET_PRIZE, GET_PRIZE_SUCCESS, UPDATE_PRIZE, UPDATE_PRIZE_SUCCESS, CREATE_PRIZE, CREATE_PRIZE_SUCCESS } from "./actionTypes"
 
 const initialState = {
 	error: "",
@@ -53,6 +53,20 @@ const Prizes = (state = initialState, action) => {
 				...state,
 				loading: false,
 				prize: action.payload?.data
+			}
+			break;
+		case CREATE_PRIZE:
+			state = {
+				...state,
+				loading: true,
+				error: false
+			}
+			break
+		case CREATE_PRIZE_SUCCESS:
+			state = {
+				...state,
+				loading: false,
+				error: false
 			}
 			break;
 		case PRIZE_API_ERROR:

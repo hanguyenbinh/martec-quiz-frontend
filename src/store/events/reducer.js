@@ -1,4 +1,4 @@
-import { GET_EVENTS, API_EVENT_ERROR, GET_EVENTS_SUCCESS, GET_EVENT_DETAILS, GET_EVENT_DETAILS_SUCCESS, GET_EVENT_NATURE, GET_EVENT_NATURE_SUCCESS, UPDATE_EVENT_SUCCESS, UPDATE_EVENT } from "./actionTypes"
+import { GET_EVENTS, API_EVENT_ERROR, GET_EVENTS_SUCCESS, GET_EVENT_DETAILS, GET_EVENT_DETAILS_SUCCESS, GET_EVENT_NATURE, GET_EVENT_NATURE_SUCCESS, UPDATE_EVENT_SUCCESS, UPDATE_EVENT, CREATE_EVENT, CREATE_EVENT_SUCCESS } from "./actionTypes"
 
 const initialState = {
 	error: "",
@@ -75,13 +75,31 @@ const Events = (state = initialState, action) => {
 			}
 			break;
 		case UPDATE_EVENT_SUCCESS:
-			console.log('GET_EVENT_NATURE_SUCCESS', action.payload.data)
+			console.log('UPDATE_EVENT_SUCCESS', action.payload.data)
 
 			state = {
 				...state,
 				loading: false,
 				error: false,
-				eventId: '',
+				event: action.payload.data
+			}
+			break;
+
+		case CREATE_EVENT:
+			state = {
+				...state,
+				loading: true,
+				error: false,
+			}
+			break;
+		case CREATE_EVENT_SUCCESS:
+			console.log('CREATE_EVENT_SUCCESS', action.payload.data)
+			state = {
+				...state,
+				loading: false,
+				error: false,
+				event: action.payload.data,
+				eventId: action.payload.data.event_id
 			}
 			break;
 		default:

@@ -119,13 +119,15 @@ class APIClient {
 }
 const getLoggedinUser = () => {
   const accessToken = sessionStorage.getItem("accessToken");
-  ////console.logdisabled('accessToken', accessToken)
   return accessToken;
 };
+const getOrganisationType = () => {
+  return sessionStorage.getItem("orgType");
+}
 const getLoggedinUserEmail = () => {
   const email = sessionStorage.getItem("email");
   ////console.logdisabled('email', email)
   return email;
 };
 
-export { APIClient, setAuthorization, getLoggedinUser, getLoggedinUserEmail };
+export { APIClient, setAuthorization, getLoggedinUser, getLoggedinUserEmail, getOrganisationType };

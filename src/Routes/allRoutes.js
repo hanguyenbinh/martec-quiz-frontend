@@ -19,6 +19,10 @@ import SpecialDashBoard from "src/pages/SpecialDashBoard"
 import Prizes from "src/pages/Prizes"
 import UpdatePrize from "src/pages/Prizes/UpdatePrize"
 import UpdateEvent from "src/pages/Events/UpdateEvent"
+import CreateEvent from "src/pages/Events/CreateEvent"
+import CreatePrize from "src/pages/Prizes/CreatePrize"
+
+
 
 
 const authProtectedRoutes = [
@@ -27,8 +31,10 @@ const authProtectedRoutes = [
 	{ path: "/submissions-history", component: UploadList },
 	{ path: "/events", component: Events },
 	{ path: "/edit-event/:id", component: UpdateEvent },
+	{ path: "/create-event", component: CreateEvent },
 	{ path: "/prizes", component: Prizes },
 	{ path: "/edit-prize/:id", component: UpdatePrize },
+	{ path: "/create-prize", component: CreatePrize },
 
 	// this route should be at the end of all other routes
 	// eslint-disable-next-line react/display-name	

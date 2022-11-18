@@ -108,6 +108,7 @@ export const getPrizesApi = () => api.get(url.GET_PRIZES_API);
 export const getPrizeApi = (id) => api.get(url.GET_PRIZE_API.replace(':id', id));
 
 export const updatePrizeApi = (prize) => api.create(url.GET_PRIZE_API.replace(':id', prize.id), prize.data);
+export const createPrizeApi = (prize) => api.create(url.GET_PRIZES_API, prize.data);
 
 
 // get Events
@@ -116,11 +117,11 @@ export const getCategories = () => api.get(url.GET_CATEGORIES);
 // get Upcomming Events
 export const getUpCommingEvent = () => api.get(url.GET_UPCOMMINGEVENT);
 
-// add Events
-export const addNewEvent = event => api.create(url.ADD_NEW_EVENT, event);
 
 // update Event
 export const updateEventApi = event => api.create(url.UPDATE_EVENT.replace(':id', event.id), event.data);
+
+export const createEventApi = event => api.create(url.CREATE_EVENT, event.data);
 
 // delete Event
 export const deleteEvent = event => api.delete(url.DELETE_EVENT, { headers: { event } });

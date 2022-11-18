@@ -210,18 +210,6 @@ const fakeBackend = () => {
     });
   });
 
-  mock.onPost(url.ADD_NEW_EVENT).reply((event) => {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        if (event && event.data) {
-          // Passing fake JSON data as response
-          resolve([200, event.data]);
-        } else {
-          reject([400, "Cannot add event"]);
-        }
-      });
-    });
-  });
 
   mock.onPut(url.UPDATE_EVENT).reply((event) => {
     return new Promise((resolve, reject) => {

@@ -39,8 +39,8 @@ export const POST_EDIT_PROFILE = "/user";
 
 export const GET_CATEGORIES = "/categories";
 export const GET_UPCOMMINGEVENT = "/upcommingevents";
-export const ADD_NEW_EVENT = "/add/event";
 export const UPDATE_EVENT = "/events/:id";
+export const CREATE_EVENT = "/events";
 export const DELETE_EVENT = "/delete/event";
 
 // Chat

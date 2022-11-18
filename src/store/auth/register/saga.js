@@ -12,6 +12,7 @@ import {
   postRegisterUser,
 } from "../../../helpers/fakebackend_helper";
 import { isArray } from "lodash";
+import { toast } from "react-toastify";
 
 // initialize relavant method of both Auth
 const fireBaseBackend = getFirebaseBackend();
@@ -32,13 +33,16 @@ function* registerUser({ payload: { user, history } }) {
       });
     if (response.status === true) {
       yield put(registerUserSuccessful(response));
+      toast.success("Register user successfully", { autoClose: 3000 });
       // history.push("/login");
     } else {
       yield put(registerUserFailed(response.message + ': ' + response.data.errmsg));
+      toast.error(response.data.errmsg, { autoClose: 3000 });
     }
   } catch (error) {
     console.log('error', error)
     yield put(registerUserFailed(error));
+    toast.error(error, { autoClose: 3000 });
   }
 }
 
