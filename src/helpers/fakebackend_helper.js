@@ -43,8 +43,19 @@ export const postSubmission = data => {
 export const getSubmissionHistoryApi = (email) => api.get(url.GET_ESG_DATA, { email });
 
 export const getAPILatestSubmissionForms = (email) => {
-  console.log('getAPILatestSubmissionForms')
   return api.get(url.GET_LATEST_ESG_DATA, { email })
+};
+
+export const getOrganisationSummariesApi = () => {
+  return api.get(url.GET_ORGANISATION_SUMMARIES, {})
+};
+
+export const getOrganisationEventsApi = (orgId) => {
+  return api.get(url.GET_ORGANISATION_EVENTS, { orgId })
+};
+
+export const getEventSummariesApi = (eventId) => {
+  return api.get(url.GET_EVENT_SUMMARIES, { eventId })
 };
 
 // postForgetPwd

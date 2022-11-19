@@ -35,6 +35,7 @@ const authProtectedRoutes = [
 	{ path: "/prizes", component: Prizes },
 	{ path: "/edit-prize/:id", component: UpdatePrize },
 	{ path: "/create-prize", component: CreatePrize },
+	{ path: "/ca-dashboard", component: SpecialDashBoard },
 
 	// this route should be at the end of all other routes
 	// eslint-disable-next-line react/display-name	
@@ -60,7 +61,7 @@ const publicRoutes = [
 	{ path: "/register", component: GetOtpRegister },
 	{ path: "/register-challenge", component: GetTokenRegister },
 	{ path: "/user-register", component: UserRegister },
-	{ path: "/special-dashboard", component: SpecialDashBoard }
+
 	// //AuthenticationInner pages
 	// { path: "/auth-signin-basic", component: BasicSignIn },
 	// { path: "/auth-signin-cover", component: CoverSignIn },

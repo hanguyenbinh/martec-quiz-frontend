@@ -1,4 +1,5 @@
 import React from "react"
+import { useEffect } from "react"
 
 import {
 	Card,
@@ -16,6 +17,7 @@ import {
 } from "reactstrap"
 
 import BreadCrumb from "src/Components/Common/BreadCrumb"
+import { getOrganisationType } from "src/helpers/api_helper"
 import LineChart from "./components/LineChart"
 
 const labels = ["2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022"]
@@ -42,7 +44,11 @@ const data = {
 	]
 }
 
-function SpecialDashBoard() {
+function SpecialDashBoard(props) {
+	useEffect(() => {
+		const organisationType = getOrganisationType();
+		if (organisationType !== 'association') props.history.push('/dashboard')
+	}, [])
 	return (
 		<div className="page-content">
 			<Container fluid>

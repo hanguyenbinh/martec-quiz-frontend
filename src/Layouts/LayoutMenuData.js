@@ -1,8 +1,15 @@
 import React, { useEffect, useState } from "react"
 import { useHistory } from "react-router-dom"
+import { getOrganisationType } from "src/helpers/api_helper"
 
 const Navdata = (props) => {
 	const history = useHistory()
+	const [organisationType, setOrganisationType] = useState('');
+
+	useEffect(() => {
+		const organisationType = getOrganisationType();
+		setOrganisationType(organisationType);
+	}, [])
 
 	//state data
 	const [isDashboard, setIsDashboard] = useState(false)
@@ -104,7 +111,7 @@ const Navdata = (props) => {
 		{
 			id: "dashboard",
 			label: "Dashboard",
-			link: "/dashboard",
+			link: organisationType === 'company' ? "/dashboard" : "ca-dashboard",
 			parentId: "dashboard",
 			icon: "mdi mdi-speedometer"
 		},

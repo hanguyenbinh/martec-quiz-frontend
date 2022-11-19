@@ -87,8 +87,11 @@ function* loginChallenge({ payload: { orgId, email, challengeId, otp, history } 
       sessionStorage.setItem("accessToken", response.data.accessToken);
       sessionStorage.setItem('email', email);
       sessionStorage.setItem('orglogo', response.data.org?.org_logo)
+      sessionStorage.setItem('organisationType', response.data.org?.org_type)
+      console.log('loginChallenge success', response.data.org);
       yield put(loginSuccess(response));
-      history.push("/dashboard");
+      if (response.data.org.org_type === 'company') history.push("/dashboard");
+      if (response.data.org.org_type === 'association') history.push("/ca-dashboard");
     } else {
       yield put(apiError(response));
     }

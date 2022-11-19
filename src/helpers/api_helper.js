@@ -122,7 +122,7 @@ const getLoggedinUser = () => {
   return accessToken;
 };
 const getOrganisationType = () => {
-  return sessionStorage.getItem("orgType");
+  return sessionStorage.getItem("organisationType");
 }
 const getLoggedinUserEmail = () => {
   const email = sessionStorage.getItem("email");

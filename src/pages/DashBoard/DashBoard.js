@@ -9,6 +9,7 @@ import AppChart from "./components/AppChart"
 import StatisticsCard from "./components/StatisticsCard"
 import { Indicators } from "../../data/indicators"
 import { Average } from "../../data/average"
+import { getOrganisationType } from "src/helpers/api_helper"
 
 const labelsData = ["2015.04-2016.03", "2016.04-2017.03", "2017.04-2018.03", "2018.04-2019.03", "2019.04-2020.03", "2020.04-2021.03", "2021.04-2022.03", "2022.04-2023.03"]
 const labels = ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022']
@@ -260,6 +261,8 @@ const DashBoard = (props) => {
 	}, [submissionData, averageData])
 
 	useEffect(() => {
+		const organisationType = getOrganisationType();
+		if (organisationType !== 'company') props.history.push('/ca-dashboard')
 		const email = sessionStorage.getItem("email");
 		console.log('dashboard', email);
 		dispatch(getLatestData(email))
