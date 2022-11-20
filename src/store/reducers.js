@@ -11,6 +11,7 @@ import Profile from "./auth/profile/reducer";
 import Dashboard from "./dashboard/reducer";
 import Events from './events/reducer';
 import Prizes from './prizes/reducer'
+import CADashboard from "./ca-dashboard/reducer";
 
 
 
@@ -26,7 +27,8 @@ const rootReducer = combineReducers({
     SubmissionForm,
     Dashboard,
     Events,
-    Prizes
+    Prizes,
+    CADashboard
 });
 
 export default rootReducer;

@@ -1,52 +1,62 @@
 import {
   GET_EVENT_SUMMARIES,
   GET_EVENT_SUMMARIES_SUCCESS,
-  GET_LATEST_DATA,
-  GET_LATEST_DATA_ERROR,
   CA_DASHBOARD_API_ERROR,
   GET_ORGANISATION_EVENTS,
   GET_ORGANISATION_EVENTS_SUCCESS,
   GET_ORGANISATION_SUMMARIES,
   GET_ORGANISATION_SUMMARIES_SUCCESS
 } from "./actionType";
+const resetEventSummaries = () => {
+  return {
+    event: {
+      end_date: '',
+      start_date: "",
+      status: "",
+      playsLeft: 0
+    },
+  };
+}
 
 const INIT_STATE = {
   chartData: [],
   indicators: [],
   averages: [],
-  organisationSummeries: [],
+  organisationSummeries: null,
   organisationEvents: [],
-  eventSummaries: [],
+  eventSummaries: resetEventSummaries(),
   error: {},
-  submissions: [],
-  allSubmissions: [],
   isLoading: false,
 
 };
 
-const Dashboard = (state = INIT_STATE, action) => {
+
+
+const CADashboard = (state = INIT_STATE, action) => {
   switch (action.type) {
-    case GET_LATEST_DATA:
-      console.log('reducer GET_LATEST_DATA')
-      return {
-        ...state,
-        isLoading: true
-      }
-    case GET_LATEST_DATA_ERROR:
-      return {
-        ...state,
-        error: action.payload.data,
-        isLoading: false
-      }
     case CA_DASHBOARD_API_ERROR:
       return {
+        error: true,
+        isLoading: false,
         ...state,
-        submissions: action.payload.data.submissions,
-        allSubmissions: action.payload.data.allSubmissions,
         isLoading: false
       }
     case GET_ORGANISATION_SUMMARIES:
+      return {
+        ...state,
+        isLoading: true,
+        error: false,
+        eventSummaries: resetEventSummaries(),
+        organisationEvents: [],
+      }
     case GET_ORGANISATION_EVENTS:
+      return {
+        ...state,
+        isLoading: true,
+        error: false,
+        eventSummaries: resetEventSummaries(),
+        organisationEvents: [],
+      }
     case GET_EVENT_SUMMARIES:
       return {
         ...state,
@@ -54,28 +64,32 @@ const Dashboard = (state = INIT_STATE, action) => {
         error: false
       }
     case GET_ORGANISATION_SUMMARIES_SUCCESS:
+      console.log('GET_ORGANISATION_SUMMARIES_SUCCESS', action.payload)
       return {
         ...state,
         isLoading: false,
         error: false,
-        organisationSummeries: action.payload.data
+        organisationSummeries: action.payload,
+        // eventSummaries: resetEventSummaries(),
+        // organisationEvents: [],
       }
     case GET_ORGANISATION_EVENTS_SUCCESS:
+      console.log('GET_ORGANISATION_EVENTS_SUCCESS', action.payload)
       return {
         ...state,
         isLoading: false,
         error: false,
-        organisationEvents: action.payload.data
+        organisationEvents: action.payload || []
       }
     case GET_EVENT_SUMMARIES_SUCCESS:
       return {
         ...state,
         isLoading: false,
         error: false,
-        eventSummaries: action.payload.data
+        eventSummaries: action.payload || []
       }
     default:
       return state;
   }
 };
-export default Dashboard;
+export default CADashboard;

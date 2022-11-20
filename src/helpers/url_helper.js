@@ -20,9 +20,9 @@ export const GET_EVENT_NATURE_API = "/events/event-nature";
 export const GET_PRIZES_API = "/prizes";
 export const GET_PRIZE_API = "/prizes/:id";
 
-export const GET_ORGANISATION_SUMMARIES = "/summaries/organisation-summaries";
-export const GET_ORGANISATION_EVENTS = "/summaries/organisation-events";
-export const GET_EVENT_SUMMARIES = "/summaries/event-summaries";
+export const GET_ORGANISATION_SUMMARIES_API = "/summaries/organisation-summaries";
+export const GET_ORGANISATION_EVENTS_API = "/summaries/organisation-events";
+export const GET_EVENT_SUMMARIES_API = "/summaries/event-summaries/:id";
 
 export const POST_REGISTER_USER = 'auth/register-admin';
 

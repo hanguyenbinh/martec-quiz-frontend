@@ -9,4 +9,5 @@ export * from "./submissionForm/actions";
 export * from './dashboard/actions';
 export * from './events/actions';
 export * from './prizes/actions';
+export * from './ca-dashboard/actions'
 

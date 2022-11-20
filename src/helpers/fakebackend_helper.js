@@ -47,15 +47,15 @@ export const getAPILatestSubmissionForms = (email) => {
 };
 
 export const getOrganisationSummariesApi = () => {
-  return api.get(url.GET_ORGANISATION_SUMMARIES, {})
+  return api.get(url.GET_ORGANISATION_SUMMARIES_API, {})
 };
 
 export const getOrganisationEventsApi = (orgId) => {
-  return api.get(url.GET_ORGANISATION_EVENTS, { orgId })
+  return api.get(url.GET_ORGANISATION_EVENTS_API, { orgId })
 };
 
 export const getEventSummariesApi = (eventId) => {
-  return api.get(url.GET_EVENT_SUMMARIES, { eventId })
+  return api.get(url.GET_EVENT_SUMMARIES_API.replace(':id', eventId))
 };
 
 // postForgetPwd
