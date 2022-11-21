@@ -100,7 +100,7 @@ function SpecialDashBoard(props) {
 				data: organisationSummeries.topParticipators.map(item => [item.org_name, item.count])
 			}
 			const topFavoritePrizes = {
-				title: "Top 4 Participants Prize",
+				title: "Top 4 Favorite Prize",
 				labels: ["Company", "No of redemption"],
 				data: organisationSummeries.topFavoritePrizes.map(item => [item.prize_name, item.count])
 			}
