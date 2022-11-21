@@ -76,7 +76,7 @@ function* createEvent({ payload: { data, history } }) {
       createEventApi, { data });
     if (response.status === true) {
       yield put(createEventSuccess(response));
-      // history.push('/events')
+      history.push('/edit-event/' + response.data.event_id)
       toast.success("Event is created successfully", { autoClose: 3000 });
     } else {
       yield put(eventAPIError(response));

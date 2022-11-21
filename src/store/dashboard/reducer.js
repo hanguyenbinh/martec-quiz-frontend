@@ -35,7 +35,8 @@ const Dashboard = (state = INIT_STATE, action) => {
         ...state,
         submissions: action.payload.data.submissions,
         allSubmissions: action.payload.data.allSubmissions,
-        isLoading: false
+        isLoading: false,
+        error: false
       }
     default:
       return state;

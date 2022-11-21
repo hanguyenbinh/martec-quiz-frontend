@@ -15,6 +15,8 @@ import SubmissionGroup from "../DashBoard/components/SubmissionGroup"
 import * as Yup from 'yup';
 import { useDispatch, useSelector } from "react-redux"
 import { postSubmissionForm } from "../../store/submissionForm/actions"
+import companySize from "src/data/companySize"
+import projectType from "src/data/projectType"
 
 const submissionFormSchema = Yup.object().shape({
 	companySize: Yup.string().required('Required'),
@@ -78,11 +80,7 @@ const SubmissionForm = (props) => {
 					name: 'companySize',
 					label: T('Company Size'),
 					type: 'select',
-					options: [
-						{ label: 'Group A', value: 'Group A' },
-						{ label: 'Group B', value: 'Group B' },
-						{ label: 'Group C', value: 'Group C' }
-					]
+					options: companySize
 				},
 				{
 					name: 'yearOfRecord',
@@ -105,15 +103,7 @@ const SubmissionForm = (props) => {
 					name: 'projectType',
 					label: T('Project Type'),
 					type: 'select',
-					options: [
-						{ label: 'Corporate', value: 'Corporate' },
-						{ label: 'Building', value: 'Building' },
-						{ label: 'Civil', value: 'Civil' },
-						{ label: 'Piling & foundation', value: 'Piling & foundation' },
-						{ label: 'Building RMAA', value: 'Building RMAA' },
-						{ label: 'Civil R&M', value: 'Civil R&M' },
-						{ label: 'Supplier', value: 'Supplier' },
-					]
+					options: projectType
 				},
 				{
 					name: 'grossValueOfConstructionWork',

@@ -5,7 +5,9 @@ import {
   GET_ORGANISATION_EVENTS,
   GET_ORGANISATION_EVENTS_SUCCESS,
   GET_ORGANISATION_SUMMARIES,
-  GET_ORGANISATION_SUMMARIES_SUCCESS
+  GET_ORGANISATION_SUMMARIES_SUCCESS,
+  GET_SUBMISSION_COMPARATION,
+  GET_SUBMISSION_COMPARATION_SUCCESS
 } from "./actionType";
 const resetEventSummaries = () => {
   return {
@@ -27,6 +29,9 @@ const INIT_STATE = {
   eventSummaries: resetEventSummaries(),
   error: {},
   isLoading: false,
+  basisA: [],
+  basisB: [],
+  years: []
 
 };
 
@@ -88,6 +93,26 @@ const CADashboard = (state = INIT_STATE, action) => {
         error: false,
         eventSummaries: action.payload || []
       }
+    case GET_SUBMISSION_COMPARATION:
+
+      return {
+        ...state,
+        isLoading: true,
+        error: false,
+
+      }
+
+    case GET_SUBMISSION_COMPARATION_SUCCESS:
+      console.log('GET_SUBMISSION_COMPARATION_SUCCESS', action.payload)
+      return {
+        ...state,
+        isLoading: false,
+        error: false,
+        basisA: action.payload?.basisA || [],
+        basisB: action.payload?.basisB || [],
+        years: action.payload?.years || []
+      }
+
     default:
       return state;
   }

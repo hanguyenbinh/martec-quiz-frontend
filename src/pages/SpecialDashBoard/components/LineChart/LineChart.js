@@ -46,7 +46,7 @@ ChartJS.register(
 
 const LineChart = (props) => {
 	const { title, data } = props
-
+	console.log("cac,", data)
 	return (
 		<Card className={cx("m-0", classes.chart)}>
 			{!!title && (
@@ -76,7 +76,7 @@ LineChart.propTypes = {
 			})
 		)
 	}),
-	onOptionChange: PropTypes.func
+	// onOptionChange: PropTypes.func
 }
 
 export default React.memo(LineChart)

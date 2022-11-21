@@ -19,30 +19,33 @@ import {
 } from "reactstrap"
 
 import BreadCrumb from "src/Components/Common/BreadCrumb"
+import CompanySize from "src/data/companySize"
+import IndicatorType from "src/data/indicatorType"
+import ProjectType from "src/data/projectType"
 import { getOrganisationType } from "src/helpers/api_helper"
-import { getEventSummaries, getOrganisations, getOrgEvents, getOrgSummaries } from "src/store/actions"
+import { camelize } from "src/helpers/string_helper"
+import { getEventSummaries, getOrganisations, getOrgEvents, getOrgSummaries, getSubmissionComparation } from "src/store/actions"
 import LineChart from "./components/LineChart"
 
-const labels = ["2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022"]
 
 const data = {
-	labels,
+	labels: [],
 	datasets: [
 		{
 			type: "line",
-			label: "Corporate (kWh/$100M)",
+			label: "",
 			borderColor: "#3577f1",
 			borderWidth: 4,
 			fill: false,
-			data: labels.map(() => Math.round(Math.random() * 100))
+			data: []
 		},
 		{
 			type: "line",
-			label: "Building (kWh/$100M)",
+			label: "",
 			borderColor: "#f06548",
 			borderWidth: 4,
 			fill: true,
-			data: labels.map(() => Math.round(Math.random() * 100))
+			data: []
 		}
 	]
 }
@@ -55,15 +58,26 @@ function SpecialDashBoard(props) {
 	const [selectedOrgId, setSelectedOrgId] = useState('');
 	const [selectedEventId, setSelectedEventId] = useState('');
 
-	const { organisationSummeries, organisationEvents, eventSummaries, organisations } = useSelector(state => ({
+	const [selectedIndicator, setSelectedIndicator] = useState('');
+	const [selectedIndicatorLabel, setSelectedIndicatorLabel] = useState('');
+	const [selectedProjectTypeA, setSelectedProjectTypeA] = useState('');
+	const [selectedProjectTypeB, setSelectedProjectTypeB] = useState('');
+	const [selectedCompanySizeA, setSelectedCompanySizeA] = useState('');
+	const [selectedCompanySizeB, setSelectedCompanySizeB] = useState('');
+
+	const [chartData, setChartData] = useState(data)
+
+	const { organisationSummeries, organisationEvents, eventSummaries, organisations, years, basisA, basisB } = useSelector(state => ({
 		organisationSummeries: state.CADashboard.organisationSummeries,
 		organisationEvents: state.CADashboard.organisationEvents,
 		eventSummaries: state.CADashboard.eventSummaries,
 		organisations: state.Login.organisations,
+		basisA: state.CADashboard.basisA,
+		basisB: state.CADashboard.basisB,
+		years: state.CADashboard.years
 	}));
 
 	console.log('organisationSummeries', organisationSummeries)
-
 
 
 	useEffect(() => {
@@ -115,34 +129,90 @@ function SpecialDashBoard(props) {
 			dispatch(getEventSummaries(selectedEventId));
 		}
 	}, [selectedEventId])
-	console.log('organisationSummeries asfdsaff', organisationSummeries)
+
+	useEffect(() => {
+		const basisAData = basisA.map(item => Math.round(item.value))
+		const basisBData = basisB.map(item => Math.round(item.value))
+		const data = {
+			labels: years,
+			datasets: [
+				{
+					type: "line",
+					label: selectedProjectTypeA + ' - ' + selectedCompanySizeA,
+					borderColor: "#3577f1",
+					borderWidth: 4,
+					fill: false,
+					data: basisAData
+				},
+				{
+					type: "line",
+					label: selectedProjectTypeB + ' - ' + selectedCompanySizeB,
+					borderColor: "#f06548",
+					borderWidth: 4,
+					fill: false,
+					data: basisBData
+				}
+			]
+		}
+
+		console.log('setChartData', data)
+		setChartData(preState => { return data })
+	}, [basisA, basisB, years])
+
+	// useEffect(() => {
+	// 	console.log('chart data changed', chartData)
+	// }, [chartData])
+
+	const handleComparation = () => {
+		dispatch(getSubmissionComparation(camelize(selectedIndicator), selectedProjectTypeA, selectedProjectTypeB, selectedCompanySizeA, selectedCompanySizeB));
+	}
+	console.log('chartData', chartData)
 	return (
 		<div className="page-content">
 			<Container fluid>
 				<BreadCrumb title="Dashboards" />
 				<Row className="mb-3">
 					<Col sm={12} md={6}>
-						<LineChart title="Corporate - Fuel Consumption (kWh)" data={data} />
+						<LineChart title={selectedIndicatorLabel} data={chartData} />
 					</Col>
 					<Col sm={12} md={6}>
 						<Card>
 							<CardBody>
 								<FormGroup>
 									<Label>Indicator</Label>
-									<Input type="select">
-										{[{ value: 1, label: "Fuel Consumption" }].map((option, key) => (
-											<option key={key} value={option.value}>
+									<Input type="select" onChange={(e) => {
+
+										setSelectedIndicator(e.target.value)
+										setSelectedIndicatorLabel(e.target.options[e.target.selecttedIndex]);
+
+										console.log(e);
+									}}>
+										<option value=''>Please select...</option>
+										{IndicatorType.map((option, key) =>
+											!option.isHeader ? (<option key={key} value={option.label}>
 												{option.label}
-											</option>
-										))}
+											</option>) : null)}
 									</Input>
 								</FormGroup>
 								<Row>
 									<Col sm={12} md={6}>
 										<FormGroup>
 											<Label>Basis 1</Label>
-											<Input type="select">
-												{[{ value: 1, label: "Building" }].map((option, key) => (
+											<Input type="select" onChange={(e) => {
+												setSelectedProjectTypeA(e.target.value)
+											}}>
+												<option value={''}>Please select...</option>
+												{ProjectType.map((option, key) => (
+													<option key={key} value={option.value}>
+														{option.label}
+													</option>
+												))}
+											</Input>
+											<Input type="select" onChange={(e) => {
+												setSelectedCompanySizeA(e.target.value)
+											}}>
+												<option value={''}>Please select...</option>
+												{CompanySize.map((option, key) => (
 													<option key={key} value={option.value}>
 														{option.label}
 													</option>
@@ -153,8 +223,21 @@ function SpecialDashBoard(props) {
 									<Col sm={12} md={6}>
 										<FormGroup>
 											<Label>Basis 2</Label>
-											<Input type="select">
-												{[{ value: 1, label: "Corporate" }].map((option, key) => (
+											<Input type="select" onChange={(e) => {
+												setSelectedProjectTypeB(e.target.value)
+											}}>
+												<option>Please select...</option>
+												{ProjectType.map((option, key) => (
+													<option key={key} value={option.value}>
+														{option.label}
+													</option>
+												))}
+											</Input>
+											<Input type="select" onChange={(e) => {
+												setSelectedCompanySizeB(e.target.value)
+											}}>
+												<option value={''}>Please select...</option>
+												{CompanySize.map((option, key) => (
 													<option key={key} value={option.value}>
 														{option.label}
 													</option>
@@ -162,6 +245,9 @@ function SpecialDashBoard(props) {
 											</Input>
 										</FormGroup>
 									</Col>
+								</Row>
+								<Row>
+									<button className="btn btn-primary" onClick={(e) => handleComparation()}>Refresh</button>
 								</Row>
 							</CardBody>
 						</Card>

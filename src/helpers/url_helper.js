@@ -24,6 +24,8 @@ export const GET_ORGANISATION_SUMMARIES_API = "/summaries/organisation-summaries
 export const GET_ORGANISATION_EVENTS_API = "/summaries/organisation-events";
 export const GET_EVENT_SUMMARIES_API = "/summaries/event-summaries/:id";
 
+export const GET_SUBMISSION_COMPARATION_API = "/company/comparation";
+
 export const POST_REGISTER_USER = 'auth/register-admin';
 
 export const POST_FAKE_JWT_LOGIN = "/post-jwt-login";

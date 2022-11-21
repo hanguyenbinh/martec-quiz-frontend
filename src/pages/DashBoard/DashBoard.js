@@ -9,63 +9,12 @@ import AppChart from "./components/AppChart"
 import { Indicators } from "../../data/indicators"
 import { Average } from "../../data/average"
 import { getOrganisationType } from "src/helpers/api_helper"
+import IndicatorType from "src/data/indicatorType"
+import { camelize } from "src/helpers/string_helper"
 
 const labelsData = ["2015.04-2016.03", "2016.04-2017.03", "2017.04-2018.03", "2018.04-2019.03", "2019.04-2020.03", "2020.04-2021.03", "2021.04-2022.03", "2022.04-2023.03"]
 const labels = ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022']
-const chartOptions = [
-	{ label: 'Energy Consumption', isHeader: true },
-	{ label: 'Usage of combustible fuel - Petrol (kWh per 100M HKD)', isHeader: false },
-	{ label: 'Usage of combustible fuel - Diesel (kWh per 100M HKD)', isHeader: false },
-	{ label: 'Usage of electricity - HKE (kWh per 100M HKD)', isHeader: false },
-	{ label: 'Usage of electricity - CLP (kWh per 100M HKD)', isHeader: false },
-	{ label: 'Carbon Footprint', isHeader: true },
-	{ label: 'CO2 emissions of combustible fuel - Petrol (m3 per 100M HKD)', isHeader: false },
-	{ label: 'CO2 emissions of combustible fuel - Diesel (m3 per 100M HKD)', isHeader: false },
-	{ label: 'CO2 emissions of electricity - HKE (m3 per 100M HKD)', isHeader: false },
-	{ label: 'CO2 emissions of electricity - CLP (m3 per 100M HKD)', isHeader: false },
-	{ label: 'Water Consumption', isHeader: true },
-	{ label: 'Usage of fresh water (m3 per 100M HKD)', isHeader: false },
-	{ label: 'Non-hazardous Waste Produced', isHeader: true },
-	{ label: 'Amount of inert waste disposed (tonne per 100M HKD)', isHeader: false },
-	{ label: 'Amount of noninert waste placed disposed (tonne per 100M HKD)', isHeader: false },
-	{ label: 'Amount of mixed waste placed disposed (tonne per 100M HKD)', isHeader: false },
-	{ label: 'Health and Safety', isHeader: true },
-	{ label: 'Accident rate (No per 1,000 workers)', isHeader: false },
-	{ label: 'Incident rate (No per 1,000 workers)', isHeader: false },
-	{ label: 'Use of advance health and safety technologies', isHeader: false },
-	{ label: 'Development and Training', isHeader: true },
-	{ label: 'Average hours of training per annum (per Management and Project Mgt Staff)', isHeader: false },
-	{ label: 'Average hours of training per annum (per Technical Staff)', isHeader: false },
-	{ label: 'Average hours of training per annum (per Direct Labour)', isHeader: false },
-	{ label: 'Proportion of young staff being nurtured', isHeader: false },
-	{ label: 'Community Investment', isHeader: true },
-	{ label: 'Amount of time devoted to community service (hours per staff)', isHeader: false },
-	{ label: 'Amount of money devoted to community service (HKD per staff)', isHeader: false },
-	{ label: 'Employment', isHeader: true },
-	{ label: 'Turnover rate - management staff', isHeader: false },
-	{ label: 'Turnover rate - technical staff', isHeader: false },
-	{ label: 'Turnover rate - direct labor', isHeader: false },
-	{ label: 'Turnover rate - supporting staff', isHeader: false },
-	{ label: 'In-house Codes and Guidelines Governing - Supply Chain Management', isHeader: true },
-	{ label: 'Commitment to adopt novel quality and risk management measures/systems', isHeader: false },
-	{ label: 'In-house Codes and Guidelines Governing - Anticorruption', isHeader: true },
-	{ label: 'Activeness in promoting anticorruption', isHeader: false },
-	{ label: 'Commitment to anticorruption awareness education (Hours per new staff)', isHeader: false },
-	{ label: 'Commitment to anticorruption awareness education (Hours per existing staff)', isHeader: false },
-	{ label: 'In-house Codes and Guidelines Governing - Environment', isHeader: true },
-	{ label: 'Number of environmental convictions', isHeader: false },
-	{ label: 'Commitment to investing in environmental expertise - environmental professionals (staff per $100M HKD)', isHeader: false },
-	{ label: 'Commitment to investing in environmental expertise - environmental personnel (staff per $100M HKD)', isHeader: false },
-	{ label: 'In-house Codes and Guidelines Governing-  Health and Safety', isHeader: true },
-	{ label: 'Commitment to adopting novel health and safety management measures', isHeader: false },
-	{ label: 'Number of safety convictions', isHeader: false },
-	{ label: 'Number of suspension notices', isHeader: false },
-	{ label: 'Activeness in participating in site safety promotion campaigns and awards', isHeader: false },
-	{ label: 'Commitment to safety training (hours per management staff)', isHeader: false },
-	{ label: 'Commitment to safety training (hours per operational staff)', isHeader: false },
-	{ label: 'Commitment to safety training  (hours per direct labour)', isHeader: false },
-
-]
+const chartOptions = IndicatorType
 
 export const data = {
 	labels: labelsData,
@@ -95,12 +44,7 @@ const DashBoard = (props) => {
 	const [selectedItem, setSelectedItem] = useState(chartOptions[1].label);
 
 
-	const camelize = function camelize(str) {
-		const result = str.replace(/\W+(.)/g, function (match, chr) {
-			return chr.toUpperCase();
-		});
-		return result.replace(/[^a-zA-Z0-9]/g, '');
-	}
+
 	const { submissions } = useSelector(state => ({
 		submissions: state.Dashboard.submissions,
 	}));

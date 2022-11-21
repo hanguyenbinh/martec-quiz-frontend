@@ -54,9 +54,15 @@ export const getOrganisationEventsApi = (orgId) => {
   return api.get(url.GET_ORGANISATION_EVENTS_API, { orgId })
 };
 
+export const getSubmissionComparationApi = (data) => {
+  return api.get(url.GET_SUBMISSION_COMPARATION_API, data)
+};
+
+
 export const getEventSummariesApi = (eventId) => {
   return api.get(url.GET_EVENT_SUMMARIES_API.replace(':id', eventId))
 };
+
 
 // postForgetPwd
 export const postFakeForgetPwd = data => api.create(url.POST_FAKE_PASSWORD_FORGET, data);

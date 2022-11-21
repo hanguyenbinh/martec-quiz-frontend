@@ -63,7 +63,7 @@ function* createPrize({ payload: { data, history } }) {
       createPrizeApi, { data });
     if (response.status === true) {
       yield put(createPrizeSuccess(response));
-      // history.push('/prizes')
+      history.push('/edit-prize/' + response.data.prize_id)
       toast.success("Prize is created successfully", { autoClose: 3000 });
     } else {
       yield put(prizeAPIError(response));

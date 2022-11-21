@@ -1,6 +1,6 @@
 import {
   GET_EVENT_SUMMARIES,
-  CA_DASHBOARD_API_ERROR, GET_ORGANISATION_EVENTS, GET_ORGANISATION_SUMMARIES, GET_ORGANISATION_SUMMARIES_SUCCESS, GET_EVENT_SUMMARIES_SUCCESS, GET_ORGANISATION_EVENTS_SUCCESS
+  CA_DASHBOARD_API_ERROR, GET_ORGANISATION_EVENTS, GET_ORGANISATION_SUMMARIES, GET_ORGANISATION_SUMMARIES_SUCCESS, GET_EVENT_SUMMARIES_SUCCESS, GET_ORGANISATION_EVENTS_SUCCESS, GET_SUBMISSION_COMPARATION, GET_SUBMISSION_COMPARATION_SUCCESS
 } from "./actionType";
 
 // common success
@@ -43,6 +43,20 @@ export const getOrgEventsSuccess = (response) => {
 export const getEventSummariesSuccess = (response) => {
   return {
     type: GET_EVENT_SUMMARIES_SUCCESS,
+    payload: response,
+  }
+};
+
+export const getSubmissionComparation = (indicatorType, projectTypeA, projectTypeB, companySizeA, companySizeB) => {
+  return {
+    type: GET_SUBMISSION_COMPARATION,
+    payload: { indicatorType, projectTypeA, projectTypeB, companySizeA, companySizeB },
+  }
+};
+
+export const getSubmissionComparationSuccess = (response) => {
+  return {
+    type: GET_SUBMISSION_COMPARATION_SUCCESS,
     payload: response,
   }
 };
