@@ -59,7 +59,6 @@ function SpecialDashBoard(props) {
 	const [selectedEventId, setSelectedEventId] = useState('');
 
 	const [selectedIndicator, setSelectedIndicator] = useState('');
-	const [selectedIndicatorLabel, setSelectedIndicatorLabel] = useState('');
 	const [selectedProjectTypeA, setSelectedProjectTypeA] = useState('');
 	const [selectedProjectTypeB, setSelectedProjectTypeB] = useState('');
 	const [selectedCompanySizeA, setSelectedCompanySizeA] = useState('');
@@ -103,7 +102,7 @@ function SpecialDashBoard(props) {
 			const topFavoritePrizes = {
 				title: "Top 4 Participants Prize",
 				labels: ["Company", "No of redemption"],
-				data: organisationSummeries.topFavoritePrizes.map(item => [item.org_name, item.count])
+				data: organisationSummeries.topFavoritePrizes.map(item => [item.prize_name, item.count])
 			}
 			setOrgSummaries([topParticipations, topParticipators, topFavoritePrizes])
 		}
@@ -134,7 +133,7 @@ function SpecialDashBoard(props) {
 		const basisAData = basisA.map(item => Math.round(item.value))
 		const basisBData = basisB.map(item => Math.round(item.value))
 		const data = {
-			labels: years,
+			labels: years.map(item => item.value),
 			datasets: [
 				{
 					type: "line",
@@ -173,7 +172,7 @@ function SpecialDashBoard(props) {
 				<BreadCrumb title="Dashboards" />
 				<Row className="mb-3">
 					<Col sm={12} md={6}>
-						<LineChart title={selectedIndicatorLabel} data={chartData} />
+						<LineChart title={selectedIndicator} data={chartData} />
 					</Col>
 					<Col sm={12} md={6}>
 						<Card>
@@ -183,9 +182,7 @@ function SpecialDashBoard(props) {
 									<Input type="select" onChange={(e) => {
 
 										setSelectedIndicator(e.target.value)
-										setSelectedIndicatorLabel(e.target.options[e.target.selecttedIndex]);
 
-										console.log(e);
 									}}>
 										<option value=''>Please select...</option>
 										{IndicatorType.map((option, key) =>

@@ -25,7 +25,7 @@ function EditPrizeForm() {
   const history = useHistory();
 
 
-  const { values, errors, setFieldValue, handleChange, handleBlur, touched, submitForm } = useFormikContext()
+  const { isSubmitting, values, errors, setFieldValue, handleChange, handleBlur, touched, submitForm } = useFormikContext()
 
   const bannerFileRef = React.useRef()
 
@@ -266,7 +266,7 @@ function EditPrizeForm() {
               </CardBody>
             </Card>
             <div className="d-flex align-items-center justify-content-end mt-3">
-              <Button onClick={submitForm} className="me-2">Save</Button>
+              <Button disabled={isSubmitting} onClick={submitForm} className="me-2">Save</Button>
               <Button onClick={
                 () => history.push('/prizes')
               }>Close</Button>

@@ -1,6 +1,6 @@
 
 import { Formik, useFormikContext } from "formik"
-import React from "react"
+import React, { useState } from "react"
 import { useRef } from "react"
 import { useEffect } from "react"
 import { withTranslation } from "react-i18next"
@@ -35,7 +35,7 @@ function EventEditForm() {
 	const { eventNatures } = useSelector(state => ({
 		eventNatures: state.Events.eventNatures,
 	}));
-	const { values, errors, setFieldValue, handleChange, handleBlur, touched, submitForm } = useFormikContext()
+	const { isSubmitting, submitCount, values, errors, setFieldValue, handleChange, handleBlur, touched, submitForm } = useFormikContext()
 
 	const bannerFileRef = React.useRef()
 
@@ -51,7 +51,6 @@ function EventEditForm() {
 	useEffect(() => {
 
 	}, [eventNatures])
-	console.log('check', eventNatures, values)
 	return (
 		<div className="page-content">
 			<Container fluid>
@@ -348,7 +347,7 @@ function EventEditForm() {
 					</CardBody>
 				</Card>
 				<div className="d-flex align-items-center justify-content-end">
-					<Button onClick={submitForm} className="me-2">Save</Button>
+					<Button disabled={isSubmitting} onClick={submitForm} className="me-2">Save</Button>
 					<Button onClick={
 						() => history.push('/events')
 					}>Close</Button>
@@ -378,8 +377,9 @@ function CreateEvent(props) {
 	const validationSchema = React.useMemo(() => {
 		return
 	}, [])
-	const handleSubmit = (values) => {
+	const handleSubmit = (values, { setSubmitting }) => {
 		console.log('create event', values);
+		setSubmitting(true);
 		const formData = new FormData();
 		if (values.banner_file) {
 			formData.append('image', values.banner_file);
