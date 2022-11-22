@@ -10,6 +10,10 @@ const INIT_STATE = {
   userDeviceData: [],
   audiencesSessionsData: [],
   error: {},
+  years: [],
+  indicators: [],
+  averages: [],
+  statistics: [],
   submissions: [],
   allSubmissions: [],
   isLoading: false
@@ -33,8 +37,12 @@ const Dashboard = (state = INIT_STATE, action) => {
       ////console.logdisabled('reducer', action)
       return {
         ...state,
+        indicators: action.payload.data.indicators,
+        averages: action.payload.data.averages,
+        years: action.payload.data.years,
         submissions: action.payload.data.submissions,
         allSubmissions: action.payload.data.allSubmissions,
+        statistics: action.payload.data.statistics,
         isLoading: false,
         error: false
       }

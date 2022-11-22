@@ -3,7 +3,7 @@ import React, { useState } from "react"
 import { useEffect } from "react"
 import { withTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { Button, Card, CardBody, CardHeader, Col, Container, Label, Row } from "reactstrap"
+import { Button, Card, CardBody, CardHeader, Col, Container, Label, Pagination, PaginationItem, PaginationLink, Row } from "reactstrap"
 import BreadCrumb from "../../Components/Common/BreadCrumb"
 import * as moment from 'moment';
 import { alertService } from "../../services"
@@ -15,14 +15,16 @@ const Events = (props) => {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		dispatch(getEvents(props.history))
+		dispatch(getEvents())
 	}, [])
-	const { events } = useSelector(state => ({
+	const { events, error, page, limit, count } = useSelector(state => ({
 		events: state.Events.events,
-	}));
-	const { error } = useSelector(state => ({
 		error: state.Events.error,
+		page: state.Events.page,
+		limit: state.Events.limit,
+		count: state.Events.count,
 	}));
+
 	const [errorMessage, setErrorMessage] = useState('')
 	useEffect(() => {
 		let message = '';
@@ -37,48 +39,6 @@ const Events = (props) => {
 		}
 		setErrorMessage(message);
 	}, [error])
-
-	const handleViewEvent = async (i) => {
-
-		// const { isConfirmed } = await alertService.fireDialog({
-		// 	showConfirmButton: false,
-		// 	title: "Submission detail",
-		// 	size: "xl",
-		// 	content: (
-		// 		<div className="text-center">
-		// 			{submissionGroups && submissionGroups.map((submissionForm, index) => (
-		// 				<Card key={`submision_forms_detail_${index}`}>
-		// 					<CardHeader className="align-items-center d-flex">
-		// 						<h4 className="card-title mb-0 flex-grow-1">{submissionForm.title}</h4>
-		// 					</CardHeader>
-		// 					<CardBody>
-		// 						{
-		// 							submissionForm.fields.map((field, _index) => (
-		// 								<Row key={`submission_form_detail_${index}${_index}`} className={`mb-3 mt-3 line-${_index % 2}`}>
-		// 									<Col>
-		// 										<div className="view-submission-label">{field.label}</div>
-		// 									</Col>
-		// 									<Col className="view-submission-value">
-		// 										{data[field.name] === true ? 'Yes' : data[field.name] === false ? 'No' : (field.name === 'yearOfRecord' ? (yearData[data[field.name]]) : (data[field.name]))}
-		// 									</Col>
-		// 								</Row>
-		// 							))
-		// 						}
-		// 					</CardBody>
-		// 				</Card>
-		// 			))}
-		// 		</div>
-		// 	),
-
-		// 	cancelButtonProps: {
-		// 		show: true,
-		// 		text: "Close"
-		// 	},
-		// 	confirmButtonProps: {
-		// 		show: false
-		// 	}
-		// })
-	}
 
 	const handleEditEvent = (id) => {
 		props.history.push('/edit-event/' + id)
@@ -127,6 +87,28 @@ const Events = (props) => {
 						</tbody>
 					</table>
 				</Card>
+				<Pagination size="sm">
+					<PaginationItem disabled={page <= 1}>
+						<PaginationLink onClick={() => {
+							dispatch(getEvents(page - 1, limit))
+						}} previous href="#" />
+					</PaginationItem>
+					{/* The next PaginationItem after the previous PaginationItem button is the dynamic PaginationItem. This is the one that generates the page number buttons. */}
+					{/* “Array(pagesCount)”: creates and initializes a new array object of length equal to pagesCount. */}
+					{/* “[…Array(pagesCount)].map( fn)”: using the spread operator I expand the array. After expanding, the map() method then creates a new array of PaginationItems. */}
+
+					{[...Array(parseInt(count / limit)) + 1].map((pageNo, i) => (
+						<PaginationItem active={i + 1 === page} key={i}>
+							<PaginationLink onClick={() => dispatch(getEvents(i + 1, 10))} href="#">
+								{i + 1}
+							</PaginationLink>
+						</PaginationItem>
+					))}
+
+					<PaginationItem disabled={page >= parseInt(count / limit)}>
+						<PaginationLink onClick={() => { dispatch(getEvents(page + 1, 10)) }} next href="#" />
+					</PaginationItem>
+				</Pagination>
 				<ToastContainer></ToastContainer>
 			</Container>
 

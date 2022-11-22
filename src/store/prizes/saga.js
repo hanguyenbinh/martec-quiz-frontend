@@ -4,10 +4,10 @@ import { createPrizeApi, getPrizeApi, getPrizesApi, updatePrizeApi } from "src/h
 import { prizeAPIError, getPrizesSuccess, getPrizeSuccess, updatePrizeSuccess, createPrizeSuccess } from "./actions";
 import { CREATE_PRIZE, GET_PRIZE, GET_PRIZES, UPDATE_PRIZE } from "./actionTypes";
 
-function* getPrizes({ payload: { history } }) {
+function* getPrizes({ payload: { page, limit } }) {
   try {
     const response = yield call(
-      getPrizesApi);
+      getPrizesApi, page, limit);
     console.log('getPrizes', response)
     if (response.status === true) {
       yield put(getPrizesSuccess(response));
@@ -63,7 +63,7 @@ function* createPrize({ payload: { data, history } }) {
       createPrizeApi, { data });
     if (response.status === true) {
       yield put(createPrizeSuccess(response));
-      history.push('/edit-prize/' + response.data.prize_id)
+      history.push('/prizes')
       toast.success("Prize is created successfully", { autoClose: 3000 });
     } else {
       yield put(prizeAPIError(response));

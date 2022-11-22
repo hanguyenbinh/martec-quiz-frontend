@@ -1,6 +1,5 @@
 import { useFormikContext } from "formik"
 import React from "react"
-import { useEffect } from "react"
 import { useSelector } from "react-redux"
 import { useHistory } from "react-router-dom"
 
@@ -28,6 +27,10 @@ function EditPrizeForm() {
   const { isSubmitting, values, errors, setFieldValue, handleChange, handleBlur, touched, submitForm } = useFormikContext()
 
   const bannerFileRef = React.useRef()
+
+  const { error } = useSelector(state => ({
+    error: state.Prizes.error
+  }));
 
   const handleBannerChange = (prize) => {
     const file = prize.target.files[0]
@@ -266,7 +269,7 @@ function EditPrizeForm() {
               </CardBody>
             </Card>
             <div className="d-flex align-items-center justify-content-end mt-3">
-              <Button disabled={isSubmitting} onClick={submitForm} className="me-2">Save</Button>
+              <Button disabled={isSubmitting && error === false} onClick={submitForm} className="me-2">Save</Button>
               <Button onClick={
                 () => history.push('/prizes')
               }>Close</Button>

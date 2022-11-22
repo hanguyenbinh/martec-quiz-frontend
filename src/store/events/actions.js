@@ -1,9 +1,9 @@
 import { GET_EVENTS, API_EVENT_ERROR, GET_EVENTS_SUCCESS, GET_EVENT_DETAILS, GET_EVENT_DETAILS_SUCCESS, GET_EVENT_NATURE, GET_EVENT_NATURE_SUCCESS, UPDATE_EVENT, UPDATE_EVENT_SUCCESS, CREATE_EVENT, CREATE_EVENT_SUCCESS } from "./actionTypes";
 
-export const getEvents = () => {
+export const getEvents = (page = 1, limit = 10) => {
   return {
     type: GET_EVENTS,
-    payload: {}
+    payload: { page, limit }
   }
 }
 

@@ -3,11 +3,10 @@ import {
 } from "./actionType";
 
 // common success
-export const getLatestData = (email) => {
-  console.log('action getLatestData', email)
+export const getLatestData = (email, indicatorType) => {
   return {
     type: GET_LATEST_DATA,
-    payload: { email },
+    payload: { email, indicatorType },
   }
 };
 

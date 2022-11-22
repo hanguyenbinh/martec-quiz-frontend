@@ -10,10 +10,10 @@ import {
 }
   from "../../helpers/fakebackend_helper";
 
-function* getsubmissions({ payload: { email } }) {
+function* getsubmissions({ payload: { email, indicatorType } }) {
   try {
     console.log('saga getLat')
-    const response = yield call(getAPILatestSubmissionForms, email);
+    const response = yield call(getAPILatestSubmissionForms, email, indicatorType);
     console.log(response)
 
     if (response.status === true) yield put(getLatestDataSuccess(response.data));

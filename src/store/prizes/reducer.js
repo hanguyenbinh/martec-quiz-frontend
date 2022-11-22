@@ -6,7 +6,10 @@ const initialState = {
 	prizes: [
 	],
 	prize: null,
-	prizeId: ''
+	prizeId: '',
+	page: 1,
+	limit: 10,
+	count: 0,
 }
 
 const Prizes = (state = initialState, action) => {
@@ -22,7 +25,10 @@ const Prizes = (state = initialState, action) => {
 			state = {
 				...state,
 				loading: false,
-				prizes: action.payload?.data?.rows
+				prizes: action.payload?.data?.rows,
+				page: action.payload.data.page,
+				count: action.payload.data.count,
+				limit: action.payload.data.size,
 			}
 			break;
 

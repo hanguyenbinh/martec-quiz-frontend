@@ -50,7 +50,7 @@ const AppChart = (props) => {
 	const { title, options, statisticsCards, data, selectedItem, setSelectedItem } =
 		props
 
-	////console.logdisabled('AppChart', statisticsCards[statisticsCards.length - 1]);
+	console.log('AppChart', data);
 	const [dropdownOpen, setDropdownOpen] = useState(false);
 	const toggle = () => setDropdownOpen((prevState) => !prevState);
 

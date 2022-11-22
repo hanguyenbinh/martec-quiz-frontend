@@ -5,7 +5,10 @@ const initialState = {
 	loading: false,
 	events: [],
 	event: {},
-	eventNatures: []
+	eventNatures: [],
+	page: 1,
+	limit: 10,
+	count: 0,
 }
 
 const Events = (state = initialState, action) => {
@@ -21,7 +24,10 @@ const Events = (state = initialState, action) => {
 			state = {
 				...state,
 				loading: false,
-				events: action.payload?.data?.rows
+				events: action.payload?.data?.rows,
+				page: action.payload.data.page,
+				count: action.payload.data.count,
+				limit: action.payload.data.size,
 			}
 			break;
 		case API_EVENT_ERROR:

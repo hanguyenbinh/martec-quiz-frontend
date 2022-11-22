@@ -42,8 +42,8 @@ export const postSubmission = data => {
 
 export const getSubmissionHistoryApi = (email) => api.get(url.GET_ESG_DATA, { email });
 
-export const getAPILatestSubmissionForms = (email) => {
-  return api.get(url.GET_LATEST_ESG_DATA, { email })
+export const getAPILatestSubmissionForms = (email, indicatorType) => {
+  return api.get(url.GET_LATEST_ESG_DATA, { email, indicatorType })
 };
 
 export const getOrganisationSummariesApi = () => {
@@ -112,7 +112,7 @@ export const postSocialLogin = data => api.create(url.SOCIAL_LOGIN, data);
 
 // Calendar
 // get Events
-export const getEventsApi = () => api.get(url.GET_EVENTS_API);
+export const getEventsApi = (page, limit) => api.get(url.GET_EVENTS_API, { page, limit });
 
 export const getEventApi = (id) => api.get(url.GET_EVENT_API.replace(':id', id));
 
@@ -120,7 +120,7 @@ export const geteventNaturesApi = (id) => api.get(url.GET_EVENT_NATURE_API);
 
 
 // get Prizes
-export const getPrizesApi = () => api.get(url.GET_PRIZES_API);
+export const getPrizesApi = (page, limit) => api.get(url.GET_PRIZES_API, { page, limit });
 
 export const getPrizeApi = (id) => api.get(url.GET_PRIZE_API.replace(':id', id));
 

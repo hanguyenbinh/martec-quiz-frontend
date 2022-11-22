@@ -1,9 +1,9 @@
 import { GET_PRIZES, PRIZE_API_ERROR, GET_PRIZES_SUCCESS, GET_PRIZE, GET_PRIZE_SUCCESS, UPDATE_PRIZE, UPDATE_PRIZE_SUCCESS, CREATE_PRIZE, CREATE_PRIZE_SUCCESS } from "./actionTypes";
 
-export const getPrizes = () => {
+export const getPrizes = (page, limit) => {
   return {
     type: GET_PRIZES,
-    payload: {}
+    payload: { page, limit }
   }
 }
 

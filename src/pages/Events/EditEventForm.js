@@ -1,0 +1,356 @@
+
+import { useFormikContext } from "formik"
+import React from "react"
+import { useEffect } from "react"
+import { useSelector } from "react-redux"
+import { useHistory, } from "react-router-dom"
+
+import { dailyCheckinLimits, nextCheckinTimes } from './constant'
+
+import classes from "./CreateEvent.module.scss"
+
+import {
+  Button,
+  Card,
+  CardBody,
+  Col,
+  Container,
+  FormGroup,
+  Input,
+  Label,
+  Row,
+} from "reactstrap"
+
+import BreadCrumb from "src/Components/Common/BreadCrumb"
+
+function EditEventForm() {
+
+  const history = useHistory();
+  const { eventNatures, error } = useSelector(state => ({
+    eventNatures: state.Events.eventNatures,
+    error: state.Events.error
+  }));
+
+  const { isSubmitting, values, errors, setFieldValue, handleChange, handleBlur, touched, submitForm } = useFormikContext()
+
+  const bannerFileRef = React.useRef()
+
+  const handleBannerChange = (event) => {
+    const file = event.target.files[0]
+    bannerFileRef.current.value = ""
+    if (!file) return
+    setFieldValue("banner_file", file)
+    setFieldValue('image_path', URL.createObjectURL(file))
+  }
+
+
+  useEffect(() => {
+
+  }, [eventNatures])
+  return (
+    <div className="page-content">
+      <Container fluid>
+        <BreadCrumb title="Dashboards" />
+
+        <Row className="mb-4">
+          <Col sm={12} md={8}>
+            <Card className="mb-0">
+              <CardBody>
+                <FormGroup>
+                  <Label>Event name</Label>
+                  <Input
+                    name="event_name"
+                    className="form-control"
+                    placeholder="Event name"
+                    type="text"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.event_name}
+                    invalid={
+                      touched.event_name && errors.event_name ? true : false
+                    }
+                  />
+                </FormGroup>
+                <FormGroup>
+                  <Label>Event name (chinese)</Label>
+                  <Input
+                    name="event_name_chi"
+                    className="form-control"
+                    placeholder="Event name (chiness)"
+                    type="text"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.event_name_chi}
+                    invalid={
+                      touched.event_name_chi && errors.event_name_chi ? true : false
+                    }
+                  />
+                </FormGroup>
+                <FormGroup>
+                  <Label>Description</Label>
+                  <Input
+                    name="event_desc"
+                    className="form-control"
+                    placeholder="Description"
+                    type="text"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.event_desc}
+                    invalid={
+                      touched.event_desc && errors.event_desc ? true : false
+                    }
+                  />
+                </FormGroup>
+                <FormGroup>
+                  <Label>Description (chinese)</Label>
+                  <Input
+                    name="event_desc_chi"
+                    className="form-control"
+                    placeholder="Description (chinese)"
+                    type="text"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.event_desc_chi}
+                    invalid={
+                      touched.event_desc_chi && errors.event_desc_chi ? true : false
+                    }
+                  />
+                </FormGroup>
+                <FormGroup>
+                  <Label>Event Nature</Label>
+                  <Input
+                    name="event_nature_id"
+                    className="form-control"
+                    placeholder="Event Nature"
+                    type="select"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.event_nature_id ? values.event_nature_id : ''}
+                    invalid={
+                      touched.event_nature_id && errors.event_nature_id ? true : false
+                    }
+                  >
+                    <option value={''}>---------</option>
+                    {
+                      eventNatures.map((item, key) => <option key={key} value={item.event_nature_id}>{item.nature_name}</option>)
+                    }
+                  </Input>
+                </FormGroup>
+                <FormGroup>
+                  <Label>Long Description</Label>
+                  <Input
+                    name="event_long_desc"
+                    className="form-control"
+                    placeholder="Description"
+                    type="textarea"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.event_long_desc}
+                    invalid={
+                      touched.event_long_desc && errors.event_long_desc ? true : false
+                    }
+                  />
+                </FormGroup>
+
+                <FormGroup>
+                  <Label>Long Description (chinese)</Label>
+                  <Input
+                    name="event_long_desc_chi"
+                    className="form-control"
+                    placeholder="Description"
+                    type="textarea"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.event_long_desc_chi}
+                    invalid={
+                      touched.event_long_desc_chi && errors.event_long_desc_chi ? true : false
+                    }
+                  />
+                </FormGroup>
+              </CardBody>
+            </Card>
+          </Col>
+          <Col sm={12} md={4}>
+            <Card className="mb-0">
+              <CardBody>
+                <h6>Banner Image</h6>
+
+                <div className={`${classes.banner} mb-3`}>
+                  <img src={values.image_path} className={classes.bannerImg} alt="" />
+                </div>
+                <div className="d-flex justify-content-center">
+                  <Button onClick={() => bannerFileRef.current.click()}>
+                    <input
+                      ref={bannerFileRef}
+                      type="file"
+                      style={{ display: "none" }}
+                      onChange={handleBannerChange}
+                      accept="image/*"
+                    />
+                    Upload
+                  </Button>
+                </div>
+
+              </CardBody>
+            </Card>
+          </Col>
+        </Row>
+
+        <div className="d-flex align-items-center justify-content-between mb-4">
+          <div className="d-flex align-items-center">
+            <h6 className="mb-0 me-2">Start/End Date:</h6>
+            <Input
+              name="start_date"
+              className="me-2"
+              type="date"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.start_date}
+              invalid={
+                touched.start_date && errors.start_date ? true : false
+              }
+              style={{ width: 160 }}
+            />
+            <h6 className="mb-0 me-2">/</h6>
+            <Input
+              name="end_date"
+              className="me-2"
+              type="date"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.end_date}
+              invalid={
+                touched.end_date && errors.end_date ? true : false
+              }
+              style={{ width: 160 }}
+            />
+          </div>
+          <FormGroup check>
+            <Input type="checkbox" />
+            <Input
+              name="top_most_ind"
+              type="checkbox"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.top_most_ind || false}
+            />
+            {" "}
+            <Label check>Appear as the top most event</Label>
+          </FormGroup>
+        </div>
+
+        <Card>
+          <CardBody>
+            <h5>Game Setting</h5>
+            <Row>
+              <Col sm={12} md={8}>
+                <h6>Template Name</h6>
+                <p>Scan and Go</p>
+
+                <FormGroup>
+                  <Label>Coins Earned per Check-In</Label>
+
+                  <div className="d-flex align-items-center">
+                    <Input
+                      name="point_award"
+                      className="me-2"
+                      placeholder="Coins Earned per Check-In"
+                      type="text"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.point_award}
+                      invalid={
+                        touched.point_award && errors.point_award ? true : false
+                      }
+                    />
+                    <p className="mb-0">coins</p>
+                  </div>
+                </FormGroup>
+
+                <FormGroup>
+                  <Label>Total Check-In Limit</Label>
+
+                  <div className="d-flex align-items-center">
+                    <Input
+                      name="max_total_check_in"
+                      className="me-2"
+                      placeholder="Total Check-In Limit"
+                      type="text"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.max_total_check_in}
+                      invalid={
+                        touched.max_total_check_in && errors.max_total_check_in ? true : false
+                      }
+                    />
+                    <p className="mb-0">times</p>
+                  </div>
+                </FormGroup>
+
+                <FormGroup>
+                  <Label>Daily User Check-In Limit</Label>
+
+                  <div className="d-flex align-items-center">
+                    <Input
+                      name="max_daily_check_in"
+                      className="me-2"
+                      type="select"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.max_daily_check_in}
+
+                    >
+                      {
+                        dailyCheckinLimits.map((item, key) => {
+                          if (item === '-1' || item === -1) {
+                            return <option key={key} value={item}>unlimited</option>
+                          }
+                          return <option key={key} value={item}>{item}</option>
+                        })
+                      }
+                    </Input>
+                    <p className="mb-0">times</p>
+                  </div>
+                </FormGroup>
+
+                <FormGroup>
+                  <Label>User's Next Check-In At</Label>
+
+                  <div className="d-flex align-items-center">
+                    <Input
+                      name="check_in_interval"
+                      className="me-2"
+                      type="select"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.check_in_interval}
+
+                    >
+                      {
+                        nextCheckinTimes.map((item, key) => {
+                          if (item === '-1' || item === -1) {
+                            return <option key={key} value={item}>infinite</option>
+                          }
+                          return <option key={key} value={item}>{item}</option>
+                        })
+                      }
+                    </Input>
+                    <p className="mb-0">hours later</p>
+                  </div>
+                </FormGroup>
+              </Col>
+            </Row>
+          </CardBody>
+        </Card>
+        <div className="d-flex align-items-center justify-content-end">
+          <Button disabled={isSubmitting && error === false} onClick={submitForm} className="me-2">Save</Button>
+          <Button onClick={
+            () => history.push('/events')
+          }>Close</Button>
+        </div>
+      </Container>
+    </div>
+  )
+}
+
+export default EditEventForm

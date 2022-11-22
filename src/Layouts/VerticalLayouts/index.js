@@ -7,9 +7,12 @@ import { Collapse } from "reactstrap"
 import navdata from "../LayoutMenuData"
 //i18n
 import { withTranslation } from "react-i18next"
+import { getOrganisationType } from "src/helpers/api_helper"
 
 const VerticalLayout = (props) => {
-	const navData = navdata().props.children
+	const organisationType = getOrganisationType();
+	const navData = organisationType === 'company' ? navdata().props.children : navdata().props.children.filter(item => item.role !== 'ca')
+
 
 	useEffect(() => {
 		window.scrollTo({ top: 0, behavior: "smooth" })

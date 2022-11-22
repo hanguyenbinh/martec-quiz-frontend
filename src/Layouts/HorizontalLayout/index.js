@@ -13,19 +13,25 @@ const HorizontalLayout = (props) => {
 	let menuItems = []
 	let splitMenuItems = []
 	let menuSplitContainer = 6
+	const organisationType = getOrganisationType();
+
 	navData.forEach(function (value, key) {
 		if (value["isHeader"]) {
 			menuSplitContainer++
 		}
-		if (key >= menuSplitContainer) {
-			let val = value
-			val.childItems = value.subItems
-			val.isChildItem = value.subItems ? true : false
-			delete val.subItems
-			splitMenuItems.push(val)
-		} else {
-			menuItems.push(value)
+		console.log(organisationType, value['role'])
+		if ((organisationType === 'company' && value['role'] !== 'ca')) {
+			if (key >= menuSplitContainer) {
+				let val = value
+				val.childItems = value.subItems
+				val.isChildItem = value.subItems ? true : false
+				delete val.subItems
+				splitMenuItems.push(val)
+			} else {
+				menuItems.push(value)
+			}
 		}
+
 	})
 	menuItems.push({
 		id: "more",

@@ -106,38 +106,44 @@ const Navdata = (props) => {
 	const menuItems = [
 		{
 			label: "Menu",
-			isHeader: true
+			isHeader: true,
+			role: 'normal'
 		},
 		{
 			id: "dashboard",
 			label: "Dashboard",
 			link: organisationType === 'company' ? "/dashboard" : "ca-dashboard",
 			parentId: "dashboard",
-			icon: "mdi mdi-speedometer"
+			icon: "mdi mdi-speedometer",
+			role: 'normal'
 		},
 		{
 			id: "submitData",
 			label: ("Submit Data"),
 			link: "/submit-data",
-			parentId: "submitData"
+			parentId: "submitData",
+			role: 'ca'
 		},
 		{
 			id: "submissionsHistory",
 			label: ("Submission(s) History"),
 			link: "/submissions-history",
-			parentId: "submissionsHistory"
+			parentId: "submissionsHistory",
+			role: 'ca'
 		},
 		{
 			id: "events",
 			label: ("Events"),
 			link: "/events",
-			parentId: "events"
+			parentId: "events",
+			role: 'normal'
 		},
 		{
 			id: "prizes",
 			label: ("Prizes"),
 			link: "/prizes",
-			parentId: "prizes"
+			parentId: "prizes",
+			role: 'normal'
 		}
 
 	]

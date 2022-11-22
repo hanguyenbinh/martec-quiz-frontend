@@ -3,10 +3,10 @@ import { createEventApi, getEventApi, geteventNaturesApi, getEventsApi, updateEv
 import { getEventDetailsSuccess, geteventNaturesSuccess, eventAPIError, getEventsSuccess, updateEventSuccess, createEventSuccess } from "./actions";
 import { CREATE_EVENT, GET_EVENTS, GET_EVENT_DETAILS, GET_EVENT_NATURE, UPDATE_EVENT } from "./actionTypes";
 import { toast } from 'react-toastify';
-function* getEvents({ payload: { history } }) {
+function* getEvents({ payload: { page, limit, history } }) {
   try {
     const response = yield call(
-      getEventsApi);
+      getEventsApi, page, limit);
     if (response.status === true) {
       yield put(getEventsSuccess(response));
     } else {
@@ -76,7 +76,7 @@ function* createEvent({ payload: { data, history } }) {
       createEventApi, { data });
     if (response.status === true) {
       yield put(createEventSuccess(response));
-      history.push('/edit-event/' + response.data.event_id)
+      history.push('/events')
       toast.success("Event is created successfully", { autoClose: 3000 });
     } else {
       yield put(eventAPIError(response));
