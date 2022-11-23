@@ -14,6 +14,9 @@ export const GET_ESG_DATA = '/company'
 export const GET_LATEST_ESG_DATA = '/company/latest'
 export const POST_LOGIN = 'auth/login';
 
+export const GET_COINS_HISTORY = '/coins/history'
+export const GET_COINS_SUMMARY = '/coins/summary'
+
 export const GET_EVENTS_API = "/events";
 export const GET_EVENT_API = "/events/:id";
 export const GET_EVENT_NATURE_API = "/events/event-nature";

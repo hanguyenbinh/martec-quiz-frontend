@@ -90,7 +90,7 @@ const DashBoard = (props) => {
 	useEffect(() => {
 		const organisationType = getOrganisationType();
 		if (organisationType !== 'company') props.history.push('/ca-dashboard')
-		const email = sessionStorage.getItem("email");
+		const email = localStorage.getItem("email");
 		if (selectedItem && email) dispatch(getLatestData(email, camelize(selectedItem)));
 		console.log('selectedItem', selectedItem)
 	}, [selectedItem])

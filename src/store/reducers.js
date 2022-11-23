@@ -12,6 +12,7 @@ import Dashboard from "./dashboard/reducer";
 import Events from './events/reducer';
 import Prizes from './prizes/reducer'
 import CADashboard from "./ca-dashboard/reducer";
+import Coins from "./coins/reducer";
 
 
 
@@ -28,7 +29,8 @@ const rootReducer = combineReducers({
     Dashboard,
     Events,
     Prizes,
-    CADashboard
+    CADashboard,
+    Coins
 });
 
 export default rootReducer;

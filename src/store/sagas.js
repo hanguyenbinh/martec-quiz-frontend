@@ -9,6 +9,7 @@ import submissionFormSaga from "./submissionForm/saga";
 import EventsSaga from './events/saga'
 import PrizessSaga from './prizes/saga'
 import CADashboardSaga from "./ca-dashboard/saga";
+import Coins from "./coins/saga";
 
 export default function* rootSaga() {
   yield all([
@@ -39,6 +40,7 @@ export default function* rootSaga() {
     fork(DashboardSaga),
     fork(EventsSaga),
     fork(PrizessSaga),
-    fork(CADashboardSaga)
+    fork(CADashboardSaga),
+    fork(Coins)
   ]);
 }

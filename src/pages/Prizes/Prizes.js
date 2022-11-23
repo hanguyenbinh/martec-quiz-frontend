@@ -49,6 +49,8 @@ const Prizes = (props) => {
 		props.history.push('/create-prize')
 	}
 
+	useEffect(() => {
+	}, [page, limit, total, prizes])
 
 
 	return (
@@ -97,7 +99,7 @@ const Prizes = (props) => {
 					{/* “Array(pagesCount)”: creates and initializes a new array object of length equal to pagesCount. */}
 					{/* “[…Array(pagesCount)].map( fn)”: using the spread operator I expand the array. After expanding, the map() method then creates a new array of PaginationItems. */}
 
-					{[...Array(parseInt(total / limit)) + 1].map((pageNo, i) => (
+					{[...Array(parseInt(total / limit) + (total % limit > 0 ? 1 : 0))].map((pageNo, i) => (
 						<PaginationItem active={i + 1 === page} key={i}>
 							<PaginationLink onClick={() => dispatch(getPrizes(i + 1, 10))} href="#">
 								{i + 1}

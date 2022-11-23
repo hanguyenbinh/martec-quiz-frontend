@@ -10,7 +10,7 @@ const Header = ({ onChangeLayoutMode, layoutModeType, headerClass }) => {
 	const [search, setSearch] = useState(false)
 	const [orgLogo, setOrgLogo] = useState('');
 	useEffect(() => {
-		const logo = sessionStorage.getItem('orglogo');
+		const logo = localStorage.getItem('orglogo');
 		setOrgLogo(logo);
 	})
 

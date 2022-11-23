@@ -8,7 +8,7 @@ axios.defaults.baseURL = api.API_URL;
 axios.defaults.headers.post["Content-Type"] = "application/json";
 
 // content type
-// const token = JSON.parse(sessionStorage.getItem("accessToken")) ? JSON.parse(sessionStorage.getItem("accessToken")).token : null;
+// const token = JSON.parse(localStorage.getItem("accessToken")) ? JSON.parse(localStorage.getItem("accessToken")).token : null;
 // if (token)
 //   axios.defaults.headers["Authorization"] = "Bearer " + token;
 
@@ -20,7 +20,7 @@ axios.interceptors.response.use(
   function (error) {
     console.log('axios.interceptors.response.', error.response.data);
     if (error.response.data.statusCode === 401) {
-      sessionStorage.clear();
+      localStorage.clear();
       window.location = '/get-otp';
     }
     // Any status codes that falls outside the range of 2xx cause this function to trigger
@@ -118,14 +118,14 @@ class APIClient {
   };
 }
 const getLoggedinUser = () => {
-  const accessToken = sessionStorage.getItem("accessToken");
+  const accessToken = localStorage.getItem("accessToken");
   return accessToken;
 };
 const getOrganisationType = () => {
-  return sessionStorage.getItem("organisationType");
+  return localStorage.getItem("organisationType");
 }
 const getLoggedinUserEmail = () => {
-  const email = sessionStorage.getItem("email");
+  const email = localStorage.getItem("email");
   ////console.logdisabled('email', email)
   return email;
 };

@@ -10,13 +10,13 @@ const ProfileDropdown = () => {
     const { user } = useSelector(state => ({
         user: state.Profile.user,
     }));
-    const email = sessionStorage.getItem("email");
+    const email = localStorage.getItem("email");
 
     const [userName, setUserName] = useState("Admin");
 
     useEffect(() => {
-        if (sessionStorage.getItem("authUser")) {
-            const obj = JSON.parse(sessionStorage.getItem("authUser"));
+        if (localStorage.getItem("authUser")) {
+            const obj = JSON.parse(localStorage.getItem("authUser"));
             setUserName(user.first_name || obj.data.first_name || "Admin");
         }
     }, [userName, user]);

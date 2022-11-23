@@ -21,6 +21,7 @@ import UpdatePrize from "src/pages/Prizes/UpdatePrize"
 import UpdateEvent from "src/pages/Events/UpdateEvent"
 import CreateEvent from "src/pages/Events/CreateEvent"
 import CreatePrize from "src/pages/Prizes/CreatePrize"
+import Coins from "src/pages/Coins"
 
 
 
@@ -36,6 +37,7 @@ const authProtectedRoutes = [
 	{ path: "/edit-prize/:id", component: UpdatePrize },
 	{ path: "/create-prize", component: CreatePrize },
 	{ path: "/ca-dashboard", component: SpecialDashBoard },
+	{ path: "/coins", component: Coins },
 
 	// this route should be at the end of all other routes
 	// eslint-disable-next-line react/display-name	

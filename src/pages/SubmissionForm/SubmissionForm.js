@@ -381,7 +381,7 @@ const SubmissionForm = (props) => {
 
 const UploadESGData = (props) => {
 	const dispatch = useDispatch();
-	const email = sessionStorage.getItem("email");
+	const email = localStorage.getItem("email");
 	const { error } = useSelector(state => ({
 		error: state.SubmissionForm.error,
 	}));

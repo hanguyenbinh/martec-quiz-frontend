@@ -101,7 +101,7 @@ function SpecialDashBoard(props) {
 			}
 			const topFavoritePrizes = {
 				title: "Top 4 Favorite Prize",
-				labels: ["Company", "No of redemption"],
+				labels: ["Prize Name", "No of redemption"],
 				data: organisationSummeries.topFavoritePrizes.map(item => [item.prize_name, item.count])
 			}
 			setOrgSummaries([topParticipations, topParticipators, topFavoritePrizes])
@@ -313,12 +313,12 @@ function SpecialDashBoard(props) {
 						<Row>
 
 							<Col sm={12} md={3}>
-								<h5 className="mx-2 mb-3">Participants</h5>
+								<h5 className="mx-2 mb-3">Participations</h5>
 								<Table bordered className="mb-0">
 									<thead>
 										<tr>
 											<td>Days</td>
-											<td>New Players</td>
+											<td>No of Plays</td>
 										</tr>
 									</thead>
 									{eventSummaries.participations && (
@@ -352,7 +352,7 @@ function SpecialDashBoard(props) {
 									<thead>
 										<tr>
 											<td>Days</td>
-											<td>No Of Plays</td>
+											<td>New Players</td>
 										</tr>
 									</thead>
 									{eventSummaries.newJoiners && (

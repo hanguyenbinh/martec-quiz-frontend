@@ -63,6 +63,14 @@ export const getEventSummariesApi = (eventId) => {
   return api.get(url.GET_EVENT_SUMMARIES_API.replace(':id', eventId))
 };
 
+export const getCoinsHistoryApi = (days) => {
+  return api.get(url.GET_COINS_HISTORY, { days })
+};
+
+export const getCoinsSummaryApi = () => {
+  return api.get(url.GET_COINS_SUMMARY)
+};
+
 
 // postForgetPwd
 export const postFakeForgetPwd = data => api.create(url.POST_FAKE_PASSWORD_FORGET, data);

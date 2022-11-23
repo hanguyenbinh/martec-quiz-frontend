@@ -144,6 +144,13 @@ const Navdata = (props) => {
 			link: "/prizes",
 			parentId: "prizes",
 			role: 'normal'
+		},
+		{
+			id: "coins",
+			label: ("Coins History"),
+			link: "/coins",
+			parentId: "coins",
+			role: 'normal'
 		}
 
 	]

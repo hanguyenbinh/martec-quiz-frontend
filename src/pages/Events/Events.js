@@ -45,7 +45,12 @@ const Events = (props) => {
 	}
 	const handleCreateEvent = () => {
 		props.history.push('/create-event');
+
 	}
+
+
+	useEffect(() => {
+	}, [page, limit, total, events])
 
 	return (
 		<div className="page-content">

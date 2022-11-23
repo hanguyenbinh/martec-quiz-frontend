@@ -20,14 +20,14 @@ const fireBaseBackend = getFirebaseBackend();
 
 function* loginUser({ payload: { email, history } }) {
   try {
-    const accessToken = sessionStorage.getItem('accessToken')
+    const accessToken = localStorage.getItem('accessToken')
     const response = yield call(
       postLogin,
       {
         email,
       },
       accessToken);
-    sessionStorage.setItem("authUser", JSON.stringify(response));
+    localStorage.setItem("authUser", JSON.stringify(response));
     if (response.status === "success") {
       yield put(loginSuccess(response));
       history.push("/dashboard");
@@ -46,7 +46,7 @@ function* loginInitiate({ payload: { email, history } }) {
     });
 
     if (response.status === true) {
-      sessionStorage.setItem("challengeId", JSON.stringify(response.data.data.challenge_id));
+      localStorage.setItem("challengeId", JSON.stringify(response.data.data.challenge_id));
       yield put(loginInitiateSuccess({ challengeId: response.data.data.challenge_id }));
       history.push("/login");
     } else {
@@ -64,7 +64,7 @@ function* registerInitiate({ payload: { email, history } }) {
     });
 
     if (response.status === true) {
-      sessionStorage.setItem("challengeId", JSON.stringify(response.data.data.challenge_id));
+      localStorage.setItem("challengeId", JSON.stringify(response.data.data.challenge_id));
       yield put(loginInitiateSuccess({ challengeId: response.data.data.challenge_id }));
       history.push("/register-challenge");
     } else {
@@ -84,10 +84,10 @@ function* loginChallenge({ payload: { orgId, email, challengeId, otp, history } 
       orgId
     });
     if (response.status === true) {
-      sessionStorage.setItem("accessToken", response.data.accessToken);
-      sessionStorage.setItem('email', email);
-      sessionStorage.setItem('orglogo', response.data.org?.org_logo)
-      sessionStorage.setItem('organisationType', response.data.org?.org_type)
+      localStorage.setItem("accessToken", response.data.accessToken);
+      localStorage.setItem('email', email);
+      localStorage.setItem('orglogo', response.data.org?.org_logo)
+      localStorage.setItem('organisationType', response.data.org?.org_type)
       console.log('loginChallenge success', response.data.org);
       yield put(loginSuccess(response));
       if (response.data.org.org_type === 'company') history.push("/dashboard");
@@ -108,8 +108,8 @@ function* registerChallenge({ payload: { email, challengeId, otp, history } }) {
       challengeValue: otp,
     });
     if (response.status === true) {
-      sessionStorage.setItem("accessToken", response.data.accessToken);
-      sessionStorage.setItem('email', email);
+      localStorage.setItem("accessToken", response.data.accessToken);
+      localStorage.setItem('email', email);
       yield put(registerChallengeSuccess(response.data.accessToken));
       history.push("/user-register");
     } else {
@@ -122,7 +122,7 @@ function* registerChallenge({ payload: { email, challengeId, otp, history } }) {
 
 function* logoutUser() {
   try {
-    sessionStorage.clear();
+    localStorage.clear();
     yield put(logoutUserSuccess(LOGOUT_USER, true));
   } catch (error) {
     yield put(apiError(LOGOUT_USER, error));

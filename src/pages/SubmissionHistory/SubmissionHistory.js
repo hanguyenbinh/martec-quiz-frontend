@@ -24,7 +24,7 @@ const SubmissionHistory = (props) => {
 	}
 
 	useEffect(() => {
-		const email = sessionStorage.getItem("email");
+		const email = localStorage.getItem("email");
 		dispatch(getSumissionForms(email, props.history))
 	}, [])
 	const { submissionForms } = useSelector(state => ({
