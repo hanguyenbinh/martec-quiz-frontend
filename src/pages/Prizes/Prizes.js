@@ -17,12 +17,12 @@ const Prizes = (props) => {
 	useEffect(() => {
 		dispatch(getPrizes())
 	}, [])
-	const { prizes, error, page, limit, count } = useSelector(state => ({
+	const { prizes, error, page, limit, total } = useSelector(state => ({
 		prizes: state.Prizes.prizes,
 		error: state.Prizes.error,
 		page: state.Prizes.page,
 		limit: state.Prizes.limit,
-		count: state.Prizes.count,
+		total: state.Prizes.total,
 	}));
 
 	const [errorMessage, setErrorMessage] = useState('')
@@ -97,7 +97,7 @@ const Prizes = (props) => {
 					{/* “Array(pagesCount)”: creates and initializes a new array object of length equal to pagesCount. */}
 					{/* “[…Array(pagesCount)].map( fn)”: using the spread operator I expand the array. After expanding, the map() method then creates a new array of PaginationItems. */}
 
-					{[...Array(parseInt(count / limit)) + 1].map((pageNo, i) => (
+					{[...Array(parseInt(total / limit)) + 1].map((pageNo, i) => (
 						<PaginationItem active={i + 1 === page} key={i}>
 							<PaginationLink onClick={() => dispatch(getPrizes(i + 1, 10))} href="#">
 								{i + 1}
@@ -105,7 +105,7 @@ const Prizes = (props) => {
 						</PaginationItem>
 					))}
 
-					<PaginationItem disabled={page >= parseInt(count / limit)}>
+					<PaginationItem disabled={page >= parseInt(total / limit)}>
 						<PaginationLink onClick={() => { dispatch(getPrizes(page + 1, 10)) }} next href="#" />
 					</PaginationItem>
 				</Pagination>

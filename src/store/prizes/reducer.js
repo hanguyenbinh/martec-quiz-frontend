@@ -9,7 +9,7 @@ const initialState = {
 	prizeId: '',
 	page: 1,
 	limit: 10,
-	count: 0,
+	total: 0,
 }
 
 const Prizes = (state = initialState, action) => {
@@ -27,7 +27,7 @@ const Prizes = (state = initialState, action) => {
 				loading: false,
 				prizes: action.payload?.data?.rows,
 				page: action.payload.data.page,
-				count: action.payload.data.count,
+				total: action.payload.data.total,
 				limit: action.payload.data.size,
 			}
 			break;

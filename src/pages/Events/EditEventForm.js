@@ -23,7 +23,8 @@ import {
 
 import BreadCrumb from "src/Components/Common/BreadCrumb"
 
-function EditEventForm() {
+function EditEventForm(props) {
+  const isEdit = props.isEdit
 
   const history = useHistory();
   const { eventNatures, error } = useSelector(state => ({
@@ -339,7 +340,16 @@ function EditEventForm() {
                   </div>
                 </FormGroup>
               </Col>
+              {isEdit ? (<Col sm={12} md={4}>
+                <h6>QR Code</h6>
+                <div className={`${classes.banner} mb-3`}>
+                  <img src={values.qr_code_path} className={classes.bannerImg} alt="" />
+                </div>
+                <div className="d-flex justify-content-center"><a className="btn btn-secondary" href={values.qr_code_path}>Download</a></div>
+
+              </Col>) : null}
             </Row>
+
           </CardBody>
         </Card>
         <div className="d-flex align-items-center justify-content-end">

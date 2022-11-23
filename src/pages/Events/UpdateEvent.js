@@ -77,7 +77,7 @@ function UpdateEvent(props) {
 	return (
 		<div>
 			<Formik innerRef={formikRef} initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
-				<EditEventForm />
+				<EditEventForm isEdit={true} />
 
 			</Formik>
 			<ToastContainer></ToastContainer>

@@ -8,7 +8,7 @@ const initialState = {
 	eventNatures: [],
 	page: 1,
 	limit: 10,
-	count: 0,
+	total: 0,
 }
 
 const Events = (state = initialState, action) => {
@@ -26,7 +26,7 @@ const Events = (state = initialState, action) => {
 				loading: false,
 				events: action.payload?.data?.rows,
 				page: action.payload.data.page,
-				count: action.payload.data.count,
+				total: action.payload.data.total,
 				limit: action.payload.data.size,
 			}
 			break;
