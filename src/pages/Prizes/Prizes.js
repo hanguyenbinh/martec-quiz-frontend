@@ -2,12 +2,10 @@ import React, { useState } from "react"
 import { useEffect } from "react"
 import { withTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { Button, Card, CardBody, CardImg, CardTitle, Col, Container, Pagination, PaginationItem, PaginationLink, Row } from "reactstrap"
+import { Button, Card, Col, Container, Pagination, PaginationItem, PaginationLink, Row } from "reactstrap"
 import BreadCrumb from "../../Components/Common/BreadCrumb"
-import { alertService } from "../../services"
-import { getPrizes } from "src/store/prizes/actions"
+import { deletePrize, getPrizes } from "src/store/prizes/actions"
 
-import classes from 'src/assets/scss/pages/_prizes.scss'
 import { ToastContainer } from "react-toastify"
 
 const Prizes = (props) => {
@@ -43,6 +41,13 @@ const Prizes = (props) => {
 
 	const handleEditPrize = (id) => {
 		props.history.push('/edit-prize/' + id)
+	}
+
+	const handleDeletePrize = (id) => {
+		if (window.confirm(`Do you want to delete this Prize with Id: ${id}?`)) {
+			dispatch(deletePrize(id))
+		}
+
 	}
 
 	const handleCreatePrize = (id) => {
@@ -84,6 +89,9 @@ const Prizes = (props) => {
 								<button onClick={() => {
 									handleEditPrize(d.prize_id);
 								}}>{T('Edit')}</button>
+								<button className="btn-danger" onClick={() => {
+									handleDeletePrize(d.prize_id);
+								}}>{T('Delete')}</button>
 							</Col>
 						</Row>
 					))}

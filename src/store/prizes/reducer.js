@@ -1,4 +1,4 @@
-import { GET_PRIZES, PRIZE_API_ERROR, GET_PRIZES_SUCCESS, GET_PRIZE, GET_PRIZE_SUCCESS, UPDATE_PRIZE, UPDATE_PRIZE_SUCCESS, CREATE_PRIZE, CREATE_PRIZE_SUCCESS } from "./actionTypes"
+import { GET_PRIZES, PRIZE_API_ERROR, GET_PRIZES_SUCCESS, GET_PRIZE, GET_PRIZE_SUCCESS, UPDATE_PRIZE, UPDATE_PRIZE_SUCCESS, CREATE_PRIZE, CREATE_PRIZE_SUCCESS, DELETE_PRIZE_SUCCESS, DELETE_PRIZE } from "./actionTypes"
 
 const initialState = {
 	error: "",
@@ -10,6 +10,7 @@ const initialState = {
 	page: 1,
 	limit: 10,
 	total: 0,
+	deleteCount: 0,
 }
 
 const Prizes = (state = initialState, action) => {
@@ -81,6 +82,22 @@ const Prizes = (state = initialState, action) => {
 				...state,
 				error: action.payload,
 				loading: false,
+			}
+			break;
+
+		case DELETE_PRIZE:
+			state = {
+				...state,
+				loading: true,
+				error: false
+			}
+			break
+		case DELETE_PRIZE_SUCCESS:
+			state = {
+				...state,
+				loading: false,
+				error: false,
+				deleteCount: state.deleteCount++
 			}
 			break;
 

@@ -14,7 +14,7 @@ export const getOrgSummaries = () => {
 export const getOrgEvents = (orgId) => {
   return {
     type: GET_ORGANISATION_EVENTS,
-    payload: { orgId },
+    payload: { orgId: orgId },
   }
 };
 

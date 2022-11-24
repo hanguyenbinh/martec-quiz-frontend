@@ -1,4 +1,4 @@
-import { GET_EVENTS, API_EVENT_ERROR, GET_EVENTS_SUCCESS, GET_EVENT_DETAILS, GET_EVENT_DETAILS_SUCCESS, GET_EVENT_NATURE, GET_EVENT_NATURE_SUCCESS, UPDATE_EVENT_SUCCESS, UPDATE_EVENT, CREATE_EVENT, CREATE_EVENT_SUCCESS } from "./actionTypes"
+import { GET_EVENTS, API_EVENT_ERROR, GET_EVENTS_SUCCESS, GET_EVENT_DETAILS, GET_EVENT_DETAILS_SUCCESS, GET_EVENT_NATURE, GET_EVENT_NATURE_SUCCESS, UPDATE_EVENT_SUCCESS, UPDATE_EVENT, CREATE_EVENT, CREATE_EVENT_SUCCESS, DELETE_EVENT, DELETE_EVENT_SUCCESS } from "./actionTypes"
 
 const initialState = {
 	error: "",
@@ -9,6 +9,7 @@ const initialState = {
 	page: 1,
 	limit: 10,
 	total: 0,
+	deleteCount: 0
 }
 
 const Events = (state = initialState, action) => {
@@ -106,6 +107,22 @@ const Events = (state = initialState, action) => {
 				error: false,
 				event: action.payload.data,
 				eventId: action.payload.data.event_id
+			}
+			break;
+		case DELETE_EVENT:
+			state = {
+				...state,
+				loading: true,
+				error: false,
+			}
+			break;
+		case DELETE_EVENT_SUCCESS:
+			console.log('DELETE_EVENT_SUCCESS', state.deleteCount)
+			state = {
+				...state,
+				loading: false,
+				error: false,
+				deleteCount: state.deleteCount++
 			}
 			break;
 		default:

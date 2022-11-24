@@ -28,6 +28,8 @@ function EditPrizeForm() {
 
   const bannerFileRef = React.useRef()
 
+  console.log('EditPrizeForm', isSubmitting)
+
   const { error } = useSelector(state => ({
     error: state.Prizes.error
   }));
@@ -268,8 +270,9 @@ function EditPrizeForm() {
                 </FormGroup>
               </CardBody>
             </Card>
+
             <div className="d-flex align-items-center justify-content-end mt-3">
-              <Button disabled={isSubmitting && error === false} onClick={submitForm} className="me-2">Save</Button>
+              <Button disabled={isSubmitting} onClick={isSubmitting ? () => { } : submitForm} className="me-2">Save</Button>
               <Button onClick={
                 () => history.push('/prizes')
               }>Close</Button>

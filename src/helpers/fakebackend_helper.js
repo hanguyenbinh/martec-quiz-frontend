@@ -51,7 +51,9 @@ export const getOrganisationSummariesApi = () => {
 };
 
 export const getOrganisationEventsApi = (orgId) => {
-  return api.get(url.GET_ORGANISATION_EVENTS_API, { orgId })
+  const payload = {};
+  if (orgId) payload.orgId = orgId;
+  return api.get(url.GET_ORGANISATION_EVENTS_API, payload)
 };
 
 export const getSubmissionComparationApi = (data) => {
@@ -132,6 +134,8 @@ export const getPrizesApi = (page, limit) => api.get(url.GET_PRIZES_API, { page,
 
 export const getPrizeApi = (id) => api.get(url.GET_PRIZE_API.replace(':id', id));
 
+export const deletePrizeApi = id => api.delete(url.DELETE_PRIZE_API.replace(':id', id));
+
 export const updatePrizeApi = (prize) => api.create(url.GET_PRIZE_API.replace(':id', prize.id), prize.data);
 export const createPrizeApi = (prize) => api.create(url.GET_PRIZES_API, prize.data);
 
@@ -148,8 +152,9 @@ export const updateEventApi = event => api.create(url.UPDATE_EVENT.replace(':id'
 
 export const createEventApi = event => api.create(url.CREATE_EVENT, event.data);
 
+export const deleteEventApi = id => api.delete(url.DELETE_EVENT_API.replace(':id', id), {});
+
 // delete Event
-export const deleteEvent = event => api.delete(url.DELETE_EVENT, { headers: { event } });
 
 // Chat
 // get Contact
