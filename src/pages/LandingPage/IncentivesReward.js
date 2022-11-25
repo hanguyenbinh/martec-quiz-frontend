@@ -37,13 +37,13 @@ const IncentivesReward = () => {
                     </Row>
                     <Row>
                         <Col lg={4}>
-                            <p>The amount of joining incentive for each member is <h4>HKD10,000</h4></p>
+                            The amount of joining incentive for each member is <h4>HKD10,000</h4>
                         </Col>
                         <Col lg={4}>
-                            <p>The maximum amount of innovation and technology subsidy for each member is <h4>HKD50,000</h4></p>
+                            The maximum amount of innovation and technology subsidy for each member is <h4>HKD50,000</h4>
                         </Col>
                         <Col lg={4}>
-                            <p>The amount of gift redemption for each member is <h4>HKD10,000 to HKD20,000</h4></p>
+                            The amount of gift redemption for each member is <h4>HKD10,000 to HKD20,000</h4>
                         </Col>
                     </Row>
                 </Container>

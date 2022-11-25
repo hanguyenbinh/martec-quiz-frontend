@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
-import { Dropdown, DropdownMenu, DropdownToggle, Form } from "reactstrap"
+import { Card, CardBody, Dropdown, DropdownMenu, DropdownToggle, Form } from "reactstrap"
 
 
 //import Components
@@ -8,11 +8,8 @@ import ProfileDropdown from "../Components/Common/ProfileDropdown"
 
 const Header = ({ onChangeLayoutMode, layoutModeType, headerClass }) => {
 	const [search, setSearch] = useState(false)
-	const [orgLogo, setOrgLogo] = useState('');
-	useEffect(() => {
-		const logo = localStorage.getItem('orglogo');
-		setOrgLogo(logo);
-	})
+	const orgLogo = localStorage.getItem('orglogo');
+	const orgName = localStorage.getItem('orgName');
 
 	const toogleSearch = () => {
 		setSearch(!search)
@@ -65,7 +62,7 @@ const Header = ({ onChangeLayoutMode, layoutModeType, headerClass }) => {
 							<button
 								onClick={toogleMenuBtn}
 								type="button"
-								className="btn btn-sm px-3 fs-16 header-item vertical-menu-btn topnav-hamburger shadow-none"
+								className="btn btn-sm px-3 fs-16 header-item vertical-menu-btn topnav-hamburger shadow-none justify-content-center"
 								id="topnav-hamburger-icon"
 							>
 								<span className="hamburger-icon">
@@ -75,7 +72,15 @@ const Header = ({ onChangeLayoutMode, layoutModeType, headerClass }) => {
 								</span>
 							</button>
 							<div className="header-item">
-								<img src={orgLogo} alt="" height="32" />
+								<div className="d-flex flex-column">
+									<div className={`mb-1 mt-1`}>
+										<img className="me-3" src={orgLogo} alt="" height="32" />
+									</div>
+									<div className="d-flex justify-content-center">
+										{orgName}
+									</div>
+								</div>
+
 
 							</div>
 

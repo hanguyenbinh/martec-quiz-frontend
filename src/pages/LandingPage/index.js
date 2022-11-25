@@ -7,6 +7,7 @@ import IncentivesReward from './IncentivesReward';
 import HowToStart from './HowToStart';
 import Footer from 'src/Layouts/Footer';
 import SupportingOrganisation from './SupportingOrganisation';
+import Publication from './Publication';
 
 const index = () => {
     document.title = "ESG Recognition Scheme Platform Platform | HKCA";
@@ -20,6 +21,7 @@ const index = () => {
                 <MajorIndicators />
                 <IncentivesReward />
                 <HowToStart />
+                <Publication></Publication>
                 <SupportingOrganisation></SupportingOrganisation>
                 <Footer />
             </div>

@@ -5,7 +5,7 @@ import ParticlesAuth from "../AuthenticationInner/ParticlesAuth";
 //redux
 import { useSelector, useDispatch } from "react-redux";
 
-import { withRouter } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
 // Formik validation
 import * as Yup from "yup";
@@ -14,6 +14,8 @@ import { useFormik } from "formik";
 // actions
 import { getOrganisations, loginInitiate, loginUser, resetLoginFlag } from "../../store/actions";
 import { withTranslation } from 'react-i18next';
+
+import logodark from "../../assets/images/HKCA_Logo.png";
 
 const GetOtp = (props) => {
 	const T = props.t;
@@ -68,11 +70,13 @@ const GetOtp = (props) => {
 		<React.Fragment>
 			<ParticlesAuth>
 				<div className="auth-page-content">
+
 					<Container>
+						<img src={logodark} className="card-logo" alt="logo" height="80" />
 						<Row>
 							<Col lg={12}>
 								<div className="text-center mt-sm-5 mb-4 text-white-50">
-									<p className="mt-3 fs-15 fw-medium">{T('Application Name')}</p>
+									<p className="mt-3 fs-15 fw-medium">{T('ESG Recognition Scheme Plaform')}</p>
 								</div>
 							</Col>
 						</Row>
@@ -82,7 +86,7 @@ const GetOtp = (props) => {
 								<Card className="mt-4">
 									<CardBody className="p-4">
 										<div className="text-center mt-2">
-											<h5 className="text-primary">{T('Welcome Back!')}</h5>
+											<h5 className="text-primary">{T('Login Page')}</h5>
 										</div>
 										{error && error ? (<Alert color="danger"> {T(error)} </Alert>) : null}
 										<div className="p-2 mt-4">
@@ -130,12 +134,16 @@ const GetOtp = (props) => {
 												</div>
 
 												<div className="mt-4">
-													<Button color="success" className="btn btn-success w-100" type="submit">{T('Get OTP')}</Button>
+													<Button color="success" className="btn btn-success w-100" type="submit">{T('Get Verification Code')}</Button>
 												</div>
+
 											</Form>
+
 										</div>
+										<Link to={'/register'}>Registration for HKCA ESG Recognition Scheme</Link>
 									</CardBody>
 								</Card>
+
 							</Col>
 						</Row>
 					</Container>

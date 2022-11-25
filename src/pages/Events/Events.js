@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from "react-redux"
 import { Button, Card, CardBody, Col, Container, Input, Pagination, PaginationItem, PaginationLink, Row, Table } from "reactstrap"
 import BreadCrumb from "../../Components/Common/BreadCrumb"
 import { deleteEvent, getEvents } from "src/store/events/actions"
-import { ToastContainer } from "react-toastify"
 import { getEventSummaries, getOrgEvents } from "src/store/actions"
 import { isEmpty } from "lodash"
 
@@ -231,7 +230,6 @@ const Events = (props) => {
 						</Row>
 					</CardBody>
 				</Card>
-				<ToastContainer></ToastContainer>
 			</Container>
 
 		</div>

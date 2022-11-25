@@ -3,8 +3,6 @@ import React from "react"
 import { useRef } from "react"
 import { useEffect } from "react"
 import { useDispatch } from "react-redux"
-import { ToastContainer } from "react-toastify"
-
 
 import { createPrize } from "src/store/actions"
 import EditPrizeForm from "./EditPrizeForm"
@@ -56,7 +54,6 @@ function CreatePrize(props) {
 			<Formik innerRef={formikRef} initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
 				<EditPrizeForm />
 			</Formik>
-			<ToastContainer></ToastContainer>
 		</div>
 
 	)

@@ -1,6 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import Particles from "react-tsparticles";
+import { Container, Row } from 'reactstrap';
 
 const ParticlesAuth = ({ children }) => {
     return (
@@ -139,15 +140,23 @@ const ParticlesAuth = ({ children }) => {
                 {children}
 
                 <footer className="footer">
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-lg-12">
-                                <div className="text-center">
-                                    <p className="mb-0 text-muted">&copy; {new Date().getFullYear()} Velzon. Crafted with <i className="mdi mdi-heart text-danger"></i> by Themesbrand</p>
-                                </div>
+                    <Container>
+                        <Row className='mb-5 mt-1'>
+                            <h5>Contact Us</h5>
+                            <div className="text-muted">
+                                <ul className="list-unstyled ff-secondary footer-list">
+                                    <li>(852) 2572 4414</li>
+                                    <li>(852) 2572 7104</li>
+                                    <li>admin@hkca.com.hk</li>
+                                    <li>3/F, 180-182 Hennessy Road, Wanchai, Hong Kong</li>
+                                </ul>
                             </div>
+                        </Row>
+
+                        <div className="copyright">
+                            {new Date().getFullYear()} © The Hong Kong Construction Association, Limited. All Rights Reserved.
                         </div>
-                    </div>
+                    </Container>
                 </footer>
             </div>
         </React.Fragment>

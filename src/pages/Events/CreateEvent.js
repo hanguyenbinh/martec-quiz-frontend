@@ -4,7 +4,6 @@ import React from "react"
 import { useRef } from "react"
 import { useEffect } from "react"
 import { useDispatch } from "react-redux"
-import { ToastContainer } from "react-toastify"
 
 import { geteventNatures, createEvent } from "src/store/actions"
 import EditEventForm from "./EditEventForm"
@@ -85,7 +84,6 @@ function CreateEvent(props) {
 				<EditEventForm />
 
 			</Formik>
-			<ToastContainer></ToastContainer>
 		</div>
 
 	)

@@ -87,6 +87,7 @@ function* loginChallenge({ payload: { orgId, email, challengeId, otp, history } 
       localStorage.setItem("accessToken", response.data.accessToken);
       localStorage.setItem('email', email);
       localStorage.setItem('orglogo', response.data.org?.org_logo)
+      localStorage.setItem('orgName', response.data.org?.org_name)
       localStorage.setItem('organisationType', response.data.org?.org_type)
       console.log('loginChallenge success', response.data.org);
       yield put(loginSuccess(response));

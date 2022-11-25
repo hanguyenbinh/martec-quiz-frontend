@@ -6,8 +6,6 @@ import { useEffect } from "react"
 import { } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
-import { ToastContainer } from "react-toastify"
-
 
 import { getEvent, geteventNatures, updateEvent } from "src/store/actions"
 import EditEventForm from "./EditEventForm"
@@ -80,7 +78,6 @@ function UpdateEvent(props) {
 				<EditEventForm isEdit={true} />
 
 			</Formik>
-			<ToastContainer></ToastContainer>
 		</div>
 
 	)

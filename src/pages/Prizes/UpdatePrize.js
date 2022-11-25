@@ -1,29 +1,12 @@
-import { Formik, useFormikContext } from "formik"
+import { Formik } from "formik"
 import React from "react"
 import { useRef } from "react"
 import { useEffect } from "react"
-import { withTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { useHistory, useParams } from "react-router-dom"
-import { ToastContainer } from "react-toastify"
+import { useParams } from "react-router-dom"
+import { toast } from "react-toastify"
 
-import {
-	Button,
-	Card,
-	CardBody,
-	CardHeader,
-	CardTitle,
-	Col,
-	Container,
-	Form,
-	FormGroup,
-	Input,
-	Label,
-	Row,
-	Table
-} from "reactstrap"
 
-import BreadCrumb from "src/Components/Common/BreadCrumb"
 import { getPrize, updatePrize } from "src/store/actions"
 import EditPrizeForm from "./EditPrizeForm"
 
@@ -37,12 +20,10 @@ function UpdatePrize(props) {
 	useEffect(() => {
 		dispatch(getPrize(params.id, props.history))
 	}, [])
-	const { prize } = useSelector(state => ({
+	const { prize, error } = useSelector(state => ({
 		prize: state.Prizes.prize,
+		error: state.Prizes.error
 	}));
-
-	console.log('UpdatePrize', prize)
-
 
 	const initialValues = React.useMemo(() => {
 		return {
@@ -55,7 +36,7 @@ function UpdatePrize(props) {
 		return
 	}, [])
 	const handleSubmit = (values, { setSubmitting }) => {
-		setSubmitting(true)
+		// setSubmitting(true)
 		const formData = new FormData();
 		if (values.banner_file) {
 			formData.append('image', values.banner_file);
@@ -75,19 +56,21 @@ function UpdatePrize(props) {
 	}
 
 	useEffect(() => {
-		console.log('prize changed', initialValues)
 		formikRef.current.resetForm({
 			values: initialValues
 		});
 	}, [initialValues])
-	console.log('get prize', prize);
+
+	useEffect(() => {
+		console.log('update prize error', error)
+		if (error) toast.error(error, { autoClose: 3000 });
+	}, [error])
 
 	return (
 		<div>
 			<Formik innerRef={formikRef} initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
 				<EditPrizeForm />
 			</Formik>
-			<ToastContainer></ToastContainer>
 		</div>
 
 	)

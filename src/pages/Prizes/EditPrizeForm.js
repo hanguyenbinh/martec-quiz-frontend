@@ -66,7 +66,7 @@ function EditPrizeForm() {
                       onChange={handleBannerChange}
                       accept="image/*"
                     />
-                    Replace
+                    {'Replace (Image size < 2MB)'}
                   </Button>
                 </div>
 

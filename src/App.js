@@ -10,6 +10,7 @@ import Route from "./Routes"
 // Fake Backend
 import fakeBackend from "./helpers/AuthType/fakeBackend"
 import AlertDialog from "./Components/Common/AlertDialog/AlertDialog"
+import { ToastContainer } from "react-toastify"
 
 // Activating fake backend
 fakeBackend()
@@ -18,6 +19,7 @@ function App() {
 		<React.Fragment>
 			<Route />
 			<AlertDialog />
+			<ToastContainer></ToastContainer>
 		</React.Fragment>
 	)
 }

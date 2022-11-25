@@ -188,7 +188,7 @@ function EditEventForm(props) {
                       onChange={handleBannerChange}
                       accept="image/*"
                     />
-                    Upload
+                    {'Upload (Image size < 2MB)'}
                   </Button>
                 </div>
 

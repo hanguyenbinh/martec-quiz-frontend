@@ -104,7 +104,9 @@ const VerticalLayout = (props) => {
 									to={item.link ? item.link : "/#"}
 									data-bs-toggle="collapse"
 								>
-									<i className={item.icon}></i>{" "}
+									<span className="material-symbols-outlined me-3">
+										{item.icon}
+									</span>
 									<span data-key="t-apps">{props.t(item.label)}</span>
 								</Link>
 								<Collapse
@@ -236,7 +238,9 @@ const VerticalLayout = (props) => {
 									className="nav-link menu-link"
 									to={item.link ? item.link : "/#"}
 								>
-									<i className={item.icon}></i>{" "}
+									<span className="material-symbols-outlined me-3">
+										{item.icon ? item.icon : ''}
+									</span>
 									<span>{props.t(item.label)}</span>
 								</Link>
 							</li>

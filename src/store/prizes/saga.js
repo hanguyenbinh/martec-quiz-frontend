@@ -88,8 +88,8 @@ function* deletePrize({ payload: { id } }) {
       window.location.reload(false);
     } else {
       yield put(prizeAPIError(response));
-      console.log('prizeAPIError', response)
-      toast.error(response.data.errmsg, { autoClose: 3000 });
+      console.log('prizeAPIError response', response)
+
     }
   } catch (error) {
     console.log('prizeAPIError error', error)

@@ -5,7 +5,7 @@ import { Row, Col, CardBody, Card, Container, Input, Label, Form, FormFeedback, 
 import * as Yup from "yup";
 import { useFormik } from "formik";
 
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 // action
@@ -189,7 +189,6 @@ const UserRegister = () => {
               </Col>
             </Row>
           </Container>
-          <ToastContainer></ToastContainer>
         </div>
       </ParticlesAuth>
     </React.Fragment>

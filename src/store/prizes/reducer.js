@@ -80,7 +80,7 @@ const Prizes = (state = initialState, action) => {
 			console.log('PRIZE_API_ERROR', action)
 			state = {
 				...state,
-				error: action.payload,
+				error: action.payload.data || action.payload.data.errmsg,
 				loading: false,
 			}
 			break;

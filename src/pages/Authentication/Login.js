@@ -15,6 +15,8 @@ import { useFormik } from "formik";
 import { getOrganisations, loginChallenge, resetLoginFlag } from "../../store/actions";
 import { withTranslation } from 'react-i18next';
 
+import logodark from "../../assets/images/HKCA_Logo.png";
+
 
 const Login = (props) => {
 	const history = useHistory();
@@ -76,10 +78,11 @@ const Login = (props) => {
 			<ParticlesAuth>
 				<div className="auth-page-content">
 					<Container>
+						<img src={logodark} className="card-logo" alt="logo" height="80" />
 						<Row>
 							<Col lg={12}>
 								<div className="text-center mt-sm-5 mb-4 text-white-50">
-									<p className="mt-3 fs-15 fw-medium">{T('Application Name')}</p>
+									<p className="mt-3 fs-15 fw-medium">{T('ESG Recognition Scheme Plaform')}</p>
 								</div>
 							</Col>
 						</Row>
@@ -89,7 +92,7 @@ const Login = (props) => {
 								<Card className="mt-4">
 									<CardBody className="p-4">
 										<div className="text-center mt-2">
-											<h5 className="text-primary">{T('Welcome Back!')}</h5>
+											<h5 className="text-primary">{T('Login Page')}</h5>
 										</div>
 										{error && error ? (<Alert color="danger"> {error} </Alert>) : null}
 										<div className="p-2 mt-4">

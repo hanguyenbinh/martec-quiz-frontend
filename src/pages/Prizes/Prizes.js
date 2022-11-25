@@ -2,11 +2,11 @@ import React, { useState } from "react"
 import { useEffect } from "react"
 import { withTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { Button, Card, Col, Container, Pagination, PaginationItem, PaginationLink, Row } from "reactstrap"
+import { Button, Card, CardBody, Col, Container, Pagination, PaginationItem, PaginationLink, Row } from "reactstrap"
 import BreadCrumb from "../../Components/Common/BreadCrumb"
 import { deletePrize, getPrizes } from "src/store/prizes/actions"
 
-import { ToastContainer } from "react-toastify"
+import classes from "./prize.module.scss"
 
 const Prizes = (props) => {
 	const T = props.t
@@ -71,8 +71,16 @@ const Prizes = (props) => {
 					{prizes && prizes.length > 0 && prizes.map((d, dIndex) => (
 						<Row key={d.prize_id} className="align-items-center">
 							<Col xs="4">
-								<img src={d.image_path} className='prize-image' />
-								<h5>{d.prize_name}</h5>
+								<Card className="mb-0">
+									<CardBody>
+										<div className={`${classes.banner} mb-3`}>
+											<img src={d.image_path} className={classes.bannerImg} alt="" />
+										</div>
+										<div className="d-flex justify-content-center">
+											<h5>{d.prize_name}</h5>
+										</div>
+									</CardBody>
+								</Card>
 							</Col>
 							<Col xs="2">
 								<h5>{T("Item Left")}: {d.in_stock_qty}</h5>
@@ -81,11 +89,18 @@ const Prizes = (props) => {
 
 							</Col>
 							<Col xs="4">
-								<Row className="justify-content-center"><img src={d.qr_code_path} className='prize-image' /></Row>
-								<Row className="justify-content-center">{T("Redemption Code")}</Row>
+								<Card className="mb-0">
+									<CardBody>
+										<div className={`${classes.banner} mb-3`}>
+											<img src={d.qr_code_path} className={classes.bannerImg} alt="" />
+										</div>
+										<div className="d-flex justify-content-center">
+											<h5>{T("Redemption Code")}</h5>
+										</div>
+									</CardBody>
+								</Card>
 							</Col>
 							<Col xs="2">
-								{/* <button>{T('View')}</button> */}
 								<button onClick={() => {
 									handleEditPrize(d.prize_id);
 								}}>{T('Edit')}</button>
@@ -119,7 +134,6 @@ const Prizes = (props) => {
 						<PaginationLink onClick={() => { dispatch(getPrizes(page + 1, 10)) }} next href="#" />
 					</PaginationItem>
 				</Pagination>
-				<ToastContainer></ToastContainer>
 			</Container>
 		</div>
 	)

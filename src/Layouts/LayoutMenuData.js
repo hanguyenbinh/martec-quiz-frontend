@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { useHistory } from "react-router-dom"
 import { getOrganisationType } from "src/helpers/api_helper"
+import dashboardIcon from 'src/assets/images/menu/dashboard-67.svg'
 
 const Navdata = (props) => {
 	const history = useHistory()
@@ -114,7 +115,7 @@ const Navdata = (props) => {
 			label: "Dashboard",
 			link: organisationType === 'company' ? "/dashboard" : "ca-dashboard",
 			parentId: "dashboard",
-			icon: "mdi mdi-speedometer",
+			icon: "dashboard",
 			role: 'normal'
 		},
 		{
@@ -122,6 +123,7 @@ const Navdata = (props) => {
 			label: ("Submit Data"),
 			link: "/submit-data",
 			parentId: "submitData",
+			icon: 'Upload',
 			role: 'ca'
 		},
 		{
@@ -129,28 +131,32 @@ const Navdata = (props) => {
 			label: ("Submission(s) History"),
 			link: "/submissions-history",
 			parentId: "submissionsHistory",
-			role: 'ca'
+			role: 'ca',
+			icon: 'History',
 		},
 		{
 			id: "events",
 			label: ("Events"),
 			link: "/events",
 			parentId: "events",
-			role: 'normal'
+			role: 'normal',
+			icon: 'Festival'
 		},
 		{
 			id: "prizes",
 			label: ("Prizes"),
 			link: "/prizes",
 			parentId: "prizes",
-			role: 'normal'
+			role: 'normal',
+			icon: 'Redeem'
 		},
 		{
 			id: "coins",
-			label: ("Coins History"),
+			label: ("Coins"),
 			link: "/coins",
 			parentId: "coins",
-			role: 'normal'
+			role: 'normal',
+			icon: 'finance_chip'
 		}
 
 	]
