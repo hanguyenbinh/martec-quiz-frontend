@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { Container, Row, Col, Button } from 'reactstrap';
 import image1 from 'src/assets/images/landing/Joinus.png'
 import image2 from 'src/assets/images/landing/step2.png'
@@ -7,11 +8,10 @@ import image4 from 'src/assets/images/landing/step4.png'
 
 
 const HowToStart = () => {
-
     return (
         <React.Fragment>
             <section className="section bg-light" id="marketplace">
-                <Container>
+                <Container id='howtostart' >
                     <Row className="justify-content-center">
                         <div className="text-center mb-1">
                             <h2 className="mb-1 fw-semibold lh-base">How To Start</h2>

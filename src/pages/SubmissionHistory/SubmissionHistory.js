@@ -332,11 +332,18 @@ const SubmissionHistory = (props) => {
 			}
 		})
 	}
+	const handleExport = () => {
+
+	}
 
 	return (
 		<div className="page-content">
 			<Container fluid>
 				<BreadCrumb title={T("Submission(s) History")} />
+				<div className="d-flex justify-content-end mb-3"><Button onClick={() => {
+					handleExport()
+				}
+				}>{T('Export...')}</Button></div>
 				<Card>
 					<table className="table">
 						<thead>

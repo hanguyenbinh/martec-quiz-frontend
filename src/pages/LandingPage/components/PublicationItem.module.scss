@@ -40,6 +40,11 @@
   align-items: center;
 }
 
+.downloadDisabled {
+  background: #f4f3f3 !important;
+  cursor: not-allowed;
+}
+
 .month {
   display: block;
   color: #c2c2c2;

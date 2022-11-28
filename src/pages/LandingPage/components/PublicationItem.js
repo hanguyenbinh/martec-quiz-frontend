@@ -1,6 +1,7 @@
 import React from 'react';
 import classes from "./PublicationItem.module.scss"
 import downloadIcon from 'src/assets/images/landing/download-icon.svg'
+import { isEmpty } from 'lodash';
 
 const PublicationItem = (props) => {
   const { src, month, year, title, subTitle, actions, bgColor } = props
@@ -18,9 +19,9 @@ const PublicationItem = (props) => {
           {actions.map((item, index) => {
             switch (item.name) {
               case 'en':
-                return <a key={index} src={item.url}>EN</a>
+                return <a key={index} href={item.url} className={!(item.url) ? classes.downloadDisabled : ''}>EN</a>
               case 'cn':
-                return <a key={index} src={item.url}>中</a>
+                return <a key={index} href={item.url} className={!(item.url) ? classes.downloadDisabled : ''}>中</a>
             }
           })}
         </div>

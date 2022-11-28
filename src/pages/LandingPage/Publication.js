@@ -14,7 +14,7 @@ const Publication = () => {
             actions: [
                 {
                     name: 'en',
-                    url: '',
+                    url: 'https://s3.ap-southeast-1.amazonaws.com/hkca.com.hk/upload/doc/publication/Civil.pdf',
                 },
                 {
                     name: 'cn',
@@ -29,7 +29,7 @@ const Publication = () => {
             actions: [
                 {
                     name: 'en',
-                    url: '',
+                    url: 'https://s3.ap-southeast-1.amazonaws.com/hkca.com.hk/upload/doc/publication/Foundation.pdf',
                 },
                 {
                     name: 'cn',
@@ -44,7 +44,7 @@ const Publication = () => {
             actions: [
                 {
                     name: 'en',
-                    url: '',
+                    url: 'https://s3.ap-southeast-1.amazonaws.com/hkca.com.hk/upload/doc/publication/E_M.pdf',
                 },
                 {
                     name: 'cn',
@@ -59,7 +59,7 @@ const Publication = () => {
             actions: [
                 {
                     name: 'en',
-                    url: '',
+                    url: 'https://s3.ap-southeast-1.amazonaws.com/hkca.com.hk/upload/doc/publication/Building.pdf',
                 },
                 {
                     name: 'cn',
@@ -74,7 +74,7 @@ const Publication = () => {
             actions: [
                 {
                     name: 'en',
-                    url: '',
+                    url: 'https://s3.ap-southeast-1.amazonaws.com/hkca.com.hk/upload/doc/publication/A%26A+Demiolition-MllPY.pdf',
                 },
                 {
                     name: 'cn',
@@ -93,7 +93,7 @@ const Publication = () => {
                 },
                 {
                     name: 'cn',
-                    url: '',
+                    url: 'https://s3.ap-southeast-1.amazonaws.com/hkca.com.hk/upload/doc/publication/HKCA+%E5%B7%A5%E5%9C%B0%E5%AE%89%E5%85%A8%E5%BA%A7%E8%AB%87%E5%9F%B9%E8%A8%93%E5%A5%97%E4%BB%B6_Full+Version-30w0a.pdf',
                 }
             ]
         },
@@ -104,11 +104,11 @@ const Publication = () => {
             actions: [
                 {
                     name: 'en',
-                    url: '',
+                    url: 'https://s3.ap-southeast-1.amazonaws.com/hkca.com.hk/upload/doc/publication/20190813_v8-1-full-YppIK.pdf',
                 },
                 {
                     name: 'cn',
-                    url: '',
+                    url: 'https://s3.ap-southeast-1.amazonaws.com/hkca.com.hk/upload/doc/publication/20190813_v8_full_chinese-6UUHU.pdf',
                 }
             ]
         },
@@ -119,11 +119,11 @@ const Publication = () => {
             actions: [
                 {
                     name: 'en',
-                    url: '',
+                    url: 'https://s3.ap-southeast-1.amazonaws.com/hkca.com.hk/upload/doc/publication/ConstructionInnovativeEnvironmentalPractices%28EN%29-7b4rQ-eRkfX.pdf',
                 },
                 {
                     name: 'cn',
-                    url: '',
+                    url: 'https://s3.ap-southeast-1.amazonaws.com/hkca.com.hk/upload/doc/publication/ConstructionInnovativeEnvironmentalPractices%28CH%29-NA0Th.pdf',
                 }
             ]
         },

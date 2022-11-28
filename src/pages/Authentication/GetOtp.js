@@ -140,7 +140,8 @@ const GetOtp = (props) => {
 											</Form>
 
 										</div>
-										<Link to={'/register'}>Registration for HKCA ESG Recognition Scheme</Link>
+										<div className='mt-4'><Link to={'/home?view=howtostart'} >Registration for HKCA ESG Recognition Scheme</Link></div>
+
 									</CardBody>
 								</Card>
 

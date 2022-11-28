@@ -8,9 +8,22 @@ import HowToStart from './HowToStart';
 import Footer from 'src/Layouts/Footer';
 import SupportingOrganisation from './SupportingOrganisation';
 import Publication from './Publication';
+import { useEffect } from 'react';
 
-const index = () => {
+const LandingPage = (props) => {
     document.title = "ESG Recognition Scheme Platform Platform | HKCA";
+
+    useEffect(() => {
+
+        const query = new URLSearchParams(props.location.search);
+        const view = query.get('view')
+
+        console.log(view)
+        if (view) {
+            window.location.href = '#'
+            window.location.href = '#' + view;
+        }
+    }, [])
 
     return (
         <React.Fragment>
@@ -29,4 +42,4 @@ const index = () => {
     );
 };
 
-export default index;
+export default LandingPage;
