@@ -38,7 +38,6 @@ function UpdateEvent(props) {
 		return
 	}, [])
 	const handleSubmit = (values) => {
-		console.log(values);
 		const formData = new FormData();
 		if (values.banner_file) {
 			formData.append('image', values.banner_file);

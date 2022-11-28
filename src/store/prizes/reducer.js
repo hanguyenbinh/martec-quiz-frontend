@@ -1,7 +1,7 @@
 import { GET_PRIZES, PRIZE_API_ERROR, GET_PRIZES_SUCCESS, GET_PRIZE, GET_PRIZE_SUCCESS, UPDATE_PRIZE, UPDATE_PRIZE_SUCCESS, CREATE_PRIZE, CREATE_PRIZE_SUCCESS, DELETE_PRIZE_SUCCESS, DELETE_PRIZE } from "./actionTypes"
 
 const initialState = {
-	error: "",
+	error: false,
 	loading: false,
 	prizes: [
 	],
@@ -26,6 +26,7 @@ const Prizes = (state = initialState, action) => {
 			state = {
 				...state,
 				loading: false,
+				error: false,
 				prizes: action.payload?.data?.rows,
 				page: action.payload.data.page,
 				total: action.payload.data.total,
@@ -37,6 +38,7 @@ const Prizes = (state = initialState, action) => {
 			state = {
 				...state,
 				loading: true,
+				error: false,
 				prizeId: action.payload.prizeId
 			}
 			break
@@ -44,6 +46,7 @@ const Prizes = (state = initialState, action) => {
 			state = {
 				...state,
 				loading: false,
+				error: false,
 				prize: action.payload?.data
 			}
 			break;
@@ -52,6 +55,7 @@ const Prizes = (state = initialState, action) => {
 			state = {
 				...state,
 				loading: true,
+				error: false,
 				prizeId: action.payload.prizeId
 			}
 			break
@@ -59,6 +63,7 @@ const Prizes = (state = initialState, action) => {
 			state = {
 				...state,
 				loading: false,
+				error: false,
 				prize: action.payload?.data
 			}
 			break;

@@ -272,7 +272,7 @@ function EditPrizeForm() {
             </Card>
 
             <div className="d-flex align-items-center justify-content-end mt-3">
-              <Button disabled={isSubmitting} onClick={isSubmitting ? () => { } : submitForm} className="me-2">Save</Button>
+              <Button disabled={isSubmitting && error === false} onClick={isSubmitting ? () => { } : submitForm} className="me-2">Save</Button>
               <Button onClick={
                 () => history.push('/prizes')
               }>Close</Button>

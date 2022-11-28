@@ -1,7 +1,7 @@
 import { GET_EVENTS, API_EVENT_ERROR, GET_EVENTS_SUCCESS, GET_EVENT_DETAILS, GET_EVENT_DETAILS_SUCCESS, GET_EVENT_NATURE, GET_EVENT_NATURE_SUCCESS, UPDATE_EVENT_SUCCESS, UPDATE_EVENT, CREATE_EVENT, CREATE_EVENT_SUCCESS, DELETE_EVENT, DELETE_EVENT_SUCCESS } from "./actionTypes"
 
 const initialState = {
-	error: "",
+	error: false,
 	loading: false,
 	events: [],
 	event: {},
@@ -17,14 +17,15 @@ const Events = (state = initialState, action) => {
 		case GET_EVENTS:
 			state = {
 				...state,
-				loading: true
+				loading: true,
+				error: false
 			}
 			break
 		case GET_EVENTS_SUCCESS:
-			console.log(action.payload)
 			state = {
 				...state,
 				loading: false,
+				error: false,
 				events: action.payload?.data?.rows,
 				page: action.payload.data.page,
 				total: action.payload.data.total,
