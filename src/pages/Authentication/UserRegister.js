@@ -16,7 +16,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { Link, useHistory } from "react-router-dom";
 
-//import images 
+//import images
 import logoLight from "../../assets/images/logo-light.png";
 import ParticlesAuth from "../AuthenticationInner/ParticlesAuth";
 

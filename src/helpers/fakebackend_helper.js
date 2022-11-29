@@ -220,7 +220,7 @@ export const deleteCustomer = customer => api.delete(url.DELETE_CUSTOMER + '/' +
 export const getSellers = () => api.get(url.GET_SELLERS);
 
 // Project
-// get Project list 
+// get Project list
 export const getProjectList = () => api.get(url.GET_PROJECT_LIST);
 
 // Tasks
@@ -296,17 +296,17 @@ export const updateInvoice = invoice => api.update(url.UPDATE_INVOICE + '/' + in
 // delete Invoice
 export const deleteInvoice = invoice => api.delete(url.DELETE_INVOICE + '/' + invoice);
 
-// Support Tickets 
+// Support Tickets
 // Tickets
 export const getTicketsList = () => api.get(url.GET_TICKETS_LIST);
 
-// add Tickets 
+// add Tickets
 export const addNewTicket = ticket => api.create(url.ADD_NEW_TICKET, ticket);
 
-// update Tickets 
+// update Tickets
 export const updateTicket = ticket => api.update(url.UPDATE_TICKET + '/' + ticket._id, ticket);
 
-// delete Tickets 
+// delete Tickets
 export const deleteTicket = ticket => api.delete(url.DELETE_TICKET + '/' + ticket);
 
 // Dashboard Analytics
@@ -405,4 +405,3 @@ export const getTeamData = (team) => api.get(url.GET_TEAMDATA, team);
 export const deleteTeamData = (team) => api.delete(url.DELETE_TEAMDATA, { headers: { team } });
 export const addTeamData = (team) => api.create(url.ADD_NEW_TEAMDATA, team);
 export const updateTeamData = (team) => api.update(url.UPDATE_TEAMDATA, team);
-
