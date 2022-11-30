@@ -11,4 +11,3 @@ export * from './events/actions';
 export * from './prizes/actions';
 export * from './ca-dashboard/actions'
 export * from './coins/actions'
-

@@ -94,4 +94,3 @@ export const eventAPIError = response => {
     payload: response
   }
 }
-
