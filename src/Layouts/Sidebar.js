@@ -8,7 +8,7 @@ import { Container } from "reactstrap"
 import { withTranslation } from "react-i18next"
 
 import logoImg from "src/assets/images/ESG_BUILD_FUN_logo_B2.png"
-import hkcaLogoImg from "src/assets/images/HKCA_Logo.png"
+import hkcaLogoImg from "src/assets/images/hkca-logo-only.png"
 
 const Sidebar = (props) => {
 	const layoutType = props
@@ -71,7 +71,7 @@ const Sidebar = (props) => {
 						</Container>
 						<div style={{ flexGrow: 1 }}></div>
 						<div className="d-flex flex-column align-items-center">
-							<img className="w-50 mb-2" src={hkcaLogoImg} />
+							<img className="w-25 mb-2" src={hkcaLogoImg} />
 							<p className="text-white text-center m-2">Provided by HKCA</p>
 							<p className="text-white text-center">Powered by JSESG Group</p>
 						</div>
