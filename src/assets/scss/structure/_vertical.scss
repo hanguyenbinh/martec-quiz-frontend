@@ -34,8 +34,27 @@
     position: fixed;
     top: 0;
     box-shadow: $vertical-menu-box-shadow;
-    padding: 0 0 calc(#{$header-height} + 25px) 0;
+    // padding: 0 0 calc(#{$header-height} + 25px) 0;
     transition: all .1s ease-out;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+
+    .simplebar-wrapper {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+
+        .simplebar-mask {
+            height: 100%;
+
+            .simplebar-content-wrapper {
+                height: 100%;
+            }
+        }
+    }
 
     .navbar-nav {
         .nav-link {
@@ -1348,4 +1367,8 @@
 .carousel-item {
     max-width: 100%;
     height: 2rem;
+}
+
+.esg-logo-side-bar {
+    width: 100px;
 }

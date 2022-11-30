@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 import { Col, Container, Row } from 'reactstrap';
 
 // Import Images
-import footer from "src/assets/images/landing/footer.png";
-
 const Footer = () => {
     return (
         <React.Fragment>

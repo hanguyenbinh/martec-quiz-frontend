@@ -139,7 +139,7 @@ const ParticlesAuth = ({ children }) => {
                 {/* pass the children */}
                 {children}
 
-                <footer className="footer">
+                <footer>
                     <Container>
                         <Row className='mb-5 mt-1'>
                             <h5>Contact Us</h5>

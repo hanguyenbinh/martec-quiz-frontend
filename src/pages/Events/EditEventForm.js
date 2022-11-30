@@ -274,7 +274,7 @@ function EditEventForm(props) {
 
                 <FormGroup>
                   <Label>Total Check-In Limit</Label>
-                  <span className="ms-2 text-nowrap">Remark: -1 = unlimited</span>
+                  <span className="ms-2 text-nowrap">(Remark: -1 = unlimited)</span>
                   <Row>
                     <Col sm>
                       <Input
