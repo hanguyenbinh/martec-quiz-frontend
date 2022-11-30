@@ -250,94 +250,111 @@ function EditEventForm(props) {
 
                 <FormGroup>
                   <Label>Coins Earned per Check-In</Label>
+                  <Row>
+                    <Col sm>
+                      <Input
+                        name="point_award"
+                        className="me-2"
+                        placeholder="Coins Earned per Check-In"
+                        type="text"
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        value={values.point_award}
+                        invalid={
+                          touched.point_award && errors.point_award ? true : false
+                        }
+                      />
+                    </Col>
+                    <Col sm='auto'>
+                      <div className={classes.w120}>coins</div>
 
-                  <div className="d-flex align-items-center">
-                    <Input
-                      name="point_award"
-                      className="me-2"
-                      placeholder="Coins Earned per Check-In"
-                      type="text"
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      value={values.point_award}
-                      invalid={
-                        touched.point_award && errors.point_award ? true : false
-                      }
-                    />
-                    <p className="mb-0">coins</p>
-                  </div>
+                    </Col>
+                  </Row>
                 </FormGroup>
 
                 <FormGroup>
                   <Label>Total Check-In Limit</Label>
+                  <span className="ms-2 text-nowrap">Remark: -1 = unlimited</span>
+                  <Row>
+                    <Col sm>
+                      <Input
+                        name="max_total_check_in"
+                        className="me-2"
+                        placeholder="Total Check-In Limit"
+                        type="text"
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        value={values.max_total_check_in}
+                        invalid={
+                          touched.max_total_check_in && errors.max_total_check_in ? true : false
+                        }
+                      />
+                    </Col>
+                    <Col sm='auto'>
+                      <div className={classes.w120}> <div className="d-flex flex-column">
+                        <span className="mb-0">times</span>
+                      </div></div>
+                    </Col>
+                  </Row>
 
-                  <div className="d-flex align-items-center">
-                    <Input
-                      name="max_total_check_in"
-                      className="me-2"
-                      placeholder="Total Check-In Limit"
-                      type="text"
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      value={values.max_total_check_in}
-                      invalid={
-                        touched.max_total_check_in && errors.max_total_check_in ? true : false
-                      }
-                    />
-                    <p className="mb-0">times</p>
-                  </div>
                 </FormGroup>
 
                 <FormGroup>
                   <Label>Daily User Check-In Limit</Label>
+                  <Row>
+                    <Col sm>
+                      <Input
+                        name="max_daily_check_in"
+                        className="me-2"
+                        type="select"
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        value={values.max_daily_check_in}
 
-                  <div className="d-flex align-items-center">
-                    <Input
-                      name="max_daily_check_in"
-                      className="me-2"
-                      type="select"
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      value={values.max_daily_check_in}
-
-                    >
-                      {
-                        dailyCheckinLimits.map((item, key) => {
-                          if (item === '-1' || item === -1) {
-                            return <option key={key} value={item}>unlimited</option>
-                          }
-                          return <option key={key} value={item}>{item}</option>
-                        })
-                      }
-                    </Input>
-                    <p className="mb-0">times</p>
-                  </div>
+                      >
+                        {
+                          dailyCheckinLimits.map((item, key) => {
+                            if (item === '-1' || item === -1) {
+                              return <option key={key} value={item}>unlimited</option>
+                            }
+                            return <option key={key} value={item}>{item}</option>
+                          })
+                        }
+                      </Input>
+                    </Col>
+                    <Col sm='auto'>
+                      <div className={classes.w120}> times</div>
+                    </Col>
+                  </Row>
                 </FormGroup>
 
                 <FormGroup>
                   <Label>User's Next Check-In At</Label>
+                  <Row>
+                    <Col sm>
+                      <Input
+                        name="check_in_interval"
+                        className="me-2"
+                        type="select"
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        value={values.check_in_interval}
 
-                  <div className="d-flex align-items-center">
-                    <Input
-                      name="check_in_interval"
-                      className="me-2"
-                      type="select"
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      value={values.check_in_interval}
-
-                    >
-                      {
-                        nextCheckinTimes.map((item, key) => {
-                          if (item === '-1' || item === -1) {
-                            return <option key={key} value={item}>infinite</option>
-                          }
-                          return <option key={key} value={item}>{item}</option>
-                        })
-                      }
-                    </Input>
-                    <p className="mb-0">hours later</p>
-                  </div>
+                      >
+                        {
+                          nextCheckinTimes.map((item, key) => {
+                            if (item === '-1' || item === -1) {
+                              return <option key={key} value={item}>infinite</option>
+                            }
+                            return <option key={key} value={item}>{item}</option>
+                          })
+                        }
+                      </Input>
+                    </Col>
+                    <Col sm='auto'>
+                      <div className={classes.w120}>hours later</div>
+                    </Col>
+                  </Row>
                 </FormGroup>
               </Col>
               {isEdit ? (<Col sm={12} md={4}>
@@ -359,7 +376,7 @@ function EditEventForm(props) {
           }>Close</Button>
         </div>
       </Container>
-    </div>
+    </div >
   )
 }
 

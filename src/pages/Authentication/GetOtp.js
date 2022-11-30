@@ -137,10 +137,12 @@ const GetOtp = (props) => {
 													<Button color="success" className="btn btn-success w-100" type="submit">{T('Get Verification Code')}</Button>
 												</div>
 
+												<div className='mt-4'><Link to={'/home?view=howtostart'} >Registration for HKCA ESG Recognition Scheme</Link></div>
+
 											</Form>
 
 										</div>
-										<div className='mt-4'><Link to={'/home?view=howtostart'} >Registration for HKCA ESG Recognition Scheme</Link></div>
+
 
 									</CardBody>
 								</Card>

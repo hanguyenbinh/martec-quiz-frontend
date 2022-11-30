@@ -57,7 +57,7 @@ const DashBoard = (props) => {
 		console.log(years, indicators, averages)
 		setChartData(preState => {
 			return {
-				labels: years.map(item => item.value),
+				labels: years,
 				datasets: [
 					{
 						type: "line",

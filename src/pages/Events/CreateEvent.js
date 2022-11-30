@@ -32,11 +32,11 @@ function CreateEvent(props) {
 			start_date: '',
 			end_date: '',
 			top_most_ind: false,
-			point_award: 0,
+			point_award: 1,
 			exp_earnded: 0,
-			max_daily_check_in: 0,
-			max_total_check_in: 1,
-			check_in_interval: 0,
+			max_daily_check_in: -1,
+			max_total_check_in: 9999,
+			check_in_interval: 2,
 			banner_file: ''
 		}
 	}, [])

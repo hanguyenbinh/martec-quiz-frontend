@@ -248,6 +248,7 @@ const VerticalLayout = (props) => {
 					</React.Fragment>
 				)
 			})}
+
 		</React.Fragment>
 	)
 }

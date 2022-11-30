@@ -10,16 +10,14 @@ import { getSubmissionHistoryApi, postSubmission } from "../../helpers/fakebacke
 function* postSubmissionForm({ payload: { data, history } }) {
   ////console.logdisabled('saga postSubmissionForm', data)
   try {
-    if (process.env.REACT_APP_API_URL) {
-      const response = yield call(
-        postSubmission,
-        data);
-      if (response.status === true) {
-        yield put(postSubmissionFormSuccess(response));
-        history.push("/submissions-history");
-      } else {
-        yield put(portalApiError(response));
-      }
+    const response = yield call(
+      postSubmission,
+      data);
+    if (response.status === true) {
+      yield put(postSubmissionFormSuccess(response));
+      history.push("/submissions-history");
+    } else {
+      yield put(portalApiError(response));
     }
   } catch (error) {
     yield put(portalApiError(error));

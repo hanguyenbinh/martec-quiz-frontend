@@ -63,6 +63,9 @@ const Sidebar = (props) => {
 								<VerticalLayout layoutType={layoutType} />
 							</ul>
 						</Container>
+						<div style={{ flexGrow: 1 }}></div>
+						<div>dfasdfasfasfsafhsaflaskfhaslfkasjhf</div>
+
 					</SimpleBar>
 					<div className="sidebar-background"></div>
 				</React.Fragment>

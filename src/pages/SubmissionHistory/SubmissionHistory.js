@@ -51,8 +51,8 @@ const SubmissionHistory = (props) => {
 					label: T('Gross value of construction work (HKD)')
 				},
 				{
-					name: 'noOfProject',
-					label: T('No of project')
+					name: 'totalNoOfManDays',
+					label: T('Total no. of man-days')
 				},
 
 			]
@@ -61,11 +61,11 @@ const SubmissionHistory = (props) => {
 			title: T('Energy/Water Consumption'),
 			fields: [{
 				name: 'petrolUsage',
-				label: T('Petrol Usage (Litres)')
+				label: T('Petrol usage (Litres)')
 			},
 			{
 				name: 'dieselUsage',
-				label: T('Diesel Usage (Litres)')
+				label: T('Diesel usage (Litres)')
 			},
 			{
 				name: 'amountOfElectricityHKE',
@@ -77,7 +77,7 @@ const SubmissionHistory = (props) => {
 			},
 			{
 				name: 'annualWaterConsumption',
-				label: T('Annual water consumption (in m3)')
+				label: T('Annual water consumption (Metric tonnes or m3)')
 			},
 			]
 		},
@@ -85,67 +85,57 @@ const SubmissionHistory = (props) => {
 			title: T('Waste Production'),
 			fields: [{
 				name: 'totalWeightof_InertWasteDisposedPerAnnum',
-				label: T('Total weight of non-inert waste disposed per annum (Tonne)')
+				label: T('Total weight of non-inert waste disposed (Tonne)')
 			},
 			{
 				name: 'totalWeightOf_Non_InertWasteDisposedPerAnnum',
-				label: T('Total weight of non-inert waste disposed per annum (Tonne)')
+				label: T('Total weight of non-inert waste disposed (Tonne)')
 			},
-			{
-				name: 'totalWeightOf_Mixed_WasteDisposedPerAnnum',
-				label: T('Total weight of mixed waste disposed per annum (Tonne)')
-			},
+
 			]
 		},
 		{
 			title: T('Health and Safety'),
 			fields: [{
-				name: 'noOfIndustrialAccidents',
-				label: T('No of industrical accidents')
+				name: 'noOfNonFatalReportableAccident',
+				label: T('No. of non-fatal reportable accident')
 			},
 			{
 				name: 'noOfOccupationalIncident',
 				label: T('No of occupational Incident')
 			},
 			{
-				name: 'numberTypeAndMagitudeOfAdvanceHealthAndSafetyTechnologiesUsed',
-				label: T('Number, type and magnitude of advance health and safety technologies used')
+				name: 'noOfSafetyOrESGRelatedTechnologiesUsed',
+				label: T('No. of Safety or ESG related technologies used')
 			},
 			]
 		},
 		{
 			title: T('Development and Training'),
 			fields: [{
-				name: 'noOfHoursOfTranningPMStaff',
-				label: T('No of hours of training - PM staff')
+				name: 'noOfHoursOfTrainingManagementOrAboveStaff',
+				label: T('No. of hours of training - management or above staff')
 			},
 			{
-				name: 'noOfPMStaff',
-				label: T('No of PM staff')
+				name: 'noOfManagementOrAboveStaff',
+				label: T('No. of management or above staff')
 			},
 			{
-				name: 'noOfHoursOfTranningTechnicalStaff',
-				label: T('No of hours of training - technical staff')
+				name: 'noOfHoursOfTrainingSupervisorOrAboveStaff',
+				label: T('No. of hours of training - supervisor or above staff')
 			},
 			{
-				name: 'noOfTechnicalStaff',
-				label: T('No of technical staff')
+				name: 'noOfHoursOfTrainingOperatorOrSupportLevelStaff',
+				label: T('No. of hours of training - operator or support level staff')
 			},
+
 			{
-				name: 'noOfHoursOfTranning',
-				label: T('No of hours of training - direct labor')
-			},
-			{
-				name: 'noOfDirectLabor',
-				label: T('No of direct labor')
-			},
-			{
-				name: 'noOfStaffJoiningYMSOrSimilar',
-				label: T('No of staff joining YMS or similar')
+				name: 'noOfStaffJoiningYMS',
+				label: T('No. of staff joining YMS')
 			},
 			{
 				name: 'noOfYoungStaff',
-				label: T('No of young staff (age < 40)')
+				label: T('No. of young staff (age < 40)')
 			},
 			]
 		},
@@ -153,11 +143,11 @@ const SubmissionHistory = (props) => {
 			title: T('Community Investment'),
 			fields: [{
 				name: 'noOfManhoursInCommunityService',
-				label: T('No of manhours in community service')
+				label: T('No. of manhours in community service')
 			},
 			{
-				name: 'moneyToSupportCommunityService',
-				label: T('Money to support community service')
+				name: 'communityServiceDonationAmount',
+				label: T('Community service donation amount (HKD)')
 			},
 			]
 		},
@@ -168,28 +158,24 @@ const SubmissionHistory = (props) => {
 				label: T('Employment Size')
 			},
 			{
-				name: 'noOfStaff',
-				label: T('No of Staff')
+				name: 'noOfSupervisorOrAboveStaff',
+				label: T('No. of supervisor or above staff')
 			},
 			{
-				name: 'noOfSupportingStaff',
-				label: T('No of supporting staff')
+				name: 'noOfOperatorOrSupportLevelStaff',
+				label: T('No. of operator or support level staff')
 			},
 			{
-				name: 'noOfResignationsManagementStaff',
-				label: T('No of resignations - management staff')
+				name: 'noOfResignationsManagementOrAboveStaff',
+				label: T('No. of resignations - management or above staff')
 			},
 			{
-				name: 'noOfResignationsTechnicalStaff',
-				label: T('No of resignations - technical staff')
+				name: 'noOfResignationsSupervisorOrAboveStaff',
+				label: T('No. of resignations - supervisor or above staff')
 			},
 			{
-				name: 'noOfResignationsDirectStaff',
-				label: T('No of resignations - direct staff')
-			},
-			{
-				name: 'noOfResignationsSupportingStaff',
-				label: T('No of resignations - supporting staff')
+				name: 'noOfResignationsOperatorOrSupportLevelStaff',
+				label: T('No. of resignations - operator or support level staff')
 			},
 			]
 		},
@@ -197,96 +183,113 @@ const SubmissionHistory = (props) => {
 			title: T('In-house Codes and Guidelines Governing Supply Chain Management'),
 			fields: [
 				{
-					name: 'IsAdoptedSupplyChainManagement',
-					label: (
-						<>
-							{T('Click Yes when one of followings is adopted:')}
-							<li>{T('i.Migrated to six sigma system')}</li>
-							<li>{T('ii.Developed framework for risk-based quality management system')}</li>
-							<li>{T('iii.Adopted total quality management')}</li>
-							<li>{T('iv.Practicing strategic, alliancing or partnering based risk sharing approaches')}</li>
-						</>
-					)
+					name: 'adoptedTools',
+					label: T('Adopted tools'),
+					type: 'select',
+					options: [
+						{ value: 'Migrated to six sigma system', label: 'Migrated to six sigma system' },
+						{ value: 'Developed framework for risk-based quality management system', label: 'Developed framework for risk-based quality management system' },
+						{ value: 'adopted total quality management', label: 'adopted total quality management' },
+						{ value: 'practicing strategic, alliancing or partnering based risk sharing approaches', label: 'practicing strategic, alliancing or partnering based risk sharing approaches' },
+
+					]
 				}
 			]
 		},
 		{
 			title: T('In-house Codes and Guidelines Governing - Anticorruption'),
-			fields: [{
-				name: 'numberAndTypeOfOrganisationAndParticipation',
-				label: T('Number and type of organisation and participation in anticorruption campaigns / activities')
-			},
-			{
-				name: 'noOfHourOfAnticorruptionTranningNewStaff',
-				label: T('No of hour of  anticorruption training - new staff')
-			},
-			{
-				name: 'noOfNewStaff',
-				label: T('No of new staff')
-			},
-			{
-				name: 'noOfHourAnticorruptionTranningExistingStaff',
-				label: T('no of hour anticorruption training - existing staff')
-			},
-			{
-				name: 'noExistingStaff',
-				label: T('No of existing staff')
-			},
+			fields: [
+				{
+					name: 'typeOfAnticorruptionCampaignsActivities',
+					label: T('Type of anticorruption campaigns / activities')
+				},
+				{
+					name: 'noOfAnticorruptionCampaignsActivitiesProvided',
+					label: T('No. of anticorruption campaigns / activities provided')
+				},
+				{
+					name: 'trainingHoursNewStaff',
+					label: T('Training hours – new staff')
+				},
+				{
+					name: 'noOfNewStaff',
+					label: T('No. of new staff')
+				},
+				{
+					name: 'trainingHoursExistingStaff',
+					label: T('Training hours – existing staff')
+				},
+				{
+					name: 'noExistingStaff',
+					label: T('No. of existing staff')
+				},
 			]
 		},
 		{
 			title: T('In-house Codes and Guidelines Governing - Environment'),
-			fields: [{
-				name: 'numberOfConvictionsRelatedToTheEnvironment',
-				label: T('Number of convictions related to the environment')
-			},
-			{
-				name: 'noOfEnvironmentalProfessionals',
-				label: T('No. of environmental professionals')
-			},
-			{
-				name: 'noOfEnvironmentalPersonnel',
-				label: T('No. of environmental personnel')
-			},
+			fields: [
+				{
+					name: 'noOfConvictionsRelatedToTheEnvironment',
+					label: T('No. of convictions related to the environment')
+				},
+				{
+					name: 'noOfEnvironmentalProfessionals',
+					label: T('No. of environmental professionals')
+				},
+				{
+					name: 'noOfEnvironmentalPersonnel',
+					label: T('No. of environmental personnel')
+				},
+				{
+					name: 'noOfEnvironmentalAwardReceived',
+					label: T('No. of environmental award received')
+				},
+				{
+					name: 'typeOfEnvironmentalAwardReceived',
+					label: T('Type of environmental award received')
+				},
 			]
 		},
 		{
 			title: T('In-house Codes and Guidelines Governing-  Health and Safety'),
-			fields: [{
-				name: 'IsAdoptedHealthAndSafety',
-				label: (
-					<>
-						{T('Click Yes when one of followings is adopted:')}
-						<li>{T('i.Migrated to ISO 45001')}</li>
-						<li>{T('ii.Developed framework for design for safety')}</li>
-
-					</>
-				),
-			},
-			{
-				name: 'noOfConvictionsRelatedToHealthyAndSafety',
-				label: T('No of convictions related to health and safety')
-			},
-			{
-				name: 'suspensionNoticesDueToSafetyIssues',
-				label: T('Suspension notices due to safety issues (including those caused by subcontractors involved in a project)')
-			},
-			{
-				name: 'numberAndTypeOfAsWellAsAchivementResultedFromParticipation',
-				label: T('Number and type of as well as achievement resulted from the participation')
-			},
-			{
-				name: 'noOfSafetyTraningHoursManagementStaff',
-				label: T('No. of safety training hours - management staff')
-			},
-			{
-				name: 'noOfSafetyTraningHoursOperationalStaff',
-				label: T('No. of safety training hours - operational staff')
-			},
-			{
-				name: 'noOfSafetyTraningHoursDirectLabour',
-				label: T('No. of safety training hours - direct labour')
-			},
+			fields: [
+				{
+					name: 'apdoptedToolsHealthAndSafety',
+					label: T('Adopted tools'),
+					type: 'select',
+					options: [
+						{ value: 'Migrated to ISO 45001', label: 'Migrated to ISO 45001' },
+						{ value: 'Developed framework for design for safety', label: 'Developed framework for design for safety' },
+					]
+				},
+				{
+					name: 'noOfConvictionsRelatedToHealthyAndSafety',
+					label: T('No. of convictions related to health and safety')
+				},
+				{
+					name: 'suspensionNoticesDueToSafetyIssues',
+					label: T('Suspension notices due to safety issues (including those caused by subcontractors involved in a project)')
+				},
+				{
+					name: 'typeOfSafetyAndHealthAwardReceived',
+					label: T('Type of safety and health award received')
+				},
+				{
+					name: 'noOfSafetyAndHealthAwardReceived',
+					label: T('No. of safety and health award received')
+				},
+				{
+					name: 'safetyTrainingHoursManagementOrAboveStaff',
+					label: T('Safety training hours - management or above staff')
+				},
+				{
+					name: 'safetyTrainingHoursSupervisorOrAboveStaff',
+					label: T('Safety training hours - supervisor or above staff')
+				},
+				{
+					name: 'safetyTrainingHoursOperatorOrSupportLevelStaff',
+					label: T('Safety training hours - operator or support level staff')
+				},
 			]
 		},
 	]
