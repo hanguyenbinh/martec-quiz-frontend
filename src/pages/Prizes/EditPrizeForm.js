@@ -118,7 +118,7 @@ function EditPrizeForm() {
                   <Input
                     name="in_stock_qty"
                     className="form-control"
-                    placeholder="Item name (chinese)"
+                    placeholder="Item left"
                     type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -133,7 +133,7 @@ function EditPrizeForm() {
                   <Input
                     name="prize_desc"
                     className="form-control"
-                    placeholder="Description (chinese)"
+                    placeholder="Description"
                     type="textarea"
                     onChange={handleChange}
                     onBlur={handleBlur}

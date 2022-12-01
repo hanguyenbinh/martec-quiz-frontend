@@ -123,7 +123,7 @@ const Navdata = (props) => {
 			label: ("Submit Data"),
 			link: "/submit-data",
 			parentId: "submitData",
-			icon: 'Upload',
+			icon: 'upload',
 			role: 'ca'
 		},
 		{
@@ -132,7 +132,7 @@ const Navdata = (props) => {
 			link: "/submissions-history",
 			parentId: "submissionsHistory",
 			role: 'ca',
-			icon: 'History',
+			icon: 'history',
 		},
 		{
 			id: "events",
@@ -140,7 +140,7 @@ const Navdata = (props) => {
 			link: "/events",
 			parentId: "events",
 			role: 'normal',
-			icon: 'Festival'
+			icon: 'festival'
 		},
 		{
 			id: "prizes",
@@ -148,7 +148,7 @@ const Navdata = (props) => {
 			link: "/prizes",
 			parentId: "prizes",
 			role: 'normal',
-			icon: 'Redeem'
+			icon: 'redeem'
 		},
 		{
 			id: "coins",
