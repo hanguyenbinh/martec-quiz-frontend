@@ -16,6 +16,7 @@ const INIT_STATE = {
   statistics: [],
   submissions: [],
   allSubmissions: [],
+  yearItems: [],
   isLoading: false
 };
 
@@ -43,6 +44,7 @@ const Dashboard = (state = INIT_STATE, action) => {
         submissions: action.payload.data.submissions,
         allSubmissions: action.payload.data.allSubmissions,
         statistics: action.payload.data.statistics,
+        yearItems: action.payload.data.yearItems,
         isLoading: false,
         error: false
       }

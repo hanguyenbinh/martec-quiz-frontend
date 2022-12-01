@@ -32,7 +32,7 @@ const SubmissionHistory = (props) => {
 	}));
 	const submissionGroups = [
 		{
-			title: T('Company Info'),
+			title: T('Project Information'),
 			fields: [
 				{
 					name: 'companySize',
@@ -40,11 +40,11 @@ const SubmissionHistory = (props) => {
 				},
 				{
 					name: 'yearOfRecord',
-					label: T('Year of Record')
+					label: T('Recording period')
 				},
 				{
 					name: 'projectType',
-					label: T('Project Type')
+					label: T('Project type')
 				},
 				{
 					name: 'grossValueOfConstructionWork',
@@ -58,7 +58,7 @@ const SubmissionHistory = (props) => {
 			]
 		},
 		{
-			title: T('Energy/Water Consumption'),
+			title: T('Energy and Water Consumption'),
 			fields: [{
 				name: 'petrolUsage',
 				label: T('Petrol usage (Litres)')
@@ -82,7 +82,7 @@ const SubmissionHistory = (props) => {
 			]
 		},
 		{
-			title: T('Waste Production'),
+			title: T('Waste Management'),
 			fields: [{
 				name: 'totalWeightof_InertWasteDisposedPerAnnum',
 				label: T('Total weight of non-inert waste disposed (Tonne)')
@@ -116,10 +116,7 @@ const SubmissionHistory = (props) => {
 				name: 'noOfHoursOfTrainingManagementOrAboveStaff',
 				label: T('No. of hours of training - management or above staff')
 			},
-			{
-				name: 'noOfManagementOrAboveStaff',
-				label: T('No. of management or above staff')
-			},
+
 			{
 				name: 'noOfHoursOfTrainingSupervisorOrAboveStaff',
 				label: T('No. of hours of training - supervisor or above staff')
@@ -153,30 +150,35 @@ const SubmissionHistory = (props) => {
 		},
 		{
 			title: T('Employment'),
-			fields: [{
-				name: 'employeeSize',
-				label: T('Employment Size')
-			},
-			{
-				name: 'noOfSupervisorOrAboveStaff',
-				label: T('No. of supervisor or above staff')
-			},
-			{
-				name: 'noOfOperatorOrSupportLevelStaff',
-				label: T('No. of operator or support level staff')
-			},
-			{
-				name: 'noOfResignationsManagementOrAboveStaff',
-				label: T('No. of resignations - management or above staff')
-			},
-			{
-				name: 'noOfResignationsSupervisorOrAboveStaff',
-				label: T('No. of resignations - supervisor or above staff')
-			},
-			{
-				name: 'noOfResignationsOperatorOrSupportLevelStaff',
-				label: T('No. of resignations - operator or support level staff')
-			},
+			fields: [
+				{
+					name: 'noOfManagementOrAboveStaff',
+					label: T('No. of management or above staff')
+				},
+				{
+					name: 'employeeSize',
+					label: T('Employment size')
+				},
+				{
+					name: 'noOfSupervisorOrAboveStaff',
+					label: T('No. of supervisor or above staff')
+				},
+				{
+					name: 'noOfOperatorOrSupportLevelStaff',
+					label: T('No. of operator or support level staff')
+				},
+				{
+					name: 'noOfResignationsManagementOrAboveStaff',
+					label: T('No. of resignations - management or above staff')
+				},
+				{
+					name: 'noOfResignationsSupervisorOrAboveStaff',
+					label: T('No. of resignations - supervisor or above staff')
+				},
+				{
+					name: 'noOfResignationsOperatorOrSupportLevelStaff',
+					label: T('No. of resignations - operator or support level staff')
+				},
 			]
 		},
 		{
@@ -186,6 +188,7 @@ const SubmissionHistory = (props) => {
 					name: 'adoptedTools',
 					label: T('Adopted tools'),
 					type: 'select',
+					multiple: true,
 					options: [
 						{ value: 'Migrated to six sigma system', label: 'Migrated to six sigma system' },
 						{ value: 'Developed framework for risk-based quality management system', label: 'Developed framework for risk-based quality management system' },
@@ -201,7 +204,8 @@ const SubmissionHistory = (props) => {
 			fields: [
 				{
 					name: 'typeOfAnticorruptionCampaignsActivities',
-					label: T('Type of anticorruption campaigns / activities')
+					label: T('Type of anticorruption campaigns / activities'),
+					type: 'textarea'
 				},
 				{
 					name: 'noOfAnticorruptionCampaignsActivitiesProvided',
@@ -246,7 +250,8 @@ const SubmissionHistory = (props) => {
 				},
 				{
 					name: 'typeOfEnvironmentalAwardReceived',
-					label: T('Type of environmental award received')
+					label: T('Type of environmental award received'),
+					type: 'textarea'
 				},
 			]
 		},
@@ -257,6 +262,7 @@ const SubmissionHistory = (props) => {
 					name: 'apdoptedToolsHealthAndSafety',
 					label: T('Adopted tools'),
 					type: 'select',
+					multiple: true,
 					options: [
 						{ value: 'Migrated to ISO 45001', label: 'Migrated to ISO 45001' },
 						{ value: 'Developed framework for design for safety', label: 'Developed framework for design for safety' },
@@ -272,7 +278,8 @@ const SubmissionHistory = (props) => {
 				},
 				{
 					name: 'typeOfSafetyAndHealthAwardReceived',
-					label: T('Type of safety and health award received')
+					label: T('Type of safety and health award received'),
+					type: 'textarea'
 				},
 				{
 					name: 'noOfSafetyAndHealthAwardReceived',
@@ -343,10 +350,10 @@ const SubmissionHistory = (props) => {
 		<div className="page-content">
 			<Container fluid>
 				<BreadCrumb title={T("Submission(s) History")} />
-				<div className="d-flex justify-content-end mb-3"><Button onClick={() => {
+				{/* <div className="d-flex justify-content-end mb-3"><Button onClick={() => {
 					handleExport()
 				}
-				}>{T('Export...')}</Button></div>
+				}>{T('Export...')}</Button></div> */}
 				<Card>
 					<table className="table">
 						<thead>
@@ -363,7 +370,7 @@ const SubmissionHistory = (props) => {
 							{submissionForms && submissionForms.map((d, dIndex) => (
 								<tr key={dIndex}>
 									<th>{moment(d.createdAt).format('YYYY-MM-DD')}</th>
-									<td>{yearData[d.yearOfRecord]}</td>
+									<td>{d.yearOfRecord}</td>
 									<td>{d.email}</td>
 									<td>{d.hashValue}</td>
 									<td>

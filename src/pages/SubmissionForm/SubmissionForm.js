@@ -21,79 +21,80 @@ import ProjectType from "src/data/projectType"
 import YearType from "src/data/yearType"
 
 const submissionFormSchema = Yup.object().shape({
-	yearOfRecord: Yup.string().required('Required'),
-	projectType: Yup.string().required('Required'),
-	grossValueOfConstructionWork: Yup.string().required('Required'),
-	totalNoOfManDays: Yup.string().required('Required'),
-	totalManHoursWorked: Yup.string().required('Required'),
-	petrolUsage: Yup.string().required('Required'),
-	dieselUsage: Yup.string().required('Required'),
-	amountOfElectricityHKE: Yup.string().required('Required'),
+	adoptedTools: Yup.array().of(Yup.string()),
 	amountOfElectricityCLP: Yup.string().required('Required'),
+	amountOfElectricityHKE: Yup.string().required('Required'),
 	annualWaterConsumption: Yup.string().required('Required'),
-	totalWeightof_InertWasteDisposedPerAnnum: Yup.string().required('Required'),
-	totalWeightOf_Non_InertWasteDisposedPerAnnum: Yup.string().required('Required'),
-	noOfNonFatalReportableAccident: Yup.string().required('Required'),
-	noOfFatality: Yup.string().required('Required'),
-	lostDaysDueToInjuries: Yup.string().required('Required'),
-	noOfSafetyOrESGRelatedTechnologiesUsed: Yup.string().required('Required'),
-	typeOfSafetyOrESGRelatedTechnologiesUsed: Yup.string().nullable(),
-	typeOfSafetyOrESGRelatedTechnologiesUsedOther: Yup.string().nullable(),
-	noOfHoursOfTrainingManagementOrAboveStaff: Yup.string().required('Required'),
-	noOfManagementOrAboveStaff: Yup.string().required('Required'),
-	noOfHoursOfTrainingSupervisorOrAboveStaff: Yup.string().required('Required'),
-	noOfHoursOfTrainingOperatorOrSupportLevelStaff: Yup.string().required('Required'),
-	noOfStaffJoiningYMS: Yup.string().required('Required'),
-	noOfYoungStaff: Yup.string().required('Required'),
-	noOfManhoursInCommunityService: Yup.string().required('Required'),
+	apdoptedToolsHealthAndSafety: Yup.array().of(Yup.string()),
 	communityServiceDonationAmount: Yup.string().required('Required'),
+	dieselUsage: Yup.string().required('Required'),
 	employeeSize: Yup.string().required('Required'),
-	noOfSupervisorOrAboveStaff: Yup.string().required('Required'),
+	grossValueOfConstructionWork: Yup.string().required('Required'),
+	lostDaysDueToInjuries: Yup.string().required('Required'),
+	noExistingStaff: Yup.string().required('Required'),
+	noOfAnticorruptionCampaignsActivitiesProvided: Yup.string().required('Required'),
+	noOfConvictionsRelatedToHealthyAndSafety: Yup.string().required('Required'),
+	noOfConvictionsRelatedToTheEnvironment: Yup.string().required('Required'),
+	noOfEnvironmentalAwardReceived: Yup.string().required('Required'),
+	noOfEnvironmentalPersonnel: Yup.string().required('Required'),
+	noOfEnvironmentalProfessionals: Yup.string().required('Required'),
+	noOfFatality: Yup.string().required('Required'),
+	noOfHoursOfTrainingManagementOrAboveStaff: Yup.string().required('Required'),
+	noOfHoursOfTrainingOperatorOrSupportLevelStaff: Yup.string().required('Required'),
+	noOfHoursOfTrainingSupervisorOrAboveStaff: Yup.string().required('Required'),
+	noOfManagementOrAboveStaff: Yup.string().required('Required'),
+	noOfManhoursInCommunityService: Yup.string().required('Required'),
+	noOfNewStaff: Yup.string().required('Required'),
+	noOfNonFatalReportableAccident: Yup.string().required('Required'),
 	noOfOperatorOrSupportLevelStaff: Yup.string().required('Required'),
 	noOfResignationsManagementOrAboveStaff: Yup.string().required('Required'),
-	noOfResignationsSupervisorOrAboveStaff: Yup.string().required('Required'),
 	noOfResignationsOperatorOrSupportLevelStaff: Yup.string().required('Required'),
-	adoptedTools: Yup.string().required('Required'),
-	typeOfAnticorruptionCampaignsActivities: Yup.string().required('Required'),
-	noOfAnticorruptionCampaignsActivitiesProvided: Yup.string().required('Required'),
-	trainingHoursNewStaff: Yup.string().required('Required'),
-	noOfNewStaff: Yup.string().required('Required'),
-	trainingHoursExistingStaff: Yup.string().required('Required'),
-	noExistingStaff: Yup.string().required('Required'),
-	noOfConvictionsRelatedToTheEnvironment: Yup.string().required('Required'),
-	noOfEnvironmentalProfessionals: Yup.string().required('Required'),
-	noOfEnvironmentalPersonnel: Yup.string().required('Required'),
-	noOfEnvironmentalAwardReceived: Yup.string().required('Required'),
-	typeOfEnvironmentalAwardReceived: Yup.string().required('Required'),
-	apdoptedToolsHealthAndSafety: Yup.string().required('Required'),
-	noOfConvictionsRelatedToHealthyAndSafety: Yup.string().required('Required'),
-	suspensionNoticesDueToSafetyIssues: Yup.string().required('Required'),
-	typeOfSafetyAndHealthAwardReceived: Yup.string().required('Required'),
+	noOfResignationsSupervisorOrAboveStaff: Yup.string().required('Required'),
 	noOfSafetyAndHealthAwardReceived: Yup.string().required('Required'),
+	noOfSafetyOrESGRelatedTechnologiesUsed: Yup.string().required('Required'),
+	noOfStaffJoiningYMS: Yup.string().required('Required'),
+	noOfSupervisorOrAboveStaff: Yup.string().required('Required'),
+	noOfYoungStaff: Yup.string().required('Required'),
+	petrolUsage: Yup.string().required('Required'),
+	projectType: Yup.string().required('Required'),
 	safetyTrainingHoursManagementOrAboveStaff: Yup.string().required('Required'),
-	safetyTrainingHoursSupervisorOrAboveStaff: Yup.string().required('Required'),
 	safetyTrainingHoursOperatorOrSupportLevelStaff: Yup.string().required('Required'),
+	safetyTrainingHoursSupervisorOrAboveStaff: Yup.string().required('Required'),
+	suspensionNoticesDueToSafetyIssues: Yup.string().required('Required'),
+	totalManHoursWorked: Yup.string().required('Required'),
+	totalNoOfManDays: Yup.string().required('Required'),
+	totalWeightof_InertWasteDisposedPerAnnum: Yup.string().required('Required'),
+	totalWeightOf_Non_InertWasteDisposedPerAnnum: Yup.string().required('Required'),
+	trainingHoursExistingStaff: Yup.string().required('Required'),
+	trainingHoursNewStaff: Yup.string().required('Required'),
+	typeOfAnticorruptionCampaignsActivities: Yup.string().required('Required'),
+	typeOfEnvironmentalAwardReceived: Yup.string().required('Required'),
+	typeOfSafetyAndHealthAwardReceived: Yup.string().required('Required'),
+	typeOfSafetyOrESGRelatedTechnologiesUsed: Yup.array().of(Yup.string()),
+	typeOfSafetyOrESGRelatedTechnologiesUsedOther: Yup.string().nullable(),
+	yearOfRecord: Yup.string().required('Required'),
+
 });
 
 const SubmissionForm = (props) => {
 	const T = props.t ? props.t : (value) => value;
 	const submissionGroups = [
 		{
-			title: T('Company Info'),
+			title: T('Project Information'),
 			fields: [
 				{
 					name: 'employeeSize',
-					label: T('Employment Size')
+					label: T('Employment size')
 				},
 				{
 					name: 'yearOfRecord',
-					label: T('Year of Record'),
+					label: T('Recording period'),
 					type: 'select',
 					options: YearType
 				},
 				{
 					name: 'projectType',
-					label: T('Project Type'),
+					label: T('Project type'),
 					type: 'select',
 					options: ProjectType
 				},
@@ -114,7 +115,7 @@ const SubmissionForm = (props) => {
 			]
 		},
 		{
-			title: T('Energy/Water Consumption'),
+			title: T('Energy and Water Consumption'),
 			fields: [{
 				name: 'petrolUsage',
 				label: T('Petrol usage (Litres)')
@@ -138,7 +139,7 @@ const SubmissionForm = (props) => {
 			]
 		},
 		{
-			title: T('Waste Production'),
+			title: T('Waste Management'),
 			fields: [{
 				name: 'totalWeightof_InertWasteDisposedPerAnnum',
 				label: T('Total weight of inert waste disposed (Tonne)')
@@ -157,7 +158,8 @@ const SubmissionForm = (props) => {
 					name: 'noOfNonFatalReportableAccident',
 					label: T('No. of non-fatal reportable accident'),
 					tooltip: T(`"Reportable Accident" is defined as an accident resulting in an injury leave with man-day lost more than 3 days
-					"No. of Non-fatal Reportable Accident" should include all work accident cases of your direct workers and sub-contractor workers reported to the Labour Department under the EC Ordinance.`)
+					"No. of Non-fatal Reportable Accident" should include all work accident cases of your direct workers and sub-contractor workers reported to the Labour Department under the EC Ordinance.
+					For member working in joint venture project, the "Fatal Accident", "Non-fatal Reportable Accident" and "Average no. of Workers" are equally split between JV partners.`)
 				},
 				{
 					name: 'noOfFatality',
@@ -175,11 +177,13 @@ const SubmissionForm = (props) => {
 					name: 'typeOfSafetyOrESGRelatedTechnologiesUsed',
 					label: T('Type of Safety or ESG related technologies used'),
 					type: 'select',
+					multiple: true,
 					options: TypeOfSafetyOrESGRelatedTechnologiesUsed
 				},
 				{
 					name: 'typeOfSafetyOrESGRelatedTechnologiesUsedOther',
-					label: T('No. of Safety or ESG related technologies used (other)')
+					label: T('Type of Safety or ESG related technologies used (other)'),
+					type: 'textarea'
 				},
 			]
 		},
@@ -190,10 +194,7 @@ const SubmissionForm = (props) => {
 					name: 'noOfHoursOfTrainingManagementOrAboveStaff',
 					label: T('No. of hours of training - management or above staff')
 				},
-				{
-					name: 'noOfManagementOrAboveStaff',
-					label: T('No. of management or above staff')
-				},
+
 				{
 					name: 'noOfHoursOfTrainingSupervisorOrAboveStaff',
 					label: T('No. of hours of training - supervisor or above staff')
@@ -229,6 +230,10 @@ const SubmissionForm = (props) => {
 		{
 			title: T('Employment'),
 			fields: [
+				{
+					name: 'noOfManagementOrAboveStaff',
+					label: T('No. of management or above staff')
+				},
 
 				{
 					name: 'noOfSupervisorOrAboveStaff',
@@ -260,6 +265,7 @@ const SubmissionForm = (props) => {
 					name: 'adoptedTools',
 					label: T('Adopted tools'),
 					type: 'select',
+					multiple: true,
 					options: AdoptedToolsType
 				}
 			]
@@ -268,7 +274,8 @@ const SubmissionForm = (props) => {
 			title: T('In-house Codes and Guidelines Governing - Anticorruption'),
 			fields: [{
 				name: 'typeOfAnticorruptionCampaignsActivities',
-				label: T('Type of anticorruption campaigns / activities')
+				label: T('Type of anticorruption campaigns / activities'),
+				type: 'textarea'
 			},
 			{
 				name: 'noOfAnticorruptionCampaignsActivitiesProvided',
@@ -313,7 +320,8 @@ const SubmissionForm = (props) => {
 				},
 				{
 					name: 'typeOfEnvironmentalAwardReceived',
-					label: T('Type of environmental award received')
+					label: T('Type of environmental award received'),
+					type: 'textarea'
 				},
 			]
 		},
@@ -324,6 +332,7 @@ const SubmissionForm = (props) => {
 					name: 'apdoptedToolsHealthAndSafety',
 					label: T('Adopted tools'),
 					type: 'select',
+					multiple: true,
 					options: AdoptedToolsHealthAndSafetyType
 				},
 				{
@@ -336,7 +345,8 @@ const SubmissionForm = (props) => {
 				},
 				{
 					name: 'typeOfSafetyAndHealthAwardReceived',
-					label: T('Type of safety and health award received')
+					label: T('Type of safety and health award received'),
+					type: 'textarea'
 				},
 				{
 					name: 'noOfSafetyAndHealthAwardReceived',
@@ -438,58 +448,58 @@ const UploadESGData = (props) => {
 
 	const initialValues = React.useMemo(() => {
 		return {
-			yearOfRecord: YearType[0].value,
-			projectType: ProjectType[0].value,
-			grossValueOfConstructionWork: '',
-			totalNoOfManDays: '',
-			totalManHoursWorked: '',
-			petrolUsage: '',
-			dieselUsage: '',
-			amountOfElectricityHKE: '',
+			adoptedTools: [AdoptedToolsType[0].value],
 			amountOfElectricityCLP: '',
+			amountOfElectricityHKE: '',
 			annualWaterConsumption: '',
-			totalWeightof_InertWasteDisposedPerAnnum: '',
-			totalWeightOf_Non_InertWasteDisposedPerAnnum: '',
-			noOfNonFatalReportableAccident: '',
-			noOfFatality: '',
-			lostDaysDueToInjuries: '',
-			noOfSafetyOrESGRelatedTechnologiesUsed: '',
-			typeOfSafetyOrESGRelatedTechnologiesUsed: TypeOfSafetyOrESGRelatedTechnologiesUsed[0].value,
-			noOfHoursOfTrainingManagementOrAboveStaff: '',
-			typeOfSafetyOrESGRelatedTechnologiesUsedOther: '',
-			noOfManagementOrAboveStaff: '',
-			noOfHoursOfTrainingSupervisorOrAboveStaff: '',
-			noOfHoursOfTrainingOperatorOrSupportLevelStaff: '',
-			noOfStaffJoiningYMS: '',
-			noOfYoungStaff: '',
-			noOfManhoursInCommunityService: '',
+			apdoptedToolsHealthAndSafety: [AdoptedToolsHealthAndSafetyType[0].value],
 			communityServiceDonationAmount: '',
+			dieselUsage: '',
 			employeeSize: '',
-			noOfSupervisorOrAboveStaff: '',
+			grossValueOfConstructionWork: '',
+			lostDaysDueToInjuries: '',
+			noExistingStaff: '',
+			noOfAnticorruptionCampaignsActivitiesProvided: '',
+			noOfConvictionsRelatedToHealthyAndSafety: '',
+			noOfConvictionsRelatedToTheEnvironment: '',
+			noOfEnvironmentalAwardReceived: '',
+			noOfEnvironmentalPersonnel: '',
+			noOfEnvironmentalProfessionals: '',
+			noOfFatality: '',
+			noOfHoursOfTrainingManagementOrAboveStaff: '',
+			noOfHoursOfTrainingOperatorOrSupportLevelStaff: '',
+			noOfHoursOfTrainingSupervisorOrAboveStaff: '',
+			noOfManagementOrAboveStaff: '',
+			noOfManhoursInCommunityService: '',
+			noOfNewStaff: '',
+			noOfNonFatalReportableAccident: '',
 			noOfOperatorOrSupportLevelStaff: '',
 			noOfResignationsManagementOrAboveStaff: '',
-			noOfResignationsSupervisorOrAboveStaff: '',
 			noOfResignationsOperatorOrSupportLevelStaff: '',
-			adoptedTools: AdoptedToolsType[0].value,
-			typeOfAnticorruptionCampaignsActivities: '',
-			noOfAnticorruptionCampaignsActivitiesProvided: '',
-			trainingHoursNewStaff: '',
-			noOfNewStaff: '',
-			trainingHoursExistingStaff: '',
-			noExistingStaff: '',
-			noOfConvictionsRelatedToTheEnvironment: '',
-			noOfEnvironmentalProfessionals: '',
-			noOfEnvironmentalPersonnel: '',
-			noOfEnvironmentalAwardReceived: '',
-			typeOfEnvironmentalAwardReceived: '',
-			apdoptedToolsHealthAndSafety: AdoptedToolsHealthAndSafetyType[0].value,
-			noOfConvictionsRelatedToHealthyAndSafety: '',
-			suspensionNoticesDueToSafetyIssues: '',
-			typeOfSafetyAndHealthAwardReceived: '',
+			noOfResignationsSupervisorOrAboveStaff: '',
 			noOfSafetyAndHealthAwardReceived: '',
+			noOfSafetyOrESGRelatedTechnologiesUsed: '',
+			noOfStaffJoiningYMS: '',
+			noOfSupervisorOrAboveStaff: '',
+			noOfYoungStaff: '',
+			petrolUsage: '',
+			projectType: ProjectType[0].value,
 			safetyTrainingHoursManagementOrAboveStaff: '',
-			safetyTrainingHoursSupervisorOrAboveStaff: '',
 			safetyTrainingHoursOperatorOrSupportLevelStaff: '',
+			safetyTrainingHoursSupervisorOrAboveStaff: '',
+			suspensionNoticesDueToSafetyIssues: '',
+			totalManHoursWorked: '',
+			totalNoOfManDays: '',
+			totalWeightof_InertWasteDisposedPerAnnum: '',
+			totalWeightOf_Non_InertWasteDisposedPerAnnum: '',
+			trainingHoursExistingStaff: '',
+			trainingHoursNewStaff: '',
+			typeOfAnticorruptionCampaignsActivities: '',
+			typeOfEnvironmentalAwardReceived: '',
+			typeOfSafetyAndHealthAwardReceived: '',
+			typeOfSafetyOrESGRelatedTechnologiesUsed: [TypeOfSafetyOrESGRelatedTechnologiesUsed[0].value],
+			typeOfSafetyOrESGRelatedTechnologiesUsedOther: '',
+			yearOfRecord: YearType[0].value,
 		}
 
 	}, [])

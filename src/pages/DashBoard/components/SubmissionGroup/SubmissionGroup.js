@@ -30,6 +30,7 @@ const SubmissionGroup = (props) => {
 												label={_field.label}
 												name={_field.name}
 												tooltip={_field.tooltip}
+												multiple={_field.multiple}
 												{...field} />
 										)
 									}}
