@@ -89,7 +89,9 @@ const DashBoard = (props) => {
 		const organisationType = getOrganisationType();
 		if (organisationType !== 'company') props.history.push('/ca-dashboard')
 		const email = localStorage.getItem("email");
-		if (selectedItem && email) dispatch(getLatestData(email, camelize(selectedItem)));
+		const indicatorName = camelize(selectedItem);
+		console.log('indicatorName', indicatorName)
+		if (selectedItem && email) dispatch(getLatestData(email, indicatorName));
 	}, [selectedItem])
 	const keyMembers = [
 		'Kum Shing',

@@ -72,13 +72,21 @@ const Login = (state = initialState, action) => {
 			state = { ...state, isUserLogout: true }
 			break
 		case API_ERROR: {
-			let _error = action.payload.message;
-			if (action.payload.data?.errmsg) {
-				_error += `: ${action.payload.data.errmsg}`;
+			let error = '';
+			switch (action.payload.message) {
+				case 'CAN_NOT_LOGIN':
+					error = 'You have entered a wrong verification code';
+					break;
+				default:
+					error = action.payload.message;
+					if (action.payload.data?.errmsg) {
+						error += `: ${action.payload.data.errmsg}`;
+					}
 			}
+
 			state = {
 				...state,
-				error: _error,
+				error,
 				loading: false,
 				isUserLogout: false
 			}

@@ -63,6 +63,9 @@ const AppFormInput = React.forwardRef((props, ref) => {
 			>
 				{type === "select" ? options.map((option, index) => (<option key={`${name}${index}`} value={option.value}>{option.label}</option>)) : undefined}
 			</Input>
+			{!!multiple && (
+				<FormText>"Ctrl + click" to select multiple</FormText>
+			)}
 			{!!helperText && (
 				<FormText
 					color="inherit"
