@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'; import Scrollspy from "react-scrollspy"
 
 //import Images
 import logodark from "../../assets/images/HKCA_Logo.png";
-import logolight from "../../assets/images/ESG-Logo.png";
+import logolight from "src/assets/images/ESG_BUILD_FUN_logo_B2.png"
 
 const Navbar = () => {
     const [isOpenMenu, setisOpenMenu] = useState(false);
@@ -32,7 +32,7 @@ const Navbar = () => {
                     <Link className="navbar-brand" to="/home">
                         <img src={logodark} className="card-logo" alt="logo" height="80" />
                     </Link>
-                    {/* <img src={logolight} className="card-logo" alt="logo" height="80" /> */}
+                    <img src={logolight} className="card-logo" alt="logo" height="150" />
 
                     {/* <NavbarToggler className="navbar-toggler py-0 fs-20 text-body" onClick={toggle} type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"

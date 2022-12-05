@@ -38,7 +38,6 @@ const SubmissionGroups = (T) => [
         label: T('Total man-hours worked'),
         tooltip: 'Average no. of workers x working hours x no. of man-days'
       },
-
     ]
   },
   {
@@ -84,9 +83,10 @@ const SubmissionGroups = (T) => [
       {
         name: 'noOfNonFatalReportableAccident',
         label: T('No. of non-fatal reportable accident'),
-        tooltip: T(`"Reportable Accident" is defined as an accident resulting in an injury leave with man-day lost more than 3 days
-        "No. of Non-fatal Reportable Accident" should include all work accident cases of your direct workers and sub-contractor workers reported to the Labour Department under the EC Ordinance.
-        For member working in joint venture project, the "Fatal Accident", "Non-fatal Reportable Accident" and "Average no. of Workers" are equally split between JV partners.`)
+        tooltip: (<><p>{T(`"Reportable Accident" is defined as an accident resulting in an injury leave with man-day lost more than 3 days`)}</p>
+          <p>{T('"No. of Non-fatal Reportable Accident" should include all work accident cases of your direct workers and sub-contractor workers reported to the Labour Department under the EC Ordinance.')}</p>
+          <p>{T('For member working in joint venture project, the "Fatal Accident", "Non-fatal Reportable Accident" and "Average no. of Workers" are equally split between JV partners.')}</p></>
+        )
       },
       {
         name: 'noOfFatality',
@@ -134,7 +134,7 @@ const SubmissionGroups = (T) => [
       {
         name: 'noOfStaffJoiningYMS',
         label: T('No. of staff joining YMS'),
-        tooltip: T('HKCA Young Members Society (YMS) or HKCA Young Members Society Professionals Connection - Graduated Member (YMS Pro)')
+        tooltip: (<p>{T('HKCA Young Members Society (YMS) or HKCA Young Members Society Professionals Connection - Graduated Member (YMS Pro)')}</p>)
       },
       {
         name: 'noOfYoungStaff',

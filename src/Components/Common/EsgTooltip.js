@@ -18,11 +18,11 @@ const EsgTooltip = (props) => {
 
 	return (
 		<span className="ms-2">
-			<a className={classes.tooltipLink} href="#" id={id}>?</a>
-			<Tooltip placement="right" isOpen={tooltipOpen} target={id} toggle={toggle}>
+			<a className={classes.tooltipLink} id={id}>?</a>
+			<Tooltip innerClassName={classes.tooltipInner} placement="right" isOpen={tooltipOpen} target={id} toggle={toggle}>
 				<div className='text-start'>{tooltipText}</div>
 			</Tooltip>
-		</span>
+		</span >
 	)
 }
 
