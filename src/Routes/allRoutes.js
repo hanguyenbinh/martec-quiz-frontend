@@ -44,14 +44,14 @@ const authProtectedRoutes = [
 	{
 		path: "/",
 		exact: true,
-		component: () => <Redirect to="/dashboard" />,
+		component: () => <Redirect to="/home" />,
 	},
 ]
 
 const publicRoutes = [
 	// {
 	// 	path: "/",
-	// 	exact: true,
+	// 	// exact: true,
 	// 	component: () => <Redirect to="/home" />
 	// },
 	{ path: '/home', component: LandingPage },

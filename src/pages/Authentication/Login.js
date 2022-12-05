@@ -94,7 +94,7 @@ const Login = (props) => {
 										<div className="text-center mt-2">
 											<h5 className="text-primary">{T('Login Page')}</h5>
 										</div>
-										{error && error ? (<Alert color="danger"> {error} </Alert>) : null}
+										{error && error ? (<Alert color="danger"> {T(error)} </Alert>) : null}
 										<div className="p-2 mt-4">
 											<Form
 												onSubmit={(e) => {
@@ -105,11 +105,11 @@ const Login = (props) => {
 												action="#">
 
 												<div className="mb-3">
-													<Label htmlFor="otpCode" className="form-label">{T('Otp code')}</Label>
+													<Label htmlFor="otpCode" className="form-label">{T('Enter verification code')}</Label>
 													<Input
 														name="otpCode"
 														className="form-control"
-														placeholder="Enter Otp Code"
+														placeholder="Enter verification code"
 														onChange={validation.handleChange}
 														onBlur={validation.handleBlur}
 														value={validation.values.otpCode || ""}

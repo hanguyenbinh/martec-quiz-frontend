@@ -139,7 +139,7 @@ const ParticlesAuth = ({ children }) => {
                 {/* pass the children */}
                 {children}
 
-                <footer className="footer">
+                <footer>
                     <Container>
                         <Row className='mb-5 mt-1'>
                             <h5>Contact Us</h5>
@@ -150,11 +150,14 @@ const ParticlesAuth = ({ children }) => {
                                     <li>admin@hkca.com.hk</li>
                                     <li>3/F, 180-182 Hennessy Road, Wanchai, Hong Kong</li>
                                 </ul>
+                                <ul className="list-unstyled ff-secondary footer-list">
+                                    {new Date().getFullYear()} © The Hong Kong Construction Association, Limited. All Rights Reserved.
+                                </ul>
                             </div>
                         </Row>
 
                         <div className="copyright">
-                            {new Date().getFullYear()} © The Hong Kong Construction Association, Limited. All Rights Reserved.
+
                         </div>
                     </Container>
                 </footer>

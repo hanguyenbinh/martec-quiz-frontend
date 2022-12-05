@@ -3,9 +3,10 @@ import cx from "classnames"
 import lodash from "lodash"
 import PropTypes from "prop-types"
 
-import { FormGroup, FormText, Input, Label } from "reactstrap"
+import { FormGroup, FormText, Input, Label, Tooltip } from "reactstrap"
 
 import classes from "./AppFormInput.module.scss"
+import EsgTooltip from "../EsgTooltip"
 
 const AppFormInput = React.forwardRef((props, ref) => {
 	const {
@@ -23,6 +24,7 @@ const AppFormInput = React.forwardRef((props, ref) => {
 		error,
 		helperText,
 		value,
+		tooltip,
 		...rest
 	} = props
 	const htmlId = inputProps?.id || lodash.uniqueId(`app${`-${name}`}-input`)
@@ -42,7 +44,8 @@ const AppFormInput = React.forwardRef((props, ref) => {
 					!!innerClasses?.label && innerClasses.label
 				)}
 			>
-				{label}
+				<div className="align-items-center">{label} {tooltip ? <EsgTooltip tooltipText={tooltip} name={name}></EsgTooltip> : null}</div>
+
 			</Label>
 			<Input
 				{...inputProps}
@@ -60,6 +63,9 @@ const AppFormInput = React.forwardRef((props, ref) => {
 			>
 				{type === "select" ? options.map((option, index) => (<option key={`${name}${index}`} value={option.value}>{option.label}</option>)) : undefined}
 			</Input>
+			{!!multiple && (
+				<FormText>"Ctrl + click" to select multiple</FormText>
+			)}
 			{!!helperText && (
 				<FormText
 					color="inherit"

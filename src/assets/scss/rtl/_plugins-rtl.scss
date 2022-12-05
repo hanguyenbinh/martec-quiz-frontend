@@ -7,13 +7,14 @@ html {
 }
 
 
-.fc-toolbar-chunk{
+.fc-toolbar-chunk {
     .btn-group {
         >.btn:not(:last-child):not(.dropdown-toggle) {
             border-radius: 0px;
             border-top-left-radius: $btn-border-radius;
             border-bottom-left-radius: $btn-border-radius;
         }
+
         > :not(.btn-check)+.btn {
             border-radius: 0px;
             border-top-right-radius: $btn-border-radius;
@@ -167,7 +168,7 @@ html {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    -webkit-user-select: none
+    -webkit-user-select: none;
 }
 
 [data-simplebar].simplebar-dragging .simplebar-track {

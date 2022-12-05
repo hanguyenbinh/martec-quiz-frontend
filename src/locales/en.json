@@ -192,8 +192,9 @@
     "Welcome Back!": "Welcome Back!",
     "Submission(s) History": "Submission(s) History",
     "Submission Date": "Submission Date",
-    "Financial Year": "Financial Year",
+    "Recording Period": "Recording Period",
     "Submitted By": "Submitted By",
     "Hash Value": "Hash Value",
-    "THE_EMAIL_IS_NOT_REGISTERED": "Your email has not been invited to this platform, please contact your administrator"
+    "THE_EMAIL_IS_NOT_REGISTERED": "Your email has not been invited to this platform, please contact your administrator",
+    "DO_NOT_HAVE_PERMISSION_TO_LOGIN_THIS_ORGANISATION": "You have selected a company that not match your email address, please select the correct one"
 }

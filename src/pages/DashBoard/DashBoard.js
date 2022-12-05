@@ -54,10 +54,9 @@ const DashBoard = (props) => {
 	const [statisticCards, setStatisticCards] = useState([])
 
 	useEffect(() => {
-		console.log(years, indicators, averages)
 		setChartData(preState => {
 			return {
-				labels: years.map(item => item.value),
+				labels: years,
 				datasets: [
 					{
 						type: "line",
@@ -78,8 +77,7 @@ const DashBoard = (props) => {
 				]
 			}
 		});
-		console.log('statistics', statistics)
-		if (statistics && statistics.length > 0) setStatisticCards(statistics.reverse())
+		if (statistics && statistics.length > 0) setStatisticCards(statistics.reverse().filter(item => item.year != ''))
 	}, [indicators, averages, years, statistics])
 
 
@@ -91,8 +89,9 @@ const DashBoard = (props) => {
 		const organisationType = getOrganisationType();
 		if (organisationType !== 'company') props.history.push('/ca-dashboard')
 		const email = localStorage.getItem("email");
-		if (selectedItem && email) dispatch(getLatestData(email, camelize(selectedItem)));
-		console.log('selectedItem', selectedItem)
+		const indicatorName = camelize(selectedItem);
+		console.log('indicatorName', indicatorName)
+		if (selectedItem && email) dispatch(getLatestData(email, indicatorName));
 	}, [selectedItem])
 	const keyMembers = [
 		'Kum Shing',

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'; import Scrollspy from "react-scrollspy"
 
 //import Images
 import logodark from "../../assets/images/HKCA_Logo.png";
-import logolight from "../../assets/images/ESG-Logo.png";
+import logolight from "src/assets/images/ESG_BUILD_FUN_logo_B2.png"
 
 const Navbar = () => {
     const [isOpenMenu, setisOpenMenu] = useState(false);
@@ -32,13 +32,16 @@ const Navbar = () => {
                     <Link className="navbar-brand" to="/home">
                         <img src={logodark} className="card-logo" alt="logo" height="80" />
                     </Link>
-                    <img src={logolight} className="card-logo" alt="logo" height="80" />
+                    <img src={logolight} className="card-logo" alt="logo" height="150" />
 
-                    <NavbarToggler className="navbar-toggler py-0 fs-20 text-body" onClick={toggle} type="button" data-bs-toggle="collapse"
+                    {/* <NavbarToggler className="navbar-toggler py-0 fs-20 text-body" onClick={toggle} type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                         <i className="mdi mdi-menu"></i>
-                    </NavbarToggler>
+                    </NavbarToggler> */}
+                    <div className="member-login-button me-0">
+                        <Link to="/login" className="btn btn-success">Member Login </Link>
+                    </div>
 
                     <Collapse
                         className="navbar-collapse"
@@ -74,9 +77,7 @@ const Navbar = () => {
                             </li>
                         </Scrollspy> */}
 
-                        <div className="member-login-button">
-                            <Link to="/login" className="btn btn-success">Member Login </Link>
-                        </div>
+
                     </Collapse>
                 </Container>
             </nav>

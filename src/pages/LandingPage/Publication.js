@@ -135,7 +135,7 @@ const Publication = () => {
                 <Container>
                     <Row className="justify-content-center">
                         <div className="text-center mb-1">
-                            <h2 className="mb-1 fw-semibold lh-base">Publications</h2>
+                            <h2 className="mb-1 fw-semibold lh-base">Information Hub</h2>
                         </div>
                     </Row>
                     <div className={classes.publicationItems}>

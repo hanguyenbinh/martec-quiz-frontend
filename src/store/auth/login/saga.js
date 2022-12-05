@@ -89,7 +89,6 @@ function* loginChallenge({ payload: { orgId, email, challengeId, otp, history } 
       localStorage.setItem('orglogo', response.data.org?.org_logo)
       localStorage.setItem('orgName', response.data.org?.org_name)
       localStorage.setItem('organisationType', response.data.org?.org_type)
-      console.log('loginChallenge success', response.data.org);
       yield put(loginSuccess(response));
       if (response.data.org.org_type === 'company') history.push("/dashboard");
       if (response.data.org.org_type === 'association') history.push("/ca-dashboard");

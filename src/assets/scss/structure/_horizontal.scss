@@ -267,21 +267,21 @@
 }
 
 // rtl
-[dir="rtl"]{
+[dir="rtl"] {
     &[data-layout=horizontal] {
         .navbar-menu {
-            .navbar-nav>.nav-item>.nav-link[data-bs-toggle=collapse]{
-                &:after{
+            .navbar-nav>.nav-item>.nav-link[data-bs-toggle=collapse] {
+                &:after {
                     transform: rotate(-90deg) !important;
                 }
             }
         }
 
-        .navbar-nav{
+        .navbar-nav {
             .nav-item {
-                .nav-link[data-bs-toggle=collapse]{
-                    &:after{
-                        transform: rotate(-180deg)!important;
+                .nav-link[data-bs-toggle=collapse] {
+                    &:after {
+                        transform: rotate(-180deg) !important;
                     }
                 }
             }

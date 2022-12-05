@@ -31,6 +31,7 @@ import {
 	Row,
 } from "reactstrap"
 import indicatorIcon from 'src/assets/images/dashboard/indicator-icon.png';
+import IndicatorType from "src/data/indicatorType"
 
 ChartJS.register(
 	LinearScale,
@@ -50,7 +51,6 @@ const AppChart = (props) => {
 	const { title, options, statisticsCards, data, selectedItem, setSelectedItem } =
 		props
 
-	console.log('AppChart', data);
 	const [dropdownOpen, setDropdownOpen] = useState(false);
 	const toggle = () => setDropdownOpen((prevState) => !prevState);
 
@@ -62,6 +62,10 @@ const AppChart = (props) => {
 
 	const [difference, setDifference] = useState(NaN);
 
+	const [showBestIcon, setShowBestIcon] = useState(false)
+
+	const [compareResult, setCompareResult] = useState('')
+
 	useEffect(() => {
 		const statistic = statisticsCards[0];
 		setSelectedYear(statistic);
@@ -70,12 +74,27 @@ const AppChart = (props) => {
 
 	useEffect(() => {
 		if (selectedYear && selectedYear.averageValue && selectedYear.value) {
-			const _diff = selectedYear.averageValue - selectedYear.value;
-			console.log(_diff)
-			setDifference(_diff);
+			let compareType = 1;
+			IndicatorType.forEach(item => {
+				if (item.label === selectedItem) {
+					compareType = item.compareType;
+				}
+			})
+			const diff = selectedYear.averageValue - selectedYear.value
+			if (diff * (compareType ? compareType : 1) > 0) {
+				setShowBestIcon(true)
+			}
+			else {
+				setShowBestIcon(false)
+			}
+			setDifference(diff);
+
+			setCompareResult(diff === 0 ? 'the same' : difference.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + (diff < 0 ? ' below' : ' higher'))
 		}
 		else {
+			setShowBestIcon(false);
 			setDifference(NaN);
+			setCompareResult('');
 		}
 	}, [selectedYear])
 
@@ -89,7 +108,6 @@ const AppChart = (props) => {
 	}
 
 	const isBoolean = (value) => {
-		//console.log(typeof value)
 		return (typeof value) == 'boolean';
 	}
 
@@ -151,16 +169,15 @@ const AppChart = (props) => {
 											<span>Your value:&nbsp;</span>
 											<span>{!isNull(selectedYear.value) ? isBoolean(selectedYear.value) ? selectedYear.value.toString() : selectedYear.value.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : ''}
 											</span>
-											{/* {selectedYear.value > 4 ? (<span><img src={indicatorIcon}
-												className="me-3 rounded-circle avatar-xs" alt="user-pic" /></span>) : null} */}
+											{showBestIcon ? (<span><img src={indicatorIcon}
+												className="ms-3 rounded-circle avatar-xs" alt="user-pic" /></span>) : null}
 										</p>
 										<p><span>Average value:&nbsp;</span><span>{!isNull(selectedYear.averageValue) ? selectedYear.averageValue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : 'N/A'}</span></p>
 										<p><span>Basis:&nbsp;</span><span>{!isNull(selectedYear.projectType) ? selectedYear.projectType : ''}</span></p>
 
 										{isNaN(difference) ? null : (
 											<span>
-												{difference > 0 ? <p>You are {difference.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} below the average</p>
-													: <p>You are {difference.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} higher the average</p>}
+												<p>You are {compareResult} the average</p>
 											</span>
 										)}
 
