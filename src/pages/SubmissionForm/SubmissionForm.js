@@ -229,6 +229,7 @@ const UploadESGData = (props) => {
 			yearOfRecord: YearType[0].value,
 			...initValue
 		}
+		console.log('initial value', result)
 		return result;
 
 	}, [initValue])
