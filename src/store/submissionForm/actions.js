@@ -1,4 +1,4 @@
-import { GET_SUBMISSION_FORM, GET_SUBMISSION_FORM_SUCCESS, SUBMIT_FORM_DATA, SUBMIT_FORM_DATA_ERROR, SUBMIT_FORM_DATA_SUCCESS } from "./actionTypes";
+import { GET_DEFAULT_SUBMISSION, GET_DEFAULT_SUBMISSION_SUCCESS, GET_SUBMISSION_FORM, GET_SUBMISSION_FORM_SUCCESS, SUBMIT_FORM_DATA, SUBMIT_FORM_DATA_ERROR, SUBMIT_FORM_DATA_SUCCESS } from "./actionTypes";
 
 export const postSubmissionForm = (data, history) => {
   ////console.logdisabled('action postSubmissionForm')
@@ -23,7 +23,7 @@ export const postSubmissionFormSuccess = response => {
   };
 };
 
-export const getSumissionForms = (email) => {
+export const getSubmissionForms = (email) => {
   return {
     type: GET_SUBMISSION_FORM,
     payload: { email }
@@ -37,3 +37,17 @@ export const getSubmissionFormsSuccess = response => {
   }
 }
 
+
+export const getDefaultSubmissions = (emil) => {
+  return {
+    type: GET_DEFAULT_SUBMISSION,
+    payload: {}
+  }
+}
+
+export const getDefaultSubmissionsSuccess = response => {
+  return {
+    type: GET_DEFAULT_SUBMISSION_SUCCESS,
+    payload: response
+  }
+}

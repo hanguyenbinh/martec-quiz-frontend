@@ -1,4 +1,4 @@
-import { getSumissionForms } from "../../store/actions"
+import { getSubmissionForms } from "../../store/actions"
 import React from "react"
 import { useEffect } from "react"
 import { withTranslation } from "react-i18next"
@@ -26,12 +26,11 @@ const SubmissionHistory = (props) => {
 
 	useEffect(() => {
 		const email = localStorage.getItem("email");
-		dispatch(getSumissionForms(email, props.history))
+		dispatch(getSubmissionForms(email, props.history))
 	}, [])
 	const { submissionForms } = useSelector(state => ({
 		submissionForms: state.SubmissionForm.submissionForms,
 	}));
-
 	const handleViewSubmission = async (i) => {
 		const data = submissionForms[i];
 		console.log('handleViewSubmission', data)
@@ -53,7 +52,7 @@ const SubmissionHistory = (props) => {
 											<Col>
 												<div className="view-submission-label">{field.label}</div>
 											</Col>
-											<Col className="view-submission-value">
+											<Col className={"view-submission-value " + (data[field.name] && data[field.name].length > 20 ? 'text-left' : '')}>
 												{data[field.name] === true ? 'Yes' : data[field.name] === false ? 'No' : data[field.name]}
 											</Col>
 										</Row>

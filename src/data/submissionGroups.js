@@ -105,7 +105,8 @@ const SubmissionGroups = (T) => [
         label: T('Type of Safety or ESG related technologies used'),
         type: 'select',
         multiple: true,
-        options: TypeOfSafetyOrESGRelatedTechnologiesUsed
+        options: TypeOfSafetyOrESGRelatedTechnologiesUsed,
+        length: 6
       },
       {
         name: 'typeOfSafetyOrESGRelatedTechnologiesUsedOther',

@@ -281,6 +281,15 @@ function SpecialDashBoard(props) {
 						</Col>
 					))}
 				</Row>
+				{organisationSummeries ? (<Card>
+					<CardBody>
+						<div>Total no of ESG Build Fun users (companies): {organisationSummeries.totalUsers || 0} people ({organisationSummeries.totalOrganizations} companies)</div>
+						<div>Total no of ESG Points mined: {organisationSummeries.totalMined || 0} coins</div>
+						<div>Total no of ESG Points used for prize redemption: {organisationSummeries.totalRedeemed || 0} coins</div>
+						<div>Total no of ESG events created: {organisationSummeries.totalEvents || 0} events</div>
+					</CardBody>
+				</Card>) : null}
+
 				<Card>
 					<CardBody>
 						<div className="d-flex mb-2">

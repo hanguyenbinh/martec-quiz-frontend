@@ -40,6 +40,7 @@ function CreatePrize(props) {
 		formData.append('expired_date', values.expired_date);
 		formData.append('status', values.status);
 		formData.append('redeem_points', values.redeem_points);
+		formData.append('redeem_once_ind', values.redeem_once_ind);
 		dispatch(createPrize(formData, props.history))
 	}
 

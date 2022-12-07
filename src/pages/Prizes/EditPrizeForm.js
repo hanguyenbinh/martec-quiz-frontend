@@ -237,6 +237,23 @@ function EditPrizeForm() {
                   </div>
                 </FormGroup>
 
+                <FormGroup check
+                  inline>
+                  <Label check>Redeemed for once</Label>
+                  <Input
+                    name="redeem_once_ind"
+                    className="me-2"
+                    type="checkbox"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.redeem_once_ind || false}
+                    checked={values.redeem_once_ind}
+                    invalid={
+                      touched.redeem_once_ind && errors.redeem_once_ind ? true : false
+                    }
+                  />
+                </FormGroup>
+
                 <FormGroup>
                   <Label>Status</Label>
                   <FormGroup check>

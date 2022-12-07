@@ -26,10 +26,14 @@ function UpdatePrize(props) {
 	}));
 
 	const initialValues = React.useMemo(() => {
-		return {
+		console.log('initialValues', prize);
+		const _initValues = {
 			...prize,
+			redeem_once_ind: prize && prize.redeem_once_ind === 1 ? true : false,
 			banner_file: prize?.image_path || ''
 		}
+		console.log(_initValues);
+		return _initValues
 	}, [prize])
 
 	const validationSchema = React.useMemo(() => {
@@ -52,6 +56,7 @@ function UpdatePrize(props) {
 		formData.append('expired_date', values.expired_date);
 		formData.append('status', values.status);
 		formData.append('redeem_points', values.redeem_points);
+		formData.append('redeem_once_ind', values.redeem_once_ind);
 		dispatch(updatePrize(values.prize_id, formData, props.history))
 	}
 

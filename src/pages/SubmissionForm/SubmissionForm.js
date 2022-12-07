@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import {
 	Alert,
 	Button,
@@ -13,7 +13,7 @@ import { withTranslation } from "react-i18next"
 import SubmissionGroup from "../DashBoard/components/SubmissionGroup"
 import * as Yup from 'yup';
 import { useDispatch, useSelector } from "react-redux"
-import { postSubmissionForm } from "../../store/submissionForm/actions"
+import { getDefaultSubmissions, postSubmissionForm } from "../../store/submissionForm/actions"
 import TypeOfSafetyOrESGRelatedTechnologiesUsed from "src/data/typeOfSafetyOrESGRelatedTechnologiesUsed"
 import AdoptedToolsType from "src/data/adoptedToolsType"
 import AdoptedToolsHealthAndSafetyType from "src/data/apdoptedToolsHealthAndSafetyType"
@@ -22,11 +22,11 @@ import YearType from "src/data/yearType"
 import SubmissionGroups from "src/data/submissionGroups"
 
 const submissionFormSchema = Yup.object().shape({
-	adoptedTools: Yup.array().of(Yup.string()),
+	adoptedTools: Yup.array().of(Yup.string()).notRequired(),
 	amountOfElectricityCLP: Yup.string().required('Required'),
 	amountOfElectricityHKE: Yup.string().required('Required'),
 	annualWaterConsumption: Yup.string().required('Required'),
-	apdoptedToolsHealthAndSafety: Yup.array().of(Yup.string()),
+	apdoptedToolsHealthAndSafety: Yup.array().of(Yup.string()).notRequired(),
 	communityServiceDonationAmount: Yup.string().required('Required'),
 	dieselUsage: Yup.string().required('Required'),
 	employeeSize: Yup.string().required('Required'),
@@ -71,7 +71,7 @@ const submissionFormSchema = Yup.object().shape({
 	typeOfAnticorruptionCampaignsActivities: Yup.string().required('Required'),
 	typeOfEnvironmentalAwardReceived: Yup.string().required('Required'),
 	typeOfSafetyAndHealthAwardReceived: Yup.string().required('Required'),
-	typeOfSafetyOrESGRelatedTechnologiesUsed: Yup.array().of(Yup.string()),
+	typeOfSafetyOrESGRelatedTechnologiesUsed: Yup.array().of(Yup.string()).notRequired(),
 	typeOfSafetyOrESGRelatedTechnologiesUsedOther: Yup.string().nullable(),
 	yearOfRecord: Yup.string().required('Required'),
 
@@ -107,12 +107,15 @@ const SubmissionForm = (props) => {
 
 const UploadESGData = (props) => {
 	const dispatch = useDispatch();
+	const formikRef = useRef()
 	const email = localStorage.getItem("email");
-	const { error } = useSelector(state => ({
+	const [initValue, setInitValue] = useState({})
+	const { error, defaultSubmissions, sectionRemarks } = useSelector(state => ({
 		error: state.SubmissionForm.error,
+		defaultSubmissions: state.SubmissionForm.defaultSubmissions,
+		sectionRemarks: state.SubmissionForm.sectionRemarks
 	}));
 	const [errorMessage, setErrorMessage] = useState('')
-	console.log('uploadESGdata', error)
 	useEffect(() => {
 		let message = '';
 		if (error.message) {
@@ -126,8 +129,18 @@ const UploadESGData = (props) => {
 		}
 		setErrorMessage(message);
 	}, [error])
+	useEffect(() => {
+		const initValue = {};
+		defaultSubmissions.forEach(item => {
+			initValue[item.fieldName] = item.value;
+		})
+		setInitValue(old => initValue)
+	}, [defaultSubmissions])
+	useEffect((
+	) => {
+		dispatch(getDefaultSubmissions())
+	}, [])
 	const handleSubmit = async (values) => {
-		console.log('submissionForm')
 		const { isConfirmed } = await alertService.fireDialog({
 
 			title: "Confirmation Page",
@@ -159,8 +172,9 @@ const UploadESGData = (props) => {
 		// ... handle api on redux
 	}
 
+
 	const initialValues = React.useMemo(() => {
-		return {
+		const result = {
 			adoptedTools: [AdoptedToolsType[0].value],
 			amountOfElectricityCLP: '',
 			amountOfElectricityHKE: '',
@@ -213,12 +227,21 @@ const UploadESGData = (props) => {
 			typeOfSafetyOrESGRelatedTechnologiesUsed: [TypeOfSafetyOrESGRelatedTechnologiesUsed[0].value],
 			typeOfSafetyOrESGRelatedTechnologiesUsedOther: '',
 			yearOfRecord: YearType[0].value,
+			...initValue
 		}
+		return result;
 
-	}, [])
+	}, [initValue])
+
+
+	useEffect(() => {
+		console.log('init value tracking', initialValues, initValue)
+		formikRef.current.resetForm({ values: initialValues })
+
+	}, [initValue])
 
 	return (
-		<Formik initialValues={initialValues} validationSchema={submissionFormSchema} onSubmit={handleSubmit}>
+		<Formik initialValues={initialValues} validationSchema={submissionFormSchema} onSubmit={handleSubmit} innerRef={formikRef}>
 			<div className="page-content">
 				<Container fluid>
 					<BreadCrumb title="Submit data" />

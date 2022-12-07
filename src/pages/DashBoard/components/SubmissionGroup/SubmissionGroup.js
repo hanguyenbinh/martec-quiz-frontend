@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import PropTypes from "prop-types"
 
 import { Card, CardBody, CardHeader, Col, Row } from "reactstrap"
@@ -6,9 +6,22 @@ import { Card, CardBody, CardHeader, Col, Row } from "reactstrap"
 import classes from "./SubmissionGroup.module.scss"
 import AppFormInput from "../../../../Components/Common/AppFormInput"
 import { FastField } from "formik"
+import { useSelector } from "react-redux"
 
 const SubmissionGroup = (props) => {
 	const { title, fields } = props
+	const { sectionRemarks } = useSelector(state => ({
+		sectionRemarks: state.SubmissionForm.sectionRemarks
+	}));
+	const [remarks, setRemarks] = useState([])
+
+	useEffect(() => {
+		sectionRemarks.forEach(item => {
+			if (item.sectionName === title) {
+				setRemarks(item.remark.split('/n'))
+			}
+		})
+	}, [sectionRemarks])
 	return (
 		<Card>
 			<CardHeader className="align-items-center d-flex">
@@ -18,7 +31,7 @@ const SubmissionGroup = (props) => {
 				<Row className="mb-3">
 					{
 						fields.map((_field, index) => (
-							<Col key={`SubmissionForm_group_${index}`} sm={12} md={3}>
+							<Col key={`SubmissionForm_group_${index}`} sm={12} md={_field.length ? 6 : 3}>
 								<FastField name={_field.name}>
 									{({ field, meta }) => {
 										return (
@@ -35,9 +48,13 @@ const SubmissionGroup = (props) => {
 										)
 									}}
 								</FastField>
+
 							</Col>
 						))
 					}
+					{remarks && remarks.length ? remarks.map((remark, key) => (
+						<div className="submission-remark" key={key}>{remark}</div>
+					)) : null}
 				</Row>
 			</CardBody>
 		</Card>

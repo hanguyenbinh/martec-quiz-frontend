@@ -42,6 +42,8 @@ export const postSubmission = data => {
 
 export const getSubmissionHistoryApi = (email) => api.get(url.GET_ESG_DATA, { email });
 
+export const getDefaultSubbmissionsApi = () => api.get(url.GET_DEFAULT_SUBMISSION_API, {});
+
 export const getAPILatestSubmissionForms = (email, indicatorType) => {
   return api.get(url.GET_LATEST_ESG_DATA, { email, indicatorType })
 };
