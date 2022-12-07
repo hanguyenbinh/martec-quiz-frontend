@@ -14,20 +14,7 @@ const Index = () => {
     return (
         <React.Fragment>
             <Switch>
-                <Route path={availablePublicRoutesPaths}>
-                    <NonAuthLayout>
-                        <Switch>
-                            {publicRoutes.map((route, idx) => (
-                                <Route
-                                    path={route.path}
-                                    component={route.component}
-                                    key={idx}
-                                    exact={true}
-                                />
-                            ))}
-                        </Switch>
-                    </NonAuthLayout>
-                </Route>
+
 
                 <Route path={availableAuthRoutesPath}>
                     <AuthProtected>
@@ -44,6 +31,21 @@ const Index = () => {
                             </Switch>
                         </VerticalLayout>
                     </AuthProtected>
+                </Route>
+
+                <Route path={availablePublicRoutesPaths}>
+                    <NonAuthLayout>
+                        <Switch>
+                            {publicRoutes.map((route, idx) => (
+                                <Route
+                                    path={route.path}
+                                    component={route.component}
+                                    key={idx}
+                                    exact={true}
+                                />
+                            ))}
+                        </Switch>
+                    </NonAuthLayout>
                 </Route>
             </Switch>
         </React.Fragment>

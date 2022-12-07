@@ -49,11 +49,7 @@ const authProtectedRoutes = [
 ]
 
 const publicRoutes = [
-	{
-		path: "/",
-		// exact: true,
-		component: () => <Redirect to="/home" />
-	},
+
 	{ path: '/home', component: LandingPage },
 	// Authentication Page
 	{ path: "/logout", component: Logout },
@@ -92,6 +88,11 @@ const publicRoutes = [
 	// { path: "/auth-pass-change-basic", component: BasicPasswCreate },
 	// { path: "/auth-pass-change-cover", component: CoverPasswCreate },
 	// { path: "/auth-offline", component: Offlinepage }
+	{
+		path: "/",
+		// exact: true,
+		component: () => <Redirect to="/home" />
+	},
 ]
 
 export { authProtectedRoutes, publicRoutes }
