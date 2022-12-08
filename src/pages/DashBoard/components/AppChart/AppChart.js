@@ -89,7 +89,7 @@ const AppChart = (props) => {
 			}
 			setDifference(diff);
 
-			setCompareResult(diff === 0 ? 'the same' : difference.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + (diff < 0 ? ' below' : ' higher'))
+
 		}
 		else {
 			setShowBestIcon(false);
@@ -97,6 +97,15 @@ const AppChart = (props) => {
 			setCompareResult('');
 		}
 	}, [selectedYear])
+
+	useEffect(() => {
+		console.log(', difference, compareResult changed', selectedYear, (difference === 0), compareResult)
+		const diffString = difference.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+		if (isNaN(difference)) {
+			setCompareResult('');
+		}
+		else setCompareResult(difference == 0 ? `Good, you've performed as good as the benchmark` : (difference < 0 ? `You've performed ${diffString} below the benchmark` : `Excellent, you've performed [${diffString}] better than the benchmark`))
+	}, [difference, compareResult, showBestIcon])
 
 	const handleOnclickItem = (item) => {
 		setSelectedItem(item.label);
@@ -177,7 +186,7 @@ const AppChart = (props) => {
 
 										{isNaN(difference) ? null : (
 											<span>
-												<p>You are {compareResult} the average</p>
+												<p>{compareResult}</p>
 											</span>
 										)}
 

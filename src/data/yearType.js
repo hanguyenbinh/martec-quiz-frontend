@@ -1,14 +1,12 @@
 const YearType = [
-  { label: '2022.04-2023.03 - Q4', value: '2022.04-2023.03 - Q4' },
-  { label: '2022.04-2023.03 - Q3', value: '2022.04-2023.03 - Q3' },
-  { label: '2022.04-2023.03 - Q2', value: '2022.04-2023.03 - Q2' },
-  { label: '2022.04-2023.03 - Q1', value: '2022.04-2023.03 - Q1' },
+  { value: '2022 Q4 Oct to Dec', label: '2022 Q4 Oct to Dec' },
+  { value: '2022 Q3 Jul to Sep', label: '2022 Q3 Jul to Sep' },
+  { value: '2022 Q2 Apr to Jun', label: '2022 Q2 Apr to Jun' },
+  { value: '2022 Q1 Jan to Mar', label: '2022 Q1 Jan to Mar' },
+  { value: '2021 Q1 Jan to Mar', label: '2021 Q1 Jan to Mar' },
+  { value: '2020 Q1 Jan to Mar', label: '2020 Q1 Jan to Mar' },
+  { value: '2019 Q1 Jan to Mar', label: '2019 Q1 Jan to Mar' },
+  { value: '2018 Q1 Jan to Mar', label: '2018 Q1 Jan to Mar' },
 
-
-
-  { label: '2021.04-2022.03', value: '2021.04-2022.03' },
-  { label: '2020.04-2021.03', value: '2020.04-2021.03' },
-  { label: '2019.04-2020.03', value: '2019.04-2020.03' },
-  { label: '2018.04-2019.03', value: '2018.04-2019.03' },
 ];
 export default YearType;

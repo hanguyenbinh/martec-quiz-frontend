@@ -1,4 +1,4 @@
-import { GET_DEFAULT_SUBMISSION, GET_DEFAULT_SUBMISSION_SUCCESS, GET_SUBMISSION_FORM, GET_SUBMISSION_FORM_SUCCESS, SUBMIT_FORM_DATA, SUBMIT_FORM_DATA_ERROR, SUBMIT_FORM_DATA_SUCCESS } from "./actionTypes";
+import { GET_DEFAULT_SUBMISSION, GET_DEFAULT_SUBMISSION_SUCCESS, GET_SUBMISSION_FORM, GET_SUBMISSION_FORM_SUCCESS, SUBMIT_DRAFT_SUBMISSIONS, SUBMIT_DRAFT_SUBMISSIONS_SUCCESS, SUBMIT_FORM_DATA, SUBMIT_FORM_DATA_ERROR, SUBMIT_FORM_DATA_SUCCESS } from "./actionTypes";
 
 export const postSubmissionForm = (data, history) => {
   ////console.logdisabled('action postSubmissionForm')
@@ -38,7 +38,7 @@ export const getSubmissionFormsSuccess = response => {
 }
 
 
-export const getDefaultSubmissions = (emil) => {
+export const getDefaultSubmissions = () => {
   return {
     type: GET_DEFAULT_SUBMISSION,
     payload: {}
@@ -48,6 +48,20 @@ export const getDefaultSubmissions = (emil) => {
 export const getDefaultSubmissionsSuccess = response => {
   return {
     type: GET_DEFAULT_SUBMISSION_SUCCESS,
+    payload: response
+  }
+}
+
+export const submitDraftSubmissions = (data, history) => {
+  return {
+    type: SUBMIT_DRAFT_SUBMISSIONS,
+    payload: { data, history }
+  }
+}
+
+export const submitDraftSubmissionsSuccess = response => {
+  return {
+    type: SUBMIT_DRAFT_SUBMISSIONS_SUCCESS,
     payload: response
   }
 }

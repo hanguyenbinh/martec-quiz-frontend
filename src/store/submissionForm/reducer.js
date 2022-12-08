@@ -1,15 +1,17 @@
-import { GET_DEFAULT_SUBMISSION, GET_DEFAULT_SUBMISSION_SUCCESS, GET_SUBMISSION_FORM, GET_SUBMISSION_FORM_SUCCESS, SUBMIT_FORM_DATA, SUBMIT_FORM_DATA_ERROR, SUBMIT_FORM_DATA_SUCCESS } from "./actionTypes"
+import { GET_DEFAULT_SUBMISSION, GET_DEFAULT_SUBMISSION_SUCCESS, GET_SUBMISSION_FORM, GET_SUBMISSION_FORM_SUCCESS, SUBMIT_DRAFT_SUBMISSIONS, SUBMIT_DRAFT_SUBMISSIONS_SUCCESS, SUBMIT_FORM_DATA, SUBMIT_FORM_DATA_ERROR, SUBMIT_FORM_DATA_SUCCESS } from "./actionTypes"
 
 const initialState = {
 	error: false,
 	loading: false,
 	defaultSubmissions: [],
-	sectionRemarks: []
+	sectionRemarks: [],
+	yearOfSubmissions: []
 }
 
 const SubmissionForm = (state = initialState, action) => {
 	switch (action.type) {
 		case SUBMIT_FORM_DATA:
+		case SUBMIT_DRAFT_SUBMISSIONS:
 			state = {
 				...state,
 				loading: true,
@@ -17,6 +19,7 @@ const SubmissionForm = (state = initialState, action) => {
 			}
 			break
 		case SUBMIT_FORM_DATA_SUCCESS:
+		case SUBMIT_DRAFT_SUBMISSIONS_SUCCESS:
 			state = {
 				...state,
 				loading: false,
@@ -61,7 +64,6 @@ const SubmissionForm = (state = initialState, action) => {
 				error: false
 			};
 			break;
-
 		default:
 			state = { ...state }
 			break

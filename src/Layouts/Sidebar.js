@@ -46,7 +46,7 @@ const Sidebar = (props) => {
 				<div className="navbar-brand-box">
 					<Link to="/" className="app-title">
 						<span className="app-title d-flex flex-column pt-0 justify-content-center align-items-center" style={{ marginTop: -32 }}>
-							<img className=" w-50" src={logoImg} />
+							<img className=" w-75" src={logoImg} />
 							<span>
 								{props.t('Application Name')}
 							</span>
@@ -71,7 +71,7 @@ const Sidebar = (props) => {
 						</Container>
 						<div style={{ flexGrow: 1 }}></div>
 						<div className="d-flex flex-column align-items-center">
-							<img className="w-25 mb-2" src={hkcaLogoImg} />
+							<img className="w-75 mb-2" src={hkcaLogoImg} />
 							<p className="text-white text-center m-2">Provided by HKCA</p>
 							<p className="text-white text-center">Powered by JSESG Group</p>
 						</div>

@@ -31,7 +31,7 @@ const SubmissionGroup = (props) => {
 				<Row className="mb-3">
 					{
 						fields.map((_field, index) => (
-							<Col key={`SubmissionForm_group_${index}`} sm={12} md={_field.length ? 6 : 3}>
+							<Col key={`SubmissionForm_group_${index}`} sm={12} md={_field.length ? _field.length : 3}>
 								<FastField name={_field.name}>
 									{({ field, meta }) => {
 										return (

@@ -160,28 +160,34 @@ const SubmissionGroups = (T) => [
     fields: [
       {
         name: 'noOfManagementOrAboveStaff',
-        label: T('No. of management or above staff')
+        label: T('No. of management or above staff'),
+        length: 4
       },
 
       {
         name: 'noOfSupervisorOrAboveStaff',
-        label: T('No. of supervisor or above staff')
+        label: T('No. of supervisor or above staff'),
+        length: 4
       },
       {
         name: 'noOfOperatorOrSupportLevelStaff',
-        label: T('No. of operator or support level staff')
+        label: T('No. of operator or support level staff'),
+        length: 4
       },
       {
         name: 'noOfResignationsManagementOrAboveStaff',
-        label: T('No. of resignations - management or above staff')
+        label: T('No. of resignations - management or above staff'),
+        length: 4
       },
       {
         name: 'noOfResignationsSupervisorOrAboveStaff',
-        label: T('No. of resignations - supervisor or above staff')
+        label: T('No. of resignations - supervisor or above staff'),
+        length: 4
       },
       {
         name: 'noOfResignationsOperatorOrSupportLevelStaff',
-        label: T('No. of resignations - operator or support level staff')
+        label: T('No. of resignations - operator or support level staff'),
+        length: 4
       },
 
     ]
@@ -200,31 +206,39 @@ const SubmissionGroups = (T) => [
   },
   {
     title: T('In-house Codes and Guidelines Governing - Anticorruption'),
-    fields: [{
-      name: 'typeOfAnticorruptionCampaignsActivities',
-      label: T('Type of anticorruption campaigns / activities'),
-      type: 'textarea'
-    },
-    {
-      name: 'noOfAnticorruptionCampaignsActivitiesProvided',
-      label: T('No. of anticorruption campaigns / activities provided')
-    },
-    {
-      name: 'trainingHoursNewStaff',
-      label: T('Training hours – new staff')
-    },
-    {
-      name: 'noOfNewStaff',
-      label: T('No. of new staff')
-    },
-    {
-      name: 'trainingHoursExistingStaff',
-      label: T('Training hours – existing staff')
-    },
-    {
-      name: 'noExistingStaff',
-      label: T('No. of existing staff')
-    },
+    fields: [
+      {
+        name: 'noOfAnticorruptionCampaignsActivitiesProvided',
+        label: T('No. of anticorruption campaigns / activities provided'),
+        length: 4
+      },
+      {
+        name: 'typeOfAnticorruptionCampaignsActivities',
+        label: T('Type of anticorruption campaigns / activities'),
+        type: 'textarea',
+        length: 4
+      },
+
+      {
+        name: 'trainingHoursNewStaff',
+        label: T('Training hours – new staff'),
+        length: 4
+      },
+      {
+        name: 'noOfNewStaff',
+        label: T('No. of new staff'),
+        length: 4
+      },
+      {
+        name: 'trainingHoursExistingStaff',
+        label: T('Training hours – existing staff'),
+        length: 4
+      },
+      {
+        name: 'noExistingStaff',
+        label: T('No. of existing staff'),
+        length: 4
+      },
     ]
   },
   {
@@ -249,7 +263,8 @@ const SubmissionGroups = (T) => [
       {
         name: 'typeOfEnvironmentalAwardReceived',
         label: T('Type of environmental award received'),
-        type: 'textarea'
+        type: 'textarea',
+        length: 6
       },
     ]
   },

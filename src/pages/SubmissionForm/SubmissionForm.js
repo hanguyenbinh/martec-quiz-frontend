@@ -13,7 +13,7 @@ import { withTranslation } from "react-i18next"
 import SubmissionGroup from "../DashBoard/components/SubmissionGroup"
 import * as Yup from 'yup';
 import { useDispatch, useSelector } from "react-redux"
-import { getDefaultSubmissions, postSubmissionForm } from "../../store/submissionForm/actions"
+import { getDefaultSubmissions, postSubmissionForm, submitDraftSubmissions } from "../../store/submissionForm/actions"
 import TypeOfSafetyOrESGRelatedTechnologiesUsed from "src/data/typeOfSafetyOrESGRelatedTechnologiesUsed"
 import AdoptedToolsType from "src/data/adoptedToolsType"
 import AdoptedToolsHealthAndSafetyType from "src/data/apdoptedToolsHealthAndSafetyType"
@@ -79,6 +79,7 @@ const submissionFormSchema = Yup.object().shape({
 
 const SubmissionForm = (props) => {
 	const T = props.t ? props.t : (value) => value;
+	const dispatch = useDispatch();
 
 
 
@@ -89,6 +90,12 @@ const SubmissionForm = (props) => {
 		}
 	};
 
+	const handleSaveDraft = () => {
+		dispatch(submitDraftSubmissions(values, props.history))
+	}
+
+	useEffect(() => { }, [])
+
 	return (
 		<Form
 			onSubmit={handleSubmit}
@@ -98,8 +105,9 @@ const SubmissionForm = (props) => {
 				<SubmissionGroup key={`SubmissionForm_${index}`} title={group.title} fields={group.fields}></SubmissionGroup>
 			))}
 			<div className="mb-3 d-flex justify-content-end">
-				<Button type='reset' onClick={handleReset}>Reset</Button>&nbsp;&nbsp;&nbsp;
-				<Button type="submit">Submit</Button>
+				<Button color="info" onClick={handleSaveDraft}>Save as draft</Button>
+				<Button className="ms-3" type='reset' onClick={handleReset}>Reset</Button>
+				<Button className="ms-3" type="submit">Submit</Button>
 			</div>
 		</Form>
 	)
@@ -229,7 +237,6 @@ const UploadESGData = (props) => {
 			yearOfRecord: YearType[0].value,
 			...initValue
 		}
-		console.log('initial value', result)
 		return result;
 
 	}, [initValue])
@@ -247,7 +254,7 @@ const UploadESGData = (props) => {
 				<Container fluid>
 					<BreadCrumb title="Submit data" />
 					{error && error ? (<Alert color="danger"> {errorMessage} </Alert>) : null}
-					<SubmissionForm />
+					<SubmissionForm history={props.history} />
 				</Container>
 			</div>
 		</Formik>
