@@ -10,13 +10,13 @@ const MajorIndicators = () => {
     return (
         <React.Fragment>
             <section className="section bg-light" id="marketplace">
-                <Container>
+                <Container className='esg-container'>
                     <Row className="justify-content-center">
-                        <Col lg={8}>
+                        <Col lg={12}>
                             <div className="text-center mb-5">
                                 <h2 className="mb-3 fw-semibold lh-base">ESG Recognition Scheme Platform</h2>
-                                <p className="text-muted mb-4">Accurate and timely data will substantially help enterprise review ESG performances, enabling efficient strategy for targeted improvements. To assist local construction contractors in fulfilling sustainability objectives, HKCA engaged various industry stakeholders and the City University of Hong Kong to select, prioritize and incorporate multiple ESG performance indicators of major local and international standards into the ESG Recognition Scheme Platform. </p>
-                                <p className="text-muted mb-4">The early phase of the implementation of the ESG Recognition Scheme Platform allows participants to get started easily and quickly with ESG. The selected indicators of the platform are not difficult to master or evaluate. Meanwhile, these indicators are closely related to their businesses and construction activities.</p>
+                                <p className="text-muted mb-4 text-justify">Accurate and timely data will substantially help enterprise review ESG performances, enabling efficient strategy for targeted improvements. To assist local construction contractors in fulfilling sustainability objectives, HKCA engaged various industry stakeholders and professional to select, prioritize and incorporate multiple ESG performance indicators of major local and international standards into the ESG Recognition Scheme Platform. </p>
+                                <p className="text-muted mb-4 text-justify">The early phase of the implementation of the ESG Recognition Scheme Platform allows participants to get started easily and quickly with ESG. The selected indicators of the platform are not difficult to master or evaluate. Meanwhile, these indicators are closely related to their businesses and construction activities.</p>
                             </div>
                         </Col>
                     </Row>
@@ -34,7 +34,7 @@ const MajorIndicators = () => {
                                         <div className="bg-overlay"></div>
                                     </div>
                                     <div className="card-body">
-                                        <h5 className="mb-1"><Link to="/apps-nft-item-details">{item.title}</Link></h5>
+                                        <h4 className="mb-4 fw-bold"><Link to="/apps-nft-item-details">{item.title}</Link></h4>
                                         {item.textItems.map((textItem, key) => (
                                             <p key={'textItem' + key}>{textItem}</p>
                                         ))}

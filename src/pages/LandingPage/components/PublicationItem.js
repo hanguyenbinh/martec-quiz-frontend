@@ -19,9 +19,9 @@ const PublicationItem = (props) => {
           {actions.map((item, index) => {
             switch (item.name) {
               case 'en':
-                return <a key={index} href={item.url} className={!(item.url) ? classes.downloadDisabled : ''}>EN</a>
+                return <a key={index} href={item.url} target="_blank" className={!(item.url) ? classes.downloadDisabled : ''}>EN</a>
               case 'cn':
-                return <a key={index} href={item.url} className={!(item.url) ? classes.downloadDisabled : ''}>中</a>
+                return <a key={index} href={item.url} target="_blank" className={!(item.url) ? classes.downloadDisabled : ''}>中</a>
             }
           })}
         </div>

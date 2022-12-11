@@ -8,16 +8,17 @@ const AboutUs = () => {
     return (
         <React.Fragment>
             <section className="section aboutus" id="wallet">
-                <Container>
+                <Container className='esg-container'>
                     <Row className="justify-content-center">
-                        <Col lg={8}>
+                        <Col lg={12}>
                             <div className="text-center mb-1">
+                                <h1 className="text-muted fw-semibold lh-base">ESG Recognition Scheme</h1>
                                 <h2 className="mb-1 fw-semibold lh-base">About</h2>
-                                <h3 className="text-muted fw-semibold lh-base">ESG Recognition Scheme</h3>
-                                <p className="text-muted ">
+
+                                <p className="text-muted text-justify">
                                     Sustainable development is becoming critical for all corporates across all industries. There has been a global trend of growing awareness about the Environmental, Social, and Governance (ESG) standards and has increasingly gone mainstream.
                                 </p>
-                                <p className="text-muted ">To support and encourage the construction industries take positive initiatives in the area of ESG, the Hong Kong Construction Association (HKCA) allocated HKD 10 million to establish the ESG Recognition Scheme Platform. The scheme including: </p>
+                                <p className="text-muted text-justify">To support and encourage the construction industries take positive initiatives in the area of ESG, the Hong Kong Construction Association (HKCA) allocated HKD 10 million to establish the ESG Recognition Scheme Platform. The scheme including: </p>
                             </div>
                         </Col>
                     </Row>

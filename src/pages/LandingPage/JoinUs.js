@@ -11,7 +11,7 @@ const JoinUs = () => {
     return (
         <React.Fragment>
             <section className="section bg-light" id="marketplace">
-                <Container>
+                <Container className='esg-container'>
                     <Row className="justify-content-center">
                         <div className="text-center mb-5">
                             <h2 className="mb-3 fw-semibold lh-base">Join Us</h2>

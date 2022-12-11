@@ -105,7 +105,7 @@ const SubmissionForm = (props) => {
 				<SubmissionGroup key={`SubmissionForm_${index}`} title={group.title} fields={group.fields}></SubmissionGroup>
 			))}
 			<div className="mb-3 d-flex justify-content-end">
-				<Button color="info" onClick={handleSaveDraft}>Save as draft</Button>
+				{/* <Button color="info" onClick={handleSaveDraft}>Save as draft</Button> */}
 				<Button className="ms-3" type='reset' onClick={handleReset}>Reset</Button>
 				<Button className="ms-3" type="submit">Submit</Button>
 			</div>
@@ -149,6 +149,7 @@ const UploadESGData = (props) => {
 		dispatch(getDefaultSubmissions())
 	}, [])
 	const handleSubmit = async (values) => {
+
 		const { isConfirmed } = await alertService.fireDialog({
 
 			title: "Confirmation Page",
@@ -175,6 +176,8 @@ const UploadESGData = (props) => {
 			}
 		})
 		if (isConfirmed) {
+			console.log(values)
+			return;
 			dispatch(postSubmissionForm({ ...values, email }, props.history))
 		}
 		// ... handle api on redux

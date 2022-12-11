@@ -103,7 +103,7 @@ const SubmissionGroups = (T) => [
       {
         name: 'typeOfSafetyOrESGRelatedTechnologiesUsed',
         label: T('Type of Safety or ESG related technologies used'),
-        type: 'select',
+        type: 'checkboxes',
         multiple: true,
         options: TypeOfSafetyOrESGRelatedTechnologiesUsed,
         length: 6
@@ -198,9 +198,10 @@ const SubmissionGroups = (T) => [
       {
         name: 'adoptedTools',
         label: T('Adopted tools'),
-        type: 'select',
+        type: 'checkboxes',
         multiple: true,
-        options: AdoptedToolsType
+        options: AdoptedToolsType,
+        length: 6
       }
     ]
   },
@@ -246,25 +247,29 @@ const SubmissionGroups = (T) => [
     fields: [
       {
         name: 'noOfConvictionsRelatedToTheEnvironment',
-        label: T('No. of convictions related to the environment')
+        label: T('No. of convictions related to the environment'),
+        length: 4
       },
       {
         name: 'noOfEnvironmentalProfessionals',
-        label: T('No. of environmental professionals')
+        label: T('No. of environmental professionals'),
+        length: 4
       },
       {
         name: 'noOfEnvironmentalPersonnel',
-        label: T('No. of environmental personnel')
+        label: T('No. of environmental personnel'),
+        length: 4
       },
       {
         name: 'noOfEnvironmentalAwardReceived',
-        label: T('No. of environmental award received')
+        label: T('No. of environmental award received'),
+        length: 4
       },
       {
         name: 'typeOfEnvironmentalAwardReceived',
         label: T('Type of environmental award received'),
         type: 'textarea',
-        length: 6
+        length: 4
       },
     ]
   },
@@ -274,27 +279,31 @@ const SubmissionGroups = (T) => [
       {
         name: 'apdoptedToolsHealthAndSafety',
         label: T('Adopted tools'),
-        type: 'select',
+        type: 'checkboxes',
         multiple: true,
-        options: AdoptedToolsHealthAndSafetyType
+        options: AdoptedToolsHealthAndSafetyType,
+        length: 4
       },
       {
         name: 'noOfConvictionsRelatedToHealthyAndSafety',
-        label: T('No. of convictions related to health and safety')
+        label: T('No. of convictions related to health and safety'),
+        length: 4
       },
       {
         name: 'suspensionNoticesDueToSafetyIssues',
-        label: T('Suspension notices due to safety issues (including those caused by subcontractors involved in a project)')
+        label: T('Suspension notices due to safety issues (including those caused by subcontractors involved in a project)'),
+        length: 4
+      },
+      {
+        name: 'noOfSafetyAndHealthAwardReceived',
+        label: T('No. of safety and health award received'),
       },
       {
         name: 'typeOfSafetyAndHealthAwardReceived',
         label: T('Type of safety and health award received'),
         type: 'textarea'
       },
-      {
-        name: 'noOfSafetyAndHealthAwardReceived',
-        label: T('No. of safety and health award received')
-      },
+
       {
         name: 'safetyTrainingHoursManagementOrAboveStaff',
         label: T('Safety training hours - management or above staff')

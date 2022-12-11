@@ -108,7 +108,7 @@
 }
 
 .member-login-button {
-    margin-left: 35em;
+    // margin-left: 35em;
 }
 
 .about-card {
@@ -197,4 +197,13 @@ video {
 
 .footer {
     // background-image: url("../../images/landing/footer.png");
+}
+
+.esg-container {
+    max-width: 1536px;
+}
+
+.text-justify {
+    text-align: justify;
+    text-justify: inter-word;
 }

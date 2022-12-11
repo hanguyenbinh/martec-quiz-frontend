@@ -1,6 +1,6 @@
 import React from "react"
 import cx from "classnames"
-import lodash from "lodash"
+import lodash, { camelCase } from "lodash"
 import PropTypes from "prop-types"
 
 import { FormGroup, FormText, Input, Label, Tooltip } from "reactstrap"
@@ -29,6 +29,71 @@ const AppFormInput = React.forwardRef((props, ref) => {
 	} = props
 	const htmlId = inputProps?.id || lodash.uniqueId(`app${`-${name}`}-input`)
 
+	const buildInput = (type) => {
+		switch (type) {
+			case 'select':
+				return <><Input
+					{...inputProps}
+					value={value}
+					name={name}
+					className={cx(!!innerClasses?.input && innerClasses.input)}
+					id={htmlId}
+					ref={inputRef}
+					type={type}
+					multiple={multiple}
+					onChange={onChange}
+					onBlur={onBlur}
+					valid={error === false}
+					invalid={error === true}
+				>
+					{options.map((option, index) => (<option key={`${name}${index}`} value={option.value}>{option.label}</option>))}
+				</Input>
+					{
+						!!multiple && (
+							<FormText>"Ctrl + click" to select multiple</FormText>
+						)
+					}
+				</>
+			case 'checkboxes':
+				return options.map((option, index) => <div key={index}>
+					<Input {...inputProps}
+						name={name}
+						type='checkbox'
+						className={cx(!!innerClasses?.input && innerClasses.input)}
+						id={htmlId}
+						value={option.value}
+						onChange={onChange}
+						onBlur={onBlur}
+						valid={error === false}
+						invalid={error === true} F
+					>
+
+					</Input>
+					<Label check>
+						{option.value}
+					</Label>
+				</div>)
+				break;
+			default:
+				return <Input
+					{...inputProps}
+					value={value}
+					name={name}
+					className={cx(!!innerClasses?.input && innerClasses.input)}
+					id={htmlId}
+					ref={inputRef}
+					type={type}
+					multiple={multiple}
+					onChange={onChange}
+					onBlur={onBlur}
+					valid={error === false}
+					invalid={error === true}
+				>
+				</Input>
+		}
+	}
+
+
 	return (
 		<FormGroup
 			ref={ref}
@@ -47,25 +112,7 @@ const AppFormInput = React.forwardRef((props, ref) => {
 				<div className="align-items-center">{label} {tooltip ? <EsgTooltip tooltipText={tooltip} name={name}></EsgTooltip> : null}</div>
 
 			</Label>
-			<Input
-				{...inputProps}
-				value={value}
-				name={name}
-				className={cx(!!innerClasses?.input && innerClasses.input)}
-				id={htmlId}
-				ref={inputRef}
-				type={type}
-				multiple={multiple}
-				onChange={onChange}
-				onBlur={onBlur}
-				valid={error === false}
-				invalid={error === true}
-			>
-				{type === "select" ? options.map((option, index) => (<option key={`${name}${index}`} value={option.value}>{option.label}</option>)) : undefined}
-			</Input>
-			{!!multiple && (
-				<FormText>"Ctrl + click" to select multiple</FormText>
-			)}
+			{buildInput(type)}
 			{!!helperText && (
 				<FormText
 					color="inherit"
