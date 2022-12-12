@@ -149,7 +149,6 @@ const UploadESGData = (props) => {
 		dispatch(getDefaultSubmissions())
 	}, [])
 	const handleSubmit = async (values) => {
-
 		const { isConfirmed } = await alertService.fireDialog({
 
 			title: "Confirmation Page",

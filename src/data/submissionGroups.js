@@ -303,7 +303,6 @@ const SubmissionGroups = (T) => [
         label: T('Type of safety and health award received'),
         type: 'textarea'
       },
-
       {
         name: 'safetyTrainingHoursManagementOrAboveStaff',
         label: T('Safety training hours - management or above staff')

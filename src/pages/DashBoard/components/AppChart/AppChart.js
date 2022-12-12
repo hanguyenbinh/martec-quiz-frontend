@@ -89,7 +89,6 @@ const AppChart = (props) => {
 			}
 			setDifference(diff);
 
-
 		}
 		else {
 			setShowBestIcon(false);
