@@ -176,8 +176,6 @@ const UploadESGData = (props) => {
 			}
 		})
 		if (isConfirmed) {
-			console.log(values)
-			return;
 			dispatch(postSubmissionForm({ ...values, email }, props.history))
 		}
 		// ... handle api on redux

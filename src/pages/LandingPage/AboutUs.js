@@ -12,7 +12,7 @@ const AboutUs = () => {
                     <Row className="justify-content-center">
                         <Col lg={12}>
                             <div className="text-center mb-1">
-                                <h1 className="text-muted fw-semibold lh-base">ESG Recognition Scheme</h1>
+                                <h1 className="fw-semibold lh-base">ESG Recognition Scheme</h1>
                                 <h2 className="mb-1 fw-semibold lh-base">About</h2>
 
                                 <p className="text-muted text-justify">
@@ -27,9 +27,9 @@ const AboutUs = () => {
                         {connectData.map((item, key) => (
                             <Col key={key} lg={3}>
                                 <Card className="text-center border">
-                                    <CardBody className="py-5 px-4 about-card">
-                                        <h5 className='about-card-title'> {item.title}</h5>
-                                        <img src={item.img} alt="" height="110" className="mb-3 pb-2" />
+                                    <CardBody className="py-3 px-1 about-card">
+                                        <h5 className=''> {item.title}</h5>
+                                        <img src={item.img} alt="" height="200" className="mb-1" />
                                     </CardBody>
                                 </Card>
                             </Col>

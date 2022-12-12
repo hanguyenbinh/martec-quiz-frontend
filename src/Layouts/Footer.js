@@ -11,16 +11,19 @@ const Footer = () => {
                     <Row className='mb-5 mt-1'>
                         <h5>Contact Us</h5>
                         <div className="text-muted">
-                            <ul className="list-unstyled ff-secondary footer-list">
+                            <ul className="list-unstyled fs-5 footer-list">
                                 <li>
-                                    <span className="material-symbols-outlined fs-6 me-1">
+                                    <span className="material-symbols-outlined fs-5 me-1">
                                         call
                                     </span>
                                     (852) 2572 4414</li>
-                                <li><span className="material-symbols-outlined  fs-6 me-1">
+                                <li><span className="material-symbols-outlined  fs-5 me-1">
                                     fax
                                 </span>(852) 2572 7104</li>
-                                <li>admin@hkca.com.hk</li>
+                                <li><span className="material-symbols-outlined fs-5 me-1">
+                                    mail
+                                </span>
+                                    admin@hkca.com.hk</li>
                                 <li>3/F, 180-182 Hennessy Road, Wanchai, Hong Kong</li>
                             </ul>
                         </div>

@@ -6,9 +6,14 @@ import image2 from 'src/assets/images/landing/step2.png'
 import image3 from 'src/assets/images/landing/step3.png'
 import image4 from 'src/assets/images/landing/step4.png'
 
+import { api } from "../../config";
+
 
 const HowToStart = () => {
     const history = useHistory();
+    const handleJoinNow = () => {
+        window.open(api.API_URL + '/download-file', '_blank');
+    }
     return (
         <React.Fragment>
             <section className="section bg-light" id="marketplace">
@@ -29,7 +34,7 @@ const HowToStart = () => {
                         <Col className='how-to-start-step-1 big-text' lg={6}>
                             <p>Submit a completed the application form to HKCA secretariat</p>
                             <p>The user account of the ESG Recognition Scheme Platform will be given to the eligible applicants</p>
-                            <Button className='button-big-text bottom-button' color='warning'>Join Now</Button>
+                            <Button onClick={handleJoinNow} className='button-big-text bottom-button' color='warning'>Join Now</Button>
                         </Col>
                         <Col lg={6}>
                             <img src={image1} alt="" className="card-img-top explore-img how-to-img" />
