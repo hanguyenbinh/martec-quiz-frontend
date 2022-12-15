@@ -7,6 +7,9 @@ module.exports = {
   facebook: {
     APP_ID: "",
   },
+  landingPage: {
+    joinButtonLink: 'https://public-dev.hkca-esg.com/docs/guide-to-application-for-environmental-social-governance(esg)-recognition-scheme-2022-dec.pdf'
+  },
   api: {
        API_URL: "https://api.hkca-esg.com/hkca-esg-admin-web-backend/api",
   }
