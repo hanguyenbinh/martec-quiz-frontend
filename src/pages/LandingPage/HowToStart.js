@@ -6,13 +6,13 @@ import image2 from 'src/assets/images/landing/step2.png'
 import image3 from 'src/assets/images/landing/step3.png'
 import image4 from 'src/assets/images/landing/step4.png'
 
-import { api } from "../../config";
+import { landingPage } from "../../config";
 
 
 const HowToStart = () => {
     const history = useHistory();
     const handleJoinNow = () => {
-        window.open(api.API_URL + '/download-file', '_blank');
+        window.open(landingPage.joinButtonLink, '_blank');
     }
     return (
         <React.Fragment>
