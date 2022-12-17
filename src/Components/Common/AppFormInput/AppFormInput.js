@@ -7,6 +7,7 @@ import { FormGroup, FormText, Input, Label, Tooltip } from "reactstrap"
 
 import classes from "./AppFormInput.module.scss"
 import EsgTooltip from "../EsgTooltip"
+import { useFormikContext } from "formik"
 
 const AppFormInput = React.forwardRef((props, ref) => {
 	const {
@@ -25,11 +26,35 @@ const AppFormInput = React.forwardRef((props, ref) => {
 		helperText,
 		value,
 		tooltip,
+		disabled,
 		...rest
 	} = props
-	const htmlId = inputProps?.id || lodash.uniqueId(`app${`-${name}`}-input`)
 
-	const buildInput = (type) => {
+	const { isSubmitting, values, errors, setFieldValue, handleChange, handleBlur, touched, submitForm } = useFormikContext()
+
+	const htmlId = inputProps?.id || lodash.uniqueId(`app${`-${name}`}-input`)
+	const extractValue = (i) => {
+		switch (i) {
+			case 0:
+				{
+					return values.commentA
+				}
+			case 1:
+				{
+					return values.commentB
+				}
+			case 2:
+				{
+					return values.commentC
+				}
+			case 3:
+				{
+					return values.commentD
+				}
+		}
+		return ''
+	}
+	const buildInput = (type, disabled = false) => {
 		switch (type) {
 			case 'select':
 				return <><Input
@@ -45,6 +70,7 @@ const AppFormInput = React.forwardRef((props, ref) => {
 					onBlur={onBlur}
 					valid={error === false}
 					invalid={error === true}
+					disabled={disabled}
 				>
 					{options.map((option, index) => (<option key={`${name}${index}`} value={option.value}>{option.label}</option>))}
 				</Input>
@@ -55,25 +81,49 @@ const AppFormInput = React.forwardRef((props, ref) => {
 					}
 				</>
 			case 'checkboxes':
-				return options.map((option, index) => <div key={index}>
-					<Input {...inputProps}
-						name={name}
-						type='checkbox'
-						className={cx(!!innerClasses?.input && innerClasses.input)}
-						id={htmlId}
-						value={option.value}
-						onChange={onChange}
-						onBlur={onBlur}
-						valid={error === false}
-						invalid={error === true} F
-					>
 
-					</Input>
-					<Label check>
-						{option.value}
-					</Label>
+
+
+
+				return options.map((option, index) => <div className="d-flex flex-row" key={index}>
+					<div className="col-md-12">
+						<Input {...inputProps}
+							name={name}
+							type='checkbox'
+							className={cx(!!innerClasses?.input && innerClasses.input) + ' me-3'}
+							id={htmlId}
+							value={option.value}
+							onChange={onChange}
+							onBlur={onBlur}
+							valid={error === false}
+							invalid={error === true}
+							disabled={disabled}
+						>
+						</Input>
+						<Label check>
+							{option.value}
+						</Label>
+					</div>
+
+					{option.comment ? (
+						<div className="col-md-10">
+							<Input
+								name={option.comment}
+								type='text'
+								className={cx(!!innerClasses?.input && innerClasses.input)}
+								id={'comment' + htmlId}
+								value={extractValue(index)}
+								valid={error === false}
+								invalid={error === true}
+								onChange={(e) => {
+									console.log(values)
+									onChange(e)
+								}}
+								onBlur={onBlur}
+							>
+
+							</Input></div>) : null}
 				</div>)
-				break;
 			default:
 				return <Input
 					{...inputProps}
@@ -88,6 +138,7 @@ const AppFormInput = React.forwardRef((props, ref) => {
 					onBlur={onBlur}
 					valid={error === false}
 					invalid={error === true}
+					disabled={disabled}
 				>
 				</Input>
 		}
@@ -112,7 +163,7 @@ const AppFormInput = React.forwardRef((props, ref) => {
 				<div className="align-items-center">{label} {tooltip ? <EsgTooltip tooltipText={tooltip} name={name}></EsgTooltip> : null}</div>
 
 			</Label>
-			{buildInput(type)}
+			{buildInput(type, disabled)}
 			{!!helperText && (
 				<FormText
 					color="inherit"

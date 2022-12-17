@@ -34,6 +34,7 @@ const SubmissionGroup = (props) => {
 							<Col key={`SubmissionForm_group_${index}`} sm={12} md={_field.length ? _field.length : 3}>
 								<FastField name={_field.name}>
 									{({ field, meta }) => {
+										console.log(_field);
 										return (
 											<AppFormInput
 												options={_field.options}
@@ -44,6 +45,7 @@ const SubmissionGroup = (props) => {
 												name={_field.name}
 												tooltip={_field.tooltip}
 												multiple={_field.multiple}
+												disabled={_field.disabled}
 												{...field} />
 										)
 									}}
