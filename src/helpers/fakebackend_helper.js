@@ -44,6 +44,11 @@ export const postDraftSubmissionsApi = data => {
   return api.create(url.POST_DRAFT_SUBMISSIONS_API, data);
 }
 
+export const postDefaultSubmissionsApi = data => {
+
+  return api.create(url.POST_DEFAULT_SUBMISSIONS_API, data);
+}
+
 
 export const getSubmissionHistoryApi = (email) => api.get(url.GET_ESG_DATA, { email });
 

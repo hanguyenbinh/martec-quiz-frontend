@@ -1,4 +1,4 @@
-import { GET_DEFAULT_SUBMISSION, GET_DEFAULT_SUBMISSION_SUCCESS, GET_SUBMISSION_FORM, GET_SUBMISSION_FORM_SUCCESS, SUBMIT_DRAFT_SUBMISSIONS, SUBMIT_DRAFT_SUBMISSIONS_SUCCESS, SUBMIT_FORM_DATA, SUBMIT_FORM_DATA_ERROR, SUBMIT_FORM_DATA_SUCCESS } from "./actionTypes";
+import { GET_DEFAULT_SUBMISSION, GET_DEFAULT_SUBMISSION_SUCCESS, GET_SUBMISSION_FORM, GET_SUBMISSION_FORM_SUCCESS, SUBMIT_DEFAULT_SUBMISSIONS, SUBMIT_DEFAULT_SUBMISSIONS_SUCCESS, SUBMIT_DRAFT_SUBMISSIONS, SUBMIT_DRAFT_SUBMISSIONS_SUCCESS, SUBMIT_FORM_DATA, SUBMIT_FORM_DATA_ERROR, SUBMIT_FORM_DATA_SUCCESS } from "./actionTypes";
 
 export const postSubmissionForm = (data, history) => {
   if (data.projectType === 'Other') {
@@ -69,6 +69,21 @@ export const submitDraftSubmissions = (data, history) => {
 export const submitDraftSubmissionsSuccess = response => {
   return {
     type: SUBMIT_DRAFT_SUBMISSIONS_SUCCESS,
+    payload: response
+  }
+}
+
+
+export const submitDefaultSubmissions = (data, history) => {
+  return {
+    type: SUBMIT_DEFAULT_SUBMISSIONS,
+    payload: { data, history }
+  }
+}
+
+export const submitDefaultSubmissionsSuccess = response => {
+  return {
+    type: SUBMIT_DEFAULT_SUBMISSIONS_SUCCESS,
     payload: response
   }
 }

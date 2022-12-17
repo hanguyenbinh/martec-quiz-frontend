@@ -1,10 +1,11 @@
 import { call, put, takeEvery } from "redux-saga/effects";
 
 // Login Redux States
-import { GET_DEFAULT_SUBMISSION, GET_SUBMISSION_FORM, SUBMIT_DRAFT_SUBMISSIONS, SUBMIT_FORM_DATA } from "./actionTypes";
-import { getDefaultSubmissionsSuccess, getSubmissionFormsSuccess, portalApiError, postSubmissionFormSuccess, submitDraftSubmissionsSuccess, } from "./actions";
+import { GET_DEFAULT_SUBMISSION, GET_SUBMISSION_FORM, SUBMIT_DEFAULT_SUBMISSIONS, SUBMIT_DRAFT_SUBMISSIONS, SUBMIT_FORM_DATA } from "./actionTypes";
+import { getDefaultSubmissionsSuccess, getSubmissionFormsSuccess, portalApiError, postSubmissionFormSuccess, submitDefaultSubmissionsSuccess, submitDraftSubmissionsSuccess, } from "./actions";
 
-import { getDefaultSubbmissionsApi, getSubmissionHistoryApi, postDraftSubmissionsApi, postSubmission } from "../../helpers/fakebackend_helper";
+import { getDefaultSubbmissionsApi, getSubmissionHistoryApi, postDefaultSubmissionsApi, postDraftSubmissionsApi, postSubmission } from "../../helpers/fakebackend_helper";
+import { toast } from "react-toastify";
 
 
 function* postSubmissionForm({ payload: { data, history } }) {
@@ -32,6 +33,22 @@ function* postDraftSubmission({ payload: { data, history } }) {
     if (response.status === true) {
       yield put(submitDraftSubmissionsSuccess(response));
       history.push("/submissions-history");
+    } else {
+      yield put(portalApiError(response));
+    }
+  } catch (error) {
+    yield put(portalApiError(error));
+  }
+}
+
+function* postDefaultSubmission({ payload: { data, history } }) {
+  try {
+    const response = yield call(
+      postDefaultSubmissionsApi,
+      data);
+    if (response.status === true) {
+      yield put(submitDefaultSubmissionsSuccess(response));
+      toast.success("upload successfully", { autoClose: 3000 });
     } else {
       yield put(portalApiError(response));
     }
@@ -78,6 +95,7 @@ function* submissionFormSaga() {
   yield takeEvery(GET_SUBMISSION_FORM, getSubmissionForms);
   yield takeEvery(GET_DEFAULT_SUBMISSION, getDefaultSubmissions);
   yield takeEvery(SUBMIT_DRAFT_SUBMISSIONS, postDraftSubmission);
+  yield takeEvery(SUBMIT_DEFAULT_SUBMISSIONS, postDefaultSubmission);
 }
 
 export default submissionFormSaga;
