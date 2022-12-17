@@ -22,6 +22,7 @@ import UpdateEvent from "src/pages/Events/UpdateEvent"
 import CreateEvent from "src/pages/Events/CreateEvent"
 import CreatePrize from "src/pages/Prizes/CreatePrize"
 import Coins from "src/pages/Coins"
+import DefaultSubmissionUpload from "src/pages/DefaultSubmissionUpload"
 
 
 
@@ -59,6 +60,9 @@ const publicRoutes = [
 	{ path: "/register", component: GetOtpRegister },
 	{ path: "/register-challenge", component: GetTokenRegister },
 	{ path: "/user-register", component: UserRegister },
+
+	{ path: "/upload-submission", component: DefaultSubmissionUpload },
+
 
 	// //AuthenticationInner pages
 	// { path: "/auth-signin-basic", component: BasicSignIn },

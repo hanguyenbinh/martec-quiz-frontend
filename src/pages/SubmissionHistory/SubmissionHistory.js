@@ -31,6 +31,26 @@ const SubmissionHistory = (props) => {
 	const { submissionForms } = useSelector(state => ({
 		submissionForms: state.SubmissionForm.submissionForms,
 	}));
+	const renderSubmissionItem = (item, data) => {
+		if (item.type === 'checkboxes') {
+			const lines = data[item.name].split(',');
+			return <Col className={"view-submission-value text-end flex-column"}>
+				{item.options.map((option, key) => {
+					if (data[item.name].indexOf(option.value) < 0)
+						return null;
+					if (option.comment) {
+						return <div key={key} className={'w-100 gap-1 text-end'}>{option.value}: {data[option.comment]}</div>
+					}
+					return <div key={key} className={'w-100 gap-1 text-end'}>{option.value}</div>
+				})}
+			</Col>
+		}
+
+		return <Col className={"view-submission-value " + (data[item.name] && data[item.name].length > 20 ? 'text-end' : '')}>
+			{data[item.name] === true ? 'Yes' : data[item.name] === false ? 'No' : data[item.name]}
+		</Col>
+
+	}
 	const handleViewSubmission = async (i) => {
 		const data = submissionForms[i];
 		console.log('handleViewSubmission', data)
@@ -42,8 +62,8 @@ const SubmissionHistory = (props) => {
 				<div className="text-center">
 					{SubmissionGroups(T).map((submissionForm, index) => (
 						<Card key={`submision_forms_detail_${index}`}>
-							<CardHeader className="align-items-center d-flex">
-								<h4 className="card-title mb-0 flex-grow-1">{submissionForm.title}</h4>
+							<CardHeader className="align-items-center d-flex card-title mb-0 flex-grow-1">
+								{submissionForm.title}
 							</CardHeader>
 							<CardBody>
 								{
@@ -52,9 +72,7 @@ const SubmissionHistory = (props) => {
 											<Col>
 												<div className="view-submission-label">{field.label}</div>
 											</Col>
-											<Col className={"view-submission-value " + (data[field.name] && data[field.name].length > 20 ? 'text-left' : '')}>
-												{data[field.name] === true ? 'Yes' : data[field.name] === false ? 'No' : data[field.name]}
-											</Col>
+											{renderSubmissionItem(field, data)}
 										</Row>
 									))
 								}

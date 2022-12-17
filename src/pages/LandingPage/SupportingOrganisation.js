@@ -10,7 +10,7 @@ const SupportingOrganisation = () => {
             <section className="section bg-light" id="marketplace">
                 <Container className='esg-container'>
                     <Row className="justify-content-center">
-                        <div className="text-left mb-1">
+                        <div className="text-start mb-1">
                             <h4 className="mb-1 fw-semibold lh-base">Disclaimer</h4>
                         </div>
                     </Row>
@@ -26,7 +26,7 @@ const SupportingOrganisation = () => {
                     </Row>
 
                     <Row className="justify-content-center">
-                        <div className="text-left mb-1">
+                        <div className="text-start mb-1">
                             <h4 className="mb-1 fw-semibold lh-base">Provision of Data</h4>
                         </div>
                     </Row>

@@ -26,6 +26,10 @@ const SubmissionGroups = (T) => [
         options: ProjectType
       },
       {
+        name: 'projectTypeOther',
+        label: T(`Project type (if you have selected 'Other')`),
+      },
+      {
         name: 'grossValueOfConstructionWork',
         label: T('Gross value of construction work (HKD)')
       },
@@ -62,6 +66,11 @@ const SubmissionGroups = (T) => [
       name: 'annualWaterConsumption',
       label: T('Annual water consumption (Metric tonnes or ㎥)')
     },
+    {
+      name: 'noOfElectricityLeakOrRiskDetected',
+      label: T('No. of electricity leak or risk detected'),
+      disabled: true
+    }
     ]
   },
   {
@@ -74,6 +83,16 @@ const SubmissionGroups = (T) => [
       name: 'totalWeightOf_Non_InertWasteDisposedPerAnnum',
       label: T('Total weight of non-inert waste disposed (Tonne)')
     },
+    {
+      name: 'noOfTrainedworkerEEsgBuildFunApp',
+      label: T('No. of trained worker(E) - ESG Build Fun App'),
+      disabled: true
+    },
+    {
+      name: 'noOfTrainingsEEsgBuildFunApp',
+      label: T('No. of Trainings(E) - ESG Build Fun App'),
+      disabled: true
+    }
 
     ]
   },
@@ -86,19 +105,23 @@ const SubmissionGroups = (T) => [
         tooltip: (<><p>{T(`"Reportable Accident" is defined as an accident resulting in an injury leave with man-day lost more than 3 days`)}</p>
           <p>{T('"No. of Non-fatal Reportable Accident" should include all work accident cases of your direct workers and sub-contractor workers reported to the Labour Department under the EC Ordinance.')}</p>
           <p>{T('For member working in joint venture project, the "Fatal Accident", "Non-fatal Reportable Accident" and "Average no. of Workers" are equally split between JV partners.')}</p></>
-        )
+        ),
+        length: 4
       },
       {
         name: 'noOfFatality',
-        label: T('No. of fatality')
+        label: T('No. of fatality'),
+        length: 4
       },
       {
         name: 'lostDaysDueToInjuries',
-        label: T('Lost days due to injuries')
+        label: T('Lost days due to injuries'),
+        length: 4
       },
       {
         name: 'noOfSafetyOrESGRelatedTechnologiesUsed',
-        label: T('No. of Safety or ESG related technologies used')
+        label: T('No. of Safety or ESG related technologies used'),
+        length: 4
       },
       {
         name: 'typeOfSafetyOrESGRelatedTechnologiesUsed',
@@ -106,12 +129,13 @@ const SubmissionGroups = (T) => [
         type: 'checkboxes',
         multiple: true,
         options: TypeOfSafetyOrESGRelatedTechnologiesUsed,
-        length: 6
+        length: 4
       },
       {
         name: 'typeOfSafetyOrESGRelatedTechnologiesUsedOther',
         label: T('Type of Safety or ESG related technologies used (other)'),
-        type: 'textarea'
+        type: 'textarea',
+        length: 4
       },
     ]
   },
@@ -141,6 +165,11 @@ const SubmissionGroups = (T) => [
         name: 'noOfYoungStaff',
         label: T('No. of young staff (age < 40)')
       },
+      {
+        name: 'noOfHoursAttendingVrTrainings',
+        label: T('No. of hours attending VR trainings'),
+        disabled: true
+      }
     ]
   },
   {
@@ -189,6 +218,16 @@ const SubmissionGroups = (T) => [
         label: T('No. of resignations - operator or support level staff'),
         length: 4
       },
+      {
+        name: 'noOfTrainedworkerSEsgBuildFunApp',
+        label: T('No. of trained worker(S) - ESG Build Fun App'),
+        disabled: true
+      },
+      {
+        name: 'noOfTrainingsSEsgBuildFunApp',
+        label: T('No. of Trainings(S) - ESG Build Fun App'),
+        disabled: true
+      }
 
     ]
   },
@@ -202,7 +241,7 @@ const SubmissionGroups = (T) => [
         multiple: true,
         options: AdoptedToolsType,
         length: 6
-      }
+      },
     ]
   },
   {
@@ -282,17 +321,15 @@ const SubmissionGroups = (T) => [
         type: 'checkboxes',
         multiple: true,
         options: AdoptedToolsHealthAndSafetyType,
-        length: 4
       },
       {
         name: 'noOfConvictionsRelatedToHealthyAndSafety',
         label: T('No. of convictions related to health and safety'),
-        length: 4
+
       },
       {
         name: 'suspensionNoticesDueToSafetyIssues',
         label: T('Suspension notices due to safety issues (including those caused by subcontractors involved in a project)'),
-        length: 4
       },
       {
         name: 'noOfSafetyAndHealthAwardReceived',
@@ -315,6 +352,21 @@ const SubmissionGroups = (T) => [
         name: 'safetyTrainingHoursOperatorOrSupportLevelStaff',
         label: T('Safety training hours - operator or support level staff')
       },
+      {
+        name: 'noOfRiskAssessmentsCreatedFromRace',
+        label: T('No. of risk assessments created from RACE'),
+        disabled: true
+      },
+      {
+        name: 'noOfTrainedworkerGEsgBuildFunApp',
+        label: T('No. of trained worker(G) - ESG Build Fun App'),
+        disabled: true
+      },
+      {
+        name: 'noOfTrainingsGEsgBuildFunApp',
+        label: T('No. of Trainings(G) - ESG Build Fun App'),
+        disabled: true
+      }
     ]
   },
 ]
