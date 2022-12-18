@@ -9,7 +9,7 @@ import { FastField } from "formik"
 import { useSelector } from "react-redux"
 
 const SubmissionGroup = (props) => {
-	const { title, fields } = props
+	const { title, fields, currentDraft } = props
 	const { sectionRemarks } = useSelector(state => ({
 		sectionRemarks: state.SubmissionForm.sectionRemarks
 	}));
@@ -34,7 +34,6 @@ const SubmissionGroup = (props) => {
 							<Col key={`SubmissionForm_group_${index}`} sm={12} md={_field.length ? _field.length : 3}>
 								<FastField name={_field.name}>
 									{({ field, meta }) => {
-										console.log(_field);
 										return (
 											<AppFormInput
 												options={_field.options}

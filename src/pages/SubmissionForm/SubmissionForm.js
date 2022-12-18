@@ -13,13 +13,15 @@ import { withTranslation } from "react-i18next"
 import SubmissionGroup from "../DashBoard/components/SubmissionGroup"
 import * as Yup from 'yup';
 import { useDispatch, useSelector } from "react-redux"
-import { getDefaultSubmissions, postSubmissionForm, submitDraftSubmissions } from "../../store/submissionForm/actions"
+import { getDefaultSubmissions, getDraftSubmissionForm, postSubmissionForm, submitDraftSubmissions, updateSubmission } from "../../store/submissionForm/actions"
 import TypeOfSafetyOrESGRelatedTechnologiesUsed from "src/data/typeOfSafetyOrESGRelatedTechnologiesUsed"
 import AdoptedToolsType from "src/data/adoptedToolsType"
 import AdoptedToolsHealthAndSafetyType from "src/data/apdoptedToolsHealthAndSafetyType"
 import ProjectType from "src/data/projectType"
 import YearType from "src/data/yearType"
 import SubmissionGroups from "src/data/submissionGroups"
+import { getDraftSubmissionFormApi } from "src/helpers/fakebackend_helper"
+import { useParams } from "react-router-dom"
 
 const submissionFormSchema = Yup.object().shape({
 	adoptedTools: Yup.array().of(Yup.string()).notRequired(),
@@ -79,7 +81,9 @@ const submissionFormSchema = Yup.object().shape({
 
 const SubmissionForm = (props) => {
 	const T = props.t ? props.t : (value) => value;
+
 	const dispatch = useDispatch();
+
 
 
 
@@ -94,7 +98,9 @@ const SubmissionForm = (props) => {
 		dispatch(submitDraftSubmissions(values, props.history))
 	}
 
-	useEffect(() => { }, [])
+	useEffect(() => {
+
+	}, [])
 
 	return (
 		<Form
@@ -105,7 +111,7 @@ const SubmissionForm = (props) => {
 				<SubmissionGroup key={`SubmissionForm_${index}`} title={group.title} fields={group.fields}></SubmissionGroup>
 			))}
 			<div className="mb-3 d-flex justify-content-end">
-				{/* <Button color="info" onClick={handleSaveDraft}>Save as draft</Button> */}
+				<Button color="info" onClick={handleSaveDraft}>Save as draft</Button>
 				<Button className="ms-3" type='reset' onClick={handleReset}>Reset</Button>
 				<Button className="ms-3" type="submit">Submit</Button>
 			</div>
@@ -114,14 +120,15 @@ const SubmissionForm = (props) => {
 }
 
 const UploadESGData = (props) => {
+	const params = useParams();
 	const dispatch = useDispatch();
 	const formikRef = useRef()
 	const email = localStorage.getItem("email");
 	const [initValue, setInitValue] = useState({})
-	const { error, defaultSubmissions, sectionRemarks } = useSelector(state => ({
+	const { error, defaultSubmissions, currentDraft } = useSelector(state => ({
 		error: state.SubmissionForm.error,
 		defaultSubmissions: state.SubmissionForm.defaultSubmissions,
-		sectionRemarks: state.SubmissionForm.sectionRemarks
+		currentDraft: state.SubmissionForm.currentDraft
 	}));
 	const [errorMessage, setErrorMessage] = useState('')
 	useEffect(() => {
@@ -138,15 +145,36 @@ const UploadESGData = (props) => {
 		setErrorMessage(message);
 	}, [error])
 	useEffect(() => {
-		const initValue = {};
-		defaultSubmissions.forEach(item => {
-			initValue[item.fieldName] = item.value;
-		})
+		let initValue = {};
+		if (params.id) {
+			console.log('init value', currentDraft);
+			if (currentDraft) {
+				initValue = {
+					...currentDraft,
+					adoptedTools: currentDraft.adoptedTools ? currentDraft.adoptedTools.split('<ITEM>') : [],
+					apdoptedToolsHealthAndSafety: currentDraft.apdoptedToolsHealthAndSafety ? currentDraft.apdoptedToolsHealthAndSafety.split('<ITEM>') : [],
+					typeOfSafetyOrESGRelatedTechnologiesUsed: currentDraft.apdoptedToolsHealthAndSafety ? currentDraft.typeOfSafetyOrESGRelatedTechnologiesUsed.split('<ITEM>') : []
+				};
+				console.log('init value', initValue)
+			}
+		}
+		else {
+			defaultSubmissions.forEach(item => {
+				initValue[item.fieldName] = item.value;
+			})
+		}
+
 		setInitValue(old => initValue)
-	}, [defaultSubmissions])
+	}, [defaultSubmissions, currentDraft])
 	useEffect((
 	) => {
-		dispatch(getDefaultSubmissions())
+		console.log(params.id)
+		if (params.id) {
+			dispatch(getDraftSubmissionForm(params.id))
+		}
+		else {
+			dispatch(getDefaultSubmissions())
+		}
 	}, [])
 	const handleSubmit = async (values) => {
 		const { isConfirmed } = await alertService.fireDialog({
@@ -175,13 +203,20 @@ const UploadESGData = (props) => {
 			}
 		})
 		if (isConfirmed) {
-			dispatch(postSubmissionForm({ ...values, email }, props.history))
+			if (params.id) {
+				dispatch(updateSubmission(params.id, values, props.history))
+			}
+			else {
+				dispatch(postSubmissionForm({ ...values, email }, props.history))
+			}
+
 		}
 		// ... handle api on redux
 	}
 
 
 	const initialValues = React.useMemo(() => {
+		console.log('reset initial values')
 		const result = {
 			adoptedTools: [AdoptedToolsType[0].value],
 			amountOfElectricityCLP: '',

@@ -39,6 +39,11 @@ export const postSubmission = data => {
   return api.create(url.POST_ESG_DATA, data);
 }
 
+export const updateSubmissionApi = (id, data) => {
+
+  return api.update(url.UPDATE_SUBMISSION_API.replace(':id', id), data);
+}
+
 export const postDraftSubmissionsApi = data => {
 
   return api.create(url.POST_DRAFT_SUBMISSIONS_API, data);
@@ -53,6 +58,8 @@ export const postDefaultSubmissionsApi = data => {
 export const getSubmissionHistoryApi = (email) => api.get(url.GET_ESG_DATA, { email });
 
 export const getDefaultSubbmissionsApi = () => api.get(url.GET_DEFAULT_SUBMISSION_API, {});
+
+export const getDraftSubmissionFormApi = (id) => api.get(url.GET_DRAFT_SUBMISSION_API.replace(':id', id), {});
 
 export const getAPILatestSubmissionForms = (email, indicatorType) => {
   return api.get(url.GET_LATEST_ESG_DATA, { email, indicatorType })

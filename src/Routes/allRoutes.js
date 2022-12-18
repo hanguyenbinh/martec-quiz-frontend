@@ -30,6 +30,7 @@ import DefaultSubmissionUpload from "src/pages/DefaultSubmissionUpload"
 const authProtectedRoutes = [
 	{ path: "/dashboard", component: DashBoard },
 	{ path: "/submit-data", component: UploadESGData },
+	{ path: "/submit-data/:id", component: UploadESGData },
 	{ path: "/submissions-history", component: UploadList },
 	{ path: "/events", component: Events },
 	{ path: "/edit-event/:id", component: UpdateEvent },

@@ -10,10 +10,12 @@ export const GET_ORGANISATIONS_URL = '/auth/get-orgs';
 export const POST_CHALLENGE = '/auth/challenge';
 
 export const POST_ESG_DATA = '/company'
+export const UPDATE_SUBMISSION_API = '/company/:id'
 export const POST_DRAFT_SUBMISSIONS_API = '/company/draft'
 export const POST_DEFAULT_SUBMISSIONS_API = '/company/upload-default-submissions'
 export const GET_ESG_DATA = '/company'
 export const GET_DEFAULT_SUBMISSION_API = '/company/default-submissions'
+export const GET_DRAFT_SUBMISSION_API = '/company/draft/:id'
 export const GET_LATEST_ESG_DATA = '/company/latest'
 export const POST_LOGIN = 'auth/login';
 

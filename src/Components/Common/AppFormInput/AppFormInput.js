@@ -81,10 +81,6 @@ const AppFormInput = React.forwardRef((props, ref) => {
 					}
 				</>
 			case 'checkboxes':
-
-
-
-
 				return options.map((option, index) => <div className="d-flex flex-row" key={index}>
 					<div className="col-md-12">
 						<Input {...inputProps}
@@ -92,6 +88,7 @@ const AppFormInput = React.forwardRef((props, ref) => {
 							type='checkbox'
 							className={cx(!!innerClasses?.input && innerClasses.input) + ' me-3'}
 							id={htmlId}
+							checked={value?.indexOf(option.value) >= 0}
 							value={option.value}
 							onChange={onChange}
 							onBlur={onBlur}

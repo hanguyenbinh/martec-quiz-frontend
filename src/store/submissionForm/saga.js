@@ -1,10 +1,10 @@
 import { call, put, takeEvery } from "redux-saga/effects";
 
 // Login Redux States
-import { GET_DEFAULT_SUBMISSION, GET_SUBMISSION_FORM, SUBMIT_DEFAULT_SUBMISSIONS, SUBMIT_DRAFT_SUBMISSIONS, SUBMIT_FORM_DATA } from "./actionTypes";
-import { getDefaultSubmissionsSuccess, getSubmissionFormsSuccess, portalApiError, postSubmissionFormSuccess, submitDefaultSubmissionsSuccess, submitDraftSubmissionsSuccess, } from "./actions";
+import { GET_DEFAULT_SUBMISSION, GET_DRAFT_SUBMISSION_FORM, GET_SUBMISSION_FORM, SUBMIT_DEFAULT_SUBMISSIONS, SUBMIT_DRAFT_SUBMISSIONS, SUBMIT_FORM_DATA, UPDATE_SUBMISSION } from "./actionTypes";
+import { getDefaultSubmissionsSuccess, getDraftSubmissionFormSuccess, getSubmissionFormsSuccess, portalApiError, postSubmissionFormSuccess, submitDefaultSubmissionsSuccess, submitDraftSubmissionsSuccess, updateSubmissionSuccess, } from "./actions";
 
-import { getDefaultSubbmissionsApi, getSubmissionHistoryApi, postDefaultSubmissionsApi, postDraftSubmissionsApi, postSubmission } from "../../helpers/fakebackend_helper";
+import { getDefaultSubbmissionsApi, getDraftSubmissionFormApi, getSubmissionHistoryApi, postDefaultSubmissionsApi, postDraftSubmissionsApi, postSubmission, updateSubmissionApi } from "../../helpers/fakebackend_helper";
 import { toast } from "react-toastify";
 
 
@@ -89,6 +89,37 @@ function* getDefaultSubmissions({ payload: { history } }) {
   }
 }
 
+function* getDraftSubmissionForm({ payload: { id } }) {
+  try {
+    const response = yield call(
+      getDraftSubmissionFormApi, id);
+    if (response.status === true) {
+      yield put(getDraftSubmissionFormSuccess(response.data));
+      toast.success('Get Draft submission success')
+    } else {
+      yield put(portalApiError(response));
+    }
+  } catch (error) {
+    yield put(portalApiError(error));
+  }
+}
+
+function* updateSubmissionSaga({ payload: { id, data, history } }) {
+  try {
+    const response = yield call(
+      updateSubmissionApi, id,
+      data);
+    if (response.status === true) {
+      yield put(updateSubmissionSuccess(response));
+      history.push("/submissions-history");
+    } else {
+      yield put(portalApiError(response));
+    }
+  } catch (error) {
+    yield put(portalApiError(error));
+  }
+}
+
 
 function* submissionFormSaga() {
   yield takeEvery(SUBMIT_FORM_DATA, postSubmissionForm);
@@ -96,6 +127,10 @@ function* submissionFormSaga() {
   yield takeEvery(GET_DEFAULT_SUBMISSION, getDefaultSubmissions);
   yield takeEvery(SUBMIT_DRAFT_SUBMISSIONS, postDraftSubmission);
   yield takeEvery(SUBMIT_DEFAULT_SUBMISSIONS, postDefaultSubmission);
+  yield takeEvery(GET_DRAFT_SUBMISSION_FORM, getDraftSubmissionForm);
+  yield takeEvery(UPDATE_SUBMISSION, updateSubmissionSaga);
 }
+
+
 
 export default submissionFormSaga;

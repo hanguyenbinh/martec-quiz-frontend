@@ -33,7 +33,7 @@ const SubmissionHistory = (props) => {
 	}));
 	const renderSubmissionItem = (item, data) => {
 		if (item.type === 'checkboxes') {
-			const lines = data[item.name].split(',');
+			const lines = data[item.name].split('<ITEM>');
 			return <Col className={"view-submission-value text-end flex-column"}>
 				{item.options.map((option, key) => {
 					if (data[item.name].indexOf(option.value) < 0)
@@ -91,7 +91,11 @@ const SubmissionHistory = (props) => {
 			}
 		})
 	}
-	const handleExport = () => {
+	const handleEditDraft = (id) => {
+		props.history.push('/submit-data/' + id)
+	}
+
+	const handleRemoveDraft = (id) => {
 
 	}
 
@@ -123,12 +127,25 @@ const SubmissionHistory = (props) => {
 									<td>{d.email}</td>
 									<td>{d.hashValue}</td>
 									<td>
-										<Button onClick={() => handleViewSubmission(dIndex)}>
-											Link
-										</Button>
+										{d.isDraft ? (
+											<>
+												<Button onClick={() => handleEditDraft(d.id)}>
+													Continue
+												</Button>
+												<Button onClick={() => handleRemoveDraft(d.id)}>
+													Delete
+												</Button>
+											</>
+										) :
+											(
+												<Button onClick={() => handleViewSubmission(dIndex)}>
+													Link
+												</Button>
+											)}
+
 									</td>
 									<td>
-										{d.version}
+										{d.isDraft ? 'draft' : d.version}
 									</td>
 								</tr>
 							))}
@@ -136,7 +153,7 @@ const SubmissionHistory = (props) => {
 					</table>
 				</Card>
 			</Container>
-		</div>
+		</div >
 	)
 }
 
