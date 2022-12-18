@@ -1,4 +1,4 @@
-import { getSubmissionForms } from "../../store/actions"
+import { deleteSubmission, getSubmissionForms } from "../../store/actions"
 import React from "react"
 import { useEffect } from "react"
 import { withTranslation } from "react-i18next"
@@ -96,8 +96,16 @@ const SubmissionHistory = (props) => {
 	}
 
 	const handleRemoveDraft = (id) => {
+		if (window.confirm(`Do you want to delete this draft submission with Id: ${id}?`)) {
+			dispatch(deleteSubmission(id))
+		}
 
 	}
+
+	useEffect(() => {
+		console.log('submissionForms changed', submissionForms)
+
+	}, [submissionForms])
 
 	return (
 		<div className="page-content">

@@ -44,6 +44,10 @@ export const updateSubmissionApi = (id, data) => {
   return api.update(url.UPDATE_SUBMISSION_API.replace(':id', id), data);
 }
 
+export const deleteSubmissionApi = (id) => {
+  return api.delete(url.DELETE_SUBMISSION_API.replace(':id', id));
+}
+
 export const postDraftSubmissionsApi = data => {
 
   return api.create(url.POST_DRAFT_SUBMISSIONS_API, data);

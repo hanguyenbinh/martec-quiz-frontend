@@ -1,10 +1,10 @@
 import { call, put, takeEvery } from "redux-saga/effects";
 
 // Login Redux States
-import { GET_DEFAULT_SUBMISSION, GET_DRAFT_SUBMISSION_FORM, GET_SUBMISSION_FORM, SUBMIT_DEFAULT_SUBMISSIONS, SUBMIT_DRAFT_SUBMISSIONS, SUBMIT_FORM_DATA, UPDATE_SUBMISSION } from "./actionTypes";
-import { getDefaultSubmissionsSuccess, getDraftSubmissionFormSuccess, getSubmissionFormsSuccess, portalApiError, postSubmissionFormSuccess, submitDefaultSubmissionsSuccess, submitDraftSubmissionsSuccess, updateSubmissionSuccess, } from "./actions";
+import { DELETE_SUBMISSION, GET_DEFAULT_SUBMISSION, GET_DRAFT_SUBMISSION_FORM, GET_SUBMISSION_FORM, SUBMIT_DEFAULT_SUBMISSIONS, SUBMIT_DRAFT_SUBMISSIONS, SUBMIT_FORM_DATA, UPDATE_SUBMISSION } from "./actionTypes";
+import { deleteSubmissionSuccess, getDefaultSubmissionsSuccess, getDraftSubmissionFormSuccess, getSubmissionForms, getSubmissionFormsSuccess, portalApiError, postSubmissionFormSuccess, submitDefaultSubmissionsSuccess, submitDraftSubmissionsSuccess, updateSubmissionSuccess, } from "./actions";
 
-import { getDefaultSubbmissionsApi, getDraftSubmissionFormApi, getSubmissionHistoryApi, postDefaultSubmissionsApi, postDraftSubmissionsApi, postSubmission, updateSubmissionApi } from "../../helpers/fakebackend_helper";
+import { deleteSubmissionApi, getDefaultSubbmissionsApi, getDraftSubmissionFormApi, getSubmissionHistoryApi, postDefaultSubmissionsApi, postDraftSubmissionsApi, postSubmission, updateSubmissionApi } from "../../helpers/fakebackend_helper";
 import { toast } from "react-toastify";
 
 
@@ -57,7 +57,7 @@ function* postDefaultSubmission({ payload: { data, history } }) {
   }
 }
 
-function* getSubmissionForms({ payload: { email, history } }) {
+function* getSubmissionFormsSaga({ payload: { email, history } }) {
   try {
     if (process.env.REACT_APP_API_URL) {
       const response = yield call(
@@ -120,15 +120,32 @@ function* updateSubmissionSaga({ payload: { id, data, history } }) {
   }
 }
 
+function* deleteSubmissionSaga({ payload: { id, history } }) {
+  try {
+    const response = yield call(deleteSubmissionApi, id);
+    if (response.status === true) {
+      yield put(deleteSubmissionSuccess(response));
+      toast.success('delete draft submission success')
+      const email = localStorage.getItem("email");
+      yield put(getSubmissionForms(email, history))
+    } else {
+      yield put(portalApiError(response));
+    }
+  } catch (error) {
+    yield put(portalApiError(error));
+  }
+}
+
 
 function* submissionFormSaga() {
   yield takeEvery(SUBMIT_FORM_DATA, postSubmissionForm);
-  yield takeEvery(GET_SUBMISSION_FORM, getSubmissionForms);
+  yield takeEvery(GET_SUBMISSION_FORM, getSubmissionFormsSaga);
   yield takeEvery(GET_DEFAULT_SUBMISSION, getDefaultSubmissions);
   yield takeEvery(SUBMIT_DRAFT_SUBMISSIONS, postDraftSubmission);
   yield takeEvery(SUBMIT_DEFAULT_SUBMISSIONS, postDefaultSubmission);
   yield takeEvery(GET_DRAFT_SUBMISSION_FORM, getDraftSubmissionForm);
   yield takeEvery(UPDATE_SUBMISSION, updateSubmissionSaga);
+  yield takeEvery(DELETE_SUBMISSION, deleteSubmissionSaga);
 }
 
 

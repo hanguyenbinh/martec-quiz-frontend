@@ -11,6 +11,7 @@ export const POST_CHALLENGE = '/auth/challenge';
 
 export const POST_ESG_DATA = '/company'
 export const UPDATE_SUBMISSION_API = '/company/:id'
+export const DELETE_SUBMISSION_API = '/company/draft/:id'
 export const POST_DRAFT_SUBMISSIONS_API = '/company/draft'
 export const POST_DEFAULT_SUBMISSIONS_API = '/company/upload-default-submissions'
 export const GET_ESG_DATA = '/company'

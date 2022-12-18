@@ -22,6 +22,7 @@ import YearType from "src/data/yearType"
 import SubmissionGroups from "src/data/submissionGroups"
 import { getDraftSubmissionFormApi } from "src/helpers/fakebackend_helper"
 import { useParams } from "react-router-dom"
+import { isEmpty } from "lodash"
 
 const submissionFormSchema = Yup.object().shape({
 	adoptedTools: Yup.array().of(Yup.string()).notRequired(),
@@ -95,7 +96,14 @@ const SubmissionForm = (props) => {
 	};
 
 	const handleSaveDraft = () => {
-		dispatch(submitDraftSubmissions(values, props.history))
+		// console.log('handleSaveDraft', values)
+		const payload = {}
+		Object.keys(values).forEach(key => {
+			if (!isEmpty(values[key])) {
+				payload[key] = values[key]
+			}
+		})
+		dispatch(submitDraftSubmissions(payload, props.history))
 	}
 
 	useEffect(() => {
