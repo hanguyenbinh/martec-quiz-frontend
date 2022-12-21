@@ -137,7 +137,7 @@ const SubmissionHistory = (props) => {
 									<td>
 										{d.isDraft ? (
 											<>
-												<Button onClick={() => handleEditDraft(d.id)}>
+												<Button onClick={() => handleEditDraft(d.id)} className='me-3'>
 													Continue
 												</Button>
 												<Button onClick={() => handleRemoveDraft(d.id)}>

@@ -1,4 +1,4 @@
-const TypeOfSafetyOrESGRelatedTechnologiesUsed = [
+const TypeOfSafetyOrEsgRelatedTechnologiesUsed = [
   { label: 'A I Unmanned Aircraft System for Overhead Line Inspection', value: 'A I Unmanned Aircraft System for Overhead Line Inspection' },
   { label: 'Risk Assessment Conduct Everywhere (RACE) Mobile App', value: 'Risk Assessment Conduct Everywhere (RACE) Mobile App' },
   { label: 'Safety Alert System for Temporary Lift Shaft Gate', value: 'Safety Alert System for Temporary Lift Shaft Gate' },
@@ -11,4 +11,4 @@ const TypeOfSafetyOrESGRelatedTechnologiesUsed = [
   { label: 'BIM Visualization with Advanced MR for Construction Safety Management', value: 'BIM Visualization with Advanced MR for Construction Safety Management' },
 
 ]
-export default TypeOfSafetyOrESGRelatedTechnologiesUsed;
+export default TypeOfSafetyOrEsgRelatedTechnologiesUsed;

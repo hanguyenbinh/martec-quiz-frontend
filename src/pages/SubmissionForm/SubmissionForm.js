@@ -14,7 +14,7 @@ import SubmissionGroup from "../DashBoard/components/SubmissionGroup"
 import * as Yup from 'yup';
 import { useDispatch, useSelector } from "react-redux"
 import { getDefaultSubmissions, getDraftSubmissionForm, postSubmissionForm, submitDraftSubmissions, updateSubmission } from "../../store/submissionForm/actions"
-import TypeOfSafetyOrESGRelatedTechnologiesUsed from "src/data/typeOfSafetyOrESGRelatedTechnologiesUsed"
+import TypeOfSafetyOrEsgRelatedTechnologiesUsed from "src/data/typeOfSafetyOrEsgRelatedTechnologiesUsed"
 import AdoptedToolsType from "src/data/adoptedToolsType"
 import AdoptedToolsHealthAndSafetyType from "src/data/apdoptedToolsHealthAndSafetyType"
 import ProjectType from "src/data/projectType"
@@ -55,7 +55,7 @@ const submissionFormSchema = Yup.object().shape({
 	noOfResignationsOperatorOrSupportLevelStaff: Yup.string().required('Required'),
 	noOfResignationsSupervisorOrAboveStaff: Yup.string().required('Required'),
 	noOfSafetyAndHealthAwardReceived: Yup.string().required('Required'),
-	noOfSafetyOrESGRelatedTechnologiesUsed: Yup.string().required('Required'),
+	noOfSafetyOrEsgRelatedTechnologiesUsed: Yup.string().required('Required'),
 	noOfStaffJoiningYMS: Yup.string().required('Required'),
 	noOfSupervisorOrAboveStaff: Yup.string().required('Required'),
 	noOfYoungStaff: Yup.string().required('Required'),
@@ -74,8 +74,8 @@ const submissionFormSchema = Yup.object().shape({
 	typeOfAnticorruptionCampaignsActivities: Yup.string().required('Required'),
 	typeOfEnvironmentalAwardReceived: Yup.string().required('Required'),
 	typeOfSafetyAndHealthAwardReceived: Yup.string().required('Required'),
-	typeOfSafetyOrESGRelatedTechnologiesUsed: Yup.array().of(Yup.string()).notRequired(),
-	typeOfSafetyOrESGRelatedTechnologiesUsedOther: Yup.string().nullable(),
+	typeOfSafetyOrEsgRelatedTechnologiesUsed: Yup.array().of(Yup.string()).notRequired(),
+	typeOfSafetyOrEsgRelatedTechnologiesUsedOther: Yup.string().nullable(),
 	yearOfRecord: Yup.string().required('Required'),
 
 });
@@ -161,7 +161,7 @@ const UploadESGData = (props) => {
 					...currentDraft,
 					adoptedTools: currentDraft.adoptedTools ? currentDraft.adoptedTools.split('<ITEM>') : [],
 					apdoptedToolsHealthAndSafety: currentDraft.apdoptedToolsHealthAndSafety ? currentDraft.apdoptedToolsHealthAndSafety.split('<ITEM>') : [],
-					typeOfSafetyOrESGRelatedTechnologiesUsed: currentDraft.apdoptedToolsHealthAndSafety ? currentDraft.typeOfSafetyOrESGRelatedTechnologiesUsed.split('<ITEM>') : []
+					typeOfSafetyOrEsgRelatedTechnologiesUsed: currentDraft.apdoptedToolsHealthAndSafety ? currentDraft.typeOfSafetyOrEsgRelatedTechnologiesUsed.split('<ITEM>') : []
 				};
 				console.log('init value', initValue)
 			}
@@ -226,11 +226,11 @@ const UploadESGData = (props) => {
 	const initialValues = React.useMemo(() => {
 		console.log('reset initial values')
 		const result = {
-			adoptedTools: [AdoptedToolsType[0].value],
+			adoptedTools: [],
 			amountOfElectricityCLP: '',
 			amountOfElectricityHKE: '',
 			annualWaterConsumption: '',
-			apdoptedToolsHealthAndSafety: [AdoptedToolsHealthAndSafetyType[0].value],
+			apdoptedToolsHealthAndSafety: [],
 			communityServiceDonationAmount: '',
 			dieselUsage: '',
 			employeeSize: '',
@@ -256,7 +256,7 @@ const UploadESGData = (props) => {
 			noOfResignationsOperatorOrSupportLevelStaff: '',
 			noOfResignationsSupervisorOrAboveStaff: '',
 			noOfSafetyAndHealthAwardReceived: '',
-			noOfSafetyOrESGRelatedTechnologiesUsed: '',
+			noOfSafetyOrEsgRelatedTechnologiesUsed: '',
 			noOfStaffJoiningYMS: '',
 			noOfSupervisorOrAboveStaff: '',
 			noOfYoungStaff: '',
@@ -275,8 +275,8 @@ const UploadESGData = (props) => {
 			typeOfAnticorruptionCampaignsActivities: '',
 			typeOfEnvironmentalAwardReceived: '',
 			typeOfSafetyAndHealthAwardReceived: '',
-			typeOfSafetyOrESGRelatedTechnologiesUsed: [TypeOfSafetyOrESGRelatedTechnologiesUsed[0].value],
-			typeOfSafetyOrESGRelatedTechnologiesUsedOther: '',
+			typeOfSafetyOrEsgRelatedTechnologiesUsed: [],
+			typeOfSafetyOrEsgRelatedTechnologiesUsedOther: '',
 			yearOfRecord: YearType[0].value,
 			...initValue
 		}

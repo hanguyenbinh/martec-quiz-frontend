@@ -1,7 +1,7 @@
 import AdoptedToolsType from "./adoptedToolsType"
 import AdoptedToolsHealthAndSafetyType from "./apdoptedToolsHealthAndSafetyType"
 import ProjectType from "./projectType"
-import TypeOfSafetyOrESGRelatedTechnologiesUsed from "./typeOfSafetyOrESGRelatedTechnologiesUsed"
+import TypeOfSafetyOrEsgRelatedTechnologiesUsed from "./typeOfSafetyOrEsgRelatedTechnologiesUsed"
 import YearType from "./yearType"
 
 
@@ -84,7 +84,7 @@ const SubmissionGroups = (T) => [
       label: T('Total weight of non-inert waste disposed (Tonne)')
     },
     {
-      name: 'noOfTrainedworkerEEsgBuildFunApp',
+      name: 'noOfTrainedWorkerEEsgBuildFunApp',
       label: T('No. of trained worker(E) - ESG Build Fun App'),
       disabled: true
     },
@@ -119,20 +119,20 @@ const SubmissionGroups = (T) => [
         length: 4
       },
       {
-        name: 'noOfSafetyOrESGRelatedTechnologiesUsed',
+        name: 'noOfSafetyOrEsgRelatedTechnologiesUsed',
         label: T('No. of Safety or ESG related technologies used'),
         length: 4
       },
       {
-        name: 'typeOfSafetyOrESGRelatedTechnologiesUsed',
+        name: 'typeOfSafetyOrEsgRelatedTechnologiesUsed',
         label: T('Type of Safety or ESG related technologies used'),
         type: 'checkboxes',
         multiple: true,
-        options: TypeOfSafetyOrESGRelatedTechnologiesUsed,
+        options: TypeOfSafetyOrEsgRelatedTechnologiesUsed,
         length: 4
       },
       {
-        name: 'typeOfSafetyOrESGRelatedTechnologiesUsedOther',
+        name: 'typeOfSafetyOrEsgRelatedTechnologiesUsedOther',
         label: T('Type of Safety or ESG related technologies used (other)'),
         type: 'textarea',
         length: 4
@@ -219,7 +219,7 @@ const SubmissionGroups = (T) => [
         length: 4
       },
       {
-        name: 'noOfTrainedworkerSEsgBuildFunApp',
+        name: 'noOfTrainedWorkerSEsgBuildFunApp',
         label: T('No. of trained worker(S) - ESG Build Fun App'),
         disabled: true
       },
@@ -358,7 +358,7 @@ const SubmissionGroups = (T) => [
         disabled: true
       },
       {
-        name: 'noOfTrainedworkerGEsgBuildFunApp',
+        name: 'noOfTrainedWorkerGEsgBuildFunApp',
         label: T('No. of trained worker(G) - ESG Build Fun App'),
         disabled: true
       },
