@@ -78,7 +78,7 @@ jobs:
       - name: Set image tag
         run: |
             cd deploy
-            kustomize edit set image ${{ env.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.CLUSTER_VPC_REGION }}.amazonaws.com/${{ env.ECR_REPO_PREFIX }}-${{ env.ENVIRONMENT }}:${{ env.IMAGE_TAG }}
+            kustomize edit set image ${{ env.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.CLUSTER_VPC_REGION }}.amazonaws.com/${{ env.ECR_REPO_PREFIX }}-${{ env.ENVIRONMENT }}:${{ env.IMAGE_TAG }}-${{ env.ENVIRONMENT }}
             cat kustomization.yaml
       - name: Commit kustomization
         run: |
