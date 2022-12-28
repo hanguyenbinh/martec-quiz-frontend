@@ -35,7 +35,7 @@ data:
       },
       api: {
         API_URL: "https://apidev.hkca-esg.com/hkca-esg-admin/v1",
-        PORTAL_URL: "https://apidev.hkca-esg.com/hkca-esg-admin-web-backend/api"
+        PORTAL_URL: "https://apidev.hkca-esg.com/hkca-esg-admin/api"
       }
     };
 ---
