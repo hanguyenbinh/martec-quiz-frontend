@@ -64,13 +64,14 @@ jobs:
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: ${{ env.ECR_REPO_PREFIX }}
-          IMAGE_TAG: ${{ env.IMAGE_TAG }}
+          IMAGE_TAG: ${{ env.IMAGE_TAG }}-${{ env.ENVIRONMENT }}
+          BUILD_MODE: ${{ env.ENVIRONMENT }}
         run: |
           # Build a docker container and
           # push it to ECR so that it can
-          # be deployed to ECS/EKS.
+          # be deployed to ECS.
           cd ${{ env.SUB_DIR }}
-          docker build -f ./Dockerfile -t $ECR_REGISTRY/$ECR_REPOSITORY-${{ env.ENVIRONMENT }}:$IMAGE_TAG .  --build-arg GITHUB_TOKEN=${{ env.GITHUB_TOKEN }}
+          docker build -f ./Dockerfile.$BUILD_MODE -t $ECR_REGISTRY/$ECR_REPOSITORY-${{ env.ENVIRONMENT }}:$IMAGE_TAG .  --build-arg GITHUB_TOKEN=${{ env.GITHUB_TOKEN }}
           docker push $ECR_REGISTRY/$ECR_REPOSITORY-${{ env.ENVIRONMENT }}:$IMAGE_TAG
           echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY-${{ env.ENVIRONMENT }}:$IMAGE_TAG"
 
@@ -83,7 +84,7 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git commit -a -m "Updated image to ${{ env.ECR_REPO_PREFIX }}-${{ env.ENVIRONMENT }}:${{ env.IMAGE_TAG }}"
+          git commit -a -m "Updated image to ${{ env.ECR_REPO_PREFIX }}-${{ env.ENVIRONMENT }}:${{ env.IMAGE_TAG }}-${{ env.ENVIRONMENT }}"
       - name: Push changes to main
         uses: ad-m/github-push-action@master
         with:
