@@ -1,4 +1,3 @@
-# please do not modify the file as it should be copied from aws-env repo
 kind: ConfigMap
 apiVersion: v1
 metadata:
