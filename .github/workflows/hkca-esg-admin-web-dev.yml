@@ -1,0 +1,99 @@
+name: HKCA - esg-admin-web (dev) 
+on:
+  push:
+    branches:
+      - main
+
+env:
+  SUB_DIR: '.'
+  ENVIRONMENT: dev
+  ECR_REPO_PREFIX: 'hkca-esg-admin-web'
+  GH_REPO: 'aws-env'
+  ORG: jsesg
+  CLUSTER_VPC_REGION: 'ap-east-1'
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_S_GITHUB_ACTION_KEY_ID}}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_S_GITHUB_ACTION_ACCESS_KEY }}
+  AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
+  GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
+  IMAGE_TAG: ${{ github.sha }}
+  EKS_REGION: ap-east-1
+  EKS_CLUSTER_NAME: hkca-esg-dev
+  SERVICE_NAME: hkca-esg-admin-web
+  SERVICE_HEALTH_CHECK_PUBLIC_URL: 'https://webdev.hkca-esg.com/hkca-esg-admin-web/v1/esg/health-check/'
+
+jobs:
+  deploy-ecr-task:
+    name: Upload image to AWS ECR
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-18.04]
+    steps:
+      - name: Check out from aws-env Github Repository (Private)
+        uses: actions/checkout@v2
+        with:
+          repository: ${{ env.ORG }}/${{ env.GH_REPO }}
+          token: ${{ env.GITHUB_TOKEN }}
+          ref: main
+      - name: Copy yaml file to tmp directory
+        run: |
+          ls -altr
+          mkdir -p /tmp
+          cp ./k8s/${{ env.ENVIRONMENT }}/${{ env.SERVICE_NAME }}.yaml /tmp/${{ env.SERVICE_NAME }}.yaml
+      
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Copy yaml file to deploy directory
+        run: |
+          ls -altr
+          cp /tmp/${{ env.SERVICE_NAME }}.yaml ./deploy/${{ env.SERVICE_NAME }}-${{ env.ENVIRONMENT }}.yaml
+          ls -altr ./deploy
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ env.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ env.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.CLUSTER_VPC_REGION }}
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+      - name: Build, tag, and push image to Amazon ECR
+        id: build-image
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY: ${{ env.ECR_REPO_PREFIX }}
+          IMAGE_TAG: ${{ env.IMAGE_TAG }}
+        run: |
+          # Build a docker container and
+          # push it to ECR so that it can
+          # be deployed to ECS/EKS.
+          cd ${{ env.SUB_DIR }}
+          docker build -f ./Dockerfile -t $ECR_REGISTRY/$ECR_REPOSITORY-${{ env.ENVIRONMENT }}:$IMAGE_TAG .  --build-arg GITHUB_TOKEN=${{ env.GITHUB_TOKEN }}
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY-${{ env.ENVIRONMENT }}:$IMAGE_TAG
+          echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY-${{ env.ENVIRONMENT }}:$IMAGE_TAG"
+
+      - name: Set image tag
+        run: |
+            cd deploy
+            kustomize edit set image ${{ env.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.CLUSTER_VPC_REGION }}.amazonaws.com/${{ env.ECR_REPO_PREFIX }}-${{ env.ENVIRONMENT }}:${{ env.IMAGE_TAG }}
+            cat kustomization.yaml
+      - name: Commit kustomization
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git commit -a -m "Updated image to ${{ env.ECR_REPO_PREFIX }}-${{ env.ENVIRONMENT }}:${{ env.IMAGE_TAG }}"
+      - name: Push changes to main
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ env.GITHUB_TOKEN }}
+          branch: main
+          force: true       
+
+      - name: Connect to EKS cluster (Optional)
+        run: aws eks --region ${{ env.EKS_REGION }} update-kubeconfig --name ${{ env.EKS_CLUSTER_NAME }}
+        
+      - name: Verify Service (Optional)
+        run: |
+          echo "`wget ${{ env.SERVICE_HEALTH_CHECK_PUBLIC_URL }}`"
