@@ -28,10 +28,10 @@ export const postSubmissionFormSuccess = response => {
   };
 };
 
-export const getSubmissionForms = (email) => {
+export const getSubmissionForms = (sort = '', asc = true,) => {
   return {
     type: GET_SUBMISSION_FORM,
-    payload: { email }
+    payload: { asc, sort }
   }
 }
 

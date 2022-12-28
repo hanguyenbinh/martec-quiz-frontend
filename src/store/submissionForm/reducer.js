@@ -6,7 +6,9 @@ const initialState = {
 	defaultSubmissions: [],
 	sectionRemarks: [],
 	yearOfSubmissions: [],
-	currentDraft: null
+	currentDraft: null,
+	sort: '',
+	asc: true
 }
 
 const SubmissionForm = (state = initialState, action) => {
@@ -48,11 +50,14 @@ const SubmissionForm = (state = initialState, action) => {
 			};
 			break;
 		case GET_SUBMISSION_FORM_SUCCESS:
+			console.log('GET_SUBMISSION_FORM_SUCCESS', action.payload)
 
 			state = {
 				...state,
 				loading: false,
-				submissionForms: action.payload,
+				submissionForms: action.payload.submissionForms,
+				sort: action.payload.sort,
+				asc: action.payload.asc,
 				error: false
 			};
 			break;

@@ -24,7 +24,9 @@ const Footer = () => {
                                     mail
                                 </span>
                                     admin@hkca.com.hk</li>
-                                <li>3/F, 180-182 Hennessy Road, Wanchai, Hong Kong</li>
+                                <li><span className="material-symbols-outlined fs-5 me-1">
+                                    home
+                                </span>3/F, 180-182 Hennessy Road, Wanchai, Hong Kong</li>
                             </ul>
                         </div>
                     </Row>

@@ -57,17 +57,16 @@ function* postDefaultSubmission({ payload: { data, history } }) {
   }
 }
 
-function* getSubmissionFormsSaga({ payload: { email, history } }) {
+function* getSubmissionFormsSaga({ payload: { email, sort, asc } }) {
   try {
-    if (process.env.REACT_APP_API_URL) {
-      const response = yield call(
-        getSubmissionHistoryApi, email);
-      if (response.status === true) {
-        yield put(getSubmissionFormsSuccess(response.data));
-        // history.push("/dashboard");
-      } else {
-        yield put(portalApiError(response));
-      }
+    const response = yield call(
+      getSubmissionHistoryApi, sort, asc);
+    if (response.status === true) {
+      console.log('get submissions forms', response.data)
+      yield put(getSubmissionFormsSuccess(response.data));
+      // history.push("/dashboard");
+    } else {
+      yield put(portalApiError(response));
     }
   } catch (error) {
     yield put(portalApiError(error));
@@ -95,7 +94,7 @@ function* getDraftSubmissionForm({ payload: { id } }) {
       getDraftSubmissionFormApi, id);
     if (response.status === true) {
       yield put(getDraftSubmissionFormSuccess(response.data));
-      toast.success('Get Draft submission success')
+      toast.success('The draft is opened successfully')
     } else {
       yield put(portalApiError(response));
     }

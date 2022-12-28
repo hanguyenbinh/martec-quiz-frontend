@@ -3,7 +3,7 @@ import React from "react"
 import { useEffect } from "react"
 import { withTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { Button, Card, CardBody, CardHeader, Col, Container, Label, Row } from "reactstrap"
+import { Button, Card, CardBody, CardHeader, Col, Container, Row } from "reactstrap"
 import BreadCrumb from "../../Components/Common/BreadCrumb"
 import * as moment from 'moment';
 import { alertService } from "../../services"
@@ -25,11 +25,12 @@ const SubmissionHistory = (props) => {
 	}
 
 	useEffect(() => {
-		const email = localStorage.getItem("email");
-		dispatch(getSubmissionForms(email, props.history))
+		dispatch(getSubmissionForms())
 	}, [])
-	const { submissionForms } = useSelector(state => ({
+	const { submissionForms, sort, asc } = useSelector(state => ({
 		submissionForms: state.SubmissionForm.submissionForms,
+		sort: state.SubmissionForm.sort,
+		asc: state.SubmissionForm.asc,
 	}));
 	const renderSubmissionItem = (item, data) => {
 		if (item.type === 'checkboxes') {
@@ -53,7 +54,6 @@ const SubmissionHistory = (props) => {
 	}
 	const handleViewSubmission = async (i) => {
 		const data = submissionForms[i];
-		console.log('handleViewSubmission', data)
 		const { isConfirmed } = await alertService.fireDialog({
 			showConfirmButton: false,
 			title: "Submission detail",
@@ -96,15 +96,22 @@ const SubmissionHistory = (props) => {
 	}
 
 	const handleRemoveDraft = (id) => {
-		if (window.confirm(`Do you want to delete this draft submission with Id: ${id}?`)) {
+		if (window.confirm(`Do you want to proceed to delete this draft?`)) {
 			dispatch(deleteSubmission(id))
 		}
 
 	}
 
-	useEffect(() => {
-		console.log('submissionForms changed', submissionForms)
+	const sortSubmissionForm = (type) => {
+		console.log('asdfsdasfafdsfasfasf')
+		if (sort === type)
+			dispatch(getSubmissionForms(type, !asc))
+		else {
+			dispatch(getSubmissionForms(type, true))
+		}
+	}
 
+	useEffect(() => {
 	}, [submissionForms])
 
 	return (
@@ -119,18 +126,18 @@ const SubmissionHistory = (props) => {
 					<table className="table">
 						<thead>
 							<tr>
-								<th scope="col">{T('Submission Date')}</th>
-								<th scope="col">{T('Recording Period')}</th>
+								<th scope="col" onClick={() => sortSubmissionForm('updatedAt')}>{T('Submission Date')}</th>
+								<th scope="col" onClick={() => sortSubmissionForm('yearOfRecord')}>{T('Recording Period')}</th>
 								<th scope="col">{T('Submitted By')}</th>
 								<th scope="col">{T('Hash Value')}</th>
-								<th scope="col">{T('View')}</th>
+								<th scope="col">{T('Action')}</th>
 								<th scope="col">{T('Version')}</th>
 							</tr>
 						</thead>
 						<tbody>
 							{submissionForms && submissionForms.map((d, dIndex) => (
-								<tr key={dIndex}>
-									<th>{moment(d.createdAt).format('YYYY-MM-DD')}</th>
+								<tr key={dIndex} style={d.isDraft ? { backgroundColor: "whitesmoke" } : null}>
+									<th>{moment(d.updatedAt).format('YYYY-MM-DD')}</th>
 									<td>{d.yearOfRecord}</td>
 									<td>{d.email}</td>
 									<td>{d.hashValue}</td>
@@ -147,7 +154,7 @@ const SubmissionHistory = (props) => {
 										) :
 											(
 												<Button onClick={() => handleViewSubmission(dIndex)}>
-													Link
+													View
 												</Button>
 											)}
 

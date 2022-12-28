@@ -69,7 +69,7 @@ const SubmissionGroups = (T) => [
     {
       name: 'noOfElectricityLeakOrRiskDetected',
       label: T('No. of electricity leak or risk detected'),
-      disabled: true
+      disabled: true,
     }
     ]
   },

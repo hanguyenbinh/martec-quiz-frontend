@@ -60,7 +60,7 @@ const DashBoard = (props) => {
 				datasets: [
 					{
 						type: "line",
-						label: "US",
+						label: "My performance",
 						borderColor: "#3577f1",
 						borderWidth: 4,
 						fill: false,
@@ -68,7 +68,7 @@ const DashBoard = (props) => {
 					},
 					{
 						type: "line",
-						label: "Peer's average",
+						label: "Market's performance",
 						borderColor: "#f06548",
 						borderWidth: 4,
 						fill: true,

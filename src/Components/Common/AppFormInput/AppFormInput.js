@@ -1,6 +1,6 @@
 import React from "react"
 import cx from "classnames"
-import lodash, { camelCase } from "lodash"
+import lodash, { camelCase, isEmpty } from "lodash"
 import PropTypes from "prop-types"
 
 import { FormGroup, FormText, Input, Label, Tooltip } from "reactstrap"
@@ -122,6 +122,7 @@ const AppFormInput = React.forwardRef((props, ref) => {
 							</Input></div>) : null}
 				</div>)
 			default:
+				if (disabled && isEmpty(value)) return null;
 				return <Input
 					{...inputProps}
 					value={value}
@@ -143,7 +144,7 @@ const AppFormInput = React.forwardRef((props, ref) => {
 
 
 	return (
-		<FormGroup
+		< FormGroup
 			ref={ref}
 			className={cx(className, !!innerClasses?.root && innerClasses.root, {
 				[classes.error]: !!error
@@ -161,18 +162,20 @@ const AppFormInput = React.forwardRef((props, ref) => {
 
 			</Label>
 			{buildInput(type, disabled)}
-			{!!helperText && (
-				<FormText
-					color="inherit"
-					className={cx(
-						classes.helperText,
-						!!innerClasses?.helperText && innerClasses.helperText
-					)}
-				>
-					{helperText}
-				</FormText>
-			)}
-		</FormGroup>
+			{
+				!!helperText && (
+					<FormText
+						color="inherit"
+						className={cx(
+							classes.helperText,
+							!!innerClasses?.helperText && innerClasses.helperText
+						)}
+					>
+						{helperText}
+					</FormText>
+				)
+			}
+		</FormGroup >
 	)
 })
 

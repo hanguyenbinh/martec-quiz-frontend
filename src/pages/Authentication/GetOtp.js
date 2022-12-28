@@ -76,7 +76,7 @@ const GetOtp = (props) => {
 						<Row>
 							<Col lg={12}>
 								<div className="text-center mt-sm-5 mb-4 text-white-50">
-									<p className="mt-3 fs-15 fw-medium">{T('ESG Recognition Scheme Plaform')}</p>
+									<p className="mt-3 fs-1 fw-medium">{T('ESG Recognition Scheme Plaform')}</p>
 								</div>
 							</Col>
 						</Row>

@@ -59,7 +59,7 @@ export const postDefaultSubmissionsApi = data => {
 }
 
 
-export const getSubmissionHistoryApi = (email) => api.get(url.GET_ESG_DATA, { email });
+export const getSubmissionHistoryApi = (sort, asc) => api.get(url.GET_ESG_DATA, { sort, asc });
 
 export const getDefaultSubbmissionsApi = () => api.get(url.GET_DEFAULT_SUBMISSION_API, {});
 

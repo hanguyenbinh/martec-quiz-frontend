@@ -7,6 +7,7 @@ import classes from "./SubmissionGroup.module.scss"
 import AppFormInput from "../../../../Components/Common/AppFormInput"
 import { FastField } from "formik"
 import { useSelector } from "react-redux"
+import { isEmpty } from "lodash"
 
 const SubmissionGroup = (props) => {
 	const { title, fields, currentDraft } = props
@@ -31,10 +32,11 @@ const SubmissionGroup = (props) => {
 				<Row className="mb-3">
 					{
 						fields.map((_field, index) => (
-							<Col key={`SubmissionForm_group_${index}`} sm={12} md={_field.length ? _field.length : 3}>
-								<FastField name={_field.name}>
-									{({ field, meta }) => {
-										return (
+							// !(_field.disabled && )
+							<FastField key={`SubmissionForm_group_${index}`} name={_field.name}>
+								{({ field, meta }) => {
+									return _field.disabled && isEmpty(field.value) ? null : (
+										<Col sm={12} md={_field.length ? _field.length : 3}>
 											<AppFormInput
 												options={_field.options}
 												type={_field.type}
@@ -46,11 +48,13 @@ const SubmissionGroup = (props) => {
 												multiple={_field.multiple}
 												disabled={_field.disabled}
 												{...field} />
-										)
-									}}
-								</FastField>
+										</Col>
+									)
+								}}
 
-							</Col>
+
+
+							</FastField>
 						))
 					}
 					{remarks && remarks.length ? remarks.map((remark, key) => (
