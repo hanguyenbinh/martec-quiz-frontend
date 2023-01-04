@@ -68,7 +68,7 @@ const DashBoard = (props) => {
 					},
 					{
 						type: "line",
-						label: "Market's performance",
+						label: "Industry performance",
 						borderColor: "#f06548",
 						borderWidth: 4,
 						fill: true,

@@ -104,9 +104,9 @@ const Events = (props) => {
 											handleEditEvent(d.event_id);
 										}}>{T('Edit')}</button>
 
-										<button className="btn-danger" onClick={() => {
+										{/* <button className="btn-danger" onClick={() => {
 											handleDeleteEvent(d.event_id);
-										}}>{T('Delete')}</button>
+										}}>{T('Delete')}</button> */}
 									</td>
 								</tr>
 							))}

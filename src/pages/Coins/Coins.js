@@ -84,15 +84,15 @@ function Coins(props) {
 					</CardHeader>
 					<CardBody className="border-bottom ms-4">
 						<Row className="mb-3">
-							<Col className="col-md-2">Total Given Out: </Col>
+							<Col className="col-md-2">Total no. of ESG Coin mined: </Col>
 							<Col>{coinsSummary.totalGivenOut}</Col>
 						</Row>
 						<Row className="mb-3">
-							<Col className="col-md-2">Total Redeemed: </Col>
+							<Col className="col-md-2">Total no. of ESG Coin used for prize redemption: </Col>
 							<Col>{coinsSummary.totalRedeemed}</Col>
 						</Row>
 						<Row className="mb-3">
-							<Col className="col-md-2">Total in Circulation: </Col>
+							<Col className="col-md-2">Total no. of ESG Coin in circulation: </Col>
 							<Col>{coinsSummary.totalInCirculation}</Col>
 						</Row>
 					</CardBody>

@@ -10,6 +10,8 @@ const Header = ({ onChangeLayoutMode, layoutModeType, headerClass }) => {
 	const [search, setSearch] = useState(false)
 	const orgLogo = localStorage.getItem('orglogo');
 	const orgName = localStorage.getItem('orgName');
+	const lastLogin = localStorage.getItem('lastLogin');
+	const email = localStorage.getItem('email');
 
 	const toogleSearch = () => {
 		setSearch(!search)
@@ -80,19 +82,11 @@ const Header = ({ onChangeLayoutMode, layoutModeType, headerClass }) => {
 										{orgName}
 									</div>
 								</div>
-
-
 							</div>
-
-
-
-							{/* <SearchOption /> */}
-						</div>
-						<div>
-
 						</div>
 
 						<div className="d-flex align-items-center">
+							Last login on [{lastLogin}] by [{email}]
 							<Dropdown
 								isOpen={search}
 								toggle={toogleSearch}

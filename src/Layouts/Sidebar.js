@@ -7,7 +7,7 @@ import VerticalLayout from "./VerticalLayouts"
 import { Container } from "reactstrap"
 import { withTranslation } from "react-i18next"
 
-import logoImg from "src/assets/images/ESG_BUILD_FUN_logo_B2.png"
+import logoImg from "src/assets/images/esg-logo-white.png"
 import hkcaLogoImg from "src/assets/images/hkca-logo-only.png"
 
 const Sidebar = (props) => {
@@ -46,7 +46,7 @@ const Sidebar = (props) => {
 				<div className="navbar-brand-box">
 					<Link to="/" className="app-title">
 						<span className="app-title d-flex flex-column pt-0 justify-content-center align-items-center" style={{ marginTop: -32 }}>
-							<img className=" w-75" src={logoImg} />
+							<img className=" w-100" src={logoImg} />
 							<span>
 								{props.t('Application Name')}
 							</span>

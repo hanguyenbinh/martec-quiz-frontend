@@ -268,3 +268,7 @@
   bottom: 0;
   color: white;
 }
+
+.link-color {
+  color: var(--#{$variable-prefix}link-color);
+}

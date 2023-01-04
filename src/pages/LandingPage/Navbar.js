@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'; import Scrollspy from "react-scrollspy"
 
 //import Images
 import logodark from "../../assets/images/HKCA_Logo.png";
-import logolight from "src/assets/images/ESG_BUILD_FUN_logo_B2.png"
+import logolight from "src/assets/images/esg-logo-h.png"
 
 const Navbar = () => {
     const [isOpenMenu, setisOpenMenu] = useState(false);

@@ -17,6 +17,7 @@ import {
 } from "reactstrap"
 
 import BreadCrumb from "src/Components/Common/BreadCrumb"
+import EsgTooltip from "src/Components/Common/EsgTooltip"
 
 import classes from "./prize.module.scss"
 
@@ -75,7 +76,12 @@ function EditPrizeForm() {
                 <div className={`${classes.banner} mb-3`}>
                   <img src={values.qr_code_path} className={classes.bannerImg} alt="" />
                 </div>
-                <div className="d-flex justify-content-center"><a className="btn btn-secondary" href={values.qr_code_path}>Download</a></div>
+                <div className="d-flex justify-content-center">
+                  <a className="btn btn-secondary" href={values.qr_code_path}>
+                    <EsgTooltip tooltipText='Please download and print out this QR code, and present to user who requests the prize redemption' name='prize-qrcode-download'>
+
+                    </EsgTooltip> Download
+                  </a></div>
               </CardBody>
             </Card>
           </Col>
@@ -114,11 +120,11 @@ function EditPrizeForm() {
                   />
                 </FormGroup>
                 <FormGroup>
-                  <Label>Items Left</Label>
+                  <Label>No. of items available for redemption</Label>
                   <Input
                     name="in_stock_qty"
                     className="form-control"
-                    placeholder="Item left"
+                    placeholder="No. of items available for redemption"
                     type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -282,7 +288,7 @@ function EditPrizeForm() {
                         touched.status && errors.status ? true : false
                       }
                     />
-                    <Label check>Inactive</Label>
+                    <Label check>Inactive <EsgTooltip tooltipText='This option controls whether the prize is visible to user(s) in the mobile app' name='prize-inactive' ></EsgTooltip></Label>
                   </FormGroup>
                 </FormGroup>
               </CardBody>

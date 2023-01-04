@@ -16,6 +16,7 @@ import { getOrganisations, loginInitiate, loginUser, resetLoginFlag } from "../.
 import { withTranslation } from 'react-i18next';
 
 import logodark from "../../assets/images/HKCA_Logo.png";
+import esgLogoColor from "../../assets/images/esg-logo-color.png";
 
 const GetOtp = (props) => {
 	const T = props.t;
@@ -73,10 +74,11 @@ const GetOtp = (props) => {
 
 					<Container>
 						<img src={logodark} className="card-logo" alt="logo" height="80" />
+						<img src={esgLogoColor} className="card-logo" alt="logo" height="100" />
 						<Row>
 							<Col lg={12}>
 								<div className="text-center mt-sm-5 mb-4 text-white-50">
-									<p className="mt-3 fs-1 fw-medium">{T('ESG Recognition Scheme Plaform')}</p>
+									<p className="mt-3 fs-2 fw-medium">{T('ESG Recognition Scheme Plaform')}</p>
 								</div>
 							</Col>
 						</Row>

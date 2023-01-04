@@ -104,6 +104,7 @@ const AppFormInput = React.forwardRef((props, ref) => {
 
 					{option.comment ? (
 						<div className="col-md-10">
+							{index === 0 && 'Remarks:'}
 							<Input
 								name={option.comment}
 								type='text'

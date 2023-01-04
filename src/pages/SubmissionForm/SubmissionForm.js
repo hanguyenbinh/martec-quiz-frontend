@@ -161,9 +161,9 @@ const UploadESGData = (props) => {
 					...currentDraft,
 					adoptedTools: currentDraft.adoptedTools ? currentDraft.adoptedTools.split('<ITEM>') : [],
 					apdoptedToolsHealthAndSafety: currentDraft.apdoptedToolsHealthAndSafety ? currentDraft.apdoptedToolsHealthAndSafety.split('<ITEM>') : [],
-					typeOfSafetyOrEsgRelatedTechnologiesUsed: currentDraft.apdoptedToolsHealthAndSafety ? currentDraft.typeOfSafetyOrEsgRelatedTechnologiesUsed.split('<ITEM>') : []
+					typeOfSafetyOrEsgRelatedTechnologiesUsed: currentDraft.typeOfSafetyOrEsgRelatedTechnologiesUsed ? currentDraft.typeOfSafetyOrEsgRelatedTechnologiesUsed.split('<ITEM>') : []
 				};
-				console.log('init value', initValue)
+				console.log('init value abcd', initValue)
 			}
 		}
 		else {

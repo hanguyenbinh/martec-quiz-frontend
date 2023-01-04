@@ -39,14 +39,6 @@ const MajorIndicators = () => {
                                             <p key={'textItem' + key}>{textItem}</p>
                                         ))}
                                     </div>
-                                    {/* <div className="card-footer border-top border-top-dashed">
-                                        <div className="d-flex align-items-center">
-                                            <div className="flex-grow-1 fs-14">
-                                                <i className="ri-price-tag-3-fill text-warning align-bottom me-1"></i> Highest: <span className="fw-medium">{item.highest}</span>
-                                            </div>
-                                            <h5 className="flex-shrink-0 fs-14 text-primary mb-0">{item.price}</h5>
-                                        </div>
-                                    </div> */}
                                 </div>
                             </Col>
                         ))}

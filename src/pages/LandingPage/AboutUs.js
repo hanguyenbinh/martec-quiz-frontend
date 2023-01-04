@@ -13,8 +13,9 @@ const AboutUs = () => {
                         <Col lg={12}>
                             <div className="text-center mb-1">
                                 <h1 className="fw-semibold lh-base">ESG Recognition Scheme</h1>
-                                <h2 className="mb-1 fw-semibold lh-base">About</h2>
-
+                            </div>
+                            <div className="text-justify mb-1">
+                                <h3 className="mb-3 fw-semibold lh-base">About</h3>
                                 <p className="text-muted text-justify">
                                     Sustainable development is becoming critical for all corporates across all industries. There has been a global trend of growing awareness about the Environmental, Social, and Governance (ESG) standards and has increasingly gone mainstream.
                                 </p>

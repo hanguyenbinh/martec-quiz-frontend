@@ -77,11 +77,13 @@ const SubmissionGroups = (T) => [
     title: T('Waste Management'),
     fields: [{
       name: 'totalWeightof_InertWasteDisposedPerAnnum',
-      label: T('Total weight of inert waste disposed (Tonne)')
+      label: T('Total weight of inert waste disposed (Tonne)'),
+      length: 6
     },
     {
       name: 'totalWeightOf_Non_InertWasteDisposedPerAnnum',
-      label: T('Total weight of non-inert waste disposed (Tonne)')
+      label: T('Total weight of non-inert waste disposed (Tonne)'),
+      length: 6
     },
     {
       name: 'noOfTrainedWorkerEEsgBuildFunApp',
@@ -133,7 +135,7 @@ const SubmissionGroups = (T) => [
       },
       {
         name: 'typeOfSafetyOrEsgRelatedTechnologiesUsedOther',
-        label: T('Type of Safety or ESG related technologies used (other)'),
+        label: T(`Type of Safety or ESG related technologies used (if you have selected 'Other')`),
         type: 'textarea',
         length: 4
       },
@@ -161,13 +163,24 @@ const SubmissionGroups = (T) => [
         label: T('No. of staff joining YMS'),
         tooltip: (<p>{T('HKCA Young Members Society (YMS) or HKCA Young Members Society Professionals Connection - Graduated Member (YMS Pro)')}</p>)
       },
+
       {
         name: 'noOfYoungStaff',
         label: T('No. of young staff (age < 40)')
       },
       {
         name: 'noOfHoursAttendingVrTrainings',
-        label: T('No. of hours attending VR trainings'),
+        label: T('No. of staff attending VR trainings'),
+        disabled: true
+      },
+      {
+        name: 'noOfTrainedWorkerSEsgBuildFunApp',
+        label: T('No. of trained worker(S) - ESG Build Fun App'),
+        disabled: true
+      },
+      {
+        name: 'noOfTrainingsSEsgBuildFunApp',
+        label: T('No. of Trainings(S) - ESG Build Fun App'),
         disabled: true
       }
     ]
@@ -218,17 +231,6 @@ const SubmissionGroups = (T) => [
         label: T('No. of resignations - operator or support level staff'),
         length: 4
       },
-      {
-        name: 'noOfTrainedWorkerSEsgBuildFunApp',
-        label: T('No. of trained worker(S) - ESG Build Fun App'),
-        disabled: true
-      },
-      {
-        name: 'noOfTrainingsSEsgBuildFunApp',
-        label: T('No. of Trainings(S) - ESG Build Fun App'),
-        disabled: true
-      }
-
     ]
   },
   {
@@ -321,15 +323,17 @@ const SubmissionGroups = (T) => [
         type: 'checkboxes',
         multiple: true,
         options: AdoptedToolsHealthAndSafetyType,
+        length: 4,
       },
       {
         name: 'noOfConvictionsRelatedToHealthyAndSafety',
         label: T('No. of convictions related to health and safety'),
-
+        length: 4,
       },
       {
         name: 'suspensionNoticesDueToSafetyIssues',
         label: T('Suspension notices due to safety issues (including those caused by subcontractors involved in a project)'),
+        length: 4,
       },
       {
         name: 'noOfSafetyAndHealthAwardReceived',

@@ -22,6 +22,7 @@ import {
 } from "reactstrap"
 
 import BreadCrumb from "src/Components/Common/BreadCrumb"
+import EsgTooltip from "src/Components/Common/EsgTooltip"
 
 function EditEventForm(props) {
   const isEdit = props.isEdit
@@ -199,7 +200,7 @@ function EditEventForm(props) {
 
         <div className="d-flex align-items-center justify-content-between mb-4">
           <div className="d-flex align-items-center">
-            <h6 className="mb-0 me-2">Start/End Date:</h6>
+            <h6 className="mb-0 me-2">Start Date:</h6>
             <Input
               name="start_date"
               className="me-2"
@@ -212,7 +213,7 @@ function EditEventForm(props) {
               }
               style={{ width: 160 }}
             />
-            <h6 className="mb-0 me-2">/</h6>
+            <h6 className="mb-0 me-2">End Date:</h6>
             <Input
               name="end_date"
               className="me-2"
@@ -343,10 +344,7 @@ function EditEventForm(props) {
                       >
                         {
                           nextCheckinTimes.map((item, key) => {
-                            if (item === '-1' || item === -1) {
-                              return <option key={key} value={item}>infinite</option>
-                            }
-                            return <option key={key} value={item}>{item}</option>
+                            return <option key={key} value={item.value}>{item.label}</option>
                           })
                         }
                       </Input>
@@ -362,7 +360,7 @@ function EditEventForm(props) {
                 <div className={`${classes.banner} mb-3`}>
                   <img src={values.qr_code_path} className={classes.bannerImg} alt="" />
                 </div>
-                <div className="d-flex justify-content-center"><a className="btn btn-secondary" href={values.qr_code_path}>Download</a></div>
+                <div className="d-flex justify-content-center"><a className="btn btn-secondary" href={values.qr_code_path}><EsgTooltip tooltipText='Please download and print out this QR code, and display at the venue for user(s) to scan to earn the coins' name='event-qrcode-download'></EsgTooltip> Download</a></div>
 
               </Col>) : null}
             </Row>
