@@ -1,0 +1,102 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: hkca-esg-admin-web
+  namespace: hkca
+data:
+  default.conf: |
+    server {
+        listen       80;
+        listen  [::]:80;
+        server_name  _;
+
+        access_log  /var/log/nginx/host.access.log  main;
+
+        location / {
+            root   /usr/share/nginx/html;
+            index  index.html index.htm;
+            try_files $uri $uri/ /index.html;
+        }
+
+        error_page  404              /404.html;
+
+        # redirect server error pages to the static page /50x.html
+        #
+        error_page   500 502 503 504  /50x.html;
+        location = /50x.html {
+            root   /usr/share/nginx/html;
+        }
+    }
+  config.js: |
+    module.exports = {
+      module.exports = {
+      landingPage: {
+        joinButtonLink: 'https://public-dev.hkca-esg.com/docs/guide-to-application-for-environmental-social-governance(esg)-recognition-scheme-2022-dec.pdf'
+      },
+      api: {
+        API_URL: "https://apidev.hkca-esg.com/hkca-esg-admin/v1",
+        PORTAL_URL: "https://apidev.hkca-esg.com/hkca-esg-admin/api"
+      }
+    };
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: hkca-esg-admin-web
+  namespace: hkca
+  labels:
+    app: hkca-esg-admin-web
+    env: dev
+spec:
+  selector:
+    app: hkca-esg-admin-web
+    env: dev
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: hkca-esg-admin-web-deployment
+  namespace: hkca
+  labels:
+    app: hkca-esg-admin-web-deployment
+    env: dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hkca-esg-admin-web
+      env: dev
+  template:
+    metadata:
+      labels:
+        app: hkca-esg-admin-web
+        env: dev
+    spec:
+      volumes:
+      - name: hkca-esg-admin-web-nginx-conf-volume
+        configMap:
+          name: hkca-esg-admin-web
+          items:
+            - key: default.conf
+              path: default.conf
+      - name: hkca-esg-admin-web-conf-volume
+        configMap:
+          name: hkca-esg-admin-web
+          items:
+            - key: config.js
+              path: config.js
+      containers:
+      - name: hkca-esg-admin-web
+        image: 186966626644.dkr.ecr.ap-east-1.amazonaws.com/hkca-esg-admin-web-dev:dev-dev
+        imagePullPolicy: Always
+        volumeMounts:
+        - mountPath: /etc/nginx/conf.d # mount nginx-conf volumn to /etc/nginx/conf.d
+          readOnly: true
+          name: hkca-esg-admin-web-nginx-conf-volume
+        - mountPath: /app/hkca-esg-admin-web/src/ # mount nginx-conf volumn to /etc/nginx/conf.d
+          readOnly: true
+          name: hkca-esg-admin-web-conf-volume
