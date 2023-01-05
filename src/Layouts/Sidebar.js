@@ -46,7 +46,7 @@ const Sidebar = (props) => {
 				<div className="navbar-brand-box">
 					<Link to="/" className="app-title">
 						<span className="app-title d-flex flex-column pt-0 justify-content-center align-items-center" style={{ marginTop: -32 }}>
-							<img className=" w-100" src={logoImg} />
+							<img className=" w-100 mt-3" src={logoImg} />
 							<span>
 								{props.t('Application Name')}
 							</span>

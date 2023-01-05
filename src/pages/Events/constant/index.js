@@ -31,15 +31,15 @@ export const nextCheckinTimes = [
     value: 6
   },
   {
-    label: 'half day',
+    label: '12 (half-day)',
     value: 12
   },
   {
-    label: 'one day',
+    label: '24 (one-day)',
     value: 24
   },
   {
-    label: 'infinite',
+    label: 'once per game',
     value: -1
   }
 ]

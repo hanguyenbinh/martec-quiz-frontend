@@ -360,7 +360,11 @@ function EditEventForm(props) {
                 <div className={`${classes.banner} mb-3`}>
                   <img src={values.qr_code_path} className={classes.bannerImg} alt="" />
                 </div>
-                <div className="d-flex justify-content-center"><a className="btn btn-secondary" href={values.qr_code_path}><EsgTooltip tooltipText='Please download and print out this QR code, and display at the venue for user(s) to scan to earn the coins' name='event-qrcode-download'></EsgTooltip> Download</a></div>
+                <div className="d-flex justify-content-center">
+                  <div style={{ lineHeight: 1.5, verticalAlign: 'middle', padding: '0.5rem 0.9rem' }}>
+                    <EsgTooltip tooltipText='Please download and print out this QR code, and display at the venue for user(s) to scan to earn the coins' name='event-qrcode-download'></EsgTooltip>
+                  </div>
+                  <a className="btn btn-secondary" href={values.qr_code_path}> Download</a></div>
 
               </Col>) : null}
             </Row>

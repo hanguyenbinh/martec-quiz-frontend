@@ -81,47 +81,73 @@ const AppFormInput = React.forwardRef((props, ref) => {
 					}
 				</>
 			case 'checkboxes':
-				return options.map((option, index) => <div className="d-flex flex-row" key={index}>
-					<div className="col-md-12">
-						<Input {...inputProps}
-							name={name}
-							type='checkbox'
-							className={cx(!!innerClasses?.input && innerClasses.input) + ' me-3'}
-							id={htmlId}
-							checked={value?.indexOf(option.value) >= 0}
-							value={option.value}
-							onChange={onChange}
-							onBlur={onBlur}
-							valid={error === false}
-							invalid={error === true}
-							disabled={disabled}
-						>
-						</Input>
-						<Label check>
-							{option.value}
-						</Label>
-					</div>
+				return options.map((option, index) => {
+					if (option.type !== 'input')
+						return (<div className="d-flex flex-row" key={index}>
+							<div className="col-md-12">
+								<Input {...inputProps}
+									name={name}
+									type='checkbox'
+									className={cx(!!innerClasses?.input && innerClasses.input) + ' me-3'}
+									id={htmlId}
+									checked={value?.indexOf(option.value) >= 0}
+									value={option.value}
+									onChange={onChange}
+									onBlur={onBlur}
+									valid={error === false}
+									invalid={error === true}
+									disabled={disabled}
+								>
+								</Input>
+								<Label check>
+									{option.value}
+								</Label>
+							</div>
 
-					{option.comment ? (
-						<div className="col-md-10">
-							{index === 0 && 'Remarks:'}
-							<Input
-								name={option.comment}
-								type='text'
-								className={cx(!!innerClasses?.input && innerClasses.input)}
-								id={'comment' + htmlId}
-								value={extractValue(index)}
-								valid={error === false}
-								invalid={error === true}
-								onChange={(e) => {
-									console.log(values)
-									onChange(e)
-								}}
-								onBlur={onBlur}
-							>
+							{option.comment ? (
+								<div className="col-md-10">
+									{index === 0 && 'Remarks:'}
+									<Input
+										name={option.comment}
+										type='text'
+										className={cx(!!innerClasses?.input && innerClasses.input)}
+										id={'comment' + htmlId}
+										value={extractValue(index)}
+										valid={error === false}
+										invalid={error === true}
+										onChange={(e) => {
+											console.log(values)
+											onChange(e)
+										}}
+										onBlur={onBlur}
+									>
 
-							</Input></div>) : null}
-				</div>)
+									</Input></div>) : null}
+						</div>);
+					return (
+						<div className="d-flex flex-row" key={index}>
+							<div className="col-md-12">
+								<Label>
+									{option.label}
+								</Label>
+								<Input {...inputProps}
+									name={name + '_other'}
+									type='text'
+									className={cx(!!innerClasses?.input && innerClasses.input) + ' me-3'}
+									id={htmlId}
+									value={values[name + '_other']}
+									onChange={onChange}
+									onBlur={onBlur}
+									valid={error === false}
+									invalid={error === true}
+									disabled={disabled}
+								>
+								</Input>
+
+							</div>
+						</div>
+					)
+				})
 			default:
 				if (disabled && isEmpty(value)) return null;
 				return <Input

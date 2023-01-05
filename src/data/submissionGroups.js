@@ -170,6 +170,11 @@ const SubmissionGroups = (T) => [
       },
       {
         name: 'noOfHoursAttendingVrTrainings',
+        label: T('No. of hours attending VR trainings'),
+        disabled: true
+      },
+      {
+        name: 'noOfStaffAttendingVrTrainings',
         label: T('No. of staff attending VR trainings'),
         disabled: true
       },

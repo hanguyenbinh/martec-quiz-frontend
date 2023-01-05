@@ -77,10 +77,14 @@ function EditPrizeForm() {
                   <img src={values.qr_code_path} className={classes.bannerImg} alt="" />
                 </div>
                 <div className="d-flex justify-content-center">
-                  <a className="btn btn-secondary" href={values.qr_code_path}>
+                  <div style={{ lineHeight: 1.5, verticalAlign: 'middle', padding: '0.5rem 0.9rem' }}>
+                    {/* <div className="btn"> */}
                     <EsgTooltip tooltipText='Please download and print out this QR code, and present to user who requests the prize redemption' name='prize-qrcode-download'>
+                    </EsgTooltip>
+                  </div>
 
-                    </EsgTooltip> Download
+                  <a className="btn btn-secondary" href={values.qr_code_path}>
+                    Download
                   </a></div>
               </CardBody>
             </Card>
