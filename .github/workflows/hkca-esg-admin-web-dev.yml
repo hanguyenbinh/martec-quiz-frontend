@@ -27,7 +27,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-18.04]
+        os: [ubuntu-22.04]
     steps:
       - name: Check out from aws-env Github Repository (Private)
         uses: actions/checkout@v2
