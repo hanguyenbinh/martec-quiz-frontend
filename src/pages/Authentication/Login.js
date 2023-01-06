@@ -5,14 +5,14 @@ import ParticlesAuth from "../AuthenticationInner/ParticlesAuth";
 //redux
 import { useSelector, useDispatch } from "react-redux";
 
-import { Redirect, useHistory, withRouter } from "react-router-dom";
+import { useHistory, withRouter } from "react-router-dom";
 
 // Formik validation
 import * as Yup from "yup";
 import { useFormik } from "formik";
 
 // actions
-import { getOrganisations, loginChallenge, resetLoginFlag } from "../../store/actions";
+import { loginChallenge, resetLoginFlag } from "../../store/actions";
 import { withTranslation } from 'react-i18next';
 
 import logodark from "../../assets/images/HKCA_Logo.png";

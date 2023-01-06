@@ -99,11 +99,11 @@ const SubmissionForm = (props) => {
 		// console.log('handleSaveDraft', values)
 		const payload = {}
 		Object.keys(values).forEach(key => {
-			if (!isEmpty(values[key])) {
+			if (!isEmpty(values[key]) || typeof values[key] !== 'string') {
 				payload[key] = values[key]
 			}
 		})
-		dispatch(submitDraftSubmissions(values, props.history))
+		dispatch(submitDraftSubmissions(payload, props.history))
 	}
 
 	useEffect(() => {

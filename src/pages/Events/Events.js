@@ -83,7 +83,8 @@ const Events = (props) => {
 								<th scope="col">{T('Event Name')}</th>
 								<th scope="col">{T('Description')}</th>
 								<th scope="col">{T('Status')}</th>
-								<th scope="col">{T('Start-End Date')}</th>
+								<th scope="col">{T('Start Date')}</th>
+								<th scope="col">{T('End Date')}</th>
 								<th scope="col">{T('Visible to Users')}</th>
 								<th scope="col">{T('Action')}</th>
 							</tr>
@@ -94,7 +95,8 @@ const Events = (props) => {
 									<th>{d.event_name}</th>
 									<td>{d.event_desc}</td>
 									<td>{d.status}</td>
-									<td>{d.start_date} - {d.end_date}</td>
+									<td>{d.start_date}</td>
+									<td>{d.end_date}</td>
 									<td>{d.visible}</td>
 									<td>
 										{/* <button onClick={() => {

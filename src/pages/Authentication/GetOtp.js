@@ -16,7 +16,7 @@ import { getOrganisations, loginInitiate, loginUser, resetLoginFlag } from "../.
 import { withTranslation } from 'react-i18next';
 
 import logodark from "../../assets/images/HKCA_Logo.png";
-import esgLogoColor from "../../assets/images/esg-logo-color.png";
+import esgLogoColor from "../../assets/images/esg-logo-h.png";
 
 const GetOtp = (props) => {
 	const T = props.t;
