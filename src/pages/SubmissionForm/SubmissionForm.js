@@ -103,7 +103,7 @@ const SubmissionForm = (props) => {
 				payload[key] = values[key]
 			}
 		})
-		dispatch(submitDraftSubmissions(payload, props.history))
+		dispatch(submitDraftSubmissions(values, props.history))
 	}
 
 	useEffect(() => {
@@ -119,7 +119,7 @@ const SubmissionForm = (props) => {
 				<SubmissionGroup key={`SubmissionForm_${index}`} title={group.title} fields={group.fields}></SubmissionGroup>
 			))}
 			<div className="mb-3 d-flex justify-content-end">
-				<Button color="info" onClick={handleSaveDraft}>Save as draft</Button>
+				<Button color="info" onClick={handleSaveDraft}>{values.id ? 'Save' : 'Save as draft'}</Button>
 				<Button className="ms-3" type='reset' onClick={handleReset}>Reset</Button>
 				<Button className="ms-3" type="submit">Submit</Button>
 			</div>
@@ -138,6 +138,7 @@ const UploadESGData = (props) => {
 		defaultSubmissions: state.SubmissionForm.defaultSubmissions,
 		currentDraft: state.SubmissionForm.currentDraft
 	}));
+	console.log(currentDraft);
 	const [errorMessage, setErrorMessage] = useState('')
 	useEffect(() => {
 		let message = '';
@@ -157,13 +158,7 @@ const UploadESGData = (props) => {
 		if (params.id) {
 			console.log('init value', currentDraft);
 			if (currentDraft) {
-				initValue = {
-					...currentDraft,
-					adoptedTools: currentDraft.adoptedTools ? currentDraft.adoptedTools.split('<ITEM>') : [],
-					apdoptedToolsHealthAndSafety: currentDraft.apdoptedToolsHealthAndSafety ? currentDraft.apdoptedToolsHealthAndSafety.split('<ITEM>') : [],
-					typeOfSafetyOrEsgRelatedTechnologiesUsed: currentDraft.typeOfSafetyOrEsgRelatedTechnologiesUsed ? currentDraft.typeOfSafetyOrEsgRelatedTechnologiesUsed.split('<ITEM>') : []
-				};
-				console.log('init value abcd', initValue)
+				initValue = currentDraft;
 			}
 		}
 		else {

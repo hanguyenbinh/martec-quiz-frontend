@@ -93,6 +93,10 @@ function* getDraftSubmissionForm({ payload: { id } }) {
     const response = yield call(
       getDraftSubmissionFormApi, id);
     if (response.status === true) {
+      const submissions = response.data;
+      submissions.apdoptedToolsHealthAndSafety = submissions.apdoptedToolsHealthAndSafety ? submissions.apdoptedToolsHealthAndSafety.split('<ITEM>') : [];
+      submissions.adoptedTools = submissions.adoptedTools ? submissions.adoptedTools.split('<ITEM>') : [];
+      submissions.typeOfSafetyOrEsgRelatedTechnologiesUsed = submissions.typeOfSafetyOrEsgRelatedTechnologiesUsed ? submissions.typeOfSafetyOrEsgRelatedTechnologiesUsed.split('<ITEM>') : [];
       yield put(getDraftSubmissionFormSuccess(response.data));
       toast.success('The draft is opened successfully')
     } else {
