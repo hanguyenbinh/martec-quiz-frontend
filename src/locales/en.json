@@ -196,5 +196,10 @@
     "Submitted By": "Submitted By",
     "Hash Value": "Hash Value",
     "THE_EMAIL_IS_NOT_REGISTERED": "Your email has not been invited to this platform, please contact your administrator",
-    "DO_NOT_HAVE_PERMISSION_TO_LOGIN_THIS_ORGANISATION": "You have selected a company that not match your email address, please select the correct one"
+    "DO_NOT_HAVE_PERMISSION_TO_LOGIN_THIS_ORGANISATION": "You have selected a company that not match your email address, please select the correct one",
+    "ABOVE_5_PERCENT": "Top 5%  (~1.65 SD)",
+    "ABOVE_AVERAGE": "Above Average",
+    "ON_AVERAGE": "On Average",
+    "BELOW_AVERAGE": "Below Average",
+    "LOWEST_5_PERCENT": "Lowest 5%"
 }

@@ -76,9 +76,6 @@ function SpecialDashBoard(props) {
 		years: state.CADashboard.years
 	}));
 
-	console.log('organisationSummeries', organisationSummeries)
-
-
 	useEffect(() => {
 		const organisationType = getOrganisationType();
 		if (organisationType !== 'association') props.history.push('/dashboard')
@@ -383,9 +380,7 @@ function SpecialDashBoard(props) {
 												<td>Since Day 1</td>
 												<td>{eventSummaries.newJoiners.sinceDay1}</td>
 											</tr>
-
 										</tbody>
-
 									)}
 								</Table>
 							</Col>

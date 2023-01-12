@@ -10,12 +10,10 @@ import { getOrganisationType } from "src/helpers/api_helper"
 import IndicatorType from "src/data/indicatorType"
 import { camelize } from "src/helpers/string_helper"
 
-const labelsData = ["2015.04-2016.03", "2016.04-2017.03", "2017.04-2018.03", "2018.04-2019.03", "2019.04-2020.03", "2020.04-2021.03", "2021.04-2022.03", "2022.04-2023.03"]
-const labels = ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022']
 const chartOptions = IndicatorType
 
 export const data = {
-	labels: labelsData,
+	labels: [],
 	datasets: [
 		{
 			type: "line",
@@ -40,45 +38,66 @@ const DashBoard = (props) => {
 	const T = props.t ? props.t : (v) => v;
 	const dispatch = useDispatch();
 	const [selectedItem, setSelectedItem] = useState(chartOptions[1].label);
+	const [indicatorResult, setIndicatorResult] = useState(null);
 
 
 
-	const { indicators, years, averages, statistics } = useSelector(state => ({
+	const { indicators, years, averages, statistics, indicatorResults } = useSelector(state => ({
+		indicatorResults: state.Dashboard.indicatorResults,
 		indicators: state.Dashboard.indicators,
 		years: state.Dashboard.years,
 		averages: state.Dashboard.averages,
-		statistics: state.Dashboard.statistics
+		statistics: state.Dashboard.statistics,
+
 	}));
 
 	const [chartData, setChartData] = useState(data);
 	const [statisticCards, setStatisticCards] = useState([])
 
 	useEffect(() => {
-		setChartData(preState => {
-			return {
-				labels: years,
-				datasets: [
-					{
-						type: "line",
-						label: "My performance",
-						borderColor: "#3577f1",
-						borderWidth: 4,
-						fill: false,
-						data: indicators.map(item => item.value)
-					},
-					{
-						type: "line",
-						label: "Industry performance",
-						borderColor: "#f06548",
-						borderWidth: 4,
-						fill: true,
-						data: averages.map(item => item.value)
-					}
-				]
-			}
-		});
+		if (indicatorResults) {
+			const indicatorName = camelize(selectedItem);
+			console.log('set chart data', years)
+			setChartData(preState => {
+				return {
+					labels: years,
+					datasets: [
+						{
+							type: "line",
+							label: "My performance",
+							borderColor: "#3577f1",
+							borderWidth: 4,
+							fill: false,
+							data: indicatorResults.map(item => {
+								if (!item.value) return null;
+								let indicator = null;
+
+								Object.keys(item.value.indicator).forEach(key => {
+									if (key.toLocaleLowerCase() === indicatorName.toLocaleLowerCase()) {
+										indicator = item.value.indicator[key]
+										return
+									}
+								})
+								return indicator;
+							})
+						},
+						{
+							type: "line",
+							label: "Industry performance",
+							borderColor: "#f06548",
+							borderWidth: 4,
+							fill: true,
+							data: indicatorResults.map(item => {
+								return item.value ? item.value.average[indicatorName] : null
+							})
+						}
+					]
+				}
+			});
+		}
+
 		if (statistics && statistics.length > 0) setStatisticCards(statistics.reverse().filter(item => item.year != ''))
-	}, [indicators, averages, years, statistics])
+	}, [indicatorResults, years, statistics, selectedItem])
 
 
 	useEffect(() => {
@@ -89,10 +108,8 @@ const DashBoard = (props) => {
 		const organisationType = getOrganisationType();
 		if (organisationType !== 'company') props.history.push('/ca-dashboard')
 		const email = localStorage.getItem("email");
-		const indicatorName = camelize(selectedItem);
-		console.log('indicatorName', indicatorName)
-		if (selectedItem && email) dispatch(getLatestData(email, indicatorName));
-	}, [selectedItem])
+		if (email) dispatch(getLatestData(email, ''));
+	}, [])
 	const keyMembers = [
 		'Kum Shing',
 		'Gammon',
@@ -113,12 +130,12 @@ const DashBoard = (props) => {
 				<BreadCrumb title="Dashboards" carousel={keyMembers} />
 				<Row>
 					<AppChart
-						statisticsCards={statisticCards}
 						title="Indicator Chart"
-						submissionData={indicators.map(item => item.indicator)}
 						data={chartData}
 						setSelectedItem={setSelectedItem}
 						selectedItem={selectedItem}
+						indicatorResults={indicatorResults}
+						years={years}
 						options={chartOptions} />
 				</Row>
 

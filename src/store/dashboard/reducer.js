@@ -17,13 +17,13 @@ const INIT_STATE = {
   submissions: [],
   allSubmissions: [],
   yearItems: [],
+  indicatorResults: [],
   isLoading: false
 };
 
 const Dashboard = (state = INIT_STATE, action) => {
   switch (action.type) {
     case GET_LATEST_DATA:
-      console.log('reducer GET_LATEST_DATA')
       return {
         ...state,
         isLoading: true
@@ -35,7 +35,6 @@ const Dashboard = (state = INIT_STATE, action) => {
         isLoading: false
       }
     case GET_LATEST_DATA_SUCCESS:
-      ////console.logdisabled('reducer', action)
       return {
         ...state,
         indicators: action.payload.data.indicators,
@@ -45,6 +44,7 @@ const Dashboard = (state = INIT_STATE, action) => {
         allSubmissions: action.payload.data.allSubmissions,
         statistics: action.payload.data.statistics,
         yearItems: action.payload.data.yearItems,
+        indicatorResults: action.payload.data.indicatorResults,
         isLoading: false,
         error: false
       }

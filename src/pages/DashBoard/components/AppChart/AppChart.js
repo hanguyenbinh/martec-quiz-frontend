@@ -32,6 +32,10 @@ import {
 } from "reactstrap"
 import indicatorIcon from 'src/assets/images/dashboard/indicator-icon.png';
 import IndicatorType from "src/data/indicatorType"
+import { camelize } from "src/helpers/string_helper"
+import { withRouter } from "react-router-dom"
+import { withTranslation } from "react-i18next"
+
 
 ChartJS.register(
 	LinearScale,
@@ -48,63 +52,93 @@ ChartJS.register(
 
 
 const AppChart = (props) => {
-	const { title, options, statisticsCards, data, selectedItem, setSelectedItem } =
+	const { title, options, statisticsCards, data, selectedItem, setSelectedItem, indicatorResults, years } =
 		props
+	const T = props.t ? props.t : (v) => v;
 
 	const [dropdownOpen, setDropdownOpen] = useState(false);
 	const toggle = () => setDropdownOpen((prevState) => !prevState);
 
 	const [dropdownYearOpen, setDropdownYearOpen] = useState(false);
 	const toggleYear = () => setDropdownYearOpen((prevState) => !prevState);
+	const [indicatorResult, setIndicatorResult] = useState(null);
 
 
-	const [selectedYear, setSelectedYear] = useState(null);
+	const [selectedYear, setSelectedYear] = useState('');
 
 	const [difference, setDifference] = useState(NaN);
 
 	const [showBestIcon, setShowBestIcon] = useState(false)
 
 	const [compareResult, setCompareResult] = useState('')
+	// const indicatorName = camelize(selectedItem)
+	const [indicatorName, setIndicatorName] = useState(selectedItem);
+	const [yourValue, setYourValue] = useState();
+	const [averageValue, setAverageValue] = useState();
+	const [result, setResult] = useState();
+
+	const [yearItems, setYearItems] = useState([])
 
 	useEffect(() => {
-		const statistic = statisticsCards[0];
-		setSelectedYear(statistic);
 
-	}, [statisticsCards])
+
+		const _years = [...years].reverse();
+		console.log('years', _years);
+		setYearItems(_years);
+		setSelectedYear(_years[0]);
+	}, [years])
 
 	useEffect(() => {
-		if (selectedYear && selectedYear.averageValue && selectedYear.value) {
-			let compareType = 1;
-			IndicatorType.forEach(item => {
-				if (item.label === selectedItem) {
-					compareType = item.compareType;
+		setIndicatorName(camelize(selectedItem))
+
+	}, [selectedItem])
+	useEffect(() => {
+	}, [yearItems])
+
+	useEffect(() => {
+
+		const year = selectedYear || years[0];
+
+		const indicator = indicatorResults.find(item => item.year === year)
+
+		if (indicator && indicator.value) setIndicatorResult(old => indicator.value);
+		console.log('indicatorResults changed', indicator);
+
+	}, [indicatorResults])
+
+	useEffect(() => {
+		const indicator = indicatorResults.find(item => item.year === selectedYear)
+		if (indicator) setIndicatorResult(old => indicator.value);
+		else setIndicatorResult(null)
+
+	}, [selectedYear,])
+
+	useEffect(() => {
+		let yourValue = 'N/A'
+		let averageValue = 'N/A';
+		if (indicatorResult) {
+
+			let result = '';
+			Object.keys(indicatorResult.indicator).forEach(item => {
+				if (item.toLowerCase() === indicatorName.toLowerCase()) {
+					if (indicatorResult.indicator[item]) yourValue = indicatorResult.indicator[item].toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+					return
 				}
 			})
-			const diff = selectedYear.averageValue - selectedYear.value
-			if (diff * (compareType ? compareType : 1) > 0) {
-				setShowBestIcon(true)
-			}
-			else {
-				setShowBestIcon(false)
-			}
-			setDifference(diff);
+			Object.keys(indicatorResult.average).forEach(item => {
+				if (item.toLowerCase() === indicatorName.toLowerCase()) {
+					averageValue = indicatorResult.average[item];
+					return
+				}
+			})
+			console.log('selectedYear changed', selectedYear, indicatorName, yourValue, averageValue)
 
 		}
-		else {
-			setShowBestIcon(false);
-			setDifference(NaN);
-			setCompareResult('');
-		}
-	}, [selectedYear])
+		setYourValue(yourValue);
+		setAverageValue(averageValue);
+	}, [indicatorResult, selectedItem])
 
-	useEffect(() => {
-		console.log(', difference, compareResult changed', selectedYear, (difference === 0), compareResult)
-		const diffString = difference.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-		if (isNaN(difference)) {
-			setCompareResult('');
-		}
-		else setCompareResult(difference == 0 ? `Good, you've performed as good as the benchmark` : (difference < 0 ? `You've performed ${diffString} below the benchmark` : `Excellent, you've performed [${diffString}] better than the benchmark`))
-	}, [difference, compareResult, showBestIcon])
 
 	const handleOnclickItem = (item) => {
 		setSelectedItem(item.label);
@@ -112,6 +146,7 @@ const AppChart = (props) => {
 
 
 	const handleOnclickYearItem = (item) => {
+		console.log('handleOnclickYearItem', item);
 		setSelectedYear(item);
 	}
 
@@ -128,7 +163,7 @@ const AppChart = (props) => {
 			<Col
 				md={12}
 				lg={
-					Array.isArray(statisticsCards) && statisticsCards.length > 0 ? 9 : 12
+					9
 				}
 			>
 				<Card className={cx("m-0", classes.chart)}>
@@ -154,49 +189,48 @@ const AppChart = (props) => {
 					</CardBody>
 				</Card>
 			</Col>
-			{selectedYear && (
-				<Col md={12} lg={3}>
-					<Row className={classes.gutters}>
-						<Col md={6} lg={12}>
-							<Card className="m-0">
-								<CardBody className="d-flex flex-column">
-									<div className="text-center">
-										<h4>{selectedItem}</h4>
-										<Dropdown isOpen={dropdownYearOpen} toggle={toggleYear} direction={'down'}>
-											<DropdownToggle caret size="lg">{selectedYear.year}</DropdownToggle>
-											<DropdownMenu>
-												{statisticsCards.map((option, index) => {
-													return (<DropdownItem key={'option_indicators_' + index} onClick={() => handleOnclickYearItem(option)}>{option.year}</DropdownItem>)
-												})}
-											</DropdownMenu>
+			<Col md={12} lg={3}>
+				<Row className={classes.gutters}>
+					<Col md={6} lg={12}>
+						<Card className="m-0">
+							<CardBody className="d-flex flex-column">
+								<div className="text-center">
+									<h4>{selectedItem}</h4>
+									<Dropdown isOpen={dropdownYearOpen} toggle={toggleYear} direction={'down'}>
+										<DropdownToggle caret size="lg">{selectedYear}</DropdownToggle>
+										<DropdownMenu>
+											{yearItems.map((option, index) => {
+												return (<DropdownItem key={'option_indicators_' + index} onClick={() => handleOnclickYearItem(option)}>{option}</DropdownItem>)
+											})}
+										</DropdownMenu>
 
-										</Dropdown>
-									</div>
-									<div className="flex-grow-1 p-4">
-										<p>
-											<span>Your value:&nbsp;</span>
-											<span>{!isNull(selectedYear.value) ? isBoolean(selectedYear.value) ? selectedYear.value.toString() : selectedYear.value.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : ''}
-											</span>
-											{showBestIcon ? (<span><img src={indicatorIcon}
-												className="ms-3 rounded-circle avatar-xs" alt="user-pic" /></span>) : null}
-										</p>
-										<p><span>Average value:&nbsp;</span><span>{!isNull(selectedYear.averageValue) ? selectedYear.averageValue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : 'N/A'}</span></p>
-										<p><span>Basis:&nbsp;</span><span>{!isNull(selectedYear.projectType) ? selectedYear.projectType : ''}</span></p>
+									</Dropdown>
+								</div>
+								<div className="flex-grow-1 p-4">
+									<p>
+										<span>Your value:&nbsp;</span>
+										<span>{yourValue}</span>
+										{/* <span>{!isNull(indicatorResult.indicator[selectedItem]) ? isBoolean(indicatorResult.indicator[selectedItem]) ? indicatorResult.indicator[selectedItem].toString() : indicatorResult.indicator[selectedItem].toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : ''}
+											</span> */}
+										{/* {indicatorResult.indicatorResult[selectedItem]} */}
+									</p>
+									<p><span>Average value:&nbsp;</span><span>{!isNull(averageValue) ? averageValue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : 'N/A'}</span></p>
+									<p><span>Basis:&nbsp;</span><span>{indicatorResult?.submission?.projectType}</span></p>
+									<p><span>Result:&nbsp;</span><span>{T(indicatorResult && indicatorResult.indicatorResult && indicatorResult.indicatorResult[indicatorName] ? indicatorResult.indicatorResult[indicatorName].result : '')}</span></p>
 
-										{isNaN(difference) ? null : (
-											<span>
-												<p>{compareResult}</p>
-											</span>
-										)}
+									{isNaN(difference) ? null : (
+										<span>
+											<p>{compareResult}</p>
+										</span>
+									)}
 
-									</div>
-								</CardBody>
-							</Card>
-						</Col>
+								</div>
+							</CardBody>
+						</Card>
+					</Col>
 
-					</Row>
-				</Col>
-			)}
+				</Row>
+			</Col>
 		</Row>
 	)
 }
@@ -232,4 +266,5 @@ AppChart.propTypes = {
 	}),
 }
 
-export default React.memo(AppChart)
+export default withRouter((withTranslation()(AppChart)))
+// export default React.memo(AppChart)
