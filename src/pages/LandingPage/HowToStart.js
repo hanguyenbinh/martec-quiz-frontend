@@ -14,6 +14,9 @@ const HowToStart = () => {
     const handleJoinNow = () => {
         window.open(landingPage.joinButtonLink, '_blank');
     }
+    const handleApplicationFormButton = () => {
+        window.open(landingPage.applicationFormButtonLink, '_blank');
+    }
     return (
         <React.Fragment>
             <section className="section bg-light" id="marketplace">
@@ -35,6 +38,7 @@ const HowToStart = () => {
                             <p>Submit a completed the application form to HKCA secretariat</p>
                             <p>The user account of the ESG Recognition Scheme Platform will be given to the eligible applicants</p>
                             <Button onClick={handleJoinNow} className='button-big-text bottom-button' color='warning'>Join Now</Button>
+                            <Button onClick={handleApplicationFormButton} className='button-big-text bottom-button' color='warning'>Application Form</Button>
                         </Col>
                         <Col lg={6}>
                             <img src={image1} alt="" className="card-img-top explore-img how-to-img" />

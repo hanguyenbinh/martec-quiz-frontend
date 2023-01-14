@@ -9,7 +9,7 @@ const TypeOfSafetyOrEsgRelatedTechnologiesUsed = [
   { label: 'Plant Operator & Driver Status Monitor', value: 'Plant Operator & Driver Status Monitor' },
   { label: 'AR Safety Tool Box Talk Training Kit', value: 'AR Safety Tool Box Talk Training Kit' },
   { label: 'BIM Visualization with Advanced MR for Construction Safety Management', value: 'BIM Visualization with Advanced MR for Construction Safety Management' },
-  { label: 'Other', value: '', type: 'input' },
+  { label: 'Other', value: 'Other', comment: 'typeOfSafetyOrEsgRelatedTechnologiesUsedOther' },
 
 ]
 export default TypeOfSafetyOrEsgRelatedTechnologiesUsed;

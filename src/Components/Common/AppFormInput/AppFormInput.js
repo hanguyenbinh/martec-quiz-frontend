@@ -51,6 +51,8 @@ const AppFormInput = React.forwardRef((props, ref) => {
 				{
 					return values.commentD
 				}
+			case 4:
+				return values.commentE
 		}
 		return ''
 	}
@@ -106,17 +108,16 @@ const AppFormInput = React.forwardRef((props, ref) => {
 
 							{option.comment ? (
 								<div className="col-md-10">
-									{index === 0 && 'Remarks:'}
 									<Input
 										name={option.comment}
 										type='text'
 										className={cx(!!innerClasses?.input && innerClasses.input)}
-										id={'comment' + htmlId}
-										value={extractValue(index)}
+										id={option.comment + htmlId}
+										value={values[option.comment]}
 										valid={error === false}
 										invalid={error === true}
 										onChange={(e) => {
-											console.log(values)
+											console.log('asdfsafsafsfsaf', values)
 											onChange(e)
 										}}
 										onBlur={onBlur}

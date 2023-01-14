@@ -20,6 +20,7 @@ const initialState = {
 	accessToken: '',
 	org: null,
 	organisations: [],
+	lastLogin: '',
 	orgId: ''
 }
 
@@ -62,6 +63,7 @@ const Login = (state = initialState, action) => {
 			state = {
 				...state,
 				accessToken: action.payload.accessToken,
+				lastLogin: action.payload.lastLogin,
 				loading: false
 			}
 			break;

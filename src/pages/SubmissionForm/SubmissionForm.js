@@ -14,13 +14,9 @@ import SubmissionGroup from "../DashBoard/components/SubmissionGroup"
 import * as Yup from 'yup';
 import { useDispatch, useSelector } from "react-redux"
 import { getDefaultSubmissions, getDraftSubmissionForm, postSubmissionForm, submitDraftSubmissions, updateSubmission } from "../../store/submissionForm/actions"
-import TypeOfSafetyOrEsgRelatedTechnologiesUsed from "src/data/typeOfSafetyOrEsgRelatedTechnologiesUsed"
-import AdoptedToolsType from "src/data/adoptedToolsType"
-import AdoptedToolsHealthAndSafetyType from "src/data/apdoptedToolsHealthAndSafetyType"
 import ProjectType from "src/data/projectType"
 import YearType from "src/data/yearType"
 import SubmissionGroups from "src/data/submissionGroups"
-import { getDraftSubmissionFormApi } from "src/helpers/fakebackend_helper"
 import { useParams } from "react-router-dom"
 import { isEmpty } from "lodash"
 
@@ -96,7 +92,7 @@ const SubmissionForm = (props) => {
 	};
 
 	const handleSaveDraft = () => {
-		// console.log('handleSaveDraft', values)
+		console.log('handleSaveDraft', values)
 		const payload = {}
 		Object.keys(values).forEach(key => {
 			if (!isEmpty(values[key]) || typeof values[key] !== 'string') {
@@ -105,10 +101,6 @@ const SubmissionForm = (props) => {
 		})
 		dispatch(submitDraftSubmissions(payload, props.history))
 	}
-
-	useEffect(() => {
-
-	}, [])
 
 	return (
 		<Form
@@ -138,7 +130,6 @@ const UploadESGData = (props) => {
 		defaultSubmissions: state.SubmissionForm.defaultSubmissions,
 		currentDraft: state.SubmissionForm.currentDraft
 	}));
-	console.log(currentDraft);
 	const [errorMessage, setErrorMessage] = useState('')
 	useEffect(() => {
 		let message = '';
@@ -156,9 +147,12 @@ const UploadESGData = (props) => {
 	useEffect(() => {
 		let initValue = {};
 		if (params.id) {
-			console.log('init value', currentDraft);
 			if (currentDraft) {
-				initValue = currentDraft;
+				const _initValue = {};
+				Object.keys(currentDraft).forEach(key => {
+					_initValue[key] = currentDraft[key] || '';
+				})
+				initValue = _initValue;
 			}
 		}
 		else {
@@ -171,7 +165,6 @@ const UploadESGData = (props) => {
 	}, [defaultSubmissions, currentDraft])
 	useEffect((
 	) => {
-		console.log(params.id)
 		if (params.id) {
 			dispatch(getDraftSubmissionForm(params.id))
 		}
@@ -219,7 +212,6 @@ const UploadESGData = (props) => {
 
 
 	const initialValues = React.useMemo(() => {
-		console.log('reset initial values')
 		const result = {
 			adoptedTools: [],
 			amountOfElectricityCLP: '',
@@ -281,9 +273,7 @@ const UploadESGData = (props) => {
 
 
 	useEffect(() => {
-		console.log('init value tracking', initialValues, initValue)
 		formikRef.current.resetForm({ values: initialValues })
-
 	}, [initValue])
 
 	return (

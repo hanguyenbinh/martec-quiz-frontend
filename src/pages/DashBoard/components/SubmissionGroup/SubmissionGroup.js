@@ -8,6 +8,8 @@ import AppFormInput from "../../../../Components/Common/AppFormInput"
 import { FastField } from "formik"
 import { useSelector } from "react-redux"
 import { isEmpty } from "lodash"
+import AdaptoolsInput from "src/Components/Common/AdaptoolsInput"
+import TypeOfSafetyInput from "src/Components/Common/TypeOfSafetyInput"
 
 const SubmissionGroup = (props) => {
 	const { title, fields, currentDraft } = props
@@ -35,6 +37,40 @@ const SubmissionGroup = (props) => {
 							// !(_field.disabled && )
 							<FastField key={`SubmissionForm_group_${index}`} name={_field.name}>
 								{({ field, meta }) => {
+
+									if (_field.name === 'typeOfSafetyOrEsgRelatedTechnologiesUsed') {
+										console.log('field name', _field.name)
+										return (
+											<Col sm={12} md={6}>
+												<TypeOfSafetyInput
+													options={_field.options}
+													type={_field.type}
+													error={!!meta.error && meta.touched ? true : undefined}
+													helperText={!!meta.error && meta.touched ? meta.error : ''}
+													label={_field.label}
+													name={_field.name}
+													tooltip={_field.tooltip}
+													multiple={_field.multiple}
+													disabled={_field.disabled}
+													{...field} />
+											</Col>
+										);
+									}
+									if (_field.name === 'adoptedTools') {
+										return (
+											<AdaptoolsInput
+												options={_field.options}
+												type={_field.type}
+												error={!!meta.error && meta.touched ? true : undefined}
+												helperText={!!meta.error && meta.touched ? meta.error : ''}
+												label={_field.label}
+												name={_field.name}
+												tooltip={_field.tooltip}
+												multiple={_field.multiple}
+												disabled={_field.disabled}
+												{...field} />
+										);
+									}
 									return _field.disabled && isEmpty(field.value) ? null : (
 										<Col sm={12} md={_field.length ? _field.length : 3}>
 											<AppFormInput

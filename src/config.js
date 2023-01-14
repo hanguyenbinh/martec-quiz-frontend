@@ -8,7 +8,8 @@ module.exports = {
     APP_ID: "",
   },
   landingPage: {
-    joinButtonLink: 'https://public-dev.hkca-esg.com/docs/guide-to-application-for-environmental-social-governance(esg)-recognition-scheme-2022-dec.pdf'
+    joinButtonLink: 'https://public-dev.hkca-esg.com/docs/guide-to-application-for-environmental-social-governance(esg)-recognition-scheme-2022-dec.pdf',
+    applicationFormButtonLink: 'https://public-dev.hkca-esg.com/docs/hkca-esg-recognition-scheme-platform-application-form.pdf',
   },
   api: {
     API_URL: "https://apidev.hkca-esg.com/hkca-esg-admin/api",

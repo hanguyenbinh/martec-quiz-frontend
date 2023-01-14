@@ -133,12 +133,12 @@ const SubmissionGroups = (T) => [
         options: TypeOfSafetyOrEsgRelatedTechnologiesUsed,
         length: 4
       },
-      {
-        name: 'typeOfSafetyOrEsgRelatedTechnologiesUsedOther',
-        label: T(`Type of Safety or ESG related technologies used (if you have selected 'Other')`),
-        type: 'textarea',
-        length: 4
-      },
+      // {
+      //   name: 'typeOfSafetyOrEsgRelatedTechnologiesUsedOther',
+      //   label: T(`Type of Safety or ESG related technologies used (if you have selected 'Other')`),
+      //   type: 'textarea',
+      //   length: 4
+      // },
     ]
   },
   {
@@ -239,6 +239,7 @@ const SubmissionGroups = (T) => [
     ]
   },
   {
+    sectionName: "inHouseCodesAndGuidelinesGoverningSupplyChainManagement",
     title: T('In-house Codes and Guidelines Governing Supply Chain Management'),
     fields: [
       {

@@ -106,9 +106,9 @@ const Prizes = (props) => {
 								<button onClick={() => {
 									handleEditPrize(d.prize_id);
 								}}>{T('Edit')}</button>
-								<button className="btn-danger" onClick={() => {
+								{/* <button className="btn-danger" onClick={() => {
 									handleDeletePrize(d.prize_id);
-								}}>{T('Delete')}</button>
+								}}>{T('Delete')}</button> */}
 							</Col>
 						</Row>
 					))}
