@@ -37,8 +37,11 @@ const HowToStart = () => {
                         <Col className='how-to-start-step-1 big-text' lg={6}>
                             <p>Submit a completed the application form to HKCA secretariat</p>
                             <p>The user account of the ESG Recognition Scheme Platform will be given to the eligible applicants</p>
-                            <Button onClick={handleJoinNow} className='button-big-text bottom-button' color='warning'>Join Now</Button>
-                            <Button onClick={handleApplicationFormButton} className='button-big-text bottom-button' color='warning'>Application Form</Button>
+                            <div className='bottom-button'>
+                                <Button onClick={handleJoinNow} className="button-big-text me-3" color='warning'>Join Now</Button>
+                                <Button onClick={handleApplicationFormButton} className="button-big-text" color='warning'>Application Form</Button>
+                            </div>
+
                         </Col>
                         <Col lg={6}>
                             <img src={image1} alt="" className="card-img-top explore-img how-to-img" />

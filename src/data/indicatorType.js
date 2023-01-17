@@ -25,7 +25,7 @@ const IndicatorType = [
   { label: 'Amount of money devoted to community service (HKD per staff)', isHeader: false, compareType: -1 },
   { label: 'Employment', isHeader: true },
   { label: 'Turnover rate - management staff', isHeader: false },
-  { label: 'Turnover rate - technical staff', isHeader: false },
+  { label: 'Turnover rate - supervisor staff', isHeader: false },
   { label: 'Turnover rate - supporting staff', isHeader: false },
   { label: 'In-house Codes and Guidelines Governing - Supply Chain Management', isHeader: true },
   { label: 'Commitment to adopt novel quality and risk management measures/systems', isHeader: false },
@@ -43,8 +43,8 @@ const IndicatorType = [
   { label: 'Number of suspension notices', isHeader: false },
   { label: 'Activeness in participating in site safety promotion campaigns and awards', isHeader: false },
   { label: 'Commitment to safety training (hours per management staff)', isHeader: false, compareType: -1 },
-  { label: 'Commitment to safety training (hours per operational staff)', isHeader: false, compareType: -1 },
-  { label: 'Commitment to safety training  (hours per direct labour)', isHeader: false, compareType: -1 },
+  { label: 'Commitment to safety training (hours per supervisor or above staff)', isHeader: false, compareType: -1 },
+  { label: 'Commitment to safety training (hours per operator or support level staff)', isHeader: false, compareType: -1 },
 
 ];
 export default IndicatorType;

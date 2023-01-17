@@ -208,13 +208,13 @@ const AppChart = (props) => {
 								</div>
 								<div className="flex-grow-1 p-4">
 									<p>
-										<span>Your value:&nbsp;</span>
+										<span>My performance:&nbsp;</span>
 										<span>{yourValue}</span>
 										{/* <span>{!isNull(indicatorResult.indicator[selectedItem]) ? isBoolean(indicatorResult.indicator[selectedItem]) ? indicatorResult.indicator[selectedItem].toString() : indicatorResult.indicator[selectedItem].toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : ''}
 											</span> */}
 										{/* {indicatorResult.indicatorResult[selectedItem]} */}
 									</p>
-									<p><span>Average value:&nbsp;</span><span>{!isNull(averageValue) ? averageValue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : 'N/A'}</span></p>
+									<p><span>Industry performance:&nbsp;</span><span>{!isNull(averageValue) ? averageValue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : 'N/A'}</span></p>
 									<p><span>Basis:&nbsp;</span><span>{indicatorResult?.submission?.projectType}</span></p>
 									<p><span>Result:&nbsp;</span><span>{T(indicatorResult && indicatorResult.indicatorResult && indicatorResult.indicatorResult[indicatorName] ? indicatorResult.indicatorResult[indicatorName].result : '')}</span></p>
 

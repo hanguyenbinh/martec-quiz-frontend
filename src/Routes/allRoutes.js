@@ -24,6 +24,7 @@ import CreatePrize from "src/pages/Prizes/CreatePrize"
 import Coins from "src/pages/Coins"
 import DefaultSubmissionUpload from "src/pages/DefaultSubmissionUpload"
 import FAQ from "src/pages/FAQ"
+import DownloadReport from "src/pages/DownloadReport"
 
 
 
@@ -42,6 +43,7 @@ const authProtectedRoutes = [
 	{ path: "/ca-dashboard", component: SpecialDashBoard },
 	{ path: "/coins", component: Coins },
 	{ path: "/faq", component: FAQ },
+	{ path: "/download-report", component: DownloadReport },
 
 	// this route should be at the end of all other routes
 	// eslint-disable-next-line react/display-name

@@ -1,3 +1,4 @@
+import moment from "moment"
 import React, { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import { Card, CardBody, Dropdown, DropdownMenu, DropdownToggle, Form } from "reactstrap"
@@ -10,7 +11,8 @@ const Header = ({ onChangeLayoutMode, layoutModeType, headerClass }) => {
 	const [search, setSearch] = useState(false)
 	const orgLogo = localStorage.getItem('orglogo');
 	const orgName = localStorage.getItem('orgName');
-	const lastLogin = localStorage.getItem('lastLogin');
+	const lastLoginString = localStorage.getItem('lastLogin');
+	const lastLogin = JSON.parse(lastLoginString);
 	const email = localStorage.getItem('email');
 
 	const toogleSearch = () => {
@@ -86,7 +88,7 @@ const Header = ({ onChangeLayoutMode, layoutModeType, headerClass }) => {
 						</div>
 
 						<div className="d-flex align-items-center">
-							Last login on [{lastLogin}] by [{email}]
+							Last login on [{moment(lastLogin.lastLogin).format('YYYY-MM-DD HH:mm:ss')}] by [{lastLogin.identifier}]
 							<Dropdown
 								isOpen={search}
 								toggle={toogleSearch}

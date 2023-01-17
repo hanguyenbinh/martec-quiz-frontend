@@ -159,6 +159,14 @@ const Navdata = (props) => {
 			icon: 'finance_chip'
 		},
 		{
+			id: "downloadReport",
+			label: ("Download Report"),
+			link: "/download-report",
+			parentId: "download-report",
+			role: 'normal',
+			icon: 'download'
+		},
+		{
 			id: "faq",
 			label: ("FAQ"),
 			link: "/faq",
