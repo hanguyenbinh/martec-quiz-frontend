@@ -135,6 +135,14 @@ const Navdata = (props) => {
 			icon: 'history',
 		},
 		{
+			id: "downloadReport",
+			label: ("Download Report"),
+			link: "/download-report",
+			parentId: "download-report",
+			role: 'normal',
+			icon: 'download'
+		},
+		{
 			id: "events",
 			label: ("Events"),
 			link: "/events",
@@ -158,14 +166,7 @@ const Navdata = (props) => {
 			role: 'normal',
 			icon: 'finance_chip'
 		},
-		{
-			id: "downloadReport",
-			label: ("Download Report"),
-			link: "/download-report",
-			parentId: "download-report",
-			role: 'normal',
-			icon: 'download'
-		},
+
 		{
 			id: "faq",
 			label: ("FAQ"),

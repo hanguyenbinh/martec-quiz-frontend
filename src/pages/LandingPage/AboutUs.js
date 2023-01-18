@@ -3,6 +3,8 @@ import { Container, Row, Col, Card, CardBody } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { connectData } from "../../common/data"
 
+
+
 const AboutUs = () => {
 
     return (

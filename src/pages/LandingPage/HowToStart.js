@@ -22,6 +22,15 @@ const HowToStart = () => {
             <section className="section bg-light" id="marketplace">
                 <Container id='howtostart' >
                     <Row className="justify-content-center">
+                        <iframe src={landingPage.video2}
+                            // frameborder='0'
+                            height='800px'
+                            allow='autoplay; encrypted-media'
+                            allowFullScreen
+                            title='video'
+                        />
+                    </Row>
+                    <Row className="justify-content-center">
                         <div className="text-center mb-1">
                             <h1 className="mb-1 fw-bold lh-base">How To Start</h1>
                         </div>

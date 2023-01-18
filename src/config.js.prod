@@ -9,7 +9,9 @@ module.exports = {
   },
   landingPage: {
     joinButtonLink: 'https://public-dev.hkca-esg.com/docs/guide-to-application-for-environmental-social-governance(esg)-recognition-scheme-2022-dec.pdf'
-    applicationFormButtonLink: 'https://public.hkca-esg.com/docs/hkca-esg-recognition-scheme-platform-application-form.pdf'
+    applicationFormButtonLink: 'https://public.hkca-esg.com/docs/hkca-esg-recognition-scheme-platform-application-form.pdf',
+    video1: 'https://www.youtube.com/embed/1ExnkADfEx0',
+    video2: 'https://www.youtube.com/embed/qbSlmQGgMsA'
   },
   api: {
        API_URL: "https://api.hkca-esg.com/hkca-esg-admin-web-backend/api",

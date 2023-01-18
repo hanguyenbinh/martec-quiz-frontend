@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Container, Row, Col, Nav, NavItem, NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { majorIndicators } from "../../common/data"
+import { landingPage } from 'src/config';
 
 const MajorIndicators = () => {
     const [nav, setNav] = useState("All");
@@ -11,6 +12,15 @@ const MajorIndicators = () => {
         <React.Fragment>
             <section className="section bg-light" id="marketplace">
                 <Container className='esg-container'>
+                    <Row className="justify-content-center">
+                        <iframe src={landingPage.video1}
+                            // frameborder='0'
+                            height='800px'
+                            allow='autoplay; encrypted-media'
+                            allowFullScreen
+                            title='video'
+                        />
+                    </Row>
                     <Row className="justify-content-center">
                         <Col lg={12}>
                             <div className="text-center mb-5">
