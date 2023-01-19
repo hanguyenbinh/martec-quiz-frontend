@@ -187,7 +187,7 @@ const SubmissionGroups = (T) => [
         name: 'noOfTrainingsSEsgBuildFunApp',
         label: T('No. of Trainings(S) - ESG Build Fun App'),
         disabled: true
-      }
+      },
     ]
   },
   {

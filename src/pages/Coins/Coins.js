@@ -83,42 +83,52 @@ function Coins(props) {
 						<CardTitle className="mb-0">Coins Summary</CardTitle>
 					</CardHeader>
 					<CardBody className="border-bottom ms-4">
-						<Row className="mb-3">
-							<Col className="col-md-2">No. of ESG Coin - E mined: </Col>
-							<Col>{coinsSummary.totalGivenOut}</Col>
+						<Row>
+							<Col className="border-end">
+								<Row className="mb-3">
+									<Col className="col-md-10">No. of ESG Coin - E mined: </Col>
+									<Col>{coinsSummary.eMined}</Col>
+								</Row>
+								<Row className="mb-3">
+									<Col className="col-md-10">No. of ESG Coin - S mined: </Col>
+									<Col>{coinsSummary.sMined}</Col>
+								</Row>
+								<Row className="mb-3">
+									<Col className="col-md-10">No. of ESG Coin - G mined: </Col>
+									<Col>{coinsSummary.gMined}</Col>
+								</Row></Col>
+							<Col className="border-end">
+								<Row className="mb-3">
+									<Col className="col-md-10">Total no. of ESG Coin mined: </Col>
+									<Col>{coinsSummary.totalGivenOut}</Col>
+								</Row>
+								<Row className="mb-3">
+									<Col className="col-md-10">Total no. of ESG Coin used for prize redemption: </Col>
+									<Col>{coinsSummary.totalRedeemed}</Col>
+								</Row>
+								<Row className="mb-3">
+									<Col className="col-md-10">Total no. of ESG Coin in circulation: </Col>
+									<Col>{coinsSummary.totalInCirculation}</Col>
+								</Row>
+							</Col>
+							<Col>
+								<Row className="mb-3">
+									<Col className="col-md-10">No. of ESG event - E created: </Col>
+									<Col>{coinsSummary.totalGivenOut}</Col>
+								</Row>
+								<Row className="mb-3">
+									<Col className="col-md-10">No. of ESG event - S created: </Col>
+									<Col>{coinsSummary.totalGivenOut}</Col>
+								</Row>
+								<Row className="mb-3">
+									<Col className="col-md-10">No. of ESG event - G created: </Col>
+									<Col>{coinsSummary.totalGivenOut}</Col>
+								</Row>
+							</Col>
 						</Row>
-						<Row className="mb-3">
-							<Col className="col-md-2">No. of ESG Coin - S mined: </Col>
-							<Col>{coinsSummary.totalGivenOut}</Col>
-						</Row>
-						<Row className="mb-3">
-							<Col className="col-md-2">No. of ESG Coin - G mined: </Col>
-							<Col>{coinsSummary.totalGivenOut}</Col>
-						</Row>
-						<Row className="mb-3">
-							<Col className="col-md-2">Total no. of ESG Coin mined: </Col>
-							<Col>{coinsSummary.totalGivenOut}</Col>
-						</Row>
-						<Row className="mb-3">
-							<Col className="col-md-2">Total no. of ESG Coin used for prize redemption: </Col>
-							<Col>{coinsSummary.totalRedeemed}</Col>
-						</Row>
-						<Row className="mb-3">
-							<Col className="col-md-2">Total no. of ESG Coin in circulation: </Col>
-							<Col>{coinsSummary.totalInCirculation}</Col>
-						</Row>
-						<Row className="mb-3">
-							<Col className="col-md-2">No. of ESG event - E created: </Col>
-							<Col>{coinsSummary.totalGivenOut}</Col>
-						</Row>
-						<Row className="mb-3">
-							<Col className="col-md-2">No. of ESG event - S created: </Col>
-							<Col>{coinsSummary.totalGivenOut}</Col>
-						</Row>
-						<Row className="mb-3">
-							<Col className="col-md-2">No. of ESG event - G created: </Col>
-							<Col>{coinsSummary.totalGivenOut}</Col>
-						</Row>
+
+
+
 					</CardBody>
 				</Card>
 				<DataTable

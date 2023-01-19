@@ -21,6 +21,8 @@ const IndicatorType = [
   { label: 'Use of advance health and safety technologies', isHeader: false },
   { label: 'Development and Training', isHeader: true },
   { label: 'Average hours of training per annum (per Management and Project Mgt Staff)', isHeader: false, compareType: -1 },
+  { label: 'Average hours of training per annum (per Supervisor Staff)', isHeader: false, compareType: -1 },
+  { label: 'Average hours of training per annum (per Supporting Labour)', isHeader: false, compareType: -1 },
   { label: 'Proportion of young staff being nurtured', isHeader: false, compareType: -1 },
   { label: 'Community Investment', isHeader: true },
   { label: 'Amount of time devoted to community service (hours per staff)', isHeader: false, compareType: -1 },
