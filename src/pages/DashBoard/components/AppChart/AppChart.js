@@ -30,11 +30,11 @@ import {
 	DropdownToggle,
 	Row,
 } from "reactstrap"
-import indicatorIcon from 'src/assets/images/dashboard/indicator-icon.png';
-import IndicatorType from "src/data/indicatorType"
 import { camelize } from "src/helpers/string_helper"
 import { withRouter } from "react-router-dom"
 import { withTranslation } from "react-i18next"
+import DashBoardContext from "../../DashBoard.context"
+import { useContext } from "react"
 
 
 ChartJS.register(
@@ -52,9 +52,13 @@ ChartJS.register(
 
 
 const AppChart = (props) => {
-	const { title, options, statisticsCards, data, selectedItem, setSelectedItem, indicatorResults, years } =
+	const { title, options, data, indicatorResults, years } =
 		props
 	const T = props.t ? props.t : (v) => v;
+
+	const dashBoardContext = useContext(DashBoardContext);
+	console.log("dashBoardContext", dashBoardContext)
+	const { selectedItem, setSelectedItem } = dashBoardContext;
 
 	const [dropdownOpen, setDropdownOpen] = useState(false);
 	const toggle = () => setDropdownOpen((prevState) => !prevState);
@@ -65,23 +69,12 @@ const AppChart = (props) => {
 
 
 	const [selectedYear, setSelectedYear] = useState('');
-
-	const [difference, setDifference] = useState(NaN);
-
-	const [showBestIcon, setShowBestIcon] = useState(false)
-
-	const [compareResult, setCompareResult] = useState('')
 	// const indicatorName = camelize(selectedItem)
 	const [indicatorName, setIndicatorName] = useState(selectedItem);
 	const [yourValue, setYourValue] = useState();
 	const [averageValue, setAverageValue] = useState();
-	const [result, setResult] = useState();
-
 	const [yearItems, setYearItems] = useState([])
-
 	useEffect(() => {
-
-
 		const _years = [...years].reverse();
 		console.log('years', _years);
 		setYearItems(_years);
@@ -98,12 +91,8 @@ const AppChart = (props) => {
 	useEffect(() => {
 
 		const year = selectedYear || years[0];
-
 		const indicator = indicatorResults.find(item => item.year === year)
-
 		if (indicator && indicator.value) setIndicatorResult(old => indicator.value);
-		console.log('indicatorResults changed', indicator);
-
 	}, [indicatorResults])
 
 	useEffect(() => {
@@ -111,7 +100,7 @@ const AppChart = (props) => {
 		if (indicator) setIndicatorResult(old => indicator.value);
 		else setIndicatorResult(null)
 
-	}, [selectedYear,])
+	}, [selectedYear])
 
 	useEffect(() => {
 		let yourValue = 'N/A'
@@ -137,7 +126,7 @@ const AppChart = (props) => {
 		}
 		setYourValue(yourValue);
 		setAverageValue(averageValue);
-	}, [indicatorResult, selectedItem])
+	}, [indicatorResult, selectedItem, indicatorName])
 
 
 	const handleOnclickItem = (item) => {
@@ -218,11 +207,6 @@ const AppChart = (props) => {
 									<p><span>Basis:&nbsp;</span><span>{indicatorResult?.submission?.projectType}</span></p>
 									<p><span>Result:&nbsp;</span><span>{T(indicatorResult && indicatorResult.indicatorResult && indicatorResult.indicatorResult[indicatorName] ? indicatorResult.indicatorResult[indicatorName].result : '')}</span></p>
 
-									{isNaN(difference) ? null : (
-										<span>
-											<p>{compareResult}</p>
-										</span>
-									)}
 
 								</div>
 							</CardBody>

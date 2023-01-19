@@ -20,16 +20,18 @@ const HowToStart = () => {
     return (
         <React.Fragment>
             <section className="section bg-light" id="marketplace">
-                <Container id='howtostart' >
-                    <Row className="justify-content-center">
-                        <iframe src={landingPage.video2}
-                            // frameborder='0'
-                            height='800px'
-                            allow='autoplay; encrypted-media'
-                            allowFullScreen
-                            title='video'
-                        />
-                    </Row>
+                <Container id='howtostart' className='esg-container' >
+                    <iframe src={landingPage.video2}
+                        style={{
+                            // position: "absolute",
+                            top: 0,
+                            left: 0,
+                            width: "100%",
+                            height: "800px"
+                        }}
+                        frameBorder="0"
+                    // style={{ width: '100%', height: '100%' }}
+                    />
                     <Row className="justify-content-center">
                         <div className="text-center mb-1">
                             <h1 className="mb-1 fw-bold lh-base">How To Start</h1>

@@ -9,6 +9,7 @@ import AppChart from "./components/AppChart"
 import { getOrganisationType } from "src/helpers/api_helper"
 import IndicatorType from "src/data/indicatorType"
 import { camelize } from "src/helpers/string_helper"
+import { DashboardProvider } from "./DashBoard.context"
 
 const chartOptions = IndicatorType
 
@@ -52,12 +53,10 @@ const DashBoard = (props) => {
 	}));
 
 	const [chartData, setChartData] = useState(data);
-	const [statisticCards, setStatisticCards] = useState([])
 
 	useEffect(() => {
 		if (indicatorResults) {
 			const indicatorName = camelize(selectedItem);
-			console.log('set chart data', years)
 			setChartData(preState => {
 				return {
 					labels: years,
@@ -95,9 +94,7 @@ const DashBoard = (props) => {
 				}
 			});
 		}
-
-		if (statistics && statistics.length > 0) setStatisticCards(statistics.reverse().filter(item => item.year != ''))
-	}, [indicatorResults, years, statistics, selectedItem])
+	}, [indicatorResults, years, selectedItem])
 
 
 	useEffect(() => {
@@ -124,23 +121,29 @@ const DashBoard = (props) => {
 		'Alliance',
 		'Kim Hung']
 
-	return (
-		<div className="page-content">
-			<Container fluid>
-				<BreadCrumb title="Dashboards" carousel={keyMembers} />
-				<Row>
-					<AppChart
-						title="Indicator Chart"
-						data={chartData}
-						setSelectedItem={setSelectedItem}
-						selectedItem={selectedItem}
-						indicatorResults={indicatorResults}
-						years={years}
-						options={chartOptions} />
-				</Row>
 
-			</Container>
-		</div>
+	return (
+		<DashboardProvider
+			value={{
+				selectedItem,
+				setSelectedItem,
+			}}
+		>
+			<div className="page-content">
+				<Container fluid>
+					<BreadCrumb title="Dashboards" carousel={keyMembers} />
+					<Row>
+						<AppChart
+							title="Indicator Chart"
+							data={chartData}
+							indicatorResults={indicatorResults}
+							years={years}
+							options={chartOptions} />
+					</Row>
+
+				</Container>
+			</div>
+		</DashboardProvider>
 	)
 }
 

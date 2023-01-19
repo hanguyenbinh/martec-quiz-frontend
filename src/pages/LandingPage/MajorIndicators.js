@@ -12,15 +12,16 @@ const MajorIndicators = () => {
         <React.Fragment>
             <section className="section bg-light" id="marketplace">
                 <Container className='esg-container'>
-                    <Row className="justify-content-center">
-                        <iframe src={landingPage.video1}
-                            // frameborder='0'
-                            height='800px'
-                            allow='autoplay; encrypted-media'
-                            allowFullScreen
-                            title='video'
-                        />
-                    </Row>
+                    <iframe src={landingPage.video1}
+                        style={{
+                            // position: "absolute",
+                            top: 0,
+                            left: 0,
+                            width: "100%",
+                            height: "800px"
+                        }}
+                        frameBorder="0"
+                    />
                     <Row className="justify-content-center">
                         <Col lg={12}>
                             <div className="text-center mb-5">
