@@ -33,7 +33,8 @@ function DataTable(props) {
 					<Col><button className={"btn btn-secondary " + (days === 0 ? ' wf-bold text-decoration-underline' : '')} onClick={() => handleFilterChanged(0)}>Today only</button></Col>
 					<Col><button className={"btn btn-secondary " + (days === 1 ? ' wf-bold text-decoration-underline' : '')} onClick={() => handleFilterChanged(1)}>Last 3 days</button></Col>
 					<Col><button className={"btn btn-secondary " + (days === 2 ? ' wf-bold text-decoration-underline' : '')} onClick={() => handleFilterChanged(2)}>Last 7 days</button></Col>
-					<Col><button className={"btn btn-secondary " + (days === 3 ? ' wf-bold text-decoration-underline' : '')} onClick={() => handleFilterChanged(3)}>Even olders</button></Col>
+					<Col><button className={"btn btn-secondary " + (days === 3 ? ' wf-bold text-decoration-underline' : '')} onClick={() => handleFilterChanged(3)}>Last 30 days</button></Col>
+					<Col><button className={"btn btn-secondary " + (days === 4 ? ' wf-bold text-decoration-underline' : '')} onClick={() => handleFilterChanged(4)}>Even olders</button></Col>
 				</Row>
 			</CardBody>
 			<Table className="mb-0" striped hover>
