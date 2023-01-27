@@ -88,7 +88,7 @@ const Prizes = (props) => {
 								<h5>{T("Coins Required")}: {d.redeem_points}</h5>
 								<h5>{T("No. of items available")}: {d.in_stock_qty}</h5>
 								<h5>{T("Status")}: {d.status_text}</h5>
-								<h5>{T("No. of redemptions")}: { }</h5>
+								<h5>{T("No. of redemptions")}: {d.redemption_no}</h5>
 								<h5>{T("Valid until")}: {d.expired_date}</h5>
 
 							</Col>

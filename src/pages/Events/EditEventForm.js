@@ -23,6 +23,8 @@ import {
 
 import BreadCrumb from "src/Components/Common/BreadCrumb"
 import EsgTooltip from "src/Components/Common/EsgTooltip"
+import { getOrganisationType } from "src/helpers/api_helper"
+import { useState } from "react"
 
 function EditEventForm(props) {
   const isEdit = props.isEdit
@@ -34,6 +36,7 @@ function EditEventForm(props) {
   }));
 
   const { isSubmitting, values, errors, setFieldValue, handleChange, handleBlur, touched, submitForm } = useFormikContext()
+  const [orgType, setOrgType] = useState('company')
 
   const bannerFileRef = React.useRef()
 
@@ -45,10 +48,15 @@ function EditEventForm(props) {
     setFieldValue('image_path', URL.createObjectURL(file))
   }
 
+  useEffect(() => {
+    const organisationType = getOrganisationType();
+    setOrgType(organisationType)
+  }, [])
+
 
   useEffect(() => {
 
-  }, [eventNatures])
+  }, [eventNatures, orgType])
   return (
     <div className="page-content">
       <Container fluid>
@@ -261,6 +269,7 @@ function EditEventForm(props) {
                         onChange={handleChange}
                         onBlur={handleBlur}
                         value={values.point_award}
+                        disabled={orgType === 'company'}
                         invalid={
                           touched.point_award && errors.point_award ? true : false
                         }
