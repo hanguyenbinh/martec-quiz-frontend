@@ -114,15 +114,15 @@ function Coins(props) {
 							<Col>
 								<Row className="mb-3">
 									<Col className="col-md-10">No. of ESG event - E created: </Col>
-									<Col>{coinsSummary.totalGivenOut}</Col>
+									<Col>{coinsSummary.noOfEEvent}</Col>
 								</Row>
 								<Row className="mb-3">
 									<Col className="col-md-10">No. of ESG event - S created: </Col>
-									<Col>{coinsSummary.totalGivenOut}</Col>
+									<Col>{coinsSummary.noOfGEvent}</Col>
 								</Row>
 								<Row className="mb-3">
 									<Col className="col-md-10">No. of ESG event - G created: </Col>
-									<Col>{coinsSummary.totalGivenOut}</Col>
+									<Col>{coinsSummary.noOfSEvent}</Col>
 								</Row>
 							</Col>
 						</Row>
