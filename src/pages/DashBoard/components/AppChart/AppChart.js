@@ -57,7 +57,6 @@ const AppChart = (props) => {
 	const T = props.t ? props.t : (v) => v;
 
 	const dashBoardContext = useContext(DashBoardContext);
-	console.log("dashBoardContext", dashBoardContext)
 	const { selectedItem, setSelectedItem } = dashBoardContext;
 
 	const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -106,12 +105,10 @@ const AppChart = (props) => {
 		let yourValue = 'N/A'
 		let averageValue = 'N/A';
 		if (indicatorResult) {
-
-			let result = '';
 			Object.keys(indicatorResult.indicator).forEach(item => {
+				if (item === 'noOfSafetyAndHealthAwardReceived') console.log(indicatorResult.indicator[item])
 				if (item.toLowerCase() === indicatorName.toLowerCase()) {
-					if (indicatorResult.indicator[item]) yourValue = indicatorResult.indicator[item].toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-
+					if (indicatorResult.indicator[item] !== null && indicatorResult.indicator[item] !== undefined) yourValue = indicatorResult.indicator[item].toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 					return
 				}
 			})
