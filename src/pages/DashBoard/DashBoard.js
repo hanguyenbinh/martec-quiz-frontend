@@ -80,7 +80,16 @@ const DashBoard = (props) => {
 							borderWidth: 4,
 							fill: true,
 							data: indicatorResults.map(item => {
-								return item.value ? item.value.average[indicatorName] : null
+								if (!item.value) return null;
+								let average = null;
+
+								Object.keys(item.value.average).forEach(key => {
+									if (key.toLocaleLowerCase() === indicatorName.toLocaleLowerCase()) {
+										average = item.value.average[key]
+										return
+									}
+								})
+								return average;
 							})
 						}
 					]
