@@ -124,6 +124,19 @@ function Coins(props) {
 									<Col className="col-md-10">No. of ESG event - G created: </Col>
 									<Col>{coinsSummary.noOfSEvent}</Col>
 								</Row>
+								<Row className="mb-3">
+									<Col className="col-md-10">Total no. of ESG event created: </Col>
+									<Col>{coinsSummary.totalNoOfEvents}</Col>
+								</Row>
+
+							</Col>
+						</Row>
+						<Row md={3}>
+							<Col>
+								<Row className="mb-3">
+									<Col className="col-md-10">Total no. of ESG Build Fun Users: </Col>
+									<Col>{coinsSummary.noOfESGUsers}</Col>
+								</Row>
 							</Col>
 						</Row>
 
