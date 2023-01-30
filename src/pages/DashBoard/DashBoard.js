@@ -39,17 +39,10 @@ const DashBoard = (props) => {
 	const T = props.t ? props.t : (v) => v;
 	const dispatch = useDispatch();
 	const [selectedItem, setSelectedItem] = useState(chartOptions[1].label);
-	const [indicatorResult, setIndicatorResult] = useState(null);
 
-
-
-	const { indicators, years, averages, statistics, indicatorResults } = useSelector(state => ({
+	const { years, indicatorResults } = useSelector(state => ({
 		indicatorResults: state.Dashboard.indicatorResults,
-		indicators: state.Dashboard.indicators,
 		years: state.Dashboard.years,
-		averages: state.Dashboard.averages,
-		statistics: state.Dashboard.statistics,
-
 	}));
 
 	const [chartData, setChartData] = useState(data);

@@ -1,10 +1,10 @@
 import { call, put, takeEvery } from "redux-saga/effects";
 
 // Login Redux States
-import { DELETE_SUBMISSION, GET_DEFAULT_SUBMISSION, GET_DRAFT_SUBMISSION_FORM, GET_SUBMISSION_FORM, SUBMIT_DEFAULT_SUBMISSIONS, SUBMIT_DRAFT_SUBMISSIONS, SUBMIT_FORM_DATA, UPDATE_SUBMISSION } from "./actionTypes";
-import { deleteSubmissionSuccess, getDefaultSubmissionsSuccess, getDraftSubmissionFormSuccess, getSubmissionForms, getSubmissionFormsSuccess, portalApiError, postSubmissionFormSuccess, submitDefaultSubmissionsSuccess, submitDraftSubmissionsSuccess, updateSubmissionSuccess, } from "./actions";
+import { DELETE_SUBMISSION, GET_DEFAULT_SUBMISSION, GET_DRAFT_SUBMISSION_FORM, GET_REPORTS, GET_SUBMISSION_FORM, SUBMIT_DEFAULT_SUBMISSIONS, SUBMIT_DRAFT_SUBMISSIONS, SUBMIT_FORM_DATA, UPDATE_SUBMISSION } from "./actionTypes";
+import { deleteSubmissionSuccess, getDefaultSubmissionsSuccess, getDraftSubmissionFormSuccess, getReporsSuccess, getSubmissionForms, getSubmissionFormsSuccess, portalApiError, postSubmissionFormSuccess, submitDefaultSubmissionsSuccess, submitDraftSubmissionsSuccess, updateSubmissionSuccess, } from "./actions";
 
-import { deleteSubmissionApi, getDefaultSubbmissionsApi, getDraftSubmissionFormApi, getSubmissionHistoryApi, postDefaultSubmissionsApi, postDraftSubmissionsApi, postSubmission, updateSubmissionApi } from "../../helpers/fakebackend_helper";
+import { deleteSubmissionApi, getDefaultSubbmissionsApi, getDraftSubmissionFormApi, getReportsApi, getSubmissionHistoryApi, postDefaultSubmissionsApi, postDraftSubmissionsApi, postSubmission, updateSubmissionApi } from "../../helpers/fakebackend_helper";
 import { toast } from "react-toastify";
 
 
@@ -139,6 +139,21 @@ function* deleteSubmissionSaga({ payload: { id, history } }) {
   }
 }
 
+function* getReportsSaga({ payload: { } }) {
+  try {
+    const response = yield call(
+      getReportsApi);
+    if (response.status === true) {
+      yield put(getReporsSuccess(response.data));
+      toast.success('The report is opened successfully')
+    } else {
+      yield put(portalApiError(response));
+    }
+  } catch (error) {
+    yield put(portalApiError(error));
+  }
+}
+
 
 function* submissionFormSaga() {
   yield takeEvery(SUBMIT_FORM_DATA, postSubmissionForm);
@@ -149,6 +164,7 @@ function* submissionFormSaga() {
   yield takeEvery(GET_DRAFT_SUBMISSION_FORM, getDraftSubmissionForm);
   yield takeEvery(UPDATE_SUBMISSION, updateSubmissionSaga);
   yield takeEvery(DELETE_SUBMISSION, deleteSubmissionSaga);
+  yield takeEvery(GET_REPORTS, getReportsSaga);
 }
 
 

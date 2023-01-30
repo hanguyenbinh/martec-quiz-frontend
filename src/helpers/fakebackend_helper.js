@@ -65,6 +65,8 @@ export const getDefaultSubbmissionsApi = () => api.get(url.GET_DEFAULT_SUBMISSIO
 
 export const getDraftSubmissionFormApi = (id) => api.get(url.GET_DRAFT_SUBMISSION_API.replace(':id', id), {});
 
+export const getReportsApi = () => api.get(url.GET_SUBMISSION_REPORTS, {});
+
 export const getAPILatestSubmissionForms = (email, indicatorType) => {
   return api.get(url.GET_LATEST_ESG_DATA, { email, indicatorType })
 };

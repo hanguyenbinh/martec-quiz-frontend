@@ -1,13 +1,25 @@
 import React from "react"
+import { useEffect } from "react"
 import { withTranslation } from "react-i18next"
+import { useDispatch, useSelector } from "react-redux"
 import { withRouter } from "react-router-dom"
-import { Card, Col, Container, Row } from "reactstrap"
+import { Card } from "reactstrap"
 import BreadCrumb from "src/Components/Common/BreadCrumb"
+import { getReports } from "src/store/actions"
 
 
 
 const DownloadReport = (props) => {
 	const T = props.t ? props.t : (v) => v;
+	const dispatch = useDispatch();
+	const { submissionReports } = useSelector(state => ({
+		submissionReports: state.SubmissionForm.submissionReports,
+	}));
+
+	useEffect(() => {
+		dispatch(getReports());
+	}, [])
+
 
 	return (
 		<div className="page-content">
@@ -23,6 +35,16 @@ const DownloadReport = (props) => {
 							<th scope="col">{T('Remark')}</th>
 						</tr>
 					</thead>
+					<tbody>
+						{submissionReports && submissionReports.length > 0 && submissionReports.map((d, dIndex) => (
+							<tr key={dIndex}>
+								<th>{d.period}</th>
+								<td>{d.file_path ? <a href={d.file_path}>Download</a> : null}</td>
+								<td>{d.issue_date}</td>
+								<td>{d.remark}</td>
+							</tr>
+						))}
+					</tbody>
 				</table>
 			</Card>
 
