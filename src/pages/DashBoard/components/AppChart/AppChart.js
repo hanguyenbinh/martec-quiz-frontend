@@ -72,6 +72,7 @@ const AppChart = (props) => {
 	const [indicatorName, setIndicatorName] = useState(selectedItem);
 	const [yourValue, setYourValue] = useState();
 	const [averageValue, setAverageValue] = useState();
+	const [statisticResult, setStatisticResult] = useState('');
 	const [yearItems, setYearItems] = useState([])
 	useEffect(() => {
 		const _years = [...years].reverse();
@@ -104,10 +105,12 @@ const AppChart = (props) => {
 	useEffect(() => {
 		let yourValue = 'N/A'
 		let averageValue = 'N/A';
+		let statisticResult = '';
 		if (indicatorResult) {
 			Object.keys(indicatorResult.indicator).forEach(item => {
-				if (item === 'noOfSafetyAndHealthAwardReceived') console.log(indicatorResult.indicator[item])
+
 				if (item.toLowerCase() === indicatorName.toLowerCase()) {
+					console.log('indicatorResult, selectedItem, indicatorName changed', item)
 					if (indicatorResult.indicator[item] !== null && indicatorResult.indicator[item] !== undefined) yourValue = indicatorResult.indicator[item].toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 					return
 				}
@@ -118,11 +121,18 @@ const AppChart = (props) => {
 					return
 				}
 			})
-			console.log('selectedYear changed', selectedYear, indicatorName, yourValue, averageValue)
+			Object.keys(indicatorResult.indicatorResult).forEach(item => {
+				if (item.toLowerCase() === indicatorName.toLowerCase()) {
+					statisticResult = indicatorResult.indicatorResult[item].result;
+					return
+				}
+			})
+			console.log('selectedYear changed', indicatorResult.indicatorResult)
 
 		}
 		setYourValue(yourValue);
 		setAverageValue(averageValue);
+		setStatisticResult(statisticResult);
 	}, [indicatorResult, selectedItem, indicatorName])
 
 
@@ -202,7 +212,7 @@ const AppChart = (props) => {
 									</p>
 									<p><span>Industry performance:&nbsp;</span><span>{!isNull(averageValue) ? averageValue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : 'N/A'}</span></p>
 									<p><span>Basis:&nbsp;</span><span>{indicatorResult?.submission?.projectType}</span></p>
-									<p><span>Result:&nbsp;</span><span>{T(indicatorResult && indicatorResult.indicatorResult && indicatorResult.indicatorResult[indicatorName] ? indicatorResult.indicatorResult[indicatorName].result : '')}</span></p>
+									<p><span>Result:&nbsp;</span><span>{T(statisticResult)}</span></p>
 
 
 								</div>
