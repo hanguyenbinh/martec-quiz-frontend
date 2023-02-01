@@ -4,26 +4,55 @@ import { withTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { Button, Card, CardBody, Col, Container, Input, Nav, Pagination, PaginationItem, PaginationLink, Row, TabContent, Table, TabPane, NavItem, NavLink, } from "reactstrap"
 import BreadCrumb from "../../Components/Common/BreadCrumb"
-import { deleteEvent, getEvents } from "src/store/events/actions"
+import { deleteEvent, deleteTemplate, getEvents, getTemplates } from "src/store/events/actions"
 import { getEventSummaries, getOrgEvents } from "src/store/actions"
 import { isEmpty } from "lodash"
 import classnames from 'classnames';
+import { getOrganisationType } from "src/helpers/api_helper"
 
 const Events = (props) => {
 	const T = props.t
 	const dispatch = useDispatch();
 	const [selectedEventId, setSelectedEventId] = useState('');
+	const [selectedTemplateId, setSelectedTemplateId] = useState('');
+
+	const [orgType, setOrgType] = useState('company');
 
 	useEffect(() => {
 		dispatch(getEvents())
 		dispatch(getOrgEvents())
+		const organisationType = getOrganisationType();
+		setOrgType(organisationType);
+		// if (organisationType !== 'company') {
+		// 	dispatch(getTemplates());
+		// }
+		// dispatch(getTemplates());
 	}, [])
 	useEffect(() => {
 		if (!isEmpty(selectedEventId)) {
 			dispatch(getEventSummaries(selectedEventId));
 		}
 	}, [selectedEventId])
-	const { events, error, page, limit, total, deleteCount, eventSummaries, organisationEvents } = useSelector(state => ({
+
+	useEffect(() => {
+		if (orgType !== 'company') {
+			dispatch(getTemplates());
+		}
+	}, [orgType])
+
+	const { events,
+		error,
+		page,
+		limit,
+		total,
+		deleteCount,
+		eventSummaries,
+		organisationEvents,
+		templatePage,
+		templateLimit,
+		templateTotal,
+		templates
+	} = useSelector(state => ({
 		events: state.Events.events,
 		error: state.Events.error,
 		page: state.Events.page,
@@ -32,6 +61,11 @@ const Events = (props) => {
 		deleteCount: state.Events.deleteCount,
 		organisationEvents: state.CADashboard.organisationEvents,
 		eventSummaries: state.CADashboard.eventSummaries,
+
+		templates: state.Events.templates,
+		templatePage: state.Events.templatePage,
+		templateLimit: state.Events.templateLimit,
+		templateTotal: state.Events.templateTotal,
 	}));
 
 	const [errorMessage, setErrorMessage] = useState('')
@@ -57,6 +91,21 @@ const Events = (props) => {
 
 	}
 
+	const handleEditTemplate = (id) => {
+		props.history.push('/edit-template/' + id)
+	}
+	const handleCreateTemplate = () => {
+		props.history.push('/create-template');
+
+	}
+
+	const handleDeleteTemplate = (id) => {
+		if (window.confirm(`Do you want to delete this Template with Id: ${id}?`)) {
+			dispatch(deleteTemplate(id))
+		}
+
+	}
+
 	const handleDeleteEvent = (id) => {
 		if (window.confirm(`Do you want to delete this Event with Id: ${id}?`)) {
 			dispatch(deleteEvent(id))
@@ -66,7 +115,7 @@ const Events = (props) => {
 
 
 	useEffect(() => {
-	}, [page, limit, total, events, deleteCount])
+	}, [page, limit, total, events, deleteCount, templatePage, templateLimit, templateTotal, templates])
 
 	const [activeTab, setActiveTab] = useState('1');
 	const toggleTab = (tab) => {
@@ -90,7 +139,7 @@ const Events = (props) => {
 							Events
 						</NavLink>
 					</NavItem>
-					<NavItem>
+					{orgType !== 'company' ? <NavItem>
 						<NavLink
 							href="#"
 							className={classnames({ active: activeTab === '2' })}
@@ -98,7 +147,7 @@ const Events = (props) => {
 						>
 							Event Templates
 						</NavLink>
-					</NavItem>
+					</NavItem> : null}
 				</Nav>
 
 				<TabContent activeTab={activeTab}>
@@ -265,9 +314,70 @@ const Events = (props) => {
 							</CardBody>
 						</Card>
 					</TabPane>
-					<TabPane tabId="2" className="py-2 ps-2">
+					{orgType !== 'company' ? <TabPane tabId="2" className="py-2 ps-2">
+						<div className="d-flex justify-content-end mb-3"><Button onClick={() => {
+							handleCreateTemplate()
+						}
+						}>{T('Create')}</Button></div>
+						<Card>
+							<table className="table">
+								<thead>
+									<tr>
+										<th scope="col">{T('Template Name')}</th>
+										<th scope="col">{T('Daily User Check-In Limit')}</th>
+										<th scope="col">{T('Total Check-In Limit')}</th>
+										<th scope="col">{T(`User's Next Check-In At`)}</th>
 
-					</TabPane>
+										<th scope="col">{T('Action')}</th>
+									</tr>
+								</thead>
+								<tbody>
+									{templates && templates.length > 0 && templates.map((d, dIndex) => (
+										<tr key={dIndex}>
+											<th>{d.template_name}</th>
+											<td>{d.max_daily_check_in}</td>
+											<td>{d.max_total_check_in}</td>
+											<td>{d.check_in_interval}</td>
+											<td>
+												{/* <button onClick={() => {
+										}
+										}>{T('View')}</button> */}
+												<button onClick={() => {
+													handleEditTemplate(d.event_template_id);
+												}}>{T('Edit')}</button>
+
+												<button className="btn-danger" onClick={() => {
+													handleDeleteTemplate(d.event_template_id);
+												}}>{T('Delete')}</button>
+											</td>
+										</tr>
+									))}
+								</tbody>
+							</table>
+						</Card>
+						<Pagination size="sm">
+							<PaginationItem disabled={templatePage <= 1}>
+								<PaginationLink onClick={() => {
+									dispatch(getTemplates(templatePage - 1, templateLimit))
+								}} previous href="#" />
+							</PaginationItem>
+							{/* The next PaginationItem after the previous PaginationItem button is the dynamic PaginationItem. This is the one that generates the templatePage number buttons. */}
+							{/* “Array(templatePagesCount)”: creates and initializes a new array object of length equal to templatePagesCount. */}
+							{/* “[…Array(templatePagesCount)].map( fn)”: using the spread operator I expand the array. After expanding, the map() method then creates a new array of PaginationItems. */}
+
+							{[...Array(parseInt(templateTotal / templateLimit) + (templateTotal % templateLimit > 0 ? 1 : 0))].map((templatePageNo, i) => (
+								<PaginationItem active={i + 1 === templatePage} key={i}>
+									<PaginationLink onClick={() => dispatch(getTemplates(i + 1, 10))} href="#">
+										{i + 1}
+									</PaginationLink>
+								</PaginationItem>
+							))}
+
+							<PaginationItem disabled={templatePage >= parseInt(templateTotal / templateLimit)}>
+								<PaginationLink onClick={() => { dispatch(getTemplates(templatePage + 1, 10)) }} next href="#" />
+							</PaginationItem>
+						</Pagination>
+					</TabPane> : null}
 				</TabContent>
 
 			</Container>

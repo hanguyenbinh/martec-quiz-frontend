@@ -25,6 +25,8 @@ import Coins from "src/pages/Coins"
 import DefaultSubmissionUpload from "src/pages/DefaultSubmissionUpload"
 import FAQ from "src/pages/FAQ"
 import DownloadReport from "src/pages/DownloadReport"
+import CreateTemplate from "src/pages/Events/CreateTemplate"
+import UpdateTemplate from "src/pages/Events/UpdateTemplate"
 
 
 
@@ -37,6 +39,8 @@ const authProtectedRoutes = [
 	{ path: "/events", component: Events },
 	{ path: "/edit-event/:id", component: UpdateEvent },
 	{ path: "/create-event", component: CreateEvent },
+	{ path: "/edit-template/:id", component: UpdateTemplate },
+	{ path: "/create-template", component: CreateTemplate },
 	{ path: "/prizes", component: Prizes },
 	{ path: "/edit-prize/:id", component: UpdatePrize },
 	{ path: "/create-prize", component: CreatePrize },

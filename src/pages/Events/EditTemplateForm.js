@@ -7,7 +7,7 @@ import { useHistory, } from "react-router-dom"
 
 import { dailyCheckinLimits, nextCheckinTimes } from './constant'
 
-import classes from "./CreateEvent.module.scss"
+import classes from "./CreateTemplate.module.scss"
 
 import {
   Button,
@@ -23,10 +23,10 @@ import {
 
 import BreadCrumb from "src/Components/Common/BreadCrumb"
 import EsgTooltip from "src/Components/Common/EsgTooltip"
-import { getOrganisationType } from "src/helpers/api_helper"
-import { useState } from "react"
 
-function EditEventForm(props) {
+
+function EditTemplateForm(props) {
+  const T = props.t ? props.T : () => { }
   const isEdit = props.isEdit
 
   const history = useHistory();
@@ -36,12 +36,10 @@ function EditEventForm(props) {
   }));
 
   const { isSubmitting, values, errors, setFieldValue, handleChange, handleBlur, touched, submitForm } = useFormikContext()
-  const [orgType, setOrgType] = useState('company')
-
   const bannerFileRef = React.useRef()
 
-  const handleBannerChange = (event) => {
-    const file = event.target.files[0]
+  const handleBannerChange = (template) => {
+    const file = template.target.files[0]
     bannerFileRef.current.value = ""
     if (!file) return
     setFieldValue("banner_file", file)
@@ -49,23 +47,34 @@ function EditEventForm(props) {
   }
 
   useEffect(() => {
-    const organisationType = getOrganisationType();
-    setOrgType(organisationType)
-  }, [])
+
+  }, [eventNatures])
 
 
-  useEffect(() => {
-
-  }, [eventNatures, orgType])
   return (
     <div className="page-content">
       <Container fluid>
-        <BreadCrumb title="Edit Event" />
+        <BreadCrumb title="Edit Template" />
 
         <Row className="mb-4">
           <Col sm={12} md={8}>
             <Card className="mb-0">
               <CardBody>
+                <FormGroup>
+                  <Label>Template name</Label>
+                  <Input
+                    name="template_name"
+                    className="form-control"
+                    placeholder="Template name"
+                    type="text"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.template_name}
+                    invalid={
+                      touched.template_name && errors.template_name ? true : false
+                    }
+                  />
+                </FormGroup>
                 <FormGroup>
                   <Label>Event name</Label>
                   <Input
@@ -215,7 +224,7 @@ function EditEventForm(props) {
               type="date"
               onChange={handleChange}
               onBlur={handleBlur}
-              value={values.start_date}
+              value={values.start_date || ''}
               invalid={
                 touched.start_date && errors.start_date ? true : false
               }
@@ -228,7 +237,7 @@ function EditEventForm(props) {
               type="date"
               onChange={handleChange}
               onBlur={handleBlur}
-              value={values.end_date}
+              value={values.end_date || ''}
               invalid={
                 touched.end_date && errors.end_date ? true : false
               }
@@ -269,7 +278,6 @@ function EditEventForm(props) {
                         onChange={handleChange}
                         onBlur={handleBlur}
                         value={values.point_award}
-                        disabled={orgType === 'company'}
                         invalid={
                           touched.point_award && errors.point_award ? true : false
                         }
@@ -294,7 +302,7 @@ function EditEventForm(props) {
                         type="text"
                         onChange={handleChange}
                         onBlur={handleBlur}
-                        value={values.max_total_check_in}
+                        value={values.max_total_check_in || ''}
                         invalid={
                           touched.max_total_check_in && errors.max_total_check_in ? true : false
                         }
@@ -319,7 +327,7 @@ function EditEventForm(props) {
                         type="select"
                         onChange={handleChange}
                         onBlur={handleBlur}
-                        value={values.max_daily_check_in}
+                        value={values.max_daily_check_in || ''}
 
                       >
                         {
@@ -348,7 +356,7 @@ function EditEventForm(props) {
                         type="select"
                         onChange={handleChange}
                         onBlur={handleBlur}
-                        value={values.check_in_interval}
+                        value={values.check_in_interval || ''}
 
                       >
                         {
@@ -364,23 +372,12 @@ function EditEventForm(props) {
                   </Row>
                 </FormGroup>
               </Col>
-              {isEdit ? (<Col sm={12} md={4}>
-                <h6>QR Code</h6>
-                <div className={`${classes.banner} mb-3`}>
-                  <img src={values.qr_code_path} className={classes.bannerImg} alt="" />
-                </div>
-                <div className="d-flex justify-content-center">
-                  <div style={{ lineHeight: 1.5, verticalAlign: 'middle', padding: '0.5rem 0.9rem' }}>
-                    <EsgTooltip tooltipText='Please download and print out this QR code, and display at the venue for user(s) to scan to earn the coins' name='event-qrcode-download'></EsgTooltip>
-                  </div>
-                  <a className="btn btn-secondary" href={values.qr_code_path}> Download</a></div>
-
-              </Col>) : null}
             </Row>
 
           </CardBody>
         </Card>
         <div className="d-flex align-items-center justify-content-end">
+          <Button disabled={isSubmitting && error === false} onClick={() => { values.isDraft = true; submitForm(); }} className="me-2">Save as Draft</Button>
           <Button disabled={isSubmitting && error === false} onClick={submitForm} className="me-2">Save</Button>
           <Button onClick={
             () => history.push('/events')
@@ -391,4 +388,4 @@ function EditEventForm(props) {
   )
 }
 
-export default EditEventForm
+export default EditTemplateForm

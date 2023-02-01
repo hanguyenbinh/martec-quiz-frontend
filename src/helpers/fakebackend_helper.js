@@ -148,10 +148,19 @@ export const postSocialLogin = data => api.create(url.SOCIAL_LOGIN, data);
 // Calendar
 // get Events
 export const getEventsApi = (page, limit) => api.get(url.GET_EVENTS_API, { page, limit });
-
 export const getEventApi = (id) => api.get(url.GET_EVENT_API.replace(':id', id));
+export const updateEventApi = event => api.create(url.UPDATE_EVENT_API.replace(':id', event.id), event.data);
+export const createEventApi = event => api.create(url.CREATE_EVENT_API, event.data);
+export const deleteEventApi = id => api.delete(url.DELETE_EVENT_API.replace(':id', id), {});
 
-export const geteventNaturesApi = (id) => api.get(url.GET_EVENT_NATURE_API);
+export const getTemplatesApi = (page, limit) => api.get(url.GET_TEMPLATES_API, { page, limit });
+export const getTemplateApi = (id) => api.get(url.GET_TEMPLATE_API.replace(':id', id));
+export const updateTemplateApi = event => api.create(url.UPDATE_TEMPLATE_API.replace(':id', event.id), event.data);
+export const createTemplateApi = event => api.create(url.CREATE_TEMPLATE_API, event.data);
+export const deleteTemplateApi = id => api.delete(url.DELETE_TEMPLATE_API.replace(':id', id), {});
+
+
+export const getEventNaturesApi = (id) => api.get(url.GET_EVENT_NATURE_API);
 
 
 // get Prizes
@@ -165,24 +174,8 @@ export const updatePrizeApi = (prize) => api.create(url.GET_PRIZE_API.replace(':
 export const createPrizeApi = (prize) => api.create(url.GET_PRIZES_API, prize.data);
 
 
-// get Events
 export const getCategories = () => api.get(url.GET_CATEGORIES);
-
-// get Upcomming Events
 export const getUpCommingEvent = () => api.get(url.GET_UPCOMMINGEVENT);
-
-
-// update Event
-export const updateEventApi = event => api.create(url.UPDATE_EVENT.replace(':id', event.id), event.data);
-
-export const createEventApi = event => api.create(url.CREATE_EVENT, event.data);
-
-export const deleteEventApi = id => api.delete(url.DELETE_EVENT_API.replace(':id', id), {});
-
-// delete Event
-
-// Chat
-// get Contact
 export const getDirectContact = () => api.get(url.GET_DIRECT_CONTACT);
 
 // get Messages

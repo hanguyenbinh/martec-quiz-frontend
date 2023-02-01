@@ -27,6 +27,16 @@ export const GET_COINS_SUMMARY = '/coins/summary'
 export const GET_EVENTS_API = "/events";
 export const GET_EVENT_API = "/events/:id";
 export const DELETE_EVENT_API = '/events/:id';
+export const UPDATE_EVENT_API = "/events/:id";
+export const CREATE_EVENT_API = "/events";
+
+export const GET_TEMPLATES_API = "/events/templates";
+export const GET_TEMPLATE_API = "/events/templates/:id";
+export const DELETE_TEMPLATE_API = '/events/templates/:id';
+export const UPDATE_TEMPLATE_API = "/events/templates/:id";
+export const CREATE_TEMPLATE_API = "/events/templates";
+
+
 export const GET_EVENT_NATURE_API = "/events/event-nature";
 export const GET_PRIZES_API = "/prizes";
 export const GET_PRIZE_API = "/prizes/:id";
@@ -57,9 +67,7 @@ export const POST_EDIT_PROFILE = "/user";
 
 export const GET_CATEGORIES = "/categories";
 export const GET_UPCOMMINGEVENT = "/upcommingevents";
-export const UPDATE_EVENT = "/events/:id";
-export const CREATE_EVENT = "/events";
-export const DELETE_EVENT = "/events/:id";
+
 
 // Chat
 export const GET_DIRECT_CONTACT = "/chat";
