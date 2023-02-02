@@ -31,7 +31,10 @@ export const UPDATE_EVENT_API = "/events/:id";
 export const CREATE_EVENT_API = "/events";
 
 export const GET_TEMPLATES_API = "/events/templates";
+export const GET_COMPACT_TEMPLATES_API = "/events/templates/compact";
 export const GET_TEMPLATE_API = "/events/templates/:id";
+export const GET_USER_TEMPLATE_API = "/events/templates/user/:id";
+
 export const DELETE_TEMPLATE_API = '/events/templates/:id';
 export const UPDATE_TEMPLATE_API = "/events/templates/:id";
 export const CREATE_TEMPLATE_API = "/events/templates";

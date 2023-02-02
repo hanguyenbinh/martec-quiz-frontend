@@ -28,6 +28,7 @@ function UpdateTemplate(props) {
 
 
 	const initialValues = React.useMemo(() => {
+		console.log('init values changed', template)
 		return {
 			...template,
 			banner_file: template.image_path || ''

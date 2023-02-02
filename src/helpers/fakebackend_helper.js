@@ -154,7 +154,11 @@ export const createEventApi = event => api.create(url.CREATE_EVENT_API, event.da
 export const deleteEventApi = id => api.delete(url.DELETE_EVENT_API.replace(':id', id), {});
 
 export const getTemplatesApi = (page, limit) => api.get(url.GET_TEMPLATES_API, { page, limit });
+export const getCompactTemplatesApi = () => api.get(url.GET_COMPACT_TEMPLATES_API, {});
+
 export const getTemplateApi = (id) => api.get(url.GET_TEMPLATE_API.replace(':id', id));
+export const getUserTemplateApi = (id) => api.get(url.GET_USER_TEMPLATE_API.replace(':id', id));
+
 export const updateTemplateApi = event => api.create(url.UPDATE_TEMPLATE_API.replace(':id', event.id), event.data);
 export const createTemplateApi = event => api.create(url.CREATE_TEMPLATE_API, event.data);
 export const deleteTemplateApi = id => api.delete(url.DELETE_TEMPLATE_API.replace(':id', id), {});

@@ -23,6 +23,8 @@ const Events = (props) => {
 		dispatch(getOrgEvents())
 		const organisationType = getOrganisationType();
 		setOrgType(organisationType);
+		// setOrgType('ca');
+
 		// if (organisationType !== 'company') {
 		// 	dispatch(getTemplates());
 		// }

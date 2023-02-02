@@ -28,6 +28,7 @@ function UpdateEvent(props) {
 
 
 	const initialValues = React.useMemo(() => {
+		console.log('initial values changed', event)
 		return {
 			...event,
 			banner_file: event.image_path || ''

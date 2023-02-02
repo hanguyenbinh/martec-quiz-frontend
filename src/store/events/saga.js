@@ -1,7 +1,7 @@
 import { call, put, takeEvery } from "redux-saga/effects";
-import { createEventApi, createTemplateApi, deleteEventApi, deleteTemplateApi, getEventApi, getEventNaturesApi, getEventsApi, getTemplateApi, getTemplatesApi, updateEventApi, updateTemplateApi } from "src/helpers/fakebackend_helper";
-import { getEventDetailsSuccess, getEventNaturesSuccess, eventAPIError, getEventsSuccess, updateEventSuccess, createEventSuccess, deleteEventSuccess, getTemplatesSuccess, getTemplateDetailsSuccess, updateTemplateSuccess, createTemplateSuccess, deleteTemplateSuccess } from "./actions";
-import { CREATE_EVENT, CREATE_TEMPLATE, DELETE_EVENT, DELETE_TEMPLATE, GET_EVENTS, GET_EVENT_DETAILS, GET_EVENT_NATURE, GET_TEMPLATES, GET_TEMPLATE_DETAILS, UPDATE_EVENT, UPDATE_TEMPLATE } from "./actionTypes";
+import { createEventApi, createTemplateApi, deleteEventApi, deleteTemplateApi, getCompactTemplatesApi, getEventApi, getEventNaturesApi, getEventsApi, getTemplateApi, getTemplatesApi, getUserTemplateApi, updateEventApi, updateTemplateApi } from "src/helpers/fakebackend_helper";
+import { getEventDetailsSuccess, getEventNaturesSuccess, eventAPIError, getEventsSuccess, updateEventSuccess, createEventSuccess, deleteEventSuccess, getTemplatesSuccess, getTemplateDetailsSuccess, updateTemplateSuccess, createTemplateSuccess, deleteTemplateSuccess, getCompactTemplatesSuccess, getUserTemplateSuccess } from "./actions";
+import { CREATE_EVENT, CREATE_TEMPLATE, DELETE_EVENT, DELETE_TEMPLATE, GET_COMPACT_TEMPLATES, GET_EVENTS, GET_EVENT_DETAILS, GET_EVENT_NATURE, GET_TEMPLATE, GET_TEMPLATES, GET_TEMPLATE_DETAILS, UPDATE_EVENT, UPDATE_TEMPLATE } from "./actionTypes";
 import { toast } from 'react-toastify';
 function* getEvents({ payload: { page, limit, history } }) {
   try {
@@ -123,12 +123,44 @@ function* getTemplates({ payload: { page, limit, history } }) {
   }
 }
 
+function* getCompactTemplates({ payload: { } }) {
+  try {
+    const response = yield call(
+      getCompactTemplatesApi);
+    if (response.status === true) {
+      yield put(getCompactTemplatesSuccess(response));
+    } else {
+      yield put(eventAPIError(response));
+      toast.error(response.data.errmsg, { autoClose: 3000 });
+    }
+  } catch (error) {
+    yield put(eventAPIError(error));
+    toast.error(error, { autoClose: 3000 });
+  }
+}
+
 function* getTemplate({ payload: { id, history } }) {
   try {
     const response = yield call(
       getTemplateApi, id);
     if (response.status === true) {
       yield put(getTemplateDetailsSuccess(response));
+    } else {
+      yield put(eventAPIError(response));
+      toast.error(response.data.errmsg, { autoClose: 3000 });
+    }
+  } catch (error) {
+    yield put(eventAPIError(error));
+    toast.error(error, { autoClose: 3000 });
+  }
+}
+
+function* getUserTemplate({ payload: { id, history } }) {
+  try {
+    const response = yield call(
+      getUserTemplateApi, id);
+    if (response.status === true) {
+      yield put(getUserTemplateSuccess(response));
     } else {
       yield put(eventAPIError(response));
       toast.error(response.data.errmsg, { autoClose: 3000 });
@@ -202,10 +234,14 @@ function* eventSaga() {
   yield takeEvery(CREATE_EVENT, createEvent);
   yield takeEvery(DELETE_EVENT, deleteEvent);
   yield takeEvery(GET_TEMPLATES, getTemplates);
+  yield takeEvery(GET_COMPACT_TEMPLATES, getCompactTemplates);
+
   yield takeEvery(GET_TEMPLATE_DETAILS, getTemplate);
   yield takeEvery(UPDATE_TEMPLATE, updateTemplate);
   yield takeEvery(CREATE_TEMPLATE, createTemplate);
   yield takeEvery(DELETE_TEMPLATE, deleteTemplate);
+  yield takeEvery(GET_TEMPLATE, getUserTemplate);
+
 }
 
 export default eventSaga;

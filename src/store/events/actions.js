@@ -1,4 +1,4 @@
-import { GET_EVENTS, API_EVENT_ERROR, GET_EVENTS_SUCCESS, GET_EVENT_DETAILS, GET_EVENT_DETAILS_SUCCESS, GET_EVENT_NATURE, GET_EVENT_NATURE_SUCCESS, UPDATE_EVENT, UPDATE_EVENT_SUCCESS, CREATE_EVENT, CREATE_EVENT_SUCCESS, DELETE_EVENT_SUCCESS, DELETE_EVENT, GET_TEMPLATES, GET_TEMPLATE_DETAILS, UPDATE_TEMPLATE, DELETE_TEMPLATE, UPDATE_TEMPLATE_SUCCESS, CREATE_TEMPLATE, CREATE_TEMPLATE_SUCCESS, DELETE_TEMPLATE_SUCCESS, GET_TEMPLATES_SUCCESS, GET_TEMPLATE_DETAILS_SUCCESS } from "./actionTypes";
+import { GET_EVENTS, API_EVENT_ERROR, GET_EVENTS_SUCCESS, GET_EVENT_DETAILS, GET_EVENT_DETAILS_SUCCESS, GET_EVENT_NATURE, GET_EVENT_NATURE_SUCCESS, UPDATE_EVENT, UPDATE_EVENT_SUCCESS, CREATE_EVENT, CREATE_EVENT_SUCCESS, DELETE_EVENT_SUCCESS, DELETE_EVENT, GET_TEMPLATES, GET_TEMPLATE_DETAILS, UPDATE_TEMPLATE, DELETE_TEMPLATE, UPDATE_TEMPLATE_SUCCESS, CREATE_TEMPLATE, CREATE_TEMPLATE_SUCCESS, DELETE_TEMPLATE_SUCCESS, GET_TEMPLATES_SUCCESS, GET_TEMPLATE_DETAILS_SUCCESS, GET_COMPACT_TEMPLATES, GET_COMPACT_TEMPLATES_SUCCESS, GET_TEMPLATE, GET_TEMPLATE_SUCCESS, REMOVE_CURRENT_TEMPLATE } from "./actionTypes";
 
 export const getEvents = (page = 1, limit = 10) => {
   return {
@@ -111,6 +111,20 @@ export const getTemplate = (id, history) => {
   }
 }
 
+export const getCompactTemplates = () => {
+  return {
+    type: GET_COMPACT_TEMPLATES,
+    payload: {}
+  }
+}
+
+export const getCompactTemplatesSuccess = (response) => {
+  return {
+    type: GET_COMPACT_TEMPLATES_SUCCESS,
+    payload: response
+  }
+}
+
 export const updateTemplate = (id, data, history) => {
   return {
     type: UPDATE_TEMPLATE,
@@ -148,6 +162,20 @@ export const createTemplateSuccess = response => {
   }
 }
 
+export const getUserTemplate = (id) => {
+  return {
+    type: GET_TEMPLATE,
+    payload: { id }
+  }
+}
+
+export const getUserTemplateSuccess = (response) => {
+  return {
+    type: GET_TEMPLATE_SUCCESS,
+    payload: response
+  }
+}
+
 export const deleteTemplateSuccess = response => {
   return {
     type: DELETE_TEMPLATE_SUCCESS,
@@ -166,5 +194,12 @@ export const getTemplateDetailsSuccess = response => {
   return {
     type: GET_TEMPLATE_DETAILS_SUCCESS,
     payload: response
+  }
+}
+
+export const removeCurrentTemplate = () => {
+  return {
+    type: REMOVE_CURRENT_TEMPLATE,
+    payload: {}
   }
 }

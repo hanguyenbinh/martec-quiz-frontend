@@ -2,7 +2,7 @@
 import { useFormikContext } from "formik"
 import React from "react"
 import { useEffect } from "react"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { useHistory, } from "react-router-dom"
 
 import { dailyCheckinLimits, nextCheckinTimes } from './constant'
@@ -25,18 +25,24 @@ import BreadCrumb from "src/Components/Common/BreadCrumb"
 import EsgTooltip from "src/Components/Common/EsgTooltip"
 import { getOrganisationType } from "src/helpers/api_helper"
 import { useState } from "react"
+import { getCompactTemplates, getUserTemplate, removeCurrentTemplate } from "src/store/actions"
+import { isEmpty } from "lodash"
 
 function EditEventForm(props) {
   const isEdit = props.isEdit
+  const dispactch = useDispatch();
 
   const history = useHistory();
-  const { eventNatures, error } = useSelector(state => ({
+  const { eventNatures, compactTemplates, currentTemplate, error } = useSelector(state => ({
     eventNatures: state.Events.eventNatures,
+    compactTemplates: state.Events.compactTemplates,
+    currentTemplate: state.Events.currentTemplate,
     error: state.Events.error
   }));
 
   const { isSubmitting, values, errors, setFieldValue, handleChange, handleBlur, touched, submitForm } = useFormikContext()
   const [orgType, setOrgType] = useState('company')
+  const [selectedTemplate, setSelectedTemplate] = useState()
 
   const bannerFileRef = React.useRef()
 
@@ -50,13 +56,38 @@ function EditEventForm(props) {
 
   useEffect(() => {
     const organisationType = getOrganisationType();
+    dispactch(getCompactTemplates())
     setOrgType(organisationType)
   }, [])
 
 
   useEffect(() => {
+    if (currentTemplate) {
+      setFieldValue('image', currentTemplate.banner_file);
+      setFieldValue('event_name', currentTemplate.event_name);
+      setFieldValue('event_name_chi', currentTemplate.event_name_chi);
+      setFieldValue('event_long_desc', currentTemplate.event_long_desc);
+      setFieldValue('event_long_desc_chi', currentTemplate.event_long_desc_chi);
+      setFieldValue('event_desc', currentTemplate.event_desc);
+      setFieldValue('event_desc_chi', currentTemplate.event_desc_chi);
+      setFieldValue('event_nature_id', currentTemplate.event_nature_id);
+      setFieldValue('start_date', currentTemplate.start_date);
+      setFieldValue('end_date', currentTemplate.end_date);
+      setFieldValue('top_most_ind', currentTemplate.top_most_ind);
+      setFieldValue('point_award', currentTemplate.point_award);
+      setFieldValue('exp_earnded', currentTemplate.exp_earnded || 0);
+      setFieldValue('max_daily_check_in', currentTemplate.max_daily_check_in || 0);
+      setFieldValue('max_total_check_in', currentTemplate.max_total_check_in);
+      setFieldValue('check_in_interval', currentTemplate.check_in_interval);
+    }
+  }, [eventNatures, orgType, compactTemplates, currentTemplate])
 
-  }, [eventNatures, orgType])
+  const onSelectTemplate = (template) => {
+    console.log(template);
+    setSelectedTemplate(template)
+    if (!isEmpty(template)) dispactch(getUserTemplate(template))
+    else dispactch(removeCurrentTemplate())
+  }
   return (
     <div className="page-content">
       <Container fluid>
@@ -67,6 +98,26 @@ function EditEventForm(props) {
             <Card className="mb-0">
               <CardBody>
                 <FormGroup>
+                  <Label>Event Templates</Label>
+                  <Input
+                    className="form-control"
+                    placeholder="Event Templates"
+                    type="select"
+                    onChange={(e) => {
+                      console.log(e)
+                      onSelectTemplate(e.target.value)
+                    }}
+                    onBlur={handleBlur}
+                    value={selectedTemplate}
+                    invalid={false}
+                  >
+                    <option value={''}>---------</option>
+                    {
+                      compactTemplates.map((item, key) => <option key={key} value={item.event_template_id}>{item.template_name}</option>)
+                    }
+                  </Input>
+                </FormGroup>
+                <FormGroup>
                   <Label>Event name</Label>
                   <Input
                     name="event_name"
@@ -76,6 +127,7 @@ function EditEventForm(props) {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.event_name}
+                    disabled={currentTemplate ? true : false}
                     invalid={
                       touched.event_name && errors.event_name ? true : false
                     }
@@ -91,6 +143,7 @@ function EditEventForm(props) {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.event_name_chi}
+                    disabled={currentTemplate ? true : false}
                     invalid={
                       touched.event_name_chi && errors.event_name_chi ? true : false
                     }
@@ -106,6 +159,7 @@ function EditEventForm(props) {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.event_desc}
+                    disabled={currentTemplate ? true : false}
                     invalid={
                       touched.event_desc && errors.event_desc ? true : false
                     }
@@ -121,6 +175,7 @@ function EditEventForm(props) {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.event_desc_chi}
+                    disabled={currentTemplate ? true : false}
                     invalid={
                       touched.event_desc_chi && errors.event_desc_chi ? true : false
                     }
@@ -156,6 +211,7 @@ function EditEventForm(props) {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.event_long_desc}
+                    disabled={currentTemplate ? true : false}
                     invalid={
                       touched.event_long_desc && errors.event_long_desc ? true : false
                     }
@@ -172,6 +228,7 @@ function EditEventForm(props) {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.event_long_desc_chi}
+                    disabled={currentTemplate ? true : false}
                     invalid={
                       touched.event_long_desc_chi && errors.event_long_desc_chi ? true : false
                     }
@@ -189,7 +246,8 @@ function EditEventForm(props) {
                   <img src={values.image_path} className={classes.bannerImg} alt="" />
                 </div>
                 <div className="d-flex justify-content-center">
-                  <Button onClick={() => bannerFileRef.current.click()}>
+                  <Button onClick={() => bannerFileRef.current.click()} disabled={currentTemplate ? true : false}
+                  >
                     <input
                       ref={bannerFileRef}
                       type="file"
