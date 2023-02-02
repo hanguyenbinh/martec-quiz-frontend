@@ -228,6 +228,7 @@ const Events = (props) => {
 										setSelectedEventId(e.target.value)
 									})}>
 										<option value=''>Select event</option>
+										<option value='all'>All events</option>
 										{organisationEvents.map((item, index) => (
 											<option key={index} value={item.event_id}>{item.event_name}</option>
 										))}
@@ -235,10 +236,10 @@ const Events = (props) => {
 								</div>
 								<Row className="mb-2">
 									<Col sm={12} md={6}>
-										Start-End Date: {eventSummaries.event.start_date} {eventSummaries.event.end_date} {eventSummaries.event.status}
+										Start-End Date: {eventSummaries.event?.start_date} {eventSummaries.event?.end_date} {eventSummaries.event?.status}
 									</Col>
 									<Col sm={12} md={6}>
-										No of Plays left: {eventSummaries.event.playsLeft} times
+										No of Plays left: {eventSummaries.event?.playsLeft} times
 									</Col>
 								</Row>
 

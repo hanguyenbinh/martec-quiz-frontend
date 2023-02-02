@@ -139,7 +139,7 @@ const Navdata = (props) => {
 			label: ("Download Report"),
 			link: "/download-report",
 			parentId: "download-report",
-			role: 'normal',
+			role: 'company',
 			icon: 'download'
 		},
 		{

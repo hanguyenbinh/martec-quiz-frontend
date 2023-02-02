@@ -11,7 +11,7 @@ import { getOrganisationType } from "src/helpers/api_helper"
 
 const VerticalLayout = (props) => {
 	const organisationType = getOrganisationType();
-	const navData = organisationType === 'company' ? navdata().props.children : navdata().props.children.filter(item => item.role !== 'ca')
+	const navData = organisationType === 'company' ? navdata().props.children : navdata().props.children.filter(item => item.role === 'company' || item.role === 'company')
 
 
 	useEffect(() => {

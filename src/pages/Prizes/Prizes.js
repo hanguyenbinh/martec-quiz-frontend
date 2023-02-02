@@ -91,6 +91,8 @@ const Prizes = (props) => {
 								<h5>{T("No. of redemptions")}: {d.redemption_no}</h5>
 								<h5>{T("Valid until")}: {d.expired_date}</h5>
 
+								{d.asset_type_id === 2 ? <h5>{T("Type: Raffle Ticket")}</h5> : null}
+
 							</Col>
 							<Col xs="4">
 								<Card className="mb-0">
@@ -105,9 +107,10 @@ const Prizes = (props) => {
 								</Card>
 							</Col>
 							<Col xs="2">
-								<button onClick={() => {
+								{d.read_only_ind === 0 ? <button onClick={() => {
 									handleEditPrize(d.prize_id);
-								}}>{T('Edit')}</button>
+								}}>{T('Edit')}</button> : null}
+
 								{/* <button className="btn-danger" onClick={() => {
 									handleDeletePrize(d.prize_id);
 								}}>{T('Delete')}</button> */}
