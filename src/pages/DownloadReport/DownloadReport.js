@@ -39,7 +39,7 @@ const DownloadReport = (props) => {
 						{submissionReports && submissionReports.length > 0 && submissionReports.map((d, dIndex) => (
 							<tr key={dIndex}>
 								<th>{d.period}</th>
-								<td>{d.file_path ? <a href={d.file_path}>Download</a> : 'N/A'}</td>
+								<td>{d.file_path ? <a href={d.file_path}>Download</a> : 'N.A'}</td>
 								<td>{d.issue_date}</td>
 								<td>{d.status}</td>
 								<td>{d.remark}</td>
