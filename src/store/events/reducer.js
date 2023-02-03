@@ -160,7 +160,8 @@ const Events = (state = initialState, action) => {
 				loading: false,
 				error: false,
 				event: action.payload.data,
-				eventId: action.payload.data.event_id
+				eventId: action.payload.data.event_id,
+				currentTemplate: null
 			}
 			break;
 

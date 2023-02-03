@@ -64,7 +64,7 @@ function EditEventForm(props) {
   useEffect(() => {
     if (currentTemplate) {
       setFieldValue('event_template_id', currentTemplate.event_template_id);
-      setFieldValue('image', currentTemplate.banner_file);
+      setFieldValue('image_path', currentTemplate.image_path);
       setFieldValue('event_name', currentTemplate.event_name);
       setFieldValue('event_name_chi', currentTemplate.event_name_chi);
       setFieldValue('event_long_desc', currentTemplate.event_long_desc);

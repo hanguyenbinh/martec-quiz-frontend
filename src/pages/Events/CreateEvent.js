@@ -37,7 +37,8 @@ function CreateEvent(props) {
 			max_daily_check_in: -1,
 			max_total_check_in: 9999,
 			check_in_interval: 2,
-			banner_file: ''
+			banner_file: '',
+			event_template_id: ''
 		}
 	}, [])
 
