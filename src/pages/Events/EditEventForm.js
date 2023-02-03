@@ -63,6 +63,7 @@ function EditEventForm(props) {
 
   useEffect(() => {
     if (currentTemplate) {
+      setFieldValue('event_template_id', currentTemplate.event_template_id);
       setFieldValue('image', currentTemplate.banner_file);
       setFieldValue('event_name', currentTemplate.event_name);
       setFieldValue('event_name_chi', currentTemplate.event_name_chi);
@@ -100,6 +101,7 @@ function EditEventForm(props) {
                 <FormGroup>
                   <Label>Event Templates</Label>
                   <Input
+                    name="event_template_id"
                     className="form-control"
                     placeholder="Event Templates"
                     type="select"
@@ -107,8 +109,9 @@ function EditEventForm(props) {
                       console.log(e)
                       onSelectTemplate(e.target.value)
                     }}
+                    disabled={isEdit === true}
                     onBlur={handleBlur}
-                    value={selectedTemplate}
+                    value={values.event_template_id || ''}
                     invalid={false}
                   >
                     <option value={''}>---------</option>

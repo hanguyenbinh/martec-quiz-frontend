@@ -51,6 +51,8 @@ function CreateEvent(props) {
 		if (values.banner_file) {
 			formData.append('image', values.banner_file);
 		}
+		formData.append('event_template_id', values.event_template_id);
+
 		formData.append('event_name', values.event_name);
 		formData.append('event_name_chi', values.event_name_chi);
 		formData.append('event_long_desc', values.event_long_desc);
