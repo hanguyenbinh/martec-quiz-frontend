@@ -1,4 +1,4 @@
-name: HKCA - esg-admin-web (dev) 
+name: HKCA - esg-admin-web (dev)
 on:
   push:
     branches:
@@ -30,7 +30,7 @@ jobs:
         os: [ubuntu-22.04]
     steps:
       - name: Check out from aws-env Github Repository (Private)
-        uses: actions/checkout@v2
+        uses: actions/checkout@master
         with:
           repository: ${{ env.ORG }}/${{ env.GH_REPO }}
           token: ${{ env.GITHUB_TOKEN }}
@@ -40,7 +40,7 @@ jobs:
           ls -altr
           mkdir -p /tmp
           cp ./k8s/${{ env.ENVIRONMENT }}/${{ env.SERVICE_NAME }}.yaml /tmp/${{ env.SERVICE_NAME }}.yaml
-      
+
       - name: Checkout
         uses: actions/checkout@master
       - name: Copy yaml file to deploy directory
@@ -50,7 +50,7 @@ jobs:
           ls -altr ./deploy
 
       - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@master
         with:
           aws-access-key-id: ${{ env.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ env.AWS_SECRET_ACCESS_KEY }}
@@ -58,7 +58,7 @@ jobs:
 
       - name: Login to Amazon ECR
         id: login-ecr
-        uses: aws-actions/amazon-ecr-login@v1
+        uses: aws-actions/amazon-ecr-login@master
       - name: Build, tag, and push image to Amazon ECR
         id: build-image
         env:
@@ -77,9 +77,9 @@ jobs:
 
       - name: Set image tag
         run: |
-            cd deploy
-            kustomize edit set image ${{ env.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.CLUSTER_VPC_REGION }}.amazonaws.com/${{ env.ECR_REPO_PREFIX }}-${{ env.ENVIRONMENT }}:${{ env.IMAGE_TAG }}-${{ env.ENVIRONMENT }}
-            cat kustomization.yaml
+          cd deploy
+          kustomize edit set image ${{ env.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.CLUSTER_VPC_REGION }}.amazonaws.com/${{ env.ECR_REPO_PREFIX }}-${{ env.ENVIRONMENT }}:${{ env.IMAGE_TAG }}-${{ env.ENVIRONMENT }}
+          cat kustomization.yaml
       - name: Commit kustomization
         run: |
           git config --local user.email "action@github.com"
@@ -90,11 +90,11 @@ jobs:
         with:
           github_token: ${{ env.GITHUB_TOKEN }}
           branch: main
-          force: true       
+          force: true
 
       - name: Connect to EKS cluster (Optional)
         run: aws eks --region ${{ env.EKS_REGION }} update-kubeconfig --name ${{ env.EKS_CLUSTER_NAME }}
-        
+
       - name: Verify Service (Optional)
         run: |
           echo "`wget ${{ env.SERVICE_HEALTH_CHECK_PUBLIC_URL }}`"
