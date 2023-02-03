@@ -207,6 +207,7 @@ const Events = (state = initialState, action) => {
 				...state,
 				currentTemplate: null
 			}
+			break
 		default:
 			state = { ...state }
 			break

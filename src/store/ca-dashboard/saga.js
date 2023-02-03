@@ -10,7 +10,7 @@ import {
 }
   from "../../helpers/fakebackend_helper";
 
-function* getOrganisationSummaries({ payload: { } }) {
+function* getOrganisationSummaries() {
   try {
     const response = yield call(getOrganisationSummariesApi);
     if (response.status === true) yield put(getOrgSummariesSuccess(response.data));

@@ -36,7 +36,7 @@ function* getEvent({ payload: { id, history } }) {
   }
 }
 
-function* getEventNatures({ payload: { } }) {
+function* getEventNatures() {
   try {
     const response = yield call(
       getEventNaturesApi);
@@ -123,7 +123,7 @@ function* getTemplates({ payload: { page, limit, history } }) {
   }
 }
 
-function* getCompactTemplates({ payload: { } }) {
+function* getCompactTemplates() {
   try {
     const response = yield call(
       getCompactTemplatesApi);

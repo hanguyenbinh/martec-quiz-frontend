@@ -130,7 +130,7 @@ function* logoutUser() {
   }
 }
 
-function* getOrganisations({ payload: { } }) {
+function* getOrganisations() {
   try {
     const response = yield call(getOrganisationsApi, {});
     if (response.status === true) {

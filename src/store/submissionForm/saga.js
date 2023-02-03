@@ -139,7 +139,7 @@ function* deleteSubmissionSaga({ payload: { id, history } }) {
   }
 }
 
-function* getReportsSaga({ payload: { } }) {
+function* getReportsSaga() {
   try {
     const response = yield call(
       getReportsApi);

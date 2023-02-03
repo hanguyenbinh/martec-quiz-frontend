@@ -19,7 +19,7 @@ function* getCoinsHistory({ payload: { days } }) {
   }
 }
 
-function* getCoinsSummary({ payload: { } }) {
+function* getCoinsSummary() {
   try {
     const response = yield call(
       getCoinsSummaryApi);

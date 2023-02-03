@@ -42,7 +42,6 @@ const CADashboard = (state = INIT_STATE, action) => {
     case CA_DASHBOARD_API_ERROR:
       return {
         error: true,
-        isLoading: false,
         ...state,
         isLoading: false
       }
