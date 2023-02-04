@@ -34,7 +34,7 @@ data:
         joinButtonLink: 'https://public-dev.hkca-esg.com/docs/guide-to-application-for-environmental-social-governance(esg)-recognition-scheme-2022-dec.pdf'
       },
       api: {
-        PORTAL_URL: "https://apidev.hkca-esg.com/hkca-esg-admin/api"
+        API_URL: "https://apidev.hkca-esg.com/hkca-esg-admin/api"
       }
     };
 ---
