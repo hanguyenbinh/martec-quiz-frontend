@@ -60,6 +60,8 @@ function UpdateEvent(props) {
 		formData.append('max_daily_check_in', values.max_daily_check_in);
 		formData.append('max_total_check_in', values.max_total_check_in);
 		formData.append('check_in_interval', values.check_in_interval);
+		formData.append('image_path', values.image_path);
+		formData.append('image_path_chi', values.image_path_chi);
 
 		dispatch(updateEvent(values.event_id, formData, props.history))
 	}
