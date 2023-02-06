@@ -46,7 +46,6 @@ ChartJS.register(
 
 const LineChart = (props) => {
 	const { title, data } = props
-	console.log("cac,", title)
 	return (
 		<Card className={cx("m-0", classes.chart)}>
 			{!!title && (

@@ -28,7 +28,6 @@ function UpdateTemplate(props) {
 
 
 	const initialValues = React.useMemo(() => {
-		console.log('init values changed', template)
 		return {
 			...template,
 			banner_file: template.image_path || ''
@@ -39,7 +38,6 @@ function UpdateTemplate(props) {
 		return
 	}, [])
 	const handleSubmit = (values) => {
-		console.log('update template', values)
 		const formData = new FormData();
 		if (values.banner_file) {
 			formData.append('image', values.banner_file);
@@ -75,12 +73,10 @@ function UpdateTemplate(props) {
 	}
 
 	useEffect(() => {
-		console.log('template changed', initialValues)
 		formikRef.current.resetForm({
 			values: initialValues
 		});
 	}, [initialValues])
-	console.log('get template', template);
 
 	return (
 		<div>

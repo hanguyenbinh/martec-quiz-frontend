@@ -7,7 +7,7 @@ const PublicationItem = (props) => {
   const { src, month, year, title, subTitle, actions, bgColor } = props
   return (
     <div className={classes.root + ' mb-3'} style={{ backgroundColor: bgColor }}>
-      <img src={src} className={classes.img} />
+      <img src={src} alt="" className={classes.img} />
       <div className={classes.content}>
         <div className={classes.subTitle + ' d-flex flex-row'}>
           <span className={classes.month + ' me-2'}>{month}</span>
@@ -15,13 +15,14 @@ const PublicationItem = (props) => {
         </div>
         <h3 className={classes.title + ' fw-bold'}>{title}</h3>
         <div className={'d-flex justify-content-start ' + classes.downloadBtn}>
-          <img src={downloadIcon}></img>
+          <img src={downloadIcon} alt=""></img>
           {actions.map((item, index) => {
             switch (item.name) {
               case 'en':
-                return <a key={index} href={item.url} target="_blank" className={!(item.url) ? classes.downloadDisabled : ''}>EN</a>
+                return <a key={index} href={item.url} target="_blank" rel="noopener noreferrer" className={!(item.url) ? classes.downloadDisabled : ''}>EN</a>
               case 'cn':
-                return <a key={index} href={item.url} target="_blank" className={!(item.url) ? classes.downloadDisabled : ''}>中</a>
+              default:
+                return <a key={index} href={item.url} target="_blank" rel="noopener noreferrer" className={!(item.url) ? classes.downloadDisabled : ''}>中</a>
             }
           })}
         </div>

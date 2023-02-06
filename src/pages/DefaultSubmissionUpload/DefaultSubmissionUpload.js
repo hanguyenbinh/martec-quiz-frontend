@@ -24,9 +24,6 @@ function DefaultSubmissionUpload(props) {
 		return
 	}, [])
 	const handleSubmit = (values, { setSubmitting }) => {
-		// setSubmitting(true)
-
-		console.log('values', values)
 		const formData = new FormData();
 		if (values.jsonFile) {
 			formData.append('jsonFile', values.jsonFile);

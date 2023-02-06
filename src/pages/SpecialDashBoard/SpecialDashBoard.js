@@ -108,9 +108,6 @@ function SpecialDashBoard(props) {
 	}, [organisationSummeries, organisations])
 
 	useEffect(() => {
-		console.log('eventSummaries', eventSummaries);
-		console.log('organisationEvents', organisationEvents)
-
 	}, [eventSummaries, organisationEvents])
 
 	useEffect(() => {
@@ -151,18 +148,12 @@ function SpecialDashBoard(props) {
 			]
 		}
 
-		console.log('setChartData', data)
 		setChartData(preState => { return data })
 	}, [basisA, basisB, years])
-
-	// useEffect(() => {
-	// 	console.log('chart data changed', chartData)
-	// }, [chartData])
 
 	const handleComparation = () => {
 		dispatch(getSubmissionComparation(camelize(selectedIndicator), selectedProjectTypeA, selectedProjectTypeB, selectedCompanySizeA, selectedCompanySizeB));
 	}
-	console.log('chartData', chartData)
 	return (
 		<div className="page-content">
 			<Container fluid>

@@ -12,7 +12,7 @@ export const nextCheckinTimes = [
   },
   {
     label: 2,
-    value: 3
+    value: 2
   },
   {
     label: 3,

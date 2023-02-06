@@ -1,7 +1,6 @@
 import moment from "moment"
-import React, { useEffect, useState } from "react"
-import { Link } from "react-router-dom"
-import { Card, CardBody, Dropdown, DropdownMenu, DropdownToggle, Form } from "reactstrap"
+import React, { useState } from "react"
+import { Dropdown, DropdownMenu, DropdownToggle, Form } from "reactstrap"
 
 
 //import Components
@@ -88,7 +87,7 @@ const Header = ({ onChangeLayoutMode, layoutModeType, headerClass }) => {
 						</div>
 
 						<div className="d-flex align-items-center">
-							Last login on [{moment(lastLogin.lastLogin).format('YYYY-MM-DD HH:mm:ss')}] by [{lastLogin.identifier}]
+							Last login on [{moment(lastLogin.lastLogin).format('lll')}] by [{lastLogin.identifier}]
 							<Dropdown
 								isOpen={search}
 								toggle={toogleSearch}
@@ -126,8 +125,7 @@ const Header = ({ onChangeLayoutMode, layoutModeType, headerClass }) => {
 							{/* WebAppsDropdown */}
 							{/* <WebAppsDropdown /> */}
 
-							{/* MyCartDropdwon */}
-							{/* <MyCartDropdown /> */}
+
 
 							{/* FullScreenDropdown */}
 							{/* <FullScreenDropdown /> */}
@@ -141,7 +139,6 @@ const Header = ({ onChangeLayoutMode, layoutModeType, headerClass }) => {
 							{/* NotificationDropdown */}
 							{/* <NotificationDropdown /> */}
 
-							{/* ProfileDropdown */}
 							<ProfileDropdown />
 						</div>
 					</div>

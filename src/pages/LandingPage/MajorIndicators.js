@@ -13,6 +13,7 @@ const MajorIndicators = () => {
             <section className="section bg-light" id="marketplace">
                 <Container className='esg-container'>
                     <iframe src={landingPage.video1}
+                        title='video01'
                         style={{
                             // position: "absolute",
                             top: 0,

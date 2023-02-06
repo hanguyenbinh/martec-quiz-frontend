@@ -60,7 +60,6 @@ export const registerChallenge = (obj, history) => {
 };
 
 export const registerChallengeSuccess = accessToken => {
-  console.log('registerChallengeSuccess', accessToken)
   return {
     type: REGISTER_CHALLENGE_SUCCESS,
     payload: { accessToken },

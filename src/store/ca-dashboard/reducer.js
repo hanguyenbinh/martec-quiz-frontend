@@ -68,7 +68,6 @@ const CADashboard = (state = INIT_STATE, action) => {
         error: false
       }
     case GET_ORGANISATION_SUMMARIES_SUCCESS:
-      console.log('GET_ORGANISATION_SUMMARIES_SUCCESS', action.payload)
       return {
         ...state,
         isLoading: false,
@@ -78,7 +77,6 @@ const CADashboard = (state = INIT_STATE, action) => {
         // organisationEvents: [],
       }
     case GET_ORGANISATION_EVENTS_SUCCESS:
-      console.log('GET_ORGANISATION_EVENTS_SUCCESS', action.payload)
       return {
         ...state,
         isLoading: false,
@@ -102,7 +100,6 @@ const CADashboard = (state = INIT_STATE, action) => {
       }
 
     case GET_SUBMISSION_COMPARATION_SUCCESS:
-      console.log('GET_SUBMISSION_COMPARATION_SUCCESS', action.payload)
       return {
         ...state,
         isLoading: false,

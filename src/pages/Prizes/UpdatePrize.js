@@ -26,13 +26,11 @@ function UpdatePrize(props) {
 	}));
 
 	const initialValues = React.useMemo(() => {
-		console.log('initialValues', prize);
 		const _initValues = {
 			...prize,
 			redeem_once_ind: prize && prize.redeem_once_ind === 1 ? true : false,
 			banner_file: prize?.image_path || ''
 		}
-		console.log(_initValues);
 		return _initValues
 	}, [prize])
 
@@ -67,7 +65,6 @@ function UpdatePrize(props) {
 	}, [initialValues])
 
 	useEffect(() => {
-		console.log('update prize error', error)
 		if (error) toast.error(error, { autoClose: 3000 });
 	}, [error])
 

@@ -5,7 +5,7 @@ import LayoutSaga from "./layouts/saga";
 import AccountSaga from "./auth/register/saga";
 import AuthSaga from "./auth/login/saga";
 import DashboardSaga from "./dashboard/saga";
-import submissionFormSaga from "./submissionForm/saga";
+import SubmissionFormSaga from "./submissionForm/saga";
 import EventsSaga from './events/saga'
 import PrizessSaga from './prizes/saga'
 import CADashboardSaga from "./ca-dashboard/saga";
@@ -36,7 +36,7 @@ export default function* rootSaga() {
     // fork(dashboardProjectSaga),
     // fork(dashboardNFTSaga),
     // fork(teamSaga),
-    fork(submissionFormSaga),
+    fork(SubmissionFormSaga),
     fork(DashboardSaga),
     fork(EventsSaga),
     fork(PrizessSaga),

@@ -12,10 +12,7 @@ import {
 
 function* getsubmissions({ payload: { email, indicatorType } }) {
   try {
-    console.log('saga getLat')
     const response = yield call(getAPILatestSubmissionForms, email, indicatorType);
-    console.log(response)
-
     if (response.status === true) yield put(getLatestDataSuccess(response.data));
     else yield put(getLatestDataError(GET_LATEST_DATA_ERROR, response));
   } catch (error) {

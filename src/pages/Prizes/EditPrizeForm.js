@@ -29,8 +29,6 @@ function EditPrizeForm() {
 
   const bannerFileRef = React.useRef()
 
-  console.log('EditPrizeForm', isSubmitting)
-
   const { error } = useSelector(state => ({
     error: state.Prizes.error
   }));

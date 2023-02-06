@@ -20,7 +20,6 @@ function* getEvents({ payload: { page, limit, history } }) {
 }
 
 function* getEvent({ payload: { id, history } }) {
-  console.log('saga getEvent')
   try {
     const response = yield call(
       getEventApi, id);
@@ -89,7 +88,6 @@ function* createEvent({ payload: { data, history } }) {
 }
 
 function* deleteEvent({ payload: { id } }) {
-  console.log('saga deleteevent', id)
   try {
     const response = yield call(
       deleteEventApi, id);

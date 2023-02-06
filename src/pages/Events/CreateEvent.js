@@ -5,7 +5,7 @@ import { useRef } from "react"
 import { useEffect } from "react"
 import { useDispatch } from "react-redux"
 
-import { getEventNatures, createEvent } from "src/store/actions"
+import { getEventNatures, createEvent, removeCurrentTemplate } from "src/store/actions"
 import EditEventForm from "./EditEventForm"
 
 function CreateEvent(props) {
@@ -13,6 +13,7 @@ function CreateEvent(props) {
 	const dispatch = useDispatch();
 	const formikRef = useRef()
 	useEffect(() => {
+		dispatch(removeCurrentTemplate())
 		dispatch(getEventNatures());
 	}, [])
 
@@ -46,7 +47,6 @@ function CreateEvent(props) {
 		return
 	}, [])
 	const handleSubmit = (values, { setSubmitting }) => {
-		console.log('create event', values);
 		setSubmitting(true);
 		const formData = new FormData();
 		if (values.banner_file) {

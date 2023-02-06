@@ -26,7 +26,6 @@ const GetTokenRegister = (props) => {
 		challengeId: state.Login.challengeId
 	}))
 	React.useEffect(() => {
-		console.log(email, challengeId)
 		if (!email || !challengeId) {
 			history.push('/register', { from: props.location })
 		}
@@ -59,8 +58,6 @@ const GetTokenRegister = (props) => {
 	const { error } = useSelector(state => ({
 		error: state.Login.error,
 	}));
-
-	console.log('GetTokenRegister', error)
 
 
 	useEffect(() => {

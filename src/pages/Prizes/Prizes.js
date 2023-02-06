@@ -22,7 +22,6 @@ const Prizes = (props) => {
 		limit: state.Prizes.limit,
 		total: state.Prizes.total,
 	}));
-	console.log('prize list', prizes)
 
 	const [errorMessage, setErrorMessage] = useState('')
 	useEffect(() => {

@@ -46,7 +46,6 @@ function CreateTemplate(props) {
 		return
 	}, [])
 	const handleSubmit = (values, { setSubmitting }) => {
-		console.log('create template', values);
 		setSubmitting(true);
 		const formData = new FormData();
 		if (values.banner_file) {

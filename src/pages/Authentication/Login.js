@@ -50,7 +50,6 @@ const Login = (props) => {
 			otpCode: Yup.string().length(6).required("Please Enter Your Code"),
 		}),
 		onSubmit: (values) => {
-			console.log('submit', orgId)
 			dispatch(loginChallenge({
 				orgId,
 				email,

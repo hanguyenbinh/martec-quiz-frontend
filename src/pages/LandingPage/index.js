@@ -18,7 +18,6 @@ const LandingPage = (props) => {
         const query = new URLSearchParams(props.location.search);
         const view = query.get('view')
 
-        console.log(view)
         if (view) {
             window.location.href = '#'
             window.location.href = '#' + view;

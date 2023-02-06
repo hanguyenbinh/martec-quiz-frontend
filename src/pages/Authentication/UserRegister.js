@@ -33,7 +33,6 @@ const UserRegister = () => {
 
 
   useEffect(() => {
-    console.log(accessToken, email);
     if (!accessToken || !email) {
       history.push('/register')
     }

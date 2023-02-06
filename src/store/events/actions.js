@@ -8,7 +8,6 @@ export const getEvents = (page = 1, limit = 10) => {
 }
 
 export const getEvent = (id, history) => {
-  console.log('getEvent');
   return {
     type: GET_EVENT_DETAILS,
     payload: { id, history }
@@ -104,7 +103,6 @@ export const getTemplates = (page = 1, limit = 10) => {
 }
 
 export const getTemplate = (id, history) => {
-  console.log('getTemplate');
   return {
     type: GET_TEMPLATE_DETAILS,
     payload: { id, history }

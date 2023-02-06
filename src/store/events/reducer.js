@@ -54,7 +54,6 @@ const Events = (state = initialState, action) => {
 			}
 			break;
 		case GET_TEMPLATE_SUCCESS:
-			console.log('GET_TEMPLATE_SUCCESS adfsaf', action.payload)
 			state = {
 				...state,
 				loading: false,
@@ -63,7 +62,6 @@ const Events = (state = initialState, action) => {
 			}
 			break;
 		case GET_COMPACT_TEMPLATES_SUCCESS:
-			console.log(action.payload.data)
 			state = {
 				...state,
 				loading: false,
@@ -87,7 +85,6 @@ const Events = (state = initialState, action) => {
 			}
 			break;
 		case GET_EVENT_DETAILS_SUCCESS:
-			console.log('GET_EVENT_DETAILS_SUCCESS', action)
 			state = {
 				...state,
 				loading: false,
@@ -120,8 +117,6 @@ const Events = (state = initialState, action) => {
 			}
 			break;
 		case GET_EVENT_NATURE_SUCCESS:
-			console.log('GET_EVENT_NATURE_SUCCESS', action.payload.data)
-
 			state = {
 				...state,
 				loading: false,
@@ -143,8 +138,6 @@ const Events = (state = initialState, action) => {
 			}
 			break;
 		case UPDATE_EVENT_SUCCESS:
-			console.log('UPDATE_EVENT_SUCCESS', action.payload.data)
-
 			state = {
 				...state,
 				loading: false,
@@ -154,7 +147,6 @@ const Events = (state = initialState, action) => {
 			break;
 
 		case CREATE_EVENT_SUCCESS:
-			console.log('CREATE_EVENT_SUCCESS', action.payload.data)
 			state = {
 				...state,
 				loading: false,
@@ -166,7 +158,6 @@ const Events = (state = initialState, action) => {
 			break;
 
 		case DELETE_EVENT_SUCCESS:
-			console.log('DELETE_EVENT_SUCCESS', state.deleteCount)
 			state = {
 				...state,
 				loading: false,

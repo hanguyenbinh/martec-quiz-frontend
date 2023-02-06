@@ -22,15 +22,8 @@ function DefaultSubmissionUploadForm() {
 
   const fileUploadRef = React.useRef()
 
-  console.log('DefaultSubmissionUploadForm', isSubmitting)
-
-  // const { error } = useSelector(state => ({
-  //   error: state.Prizes.error
-  // }));
-
   const handleFileUploadChange = (e) => {
     const file = e.target.files[0]
-    console.log(file)
     fileUploadRef.current.value = ""
     if (!file) return
     setFieldValue('jsonFile', file)

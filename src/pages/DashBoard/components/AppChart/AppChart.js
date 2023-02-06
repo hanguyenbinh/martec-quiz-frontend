@@ -76,7 +76,6 @@ const AppChart = (props) => {
 	const [yearItems, setYearItems] = useState([])
 	useEffect(() => {
 		const _years = [...years].reverse();
-		console.log('years', _years);
 		setYearItems(_years);
 		setSelectedYear(_years[0]);
 	}, [years])
@@ -110,7 +109,6 @@ const AppChart = (props) => {
 			Object.keys(indicatorResult.indicator).forEach(item => {
 
 				if (item.toLowerCase() === indicatorName.toLowerCase()) {
-					console.log('indicatorResult, selectedItem, indicatorName changed', item)
 					if (indicatorResult.indicator[item] !== null && indicatorResult.indicator[item] !== undefined) yourValue = indicatorResult.indicator[item].toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 					return
 				}
@@ -127,7 +125,6 @@ const AppChart = (props) => {
 					return
 				}
 			})
-			console.log('selectedYear changed', indicatorResult.indicatorResult)
 
 		}
 		setYourValue(yourValue);
@@ -142,7 +139,6 @@ const AppChart = (props) => {
 
 
 	const handleOnclickYearItem = (item) => {
-		console.log('handleOnclickYearItem', item);
 		setSelectedYear(item);
 	}
 

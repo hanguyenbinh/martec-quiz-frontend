@@ -22,7 +22,6 @@ const Prizes = (state = initialState, action) => {
 			}
 			break
 		case GET_PRIZES_SUCCESS:
-			console.log('GET_PRIZES_SUCCESS', action.payload)
 			state = {
 				...state,
 				loading: false,
@@ -82,7 +81,6 @@ const Prizes = (state = initialState, action) => {
 			}
 			break;
 		case PRIZE_API_ERROR:
-			console.log('PRIZE_API_ERROR', action)
 			state = {
 				...state,
 				error: action.payload.data || action.payload.data.errmsg,

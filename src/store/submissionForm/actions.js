@@ -13,8 +13,6 @@ export const postSubmissionForm = (data, history) => {
   if (data.projectType === 'Other') {
     data.projectType = data.projectTypeOther
   }
-  console.log('postSubmissionForm', data);
-
   return {
     type: SUBMIT_FORM_DATA,
     payload: { data, history },
@@ -130,7 +128,6 @@ export const deleteSubmission = (id, history) => {
 };
 
 export const deleteSubmissionSuccess = response => {
-  console.log('action deleteSubmissionSuccess')
   return {
     type: DELETE_SUBMISSION_SUCCESS,
     payload: response,

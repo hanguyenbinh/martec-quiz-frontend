@@ -30,7 +30,9 @@ import { isEmpty } from "lodash"
 
 function EditEventForm(props) {
   const isEdit = props.isEdit
-  const dispactch = useDispatch();
+
+  console.log('isEdit', isEdit)
+  const dispatch = useDispatch();
 
   const history = useHistory();
   const { eventNatures, compactTemplates, currentTemplate, error } = useSelector(state => ({
@@ -56,9 +58,11 @@ function EditEventForm(props) {
 
   useEffect(() => {
     const organisationType = getOrganisationType();
-    dispactch(getCompactTemplates())
+    dispatch(getCompactTemplates())
     setOrgType(organisationType)
   }, [])
+
+  useEffect(() => { }, [isEdit])
 
 
   useEffect(() => {
@@ -84,10 +88,9 @@ function EditEventForm(props) {
   }, [eventNatures, orgType, compactTemplates, currentTemplate])
 
   const onSelectTemplate = (template) => {
-    console.log(template);
     setSelectedTemplate(template)
-    if (!isEmpty(template)) dispactch(getUserTemplate(template))
-    else dispactch(removeCurrentTemplate())
+    if (!isEmpty(template)) dispatch(getUserTemplate(template))
+    else dispatch(removeCurrentTemplate())
   }
   return (
     <div className="page-content">
@@ -106,10 +109,10 @@ function EditEventForm(props) {
                     placeholder="Event Templates"
                     type="select"
                     onChange={(e) => {
-                      console.log(e)
                       onSelectTemplate(e.target.value)
                     }}
                     disabled={isEdit === true}
+                    readOnly={isEdit}
                     onBlur={handleBlur}
                     value={values.event_template_id || ''}
                     invalid={false}
@@ -130,7 +133,7 @@ function EditEventForm(props) {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.event_name}
-                    disabled={currentTemplate ? true : false}
+                    disabled={isEdit === true}
                     invalid={
                       touched.event_name && errors.event_name ? true : false
                     }
@@ -146,7 +149,7 @@ function EditEventForm(props) {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.event_name_chi}
-                    disabled={currentTemplate ? true : false}
+                    disabled={isEdit === true}
                     invalid={
                       touched.event_name_chi && errors.event_name_chi ? true : false
                     }
@@ -162,7 +165,7 @@ function EditEventForm(props) {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.event_desc}
-                    disabled={currentTemplate ? true : false}
+                    disabled={isEdit === true}
                     invalid={
                       touched.event_desc && errors.event_desc ? true : false
                     }
@@ -178,7 +181,7 @@ function EditEventForm(props) {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.event_desc_chi}
-                    disabled={currentTemplate ? true : false}
+                    disabled={isEdit === true}
                     invalid={
                       touched.event_desc_chi && errors.event_desc_chi ? true : false
                     }
@@ -214,7 +217,7 @@ function EditEventForm(props) {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.event_long_desc}
-                    disabled={currentTemplate ? true : false}
+                    disabled={isEdit === true}
                     invalid={
                       touched.event_long_desc && errors.event_long_desc ? true : false
                     }
@@ -231,7 +234,7 @@ function EditEventForm(props) {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.event_long_desc_chi}
-                    disabled={currentTemplate ? true : false}
+                    disabled={isEdit === true}
                     invalid={
                       touched.event_long_desc_chi && errors.event_long_desc_chi ? true : false
                     }
@@ -249,7 +252,7 @@ function EditEventForm(props) {
                   <img src={values.image_path} className={classes.bannerImg} alt="" />
                 </div>
                 <div className="d-flex justify-content-center">
-                  <Button onClick={() => bannerFileRef.current.click()} disabled={currentTemplate ? true : false}
+                  <Button onClick={() => bannerFileRef.current.click()} disabled={isEdit === true}
                   >
                     <input
                       ref={bannerFileRef}

@@ -34,7 +34,6 @@ const Account = (state = initialState, action) => {
       };
       break;
     case REGISTER_USER_FAILED:
-      console.log('REGISTER_USER_FAILED', action)
       state = {
         ...state,
         user: null,

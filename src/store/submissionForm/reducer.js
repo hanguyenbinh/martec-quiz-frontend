@@ -51,8 +51,6 @@ const SubmissionForm = (state = initialState, action) => {
 			};
 			break;
 		case GET_SUBMISSION_FORM_SUCCESS:
-			console.log('GET_SUBMISSION_FORM_SUCCESS', action.payload)
-
 			state = {
 				...state,
 				loading: false,
@@ -90,7 +88,6 @@ const SubmissionForm = (state = initialState, action) => {
 			};
 			break;
 		case DELETE_SUBMISSION_SUCCESS:
-			console.log('DELETE_SUBMISSION_SUCCESS')
 			state = {
 				...state,
 				loading: false,

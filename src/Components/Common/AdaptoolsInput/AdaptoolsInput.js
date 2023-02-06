@@ -126,7 +126,6 @@ const AdaptoolsInput = React.forwardRef((props, ref) => {
 									valid={error === false}
 									invalid={error === true}
 									onChange={(e) => {
-										console.log('adaptools input changed', values)
 										onChange(e)
 									}}
 									onBlur={onBlur}

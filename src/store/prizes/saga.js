@@ -8,7 +8,6 @@ function* getPrizes({ payload: { page, limit } }) {
   try {
     const response = yield call(
       getPrizesApi, page, limit);
-    console.log('getPrizes', response)
     if (response.status === true) {
       yield put(getPrizesSuccess(response));
     } else {
@@ -46,11 +45,9 @@ function* updatePrize({ payload: { id, data, history } }) {
       toast.success("Prize is updated successfully", { autoClose: 3000 });
     } else {
       yield put(prizeAPIError(response));
-      console.log('prizeAPIError', response)
       toast.error(response.data.errmsg, { autoClose: 3000 });
     }
   } catch (error) {
-    console.log('prizeAPIError error', error)
     yield put(prizeAPIError(error));
     toast.error(error, { autoClose: 3000 });
 
@@ -67,11 +64,9 @@ function* createPrize({ payload: { data, history } }) {
       toast.success("Prize is created successfully", { autoClose: 3000 });
     } else {
       yield put(prizeAPIError(response));
-      console.log('prizeAPIError', response)
       toast.error(response.data.errmsg, { autoClose: 3000 });
     }
   } catch (error) {
-    console.log('prizeAPIError error', error)
     yield put(prizeAPIError(error));
     toast.error(error, { autoClose: 3000 });
 
@@ -88,11 +83,9 @@ function* deletePrize({ payload: { id } }) {
       window.location.reload(false);
     } else {
       yield put(prizeAPIError(response));
-      console.log('prizeAPIError response', response)
 
     }
   } catch (error) {
-    console.log('prizeAPIError error', error)
     yield put(prizeAPIError(error));
     toast.error(error, { autoClose: 3000 });
 

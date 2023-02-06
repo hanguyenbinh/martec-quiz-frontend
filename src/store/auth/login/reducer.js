@@ -34,7 +34,6 @@ const Login = (state = initialState, action) => {
 			break
 		case REGISTER_INITIATE:
 		case LOGIN_INITIATE:
-			console.log('reducer LOGIN_INITIATE', action)
 			state = {
 				...state,
 				email: action.payload.email,
@@ -59,7 +58,6 @@ const Login = (state = initialState, action) => {
 			break
 		case REGISTER_CHALLENGE_SUCCESS:
 		case LOGIN_CHALLENGE_SUCCESS:
-			console.log('REGISTER_CHALLENGE_SUCCESS', action)
 			state = {
 				...state,
 				accessToken: action.payload.accessToken,
@@ -108,7 +106,6 @@ const Login = (state = initialState, action) => {
 			}
 			break;
 		case GET_ORGANISATIONS_SUCCESS:
-			console.log('GET_ORGANISATIONS_SUCCESS', action.payload)
 			state = {
 				...state,
 				loading: false,

@@ -103,7 +103,6 @@ const SubmissionHistory = (props) => {
 	}
 
 	const sortSubmissionForm = (type) => {
-		console.log('asdfsdasfafdsfasfasf')
 		if (sort === type)
 			dispatch(getSubmissionForms(type, !asc))
 		else {

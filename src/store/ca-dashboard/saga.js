@@ -41,7 +41,6 @@ function* getEventSummaries({ payload: { eventId } }) {
 }
 
 function* getSubmissionComparation({ payload: { indicatorType, projectTypeA, projectTypeB, companySizeA, companySizeB } }) {
-  console.log('GET_SUBMISSION_COMPARATION saga')
   try {
     const response = yield call(getSubmissionComparationApi, { indicatorType, projectTypeA, projectTypeB, companySizeA, companySizeB });
     if (response.status === true) yield put(getSubmissionComparationSuccess(response.data));

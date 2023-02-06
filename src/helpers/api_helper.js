@@ -18,7 +18,6 @@ axios.interceptors.response.use(
     return response.data ? response.data : response;
   },
   function (error) {
-    console.log('axios.interceptors.response.', error.response.data);
     if (error.response.data.statusCode === 401) {
       localStorage.clear();
       window.location = '/get-otp';
@@ -51,13 +50,11 @@ axios.interceptors.response.use(
  * @param {*} token
  */
 const setAuthorization = (token) => {
-  // console.log('setAuthorization', token)
   // axios.defaults.headers["Authorization"] = "Bearer " + token;
 };
 
 axios.interceptors.request.use(
   function (config) {
-    console.log('axios.interceptors.request.use')
     const accessToken = getLoggedinUser();
     if (accessToken) {
       config.headers["Authorization"] = "Bearer " + accessToken;

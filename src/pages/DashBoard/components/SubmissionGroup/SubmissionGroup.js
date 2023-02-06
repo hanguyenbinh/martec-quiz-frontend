@@ -24,7 +24,7 @@ const SubmissionGroup = (props) => {
 				setRemarks(item.remark.split('/n'))
 			}
 		})
-	}, [sectionRemarks])
+	}, [sectionRemarks, title])
 	return (
 		<Card>
 			<CardHeader className="align-items-center d-flex">
@@ -39,7 +39,6 @@ const SubmissionGroup = (props) => {
 								{({ field, meta }) => {
 
 									if (_field.name === 'typeOfSafetyOrEsgRelatedTechnologiesUsed') {
-										console.log('field name', _field.name)
 										return (
 											<Col sm={12} md={6}>
 												<TypeOfSafetyInput

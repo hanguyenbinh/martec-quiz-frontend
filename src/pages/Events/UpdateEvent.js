@@ -7,7 +7,7 @@ import { } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 
-import { getEvent, getEventNatures, updateEvent } from "src/store/actions"
+import { getEvent, getEventNatures, removeCurrentTemplate, updateEvent } from "src/store/actions"
 import EditEventForm from "./EditEventForm"
 
 
@@ -19,6 +19,7 @@ function UpdateEvent(props) {
 	const formikRef = useRef()
 	const params = useParams();
 	useEffect(() => {
+		dispatch(removeCurrentTemplate())
 		dispatch(getEventNatures());
 		dispatch(getEvent(params.id, props.history))
 	}, [])
@@ -28,7 +29,6 @@ function UpdateEvent(props) {
 
 
 	const initialValues = React.useMemo(() => {
-		console.log('initial values changed', event)
 		return {
 			...event,
 			banner_file: event.image_path || ''
@@ -65,12 +65,10 @@ function UpdateEvent(props) {
 	}
 
 	useEffect(() => {
-		console.log('event changed', initialValues)
 		formikRef.current.resetForm({
 			values: initialValues
 		});
 	}, [initialValues])
-	console.log('get event', event);
 
 	return (
 		<div>

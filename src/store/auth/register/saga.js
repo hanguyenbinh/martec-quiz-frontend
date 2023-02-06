@@ -20,7 +20,6 @@ const fireBaseBackend = getFirebaseBackend();
 // Is user register successfull then direct plot user in redux.
 function* registerUser({ payload: { user, history } }) {
   try {
-    console.log('registerUser', user)
     const response = yield call(
       postRegisterUser,
       {
@@ -40,7 +39,6 @@ function* registerUser({ payload: { user, history } }) {
       toast.error(response.data.errmsg, { autoClose: 3000 });
     }
   } catch (error) {
-    console.log('error', error)
     yield put(registerUserFailed(error));
     toast.error(error, { autoClose: 3000 });
   }

@@ -22,6 +22,7 @@ const HowToStart = () => {
             <section className="section bg-light" id="marketplace">
                 <Container id='howtostart' className='esg-container' >
                     <iframe src={landingPage.video2}
+                        title='video02'
                         style={{
                             // position: "absolute",
                             top: 0,

@@ -71,7 +71,6 @@ function Coins(props) {
 		[]
 	)
 	useEffect(() => {
-		console.log('coins api called', coinsHistory, coinsSummary)
 	}, [coinsHistory, coinsSummary])
 
 	return (

@@ -62,9 +62,7 @@ function* getSubmissionFormsSaga({ payload: { email, sort, asc } }) {
     const response = yield call(
       getSubmissionHistoryApi, sort, asc);
     if (response.status === true) {
-      console.log('get submissions forms', response.data)
       yield put(getSubmissionFormsSuccess(response.data));
-      // history.push("/dashboard");
     } else {
       yield put(portalApiError(response));
     }
@@ -155,7 +153,7 @@ function* getReportsSaga() {
 }
 
 
-function* submissionFormSaga() {
+function* SubmissionFormSaga() {
   yield takeEvery(SUBMIT_FORM_DATA, postSubmissionForm);
   yield takeEvery(GET_SUBMISSION_FORM, getSubmissionFormsSaga);
   yield takeEvery(GET_DEFAULT_SUBMISSION, getDefaultSubmissions);
@@ -169,4 +167,4 @@ function* submissionFormSaga() {
 
 
 
-export default submissionFormSaga;
+export default SubmissionFormSaga;

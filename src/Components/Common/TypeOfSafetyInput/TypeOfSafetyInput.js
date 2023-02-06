@@ -36,7 +36,6 @@ const TypeOfSafetyInput = React.forwardRef((props, ref) => {
 	const extractValue = () => {
 		return values.typeOfSafetyOrEsgRelatedTechnologiesUsedOther
 	}
-	console.log('typeofsafty input', options)
 
 	return (
 		< FormGroup

@@ -24,7 +24,6 @@ const CoinsHistory = (state = initialState, action) => {
 			}
 			break
 		case GET_COINS_HISTORY_SUCCESS:
-			console.log(action.payload)
 			state = {
 				...state,
 				loading: false,

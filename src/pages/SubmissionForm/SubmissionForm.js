@@ -92,7 +92,6 @@ const SubmissionForm = (props) => {
 	};
 
 	const handleSaveDraft = () => {
-		console.log('handleSaveDraft', values)
 		const payload = {}
 		Object.keys(values).forEach(key => {
 			if (!isEmpty(values[key]) || typeof values[key] !== 'string') {

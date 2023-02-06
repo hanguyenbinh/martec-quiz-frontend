@@ -117,7 +117,6 @@ const AppFormInput = React.forwardRef((props, ref) => {
 										valid={error === false}
 										invalid={error === true}
 										onChange={(e) => {
-											console.log('asdfsafsafsfsaf', values)
 											onChange(e)
 										}}
 										onBlur={onBlur}

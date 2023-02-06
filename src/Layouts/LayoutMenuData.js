@@ -124,14 +124,14 @@ const Navdata = (props) => {
 			link: "/submit-data",
 			parentId: "submitData",
 			icon: 'upload',
-			role: 'ca'
+			role: 'company'
 		},
 		{
 			id: "submissionsHistory",
 			label: ("Submission(s) History"),
 			link: "/submissions-history",
 			parentId: "submissionsHistory",
-			role: 'ca',
+			role: 'company',
 			icon: 'history',
 		},
 		{
