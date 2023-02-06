@@ -5,4 +5,4 @@ resources:
 
 images:
 - name: 186966626644.dkr.ecr.ap-east-1.amazonaws.com/hkca-esg-admin-web-dev
-  newTag: 0a019e17b2e96bcd69d7759c5d7a682d7d81bac4-dev
+  newTag: 5c64a34dcafae7c91cc0d87926aa4c9a6d490696-dev
