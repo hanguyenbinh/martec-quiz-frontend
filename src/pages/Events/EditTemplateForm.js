@@ -356,7 +356,7 @@ function EditTemplateForm(props) {
                         type="select"
                         onChange={handleChange}
                         onBlur={handleBlur}
-                        value={values.check_in_interval || ''}
+                        value={values.check_in_interval || 0}
 
                       >
                         {
