@@ -3,9 +3,9 @@ import { Formik } from "formik"
 import React from "react"
 import { useRef } from "react"
 import { useEffect } from "react"
-import { } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
+import * as Yup from 'yup';
 
 import { getEvent, getEventNatures, removeCurrentTemplate, updateEvent } from "src/store/actions"
 import EditEventForm from "./EditEventForm"
@@ -36,7 +36,30 @@ function UpdateEvent(props) {
 	}, [event])
 
 	const validationSchema = React.useMemo(() => {
-		return
+		return Yup.object().shape({
+			event_name: Yup.string().required('Required'),
+			event_name_chi: Yup.string().required('Required'),
+			event_long_desc: Yup.string().required('Required'),
+			event_long_desc_chi: Yup.string().required('Required'),
+			event_desc: Yup.string().required('Required'),
+			event_desc_chi: Yup.string().required('Required'),
+			event_nature_id: Yup.string().required('Required'),
+			start_date: Yup.string().required('Required'),
+			end_date: Yup.string().required('Required'),
+			// end_date: Yup
+			// 	.date()
+			// 	.when(
+			// 		"start_date",
+			// 		(start_date, schema) => start_date && schema.min(start_date)),
+			top_most_ind: false,
+			point_award: Yup.number().required('Required'),
+			exp_earnded: Yup.number().required('Required'),
+			max_daily_check_in: Yup.number().required('Required'),
+			max_total_check_in: Yup.number().required('Required'),
+			check_in_interval: Yup.number().required('Required'),
+			banner_file: Yup.number().required('Required'),
+			event_template_id: Yup.string().required('Required'),
+		});
 	}, [])
 	const handleSubmit = (values) => {
 		const formData = new FormData();

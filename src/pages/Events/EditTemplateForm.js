@@ -22,7 +22,6 @@ import {
 } from "reactstrap"
 
 import BreadCrumb from "src/Components/Common/BreadCrumb"
-import EsgTooltip from "src/Components/Common/EsgTooltip"
 
 
 function EditTemplateForm(props) {

@@ -11,7 +11,8 @@ function* getEvents({ payload: { page, limit, history } }) {
       yield put(getEventsSuccess(response));
     } else {
       yield put(eventAPIError(response));
-      toast.error(response.data.errmsg, { autoClose: 3000 });
+      const msg = typeof response.data.errmsg === 'string' ? response.data.errmsg : response.data.errmsg.join('\r\n')
+      toast.error(msg);
     }
   } catch (error) {
     yield put(eventAPIError(error));
@@ -27,7 +28,8 @@ function* getEvent({ payload: { id, history } }) {
       yield put(getEventDetailsSuccess(response));
     } else {
       yield put(eventAPIError(response));
-      toast.error(response.data.errmsg, { autoClose: 3000 });
+      const msg = typeof response.data.errmsg === 'string' ? response.data.errmsg : response.data.errmsg.join('\r\n')
+      toast.error(msg);
     }
   } catch (error) {
     yield put(eventAPIError(error));
@@ -43,7 +45,8 @@ function* getEventNatures() {
       yield put(getEventNaturesSuccess(response));
     } else {
       yield put(eventAPIError(response));
-      toast.error(response.data.errmsg, { autoClose: 3000 });
+      const msg = typeof response.data.errmsg === 'string' ? response.data.errmsg : response.data.errmsg.join('\r\n')
+      toast.error(msg);
     }
   } catch (error) {
     yield put(eventAPIError(error));
@@ -61,7 +64,8 @@ function* updateEvent({ payload: { id, data, history } }) {
       toast.success("Event is updated successfully", { autoClose: 3000 });
     } else {
       yield put(eventAPIError(response));
-      toast.error(response.data.errmsg, { autoClose: 3000 });
+      const msg = typeof response.data.errmsg === 'string' ? response.data.errmsg : response.data.errmsg.join('\r\n')
+      toast.error(msg);
     }
   } catch (error) {
     yield put(eventAPIError(error));
@@ -79,7 +83,8 @@ function* createEvent({ payload: { data, history } }) {
       toast.success("Event is created successfully", { autoClose: 3000 });
     } else {
       yield put(eventAPIError(response));
-      toast.error(response.data.errmsg, { autoClose: 3000 });
+      const msg = typeof response.data.errmsg === 'string' ? response.data.errmsg : response.data.errmsg.join('\r\n')
+      toast.error(msg);
     }
   } catch (error) {
     yield put(eventAPIError(error));
@@ -97,7 +102,8 @@ function* deleteEvent({ payload: { id } }) {
       window.location.reload(false);
     } else {
       yield put(eventAPIError(response));
-      toast.error(response.data.errmsg, { autoClose: 3000 });
+      const msg = typeof response.data.errmsg === 'string' ? response.data.errmsg : response.data.errmsg.join('\r\n')
+      toast.error(msg);
     }
   } catch (error) {
     yield put(eventAPIError(error));
@@ -113,7 +119,8 @@ function* getTemplates({ payload: { page, limit, history } }) {
       yield put(getTemplatesSuccess(response));
     } else {
       yield put(eventAPIError(response));
-      toast.error(response.data.errmsg, { autoClose: 3000 });
+      const msg = typeof response.data.errmsg === 'string' ? response.data.errmsg : response.data.errmsg.join('\r\n')
+      toast.error(msg);
     }
   } catch (error) {
     yield put(eventAPIError(error));
@@ -129,7 +136,8 @@ function* getCompactTemplates() {
       yield put(getCompactTemplatesSuccess(response));
     } else {
       yield put(eventAPIError(response));
-      toast.error(response.data.errmsg, { autoClose: 3000 });
+      const msg = typeof response.data.errmsg === 'string' ? response.data.errmsg : response.data.errmsg.join('\r\n')
+      toast.error(msg);
     }
   } catch (error) {
     yield put(eventAPIError(error));
@@ -145,7 +153,8 @@ function* getTemplate({ payload: { id, history } }) {
       yield put(getTemplateDetailsSuccess(response));
     } else {
       yield put(eventAPIError(response));
-      toast.error(response.data.errmsg, { autoClose: 3000 });
+      const msg = typeof response.data.errmsg === 'string' ? response.data.errmsg : response.data.errmsg.join('\r\n')
+      toast.error(msg);
     }
   } catch (error) {
     yield put(eventAPIError(error));
@@ -161,7 +170,8 @@ function* getUserTemplate({ payload: { id, history } }) {
       yield put(getUserTemplateSuccess(response));
     } else {
       yield put(eventAPIError(response));
-      toast.error(response.data.errmsg, { autoClose: 3000 });
+      const msg = typeof response.data.errmsg === 'string' ? response.data.errmsg : response.data.errmsg.join('\r\n')
+      toast.error(msg);
     }
   } catch (error) {
     yield put(eventAPIError(error));
@@ -180,7 +190,8 @@ function* updateTemplate({ payload: { id, data, history } }) {
       toast.success("Template is updated successfully", { autoClose: 3000 });
     } else {
       yield put(eventAPIError(response));
-      toast.error(response.data.errmsg, { autoClose: 3000 });
+      const msg = typeof response.data.errmsg === 'string' ? response.data.errmsg : response.data.errmsg.join('\r\n')
+      toast.error(msg);
     }
   } catch (error) {
     yield put(eventAPIError(error));
@@ -198,7 +209,8 @@ function* createTemplate({ payload: { data, history } }) {
       toast.success("Template is created successfully", { autoClose: 3000 });
     } else {
       yield put(eventAPIError(response));
-      toast.error(response.data.errmsg, { autoClose: 3000 });
+      const msg = typeof response.data.errmsg === 'string' ? response.data.errmsg : response.data.errmsg.join('\r\n')
+      toast.error(msg);
     }
   } catch (error) {
     yield put(eventAPIError(error));
@@ -216,7 +228,8 @@ function* deleteTemplate({ payload: { id } }) {
       window.location.reload(false);
     } else {
       yield put(eventAPIError(response));
-      toast.error(response.data.errmsg, { autoClose: 3000 });
+      const msg = typeof response.data.errmsg === 'string' ? response.data.errmsg : response.data.errmsg.join('\r\n')
+      toast.error(msg);
     }
   } catch (error) {
     yield put(eventAPIError(error));

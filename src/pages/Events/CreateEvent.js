@@ -4,9 +4,12 @@ import React from "react"
 import { useRef } from "react"
 import { useEffect } from "react"
 import { useDispatch } from "react-redux"
+import * as Yup from 'yup';
 
 import { getEventNatures, createEvent, removeCurrentTemplate } from "src/store/actions"
 import EditEventForm from "./EditEventForm"
+import { isEmpty } from "lodash"
+import moment from "moment"
 
 function CreateEvent(props) {
 	const T = props.t ? props.t : (v) => v;
@@ -30,8 +33,8 @@ function CreateEvent(props) {
 			event_type: '',
 			event_type_chi: '',
 			event_nature_id: '',
-			start_date: '',
-			end_date: '',
+			start_date: new Date(),
+			end_date: new Date(),
 			top_most_ind: false,
 			point_award: 1,
 			exp_earnded: 0,
@@ -43,10 +46,32 @@ function CreateEvent(props) {
 		}
 	}, [])
 
-	const validationSchema = React.useMemo(() => {
-		return
-	}, [])
+	const validationSchema = Yup.object().shape({
+		event_name: Yup.string().required('Required'),
+		event_name_chi: Yup.string().required('Required'),
+		event_long_desc: Yup.string().required('Required'),
+		event_long_desc_chi: Yup.string().required('Required'),
+		event_desc: Yup.string().required('Required'),
+		event_desc_chi: Yup.string().required('Required'),
+		event_nature_id: Yup.string().required('Required'),
+		start_date: Yup.string().required('Required'),
+		end_date: Yup.string().required('Required'),
+		// end_date: Yup.string().when(['start_date', 'end_date'], {
+		// 	is: (start_date, end_date) =>
+		// 		isEmpty(start_date) || isEmpty(end_date),
+		// 	then: Yup.string().required(`Please enter 'Start Date' and 'End Date' of the event, and 'Start Date' should be before 'End Date'`)
+		// }),
+		top_most_ind: false,
+		point_award: Yup.number().required('Required'),
+		exp_earnded: Yup.number().required('Required'),
+		max_daily_check_in: Yup.number().required('Required'),
+		max_total_check_in: Yup.number().required('Required'),
+		check_in_interval: Yup.number().required('Required'),
+		// banner_file: '',
+		event_template_id: Yup.string().required('Required'),
+	});
 	const handleSubmit = (values, { setSubmitting }) => {
+		console.log('on submit event', values)
 		setSubmitting(true);
 		const formData = new FormData();
 		if (values.banner_file) {

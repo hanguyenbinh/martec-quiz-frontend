@@ -27,6 +27,7 @@ import { getOrganisationType } from "src/helpers/api_helper"
 import { useState } from "react"
 import { getCompactTemplates, getUserTemplate, removeCurrentTemplate } from "src/store/actions"
 import { isEmpty } from "lodash"
+import moment from "moment"
 
 function EditEventForm(props) {
   const isEdit = props.isEdit
@@ -42,7 +43,7 @@ function EditEventForm(props) {
     error: state.Events.error
   }));
 
-  const { isSubmitting, values, errors, setFieldValue, handleChange, handleBlur, touched, submitForm } = useFormikContext()
+  const { isSubmitting, values, errors, setFieldValue, setFieldTouched, handleChange, handleBlur, touched, submitForm } = useFormikContext()
   const [orgType, setOrgType] = useState('company')
   const [selectedTemplate, setSelectedTemplate] = useState()
 
@@ -64,9 +65,12 @@ function EditEventForm(props) {
 
   useEffect(() => { }, [isEdit])
 
+  console.log('edit event error', errors)
+
 
   useEffect(() => {
     if (currentTemplate) {
+      console.log('set field value', currentTemplate.start_date, currentTemplate.end_date)
       setFieldValue('event_template_id', currentTemplate.event_template_id);
       setFieldValue('image_path', currentTemplate.image_path);
       setFieldValue('image_path_chi', currentTemplate.image_path_chi);
@@ -77,8 +81,9 @@ function EditEventForm(props) {
       setFieldValue('event_desc', currentTemplate.event_desc);
       setFieldValue('event_desc_chi', currentTemplate.event_desc_chi);
       setFieldValue('event_nature_id', currentTemplate.event_nature_id);
-      setFieldValue('start_date', currentTemplate.start_date);
-      setFieldValue('end_date', currentTemplate.end_date);
+
+      setFieldValue('start_date', isEmpty(currentTemplate.start_date) ? '' : moment(currentTemplate.start_date).format('YYYY-MM-DD'))
+      setFieldValue('end_date', isEmpty(currentTemplate.end_date) ? '' : moment(currentTemplate.end_date).format('YYYY-MM-DD'))
       setFieldValue('top_most_ind', currentTemplate.top_most_ind);
       setFieldValue('point_award', currentTemplate.point_award);
       setFieldValue('exp_earnded', currentTemplate.exp_earnded || 0);
@@ -278,7 +283,10 @@ function EditEventForm(props) {
               name="start_date"
               className="me-2"
               type="date"
-              onChange={handleChange}
+              onChange={(e) => {
+                console.log('values', values.start_date)
+                handleChange(e);
+              }}
               onBlur={handleBlur}
               value={values.start_date}
               invalid={
