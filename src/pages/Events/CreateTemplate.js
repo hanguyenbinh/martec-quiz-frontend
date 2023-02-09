@@ -34,7 +34,6 @@ function CreateTemplate(props) {
 			end_date: '',
 			top_most_ind: false,
 			point_award: 1,
-			exp_earnded: 0,
 			max_daily_check_in: -1,
 			max_total_check_in: 9999,
 			check_in_interval: 0,
@@ -70,7 +69,6 @@ function CreateTemplate(props) {
 		if (values.start_date) formData.append("start_date", values.start_date);
 		if (values.end_date) formData.append("end_date", values.end_date);
 		if (values.top_most_ind || values.top_most_ind == 0) formData.append("top_most_ind", values.top_most_ind);
-		if (values.exp_earnded || values.exp_earnded == 0) formData.append("exp_earnded", values.exp_earnded);
 		if (values.max_daily_check_in || values.max_daily_check_in == 0) formData.append("max_daily_check_in", values.max_daily_check_in);
 		if (values.max_total_check_in || values.max_total_check_in == 0) formData.append("max_total_check_in", values.max_total_check_in);
 		if (values.check_in_interval || values.check_in_interval == 0) formData.append("check_in_interval", values.check_in_interval);

@@ -37,7 +37,6 @@ function CreateEvent(props) {
 			end_date: new Date(),
 			top_most_ind: false,
 			point_award: 1,
-			exp_earnded: 0,
 			max_daily_check_in: -1,
 			max_total_check_in: 9999,
 			check_in_interval: 0,
@@ -56,19 +55,12 @@ function CreateEvent(props) {
 		event_nature_id: Yup.string().required('Required'),
 		start_date: Yup.string().required('Required'),
 		end_date: Yup.string().required('Required'),
-		// end_date: Yup.string().when(['start_date', 'end_date'], {
-		// 	is: (start_date, end_date) =>
-		// 		isEmpty(start_date) || isEmpty(end_date),
-		// 	then: Yup.string().required(`Please enter 'Start Date' and 'End Date' of the event, and 'Start Date' should be before 'End Date'`)
-		// }),
 		top_most_ind: false,
 		point_award: Yup.number().required('Required'),
-		exp_earnded: Yup.number().required('Required'),
 		max_daily_check_in: Yup.number().required('Required'),
 		max_total_check_in: Yup.number().required('Required'),
 		check_in_interval: Yup.number().required('Required'),
-		// banner_file: '',
-		event_template_id: Yup.string().required('Required'),
+		event_template_id: Yup.string().nullable().required('Required'),
 	});
 	const handleSubmit = (values, { setSubmitting }) => {
 		console.log('on submit event', values)
@@ -92,7 +84,6 @@ function CreateEvent(props) {
 		formData.append('end_date', values.end_date);
 		formData.append('top_most_ind', values.top_most_ind);
 		formData.append('point_award', values.point_award);
-		formData.append('exp_earnded', values.exp_earnded);
 		formData.append('max_daily_check_in', values.max_daily_check_in);
 		formData.append('max_total_check_in', values.max_total_check_in);
 		formData.append('check_in_interval', values.check_in_interval);

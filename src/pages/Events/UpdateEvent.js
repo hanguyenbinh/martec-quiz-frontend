@@ -46,19 +46,13 @@ function UpdateEvent(props) {
 			event_nature_id: Yup.string().required('Required'),
 			start_date: Yup.string().required('Required'),
 			end_date: Yup.string().required('Required'),
-			// end_date: Yup
-			// 	.date()
-			// 	.when(
-			// 		"start_date",
-			// 		(start_date, schema) => start_date && schema.min(start_date)),
 			top_most_ind: false,
 			point_award: Yup.number().required('Required'),
-			exp_earnded: Yup.number().required('Required'),
 			max_daily_check_in: Yup.number().required('Required'),
 			max_total_check_in: Yup.number().required('Required'),
 			check_in_interval: Yup.number().required('Required'),
-			banner_file: Yup.number().required('Required'),
-			event_template_id: Yup.string().required('Required'),
+			banner_file: Yup.string().required('Required'),
+			// event_template_id: Yup.string().nullable().required('Required'),
 		});
 	}, [])
 	const handleSubmit = (values) => {
@@ -79,7 +73,6 @@ function UpdateEvent(props) {
 		formData.append('end_date', values.end_date);
 		formData.append('top_most_ind', values.top_most_ind);
 		formData.append('point_award', values.point_award);
-		formData.append('exp_earnded', values.exp_earnded);
 		formData.append('max_daily_check_in', values.max_daily_check_in);
 		formData.append('max_total_check_in', values.max_total_check_in);
 		formData.append('check_in_interval', values.check_in_interval);

@@ -124,8 +124,8 @@ function SpecialDashBoard(props) {
 	}, [selectedEventId])
 
 	useEffect(() => {
-		const basisAData = basisA.map(item => Math.round(item.value))
-		const basisBData = basisB.map(item => Math.round(item.value))
+		const basisAData = basisA.map(item => item.value)
+		const basisBData = basisB.map(item => item.value)
 		const data = {
 			labels: years.map(item => item.value),
 			datasets: [

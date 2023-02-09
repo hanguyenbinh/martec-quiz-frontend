@@ -28,6 +28,7 @@ import { useState } from "react"
 import { getCompactTemplates, getUserTemplate, removeCurrentTemplate } from "src/store/actions"
 import { isEmpty } from "lodash"
 import moment from "moment"
+import { toast } from "react-toastify"
 
 function EditEventForm(props) {
   const isEdit = props.isEdit
@@ -65,9 +66,6 @@ function EditEventForm(props) {
 
   useEffect(() => { }, [isEdit])
 
-  console.log('edit event error', errors)
-
-
   useEffect(() => {
     if (currentTemplate) {
       console.log('set field value', currentTemplate.start_date, currentTemplate.end_date)
@@ -86,17 +84,25 @@ function EditEventForm(props) {
       setFieldValue('end_date', isEmpty(currentTemplate.end_date) ? '' : moment(currentTemplate.end_date).format('YYYY-MM-DD'))
       setFieldValue('top_most_ind', currentTemplate.top_most_ind);
       setFieldValue('point_award', currentTemplate.point_award);
-      setFieldValue('exp_earnded', currentTemplate.exp_earnded || 0);
       setFieldValue('max_daily_check_in', currentTemplate.max_daily_check_in || 0);
       setFieldValue('max_total_check_in', currentTemplate.max_total_check_in);
       setFieldValue('check_in_interval', currentTemplate.check_in_interval);
     }
   }, [eventNatures, orgType, compactTemplates, currentTemplate])
 
+
+
   const onSelectTemplate = (template) => {
     setSelectedTemplate(template)
     if (!isEmpty(template)) dispatch(getUserTemplate(template))
     else dispatch(removeCurrentTemplate())
+  }
+  console.log(errors)
+
+  if (errors && errors !== {}) {
+    Object.keys(errors).map(key => {
+      toast.error(errors[key], { autoClose: 3000 });
+    })
   }
   return (
     <div className="page-content">
@@ -120,10 +126,10 @@ function EditEventForm(props) {
                     disabled={isEdit === true}
                     readOnly={isEdit}
                     onBlur={handleBlur}
-                    value={values.event_template_id || ''}
+                    value={values.event_template_id}
                     invalid={false}
                   >
-                    <option value={''}>---------</option>
+                    <option value={0}>---------</option>
                     {
                       compactTemplates.map((item, key) => <option key={key} value={item.event_template_id}>{item.template_name}</option>)
                     }
