@@ -1,9 +1,23 @@
-import { GET_PRIZES, PRIZE_API_ERROR, GET_PRIZES_SUCCESS, GET_PRIZE, GET_PRIZE_SUCCESS, UPDATE_PRIZE, UPDATE_PRIZE_SUCCESS, CREATE_PRIZE, CREATE_PRIZE_SUCCESS, DELETE_PRIZE, DELETE_PRIZE_SUCCESS } from "./actionTypes";
+import { GET_PRIZES, PRIZE_API_ERROR, GET_PRIZES_SUCCESS, GET_PRIZE, GET_PRIZE_SUCCESS, UPDATE_PRIZE, UPDATE_PRIZE_SUCCESS, CREATE_PRIZE, CREATE_PRIZE_SUCCESS, DELETE_PRIZE, DELETE_PRIZE_SUCCESS, GET_REDEMPTION_HISTORY, GET_REDEMPTION_HISTORY_SUCCESS } from "./actionTypes";
 
 export const getPrizes = (page, limit) => {
   return {
     type: GET_PRIZES,
     payload: { page, limit }
+  }
+}
+
+export const getRedemptionHistory = () => {
+  return {
+    type: GET_REDEMPTION_HISTORY,
+    payload: {}
+  }
+}
+
+export const getRedemptionHistorySuccess = (response) => {
+  return {
+    type: GET_REDEMPTION_HISTORY_SUCCESS,
+    payload: response
   }
 }
 

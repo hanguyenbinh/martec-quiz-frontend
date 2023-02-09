@@ -42,6 +42,7 @@ export const CREATE_TEMPLATE_API = "/events/templates";
 
 export const GET_EVENT_NATURE_API = "/events/event-nature";
 export const GET_PRIZES_API = "/prizes";
+export const GET_REDEMPTION_HISTORY_API = "/prizes/redemption-history";
 export const GET_PRIZE_API = "/prizes/:id";
 export const DELETE_PRIZE_API = '/prizes/:id';
 

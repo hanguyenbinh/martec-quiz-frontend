@@ -104,7 +104,6 @@ function CreateEvent(props) {
 		<div>
 			<Formik innerRef={formikRef} initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
 				<EditEventForm />
-
 			</Formik>
 		</div>
 

@@ -1,8 +1,8 @@
 import { toast } from "react-toastify";
 import { call, put, takeEvery } from "redux-saga/effects";
-import { createPrizeApi, deletePrizeApi, getPrizeApi, getPrizesApi, updatePrizeApi } from "src/helpers/fakebackend_helper";
-import { prizeAPIError, getPrizesSuccess, getPrizeSuccess, updatePrizeSuccess, createPrizeSuccess, deletePrizeSuccess } from "./actions";
-import { CREATE_PRIZE, DELETE_PRIZE, GET_PRIZE, GET_PRIZES, UPDATE_PRIZE } from "./actionTypes";
+import { createPrizeApi, deletePrizeApi, getPrizeApi, getPrizesApi, getRedemptionHistoryApi, updatePrizeApi } from "src/helpers/fakebackend_helper";
+import { prizeAPIError, getPrizesSuccess, getPrizeSuccess, updatePrizeSuccess, createPrizeSuccess, deletePrizeSuccess, getRedemptionHistorySuccess } from "./actions";
+import { CREATE_PRIZE, DELETE_PRIZE, GET_PRIZE, GET_PRIZES, GET_REDEMPTION_HISTORY, UPDATE_PRIZE } from "./actionTypes";
 
 function* getPrizes({ payload: { page, limit } }) {
   try {
@@ -10,6 +10,22 @@ function* getPrizes({ payload: { page, limit } }) {
       getPrizesApi, page, limit);
     if (response.status === true) {
       yield put(getPrizesSuccess(response));
+    } else {
+      yield put(prizeAPIError(response));
+      toast.error(response.data.errmsg, { autoClose: 3000 });
+    }
+  } catch (error) {
+    yield put(prizeAPIError(error));
+    toast.error(error, { autoClose: 3000 });
+  }
+}
+
+function* getRedemptionHistory() {
+  try {
+    const response = yield call(
+      getRedemptionHistoryApi);
+    if (response.status === true) {
+      yield put(getRedemptionHistorySuccess(response));
     } else {
       yield put(prizeAPIError(response));
       toast.error(response.data.errmsg, { autoClose: 3000 });
@@ -94,6 +110,7 @@ function* deletePrize({ payload: { id } }) {
 
 function* eventSaga() {
   yield takeEvery(GET_PRIZES, getPrizes);
+  yield takeEvery(GET_REDEMPTION_HISTORY, getRedemptionHistory);
   yield takeEvery(GET_PRIZE, getPrize);
   yield takeEvery(UPDATE_PRIZE, updatePrize);
   yield takeEvery(CREATE_PRIZE, createPrize);

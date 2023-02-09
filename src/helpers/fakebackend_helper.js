@@ -171,6 +171,7 @@ export const getEventNaturesApi = (id) => api.get(url.GET_EVENT_NATURE_API);
 export const getPrizesApi = (page, limit) => api.get(url.GET_PRIZES_API, { page, limit });
 
 export const getPrizeApi = (id) => api.get(url.GET_PRIZE_API.replace(':id', id));
+export const getRedemptionHistoryApi = () => api.get(url.GET_REDEMPTION_HISTORY_API);
 
 export const deletePrizeApi = id => api.delete(url.DELETE_PRIZE_API.replace(':id', id));
 

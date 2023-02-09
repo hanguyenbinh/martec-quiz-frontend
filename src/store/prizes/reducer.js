@@ -1,4 +1,4 @@
-import { GET_PRIZES, PRIZE_API_ERROR, GET_PRIZES_SUCCESS, GET_PRIZE, GET_PRIZE_SUCCESS, UPDATE_PRIZE, UPDATE_PRIZE_SUCCESS, CREATE_PRIZE, CREATE_PRIZE_SUCCESS, DELETE_PRIZE_SUCCESS, DELETE_PRIZE } from "./actionTypes"
+import { GET_PRIZES, PRIZE_API_ERROR, GET_PRIZES_SUCCESS, GET_PRIZE, GET_PRIZE_SUCCESS, UPDATE_PRIZE, UPDATE_PRIZE_SUCCESS, CREATE_PRIZE, CREATE_PRIZE_SUCCESS, DELETE_PRIZE_SUCCESS, DELETE_PRIZE, GET_REDEMPTION_HISTORY, GET_REDEMPTION_HISTORY_SUCCESS } from "./actionTypes"
 
 const initialState = {
 	error: false,
@@ -11,11 +11,13 @@ const initialState = {
 	limit: 10,
 	total: 0,
 	deleteCount: 0,
+	redemptionHistory: []
 }
 
 const Prizes = (state = initialState, action) => {
 	switch (action.type) {
 		case GET_PRIZES:
+		case GET_REDEMPTION_HISTORY:
 			state = {
 				...state,
 				loading: true
@@ -32,6 +34,15 @@ const Prizes = (state = initialState, action) => {
 				limit: action.payload.data.size,
 			}
 			break;
+		case GET_REDEMPTION_HISTORY_SUCCESS:
+			state = {
+				...state,
+				loading: false,
+				error: false,
+				redemptionHistory: action.payload?.data?.history,
+			}
+			break;
+
 
 		case GET_PRIZE:
 			state = {
