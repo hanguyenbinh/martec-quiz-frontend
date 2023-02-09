@@ -55,7 +55,7 @@ function CreateEvent(props) {
 		event_nature_id: Yup.string().required('Required'),
 		start_date: Yup.string().required('Required'),
 		end_date: Yup.string().required('Required'),
-		top_most_ind: false,
+		// top_most_ind: Yup.boolean().required('Required'),
 		point_award: Yup.number().required('Required'),
 		max_daily_check_in: Yup.number().required('Required'),
 		max_total_check_in: Yup.number().required('Required'),

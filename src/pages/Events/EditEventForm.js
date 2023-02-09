@@ -1,5 +1,5 @@
 
-import { useFormikContext } from "formik"
+import { ErrorMessage, useFormikContext } from "formik"
 import React from "react"
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
@@ -33,9 +33,7 @@ import { toast } from "react-toastify"
 function EditEventForm(props) {
   const isEdit = props.isEdit
 
-  console.log('isEdit', isEdit)
   const dispatch = useDispatch();
-
   const history = useHistory();
   const { eventNatures, compactTemplates, currentTemplate, error } = useSelector(state => ({
     eventNatures: state.Events.eventNatures,
@@ -90,20 +88,14 @@ function EditEventForm(props) {
     }
   }, [eventNatures, orgType, compactTemplates, currentTemplate])
 
-
+  console.log(errors)
 
   const onSelectTemplate = (template) => {
     setSelectedTemplate(template)
     if (!isEmpty(template)) dispatch(getUserTemplate(template))
     else dispatch(removeCurrentTemplate())
   }
-  console.log(errors)
 
-  if (errors && errors !== {}) {
-    Object.keys(errors).map(key => {
-      toast.error(errors[key], { autoClose: 3000 });
-    })
-  }
   return (
     <div className="page-content">
       <Container fluid>
@@ -127,6 +119,7 @@ function EditEventForm(props) {
                     readOnly={isEdit}
                     onBlur={handleBlur}
                     value={values.event_template_id}
+                    valid={touched.event_name && errors.event_name ? false : true}
                     invalid={false}
                   >
                     <option value={0}>---------</option>
@@ -146,6 +139,7 @@ function EditEventForm(props) {
                     onBlur={handleBlur}
                     value={values.event_name}
                     disabled={isEdit === true}
+                    valid={touched.event_name && errors.event_name ? false : true}
                     invalid={
                       touched.event_name && errors.event_name ? true : false
                     }
@@ -162,6 +156,7 @@ function EditEventForm(props) {
                     onBlur={handleBlur}
                     value={values.event_name_chi}
                     disabled={isEdit === true}
+                    valid={touched.event_name && errors.event_name ? false : true}
                     invalid={
                       touched.event_name_chi && errors.event_name_chi ? true : false
                     }
@@ -178,6 +173,7 @@ function EditEventForm(props) {
                     onBlur={handleBlur}
                     value={values.event_desc}
                     disabled={isEdit === true}
+                    valid={touched.event_name && errors.event_name ? false : true}
                     invalid={
                       touched.event_desc && errors.event_desc ? true : false
                     }
@@ -194,6 +190,7 @@ function EditEventForm(props) {
                     onBlur={handleBlur}
                     value={values.event_desc_chi}
                     disabled={isEdit === true}
+                    valid={touched.event_name && errors.event_name ? false : true}
                     invalid={
                       touched.event_desc_chi && errors.event_desc_chi ? true : false
                     }
@@ -230,6 +227,7 @@ function EditEventForm(props) {
                     onBlur={handleBlur}
                     value={values.event_long_desc}
                     disabled={isEdit === true}
+                    valid={touched.event_name && errors.event_name ? false : true}
                     invalid={
                       touched.event_long_desc && errors.event_long_desc ? true : false
                     }
@@ -247,6 +245,7 @@ function EditEventForm(props) {
                     onBlur={handleBlur}
                     value={values.event_long_desc_chi}
                     disabled={isEdit === true}
+                    valid={touched.event_name && errors.event_name ? false : true}
                     invalid={
                       touched.event_long_desc_chi && errors.event_long_desc_chi ? true : false
                     }
@@ -258,11 +257,19 @@ function EditEventForm(props) {
           <Col sm={12} md={4}>
             <Card className="mb-0">
               <CardBody>
-                <h6>Banner Image</h6>
+                <h6>Banner Image
+                  <ErrorMessage
+                    component="div"
+                    name="banner_file"
+                    className="invalid-feedback d-block"
+                  />
+                </h6>
 
                 <div className={`${classes.banner} mb-3`}>
                   <img src={values.image_path} className={classes.bannerImg} alt="" />
+
                 </div>
+
                 <div className="d-flex justify-content-center">
                   <Button onClick={() => bannerFileRef.current.click()} disabled={isEdit === true}
                   >
@@ -284,7 +291,13 @@ function EditEventForm(props) {
 
         <div className="d-flex align-items-center justify-content-between mb-4">
           <div className="d-flex align-items-center">
-            <h6 className="mb-0 me-2">Start Date:</h6>
+            <h6 className="mb-0 me-2">Start Date:
+              <ErrorMessage
+                component="div"
+                name="start_date"
+                className="invalid-feedback d-block"
+              />
+            </h6>
             <Input
               name="start_date"
               className="me-2"
@@ -298,9 +311,18 @@ function EditEventForm(props) {
               invalid={
                 touched.start_date && errors.start_date ? true : false
               }
+              valid={touched.event_name && errors.event_name ? false : true}
               style={{ width: 160 }}
             />
-            <h6 className="mb-0 me-2">End Date:</h6>
+
+            <h6 className="mb-0 me-2">End Date:
+              <ErrorMessage
+                component="div"
+                name="end_date"
+                className="invalid-feedback d-block"
+              />
+            </h6>
+
             <Input
               name="end_date"
               className="me-2"
@@ -308,6 +330,7 @@ function EditEventForm(props) {
               onChange={handleChange}
               onBlur={handleBlur}
               value={values.end_date}
+              valid={touched.event_name && errors.event_name ? false : true}
               invalid={
                 touched.end_date && errors.end_date ? true : false
               }
@@ -349,6 +372,7 @@ function EditEventForm(props) {
                         onBlur={handleBlur}
                         value={values.point_award}
                         disabled={orgType === 'company'}
+                        valid={touched.event_name && errors.event_name ? false : true}
                         invalid={
                           touched.point_award && errors.point_award ? true : false
                         }
@@ -374,6 +398,7 @@ function EditEventForm(props) {
                         onChange={handleChange}
                         onBlur={handleBlur}
                         value={values.max_total_check_in}
+                        valid={touched.event_name && errors.event_name ? false : true}
                         invalid={
                           touched.max_total_check_in && errors.max_total_check_in ? true : false
                         }
@@ -399,6 +424,10 @@ function EditEventForm(props) {
                         onChange={handleChange}
                         onBlur={handleBlur}
                         value={values.max_daily_check_in}
+                        valid={touched.event_name && errors.event_name ? false : true}
+                        invalid={
+                          touched.max_total_check_in && errors.max_total_check_in ? true : false
+                        }
 
                       >
                         {
@@ -428,6 +457,10 @@ function EditEventForm(props) {
                         onChange={handleChange}
                         onBlur={handleBlur}
                         value={values.check_in_interval || 0}
+                        valid={touched.event_name && errors.event_name ? false : true}
+                        invalid={
+                          touched.max_total_check_in && errors.max_total_check_in ? true : false
+                        }
 
                       >
                         {
