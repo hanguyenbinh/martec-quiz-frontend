@@ -1,7 +1,9 @@
 import {
   GET_LATEST_DATA,
   GET_LATEST_DATA_ERROR,
-  GET_LATEST_DATA_SUCCESS
+  GET_LATEST_DATA_SUCCESS,
+  GET_RECORDING_PERIOD,
+  GET_RECORDING_PERIOD_SUCCESS
 } from "./actionType";
 
 const INIT_STATE = {
@@ -18,12 +20,14 @@ const INIT_STATE = {
   allSubmissions: [],
   yearItems: [],
   indicatorResults: [],
-  isLoading: false
+  isLoading: false,
+  recordingPeriod: []
 };
 
 const Dashboard = (state = INIT_STATE, action) => {
   switch (action.type) {
     case GET_LATEST_DATA:
+    case GET_RECORDING_PERIOD:
       return {
         ...state,
         isLoading: true
@@ -45,6 +49,13 @@ const Dashboard = (state = INIT_STATE, action) => {
         statistics: action.payload.data.statistics,
         yearItems: action.payload.data.yearItems,
         indicatorResults: action.payload.data.indicatorResults,
+        isLoading: false,
+        error: false
+      }
+    case GET_RECORDING_PERIOD_SUCCESS:
+      return {
+        ...state,
+        recordingPeriod: action.payload.data,
         isLoading: false,
         error: false
       }

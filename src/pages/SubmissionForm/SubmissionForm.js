@@ -19,6 +19,7 @@ import YearType from "src/data/yearType"
 import SubmissionGroups from "src/data/submissionGroups"
 import { useParams } from "react-router-dom"
 import { isEmpty } from "lodash"
+import { getRecordingPeriod } from "src/store/actions"
 
 const submissionFormSchema = Yup.object().shape({
 	adoptedTools: Yup.array().of(Yup.string()).notRequired(),
@@ -80,8 +81,13 @@ const SubmissionForm = (props) => {
 	const T = props.t ? props.t : (value) => value;
 
 	const dispatch = useDispatch();
+	useEffect(() => {
+		dispatch(getRecordingPeriod())
+	}, [])
 
-
+	const { recordingPeriod } = useSelector(state => ({
+		recordingPeriod: state.Dashboard.recordingPeriod,
+	}));
 
 
 	const { values, handleSubmit, resetForm } = useFormikContext()
@@ -101,12 +107,14 @@ const SubmissionForm = (props) => {
 		dispatch(submitDraftSubmissions(payload, props.history))
 	}
 
+	useEffect(() => { }, [recordingPeriod])
+
 	return (
 		<Form
 			onSubmit={handleSubmit}
 		>
 
-			{SubmissionGroups(T).map((group, index) => (
+			{SubmissionGroups(T, recordingPeriod).map((group, index) => (
 				<SubmissionGroup key={`SubmissionForm_${index}`} title={group.title} fields={group.fields}></SubmissionGroup>
 			))}
 			<div className="mb-3 d-flex justify-content-end">

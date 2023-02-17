@@ -1,4 +1,4 @@
-import { deleteSubmission, getSubmissionForms } from "../../store/actions"
+import { deleteSubmission, getRecordingPeriod, getSubmissionForms } from "../../store/actions"
 import React from "react"
 import { useEffect } from "react"
 import { withTranslation } from "react-i18next"
@@ -13,24 +13,15 @@ const SubmissionHistory = (props) => {
 	const T = props.t
 	const dispatch = useDispatch();
 
-	const yearData = {
-		'2022': '2022.04-2023.03',
-		'2021': '2021.04-2022.03',
-		'2020': '2020.04-2021.03',
-		'2019': '2019.04-2020.03',
-		'2018': '2018.04-2019.03',
-		'2017': '2017.04-2018.03',
-		'2016': '2016.04-2017.03',
-		'2015': '2015.04-2016.03',
-	}
-
 	useEffect(() => {
 		dispatch(getSubmissionForms())
+		dispatch(getRecordingPeriod())
 	}, [])
-	const { submissionForms, sort, asc } = useSelector(state => ({
+	const { submissionForms, sort, asc, recordingPeriod } = useSelector(state => ({
 		submissionForms: state.SubmissionForm.submissionForms,
 		sort: state.SubmissionForm.sort,
 		asc: state.SubmissionForm.asc,
+		recordingPeriod: state.Dashboard.recordingPeriod
 	}));
 	const renderSubmissionItem = (item, data) => {
 		if (item.type === 'checkboxes') {
@@ -60,7 +51,7 @@ const SubmissionHistory = (props) => {
 			size: "xl",
 			content: (
 				<div className="text-center">
-					{SubmissionGroups(T).map((submissionForm, index) => (
+					{SubmissionGroups(T, recordingPeriod).map((submissionForm, index) => (
 						<Card key={`submision_forms_detail_${index}`}>
 							<CardHeader className="align-items-center d-flex card-title mb-0 flex-grow-1">
 								{submissionForm.title}
@@ -111,7 +102,7 @@ const SubmissionHistory = (props) => {
 	}
 
 	useEffect(() => {
-	}, [submissionForms])
+	}, [submissionForms, recordingPeriod])
 
 	return (
 		<div className="page-content">

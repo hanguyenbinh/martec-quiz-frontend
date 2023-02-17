@@ -5,7 +5,7 @@ import TypeOfSafetyOrEsgRelatedTechnologiesUsed from "./typeOfSafetyOrEsgRelated
 import YearType from "./yearType"
 
 
-const SubmissionGroups = (T) => [
+const SubmissionGroups = (T, yearType) => [
   {
     title: T('Project Information'),
     fields: [
@@ -17,7 +17,7 @@ const SubmissionGroups = (T) => [
         name: 'yearOfRecord',
         label: T('Recording period'),
         type: 'select',
-        options: YearType
+        options: yearType
       },
       {
         name: 'projectType',

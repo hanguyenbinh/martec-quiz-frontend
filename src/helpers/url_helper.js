@@ -19,6 +19,7 @@ export const GET_DEFAULT_SUBMISSION_API = '/company/default-submissions'
 export const GET_DRAFT_SUBMISSION_API = '/company/draft/:id'
 export const GET_SUBMISSION_REPORTS = '/company/reports'
 export const GET_LATEST_ESG_DATA = '/company/latest'
+export const GET_RECORDING_PERIOD_API = '/company/recording-period'
 export const POST_LOGIN = 'auth/login';
 
 export const GET_COINS_HISTORY = '/coins/history'

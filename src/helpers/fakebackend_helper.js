@@ -71,6 +71,10 @@ export const getAPILatestSubmissionForms = (email, indicatorType) => {
   return api.get(url.GET_LATEST_ESG_DATA, { email, indicatorType })
 };
 
+export const getRecordingPeriodApi = () => {
+  return api.get(url.GET_RECORDING_PERIOD_API)
+};
+
 export const getOrganisationSummariesApi = () => {
   return api.get(url.GET_ORGANISATION_SUMMARIES_API, {})
 };
