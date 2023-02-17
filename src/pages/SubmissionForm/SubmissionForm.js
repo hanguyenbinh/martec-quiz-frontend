@@ -285,7 +285,7 @@ const UploadESGData = (props) => {
 				<Container fluid>
 					<BreadCrumb title="Submit data" />
 					{error && error ? (<Alert color="danger"> {errorMessage} </Alert>) : null}
-					<SubmissionForm history={props.history} recordingPeriod={recordingPeriod} />
+					{recordingPeriod && recordingPeriod.length > 0 && <SubmissionForm history={props.history} recordingPeriod={recordingPeriod} />}
 				</Container>
 			</div>
 		</Formik>
