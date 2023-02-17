@@ -79,12 +79,9 @@ const submissionFormSchema = Yup.object().shape({
 
 const SubmissionForm = (props) => {
 	const T = props.t ? props.t : (value) => value;
+	const recordingPeriod = props.recordingPeriod;
 
 	const dispatch = useDispatch();
-	const { recordingPeriod } = useSelector(state => ({
-		recordingPeriod: state.Dashboard.recordingPeriod,
-	}));
-
 
 	const { values, handleSubmit, resetForm } = useFormikContext()
 	const handleReset = () => {
@@ -103,7 +100,6 @@ const SubmissionForm = (props) => {
 		dispatch(submitDraftSubmissions(payload, props.history))
 	}
 
-	useEffect(() => { }, [recordingPeriod])
 
 	return (
 		<Form
@@ -128,10 +124,12 @@ const UploadESGData = (props) => {
 	const formikRef = useRef()
 	const email = localStorage.getItem("email");
 	const [initValue, setInitValue] = useState({})
-	const { error, defaultSubmissions, currentDraft } = useSelector(state => ({
+
+	const { error, defaultSubmissions, currentDraft, recordingPeriod } = useSelector(state => ({
 		error: state.SubmissionForm.error,
 		defaultSubmissions: state.SubmissionForm.defaultSubmissions,
-		currentDraft: state.SubmissionForm.currentDraft
+		currentDraft: state.SubmissionForm.currentDraft,
+		recordingPeriod: state.Dashboard.recordingPeriod,
 	}));
 	const [errorMessage, setErrorMessage] = useState('')
 	useEffect(() => {
@@ -269,7 +267,7 @@ const UploadESGData = (props) => {
 			typeOfSafetyAndHealthAwardReceived: '',
 			typeOfSafetyOrEsgRelatedTechnologiesUsed: [],
 			typeOfSafetyOrEsgRelatedTechnologiesUsedOther: '',
-			yearOfRecord: YearType[0].value,
+			yearOfRecord: recordingPeriod[0].value,
 			...initValue
 		}
 		return result;
@@ -279,7 +277,7 @@ const UploadESGData = (props) => {
 
 	useEffect(() => {
 		formikRef.current.resetForm({ values: initialValues })
-	}, [initValue])
+	}, [initValue, recordingPeriod])
 
 	return (
 		<Formik initialValues={initialValues} validationSchema={submissionFormSchema} onSubmit={handleSubmit} innerRef={formikRef}>
@@ -287,7 +285,7 @@ const UploadESGData = (props) => {
 				<Container fluid>
 					<BreadCrumb title="Submit data" />
 					{error && error ? (<Alert color="danger"> {errorMessage} </Alert>) : null}
-					<SubmissionForm history={props.history} />
+					<SubmissionForm history={props.history} recordingPeriod={recordingPeriod} />
 				</Container>
 			</div>
 		</Formik>
