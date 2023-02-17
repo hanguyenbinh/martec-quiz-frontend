@@ -81,10 +81,6 @@ const SubmissionForm = (props) => {
 	const T = props.t ? props.t : (value) => value;
 
 	const dispatch = useDispatch();
-	useEffect(() => {
-		dispatch(getRecordingPeriod())
-	}, [])
-
 	const { recordingPeriod } = useSelector(state => ({
 		recordingPeriod: state.Dashboard.recordingPeriod,
 	}));
@@ -172,6 +168,8 @@ const UploadESGData = (props) => {
 	}, [defaultSubmissions, currentDraft])
 	useEffect((
 	) => {
+		dispatch(getRecordingPeriod())
+
 		if (params.id) {
 			dispatch(getDraftSubmissionForm(params.id))
 		}
