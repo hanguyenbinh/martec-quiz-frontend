@@ -267,7 +267,7 @@ const UploadESGData = (props) => {
 			typeOfSafetyAndHealthAwardReceived: '',
 			typeOfSafetyOrEsgRelatedTechnologiesUsed: [],
 			typeOfSafetyOrEsgRelatedTechnologiesUsedOther: '',
-			yearOfRecord: recordingPeriod[0].value,
+			yearOfRecord: recordingPeriod && recordingPeriod.length > 0 ? recordingPeriod[0].value : '',
 			...initValue
 		}
 		return result;
