@@ -7,6 +7,8 @@ import { useDispatch } from "react-redux"
 import { createPrize } from "src/store/actions"
 import EditPrizeForm from "./EditPrizeForm"
 
+import * as Yup from 'yup';
+
 
 function CreatePrize(props) {
 	const T = props.t ? props.t : (v) => v;
@@ -20,9 +22,20 @@ function CreatePrize(props) {
 		}
 	}, [])
 
-	const validationSchema = React.useMemo(() => {
-		return
-	}, [])
+	const validationSchema = Yup.object().shape({
+		prize_name: Yup.string().required('Required'),
+		prize_name_chi: Yup.string().required('Required'),
+		prize_desc: Yup.string().required('Required'),
+		prize_desc_chi: Yup.string().required('Required'),
+		redeem_rule: Yup.string().required('Required'),
+		redeem_rule_chi: Yup.string().required('Required'),
+		in_stock_qty: Yup.number().required('Required'),
+		start_date: Yup.string().required('Required'),
+		expired_date: Yup.string().required('Required'),
+		status: Yup.number().required('Required'),
+		// redeem_points: Yup.number().required('Required'),
+		// redeem_once_ind: Yup.bool().nullable().required('Required'),
+	});
 	const handleSubmit = (values, { setSubmitting }) => {
 		setSubmitting(true)
 		const formData = new FormData();

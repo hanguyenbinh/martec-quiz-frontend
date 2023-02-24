@@ -12,7 +12,8 @@ function* getPrizes({ payload: { page, limit } }) {
       yield put(getPrizesSuccess(response));
     } else {
       yield put(prizeAPIError(response));
-      toast.error(response.data.errmsg, { autoClose: 3000 });
+      const msg = typeof response.data.errmsg === 'string' ? response.data.errmsg : response.data.errmsg.join('\r\n')
+      toast.error(msg);
     }
   } catch (error) {
     yield put(prizeAPIError(error));
@@ -28,7 +29,8 @@ function* getRedemptionHistory() {
       yield put(getRedemptionHistorySuccess(response));
     } else {
       yield put(prizeAPIError(response));
-      toast.error(response.data.errmsg, { autoClose: 3000 });
+      const msg = typeof response.data.errmsg === 'string' ? response.data.errmsg : response.data.errmsg.join('\r\n')
+      toast.error(msg);
     }
   } catch (error) {
     yield put(prizeAPIError(error));
@@ -44,7 +46,8 @@ function* getPrize({ payload: { id, history } }) {
       yield put(getPrizeSuccess(response));
     } else {
       yield put(prizeAPIError(response));
-      toast.error(response.data.errmsg, { autoClose: 3000 });
+      const msg = typeof response.data.errmsg === 'string' ? response.data.errmsg : response.data.errmsg.join('\r\n')
+      toast.error(msg);
     }
   } catch (error) {
     yield put(prizeAPIError(error));
@@ -61,7 +64,8 @@ function* updatePrize({ payload: { id, data, history } }) {
       toast.success("Prize is updated successfully", { autoClose: 3000 });
     } else {
       yield put(prizeAPIError(response));
-      toast.error(response.data.errmsg, { autoClose: 3000 });
+      const msg = typeof response.data.errmsg === 'string' ? response.data.errmsg : response.data.errmsg.join('\r\n')
+      toast.error(msg);
     }
   } catch (error) {
     yield put(prizeAPIError(error));
@@ -80,7 +84,8 @@ function* createPrize({ payload: { data, history } }) {
       toast.success("Prize is created successfully", { autoClose: 3000 });
     } else {
       yield put(prizeAPIError(response));
-      toast.error(response.data.errmsg, { autoClose: 3000 });
+      const msg = typeof response.data.errmsg === 'string' ? response.data.errmsg : response.data.errmsg.join('\r\n')
+      toast.error(msg);
     }
   } catch (error) {
     yield put(prizeAPIError(error));

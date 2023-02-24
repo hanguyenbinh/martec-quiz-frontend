@@ -1,4 +1,4 @@
-import { useFormikContext } from "formik"
+import { ErrorMessage, useFormikContext } from "formik"
 import React from "react"
 import { useSelector } from "react-redux"
 import { useHistory } from "react-router-dom"
@@ -26,6 +26,7 @@ function EditPrizeForm() {
 
 
   const { isSubmitting, values, errors, setFieldValue, handleChange, handleBlur, touched, submitForm } = useFormikContext()
+  console.log('EditPrizeForm', errors)
 
   const bannerFileRef = React.useRef()
 
@@ -91,7 +92,13 @@ function EditPrizeForm() {
             <Card className="mb-0">
               <CardBody>
                 <FormGroup>
-                  <Label>Item name</Label>
+                  <Label>Item name
+                    <ErrorMessage
+                      component="div"
+                      name="prize_name"
+                      className="invalid-feedback d-block"
+                    />
+                  </Label>
                   <Input
                     name="prize_name"
                     className="form-control"
@@ -103,11 +110,18 @@ function EditPrizeForm() {
                     invalid={
                       touched.prize_name && errors.prize_name ? true : false
                     }
+                    valid={touched.prize_name && errors.prize_name ? false : true}
                   />
                 </FormGroup>
 
                 <FormGroup>
-                  <Label>Item name (chinese)</Label>
+                  <Label>Item name (chinese)
+                    <ErrorMessage
+                      component="div"
+                      name="prize_name_chi"
+                      className="invalid-feedback d-block"
+                    />
+                  </Label>
                   <Input
                     name="prize_name_chi"
                     className="form-control"
@@ -122,12 +136,18 @@ function EditPrizeForm() {
                   />
                 </FormGroup>
                 <FormGroup>
-                  <Label>No. of items available for redemption</Label>
+                  <Label>No. of items available for redemption
+                    <ErrorMessage
+                      component="div"
+                      name="in_stock_qty"
+                      className="invalid-feedback d-block"
+                    />
+                  </Label>
                   <Input
                     name="in_stock_qty"
                     className="form-control"
                     placeholder="No. of items available for redemption"
-                    type="text"
+                    type="number"
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.in_stock_qty || ""}
@@ -137,7 +157,13 @@ function EditPrizeForm() {
                   />
                 </FormGroup>
                 <FormGroup>
-                  <Label>Description</Label>
+                  <Label>Description
+                    <ErrorMessage
+                      component="div"
+                      name="prize_desc"
+                      className="invalid-feedback d-block"
+                    />
+                  </Label>
                   <Input
                     name="prize_desc"
                     className="form-control"
@@ -152,7 +178,13 @@ function EditPrizeForm() {
                   />
                 </FormGroup>
                 <FormGroup>
-                  <Label>Description (chinese)</Label>
+                  <Label>Description (chinese)
+                    <ErrorMessage
+                      component="div"
+                      name="prize_desc_chi"
+                      className="invalid-feedback d-block"
+                    />
+                  </Label>
                   <Input
                     name="prize_desc_chi"
                     className="form-control"
@@ -167,7 +199,13 @@ function EditPrizeForm() {
                   />
                 </FormGroup>
                 <FormGroup>
-                  <Label>Rule</Label>
+                  <Label>Rule
+                    <ErrorMessage
+                      component="div"
+                      name="redeem_rule"
+                      className="invalid-feedback d-block"
+                    />
+                  </Label>
                   <Input
                     name="redeem_rule"
                     className="form-control"
@@ -182,7 +220,13 @@ function EditPrizeForm() {
                   />
                 </FormGroup>
                 <FormGroup>
-                  <Label>Rule (chinese)</Label>
+                  <Label>Rule (chinese)
+                    <ErrorMessage
+                      component="div"
+                      name="redeem_rule_chi"
+                      className="invalid-feedback d-block"
+                    />
+                  </Label>
                   <Input
                     name="redeem_rule_chi"
                     className="form-control"
@@ -197,7 +241,13 @@ function EditPrizeForm() {
                   />
                 </FormGroup>
                 <FormGroup>
-                  <Label>Required Coins</Label>
+                  <Label>Required Coins
+                    <ErrorMessage
+                      component="div"
+                      name="redeem_points"
+                      className="invalid-feedback d-block"
+                    />
+                  </Label>
                   <div className="d-flex align-items-center">
                     <Input
                       name="redeem_points"
@@ -217,7 +267,18 @@ function EditPrizeForm() {
                 </FormGroup>
 
                 <FormGroup>
-                  <Label>Valid from</Label>
+                  <Label>Valid from
+                    <ErrorMessage
+                      component="div"
+                      name="start_date"
+                      className="invalid-feedback d-block"
+                    />
+                    <ErrorMessage
+                      component="div"
+                      name="expired_date"
+                      className="invalid-feedback d-block"
+                    />
+                  </Label>
                   <div className="d-flex align-items-center">
                     <Input
                       name="start_date"
