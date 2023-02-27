@@ -110,7 +110,7 @@ function EditPrizeForm() {
                     invalid={
                       touched.prize_name && errors.prize_name ? true : false
                     }
-                    valid={touched.prize_name && errors.prize_name ? false : true}
+                    valid={touched.prize_name && !errors.prize_name ? true : false}
                   />
                 </FormGroup>
 
@@ -133,6 +133,9 @@ function EditPrizeForm() {
                     invalid={
                       touched.prize_name_chi && errors.prize_name_chi ? true : false
                     }
+                    valid={
+                      touched.prize_name_chi && !errors.prize_name_chi ? true : false
+                    }
                   />
                 </FormGroup>
                 <FormGroup>
@@ -153,6 +156,9 @@ function EditPrizeForm() {
                     value={values.in_stock_qty || ""}
                     invalid={
                       touched.in_stock_qty && errors.in_stock_qty ? true : false
+                    }
+                    valid={
+                      touched.in_stock_qty && !errors.in_stock_qty ? true : false
                     }
                   />
                 </FormGroup>
@@ -175,6 +181,9 @@ function EditPrizeForm() {
                     invalid={
                       touched.prize_desc && errors.prize_desc ? true : false
                     }
+                    valid={
+                      touched.prize_desc && !errors.prize_desc ? true : false
+                    }
                   />
                 </FormGroup>
                 <FormGroup>
@@ -195,6 +204,9 @@ function EditPrizeForm() {
                     value={values.prize_desc_chi || ""}
                     invalid={
                       touched.prize_desc_chi && errors.prize_desc_chi ? true : false
+                    }
+                    valid={
+                      touched.prize_desc_chi && !errors.prize_desc_chi ? true : false
                     }
                   />
                 </FormGroup>
@@ -217,6 +229,9 @@ function EditPrizeForm() {
                     invalid={
                       touched.redeem_rule && errors.redeem_rule ? true : false
                     }
+                    valid={
+                      touched.redeem_rule && !errors.redeem_rule ? true : false
+                    }
                   />
                 </FormGroup>
                 <FormGroup>
@@ -237,6 +252,9 @@ function EditPrizeForm() {
                     value={values.redeem_rule_chi || ""}
                     invalid={
                       touched.redeem_rule_chi && errors.redeem_rule_chi ? true : false
+                    }
+                    valid={
+                      touched.redeem_rule_chi && !errors.redeem_rule_chi ? true : false
                     }
                   />
                 </FormGroup>
@@ -259,6 +277,9 @@ function EditPrizeForm() {
                       value={values.redeem_points || ""}
                       invalid={
                         touched.redeem_points && errors.redeem_points ? true : false
+                      }
+                      valid={
+                        touched.redeem_points && !errors.redeem_points ? true : false
                       }
                     />
 
@@ -290,6 +311,9 @@ function EditPrizeForm() {
                       invalid={
                         touched.start_date && errors.start_date ? true : false
                       }
+                      valid={
+                        touched.start_date && !errors.start_date ? true : false
+                      }
                     />
                     <p className="mb-0 me-2">to</p>
                     <Input
@@ -301,6 +325,9 @@ function EditPrizeForm() {
                       value={values.expired_date || ""}
                       invalid={
                         touched.expired_date && errors.expired_date ? true : false
+                      }
+                      valid={
+                        touched.expired_date && !errors.expired_date ? true : false
                       }
                     />
                   </div>
@@ -320,6 +347,9 @@ function EditPrizeForm() {
                     invalid={
                       touched.redeem_once_ind && errors.redeem_once_ind ? true : false
                     }
+                    valid={
+                      touched.redeem_once_ind && !errors.redeem_once_ind ? true : false
+                    }
                   />
                 </FormGroup>
 
@@ -336,6 +366,9 @@ function EditPrizeForm() {
                       invalid={
                         touched.status && errors.status ? true : false
                       }
+                      valid={
+                        touched.status && !errors.status ? true : false
+                      }
                     />
                     <Label check>Active</Label>
                   </FormGroup>
@@ -349,6 +382,9 @@ function EditPrizeForm() {
                       checked={values.status == 0}
                       invalid={
                         touched.status && errors.status ? true : false
+                      }
+                      valid={
+                        touched.status && !errors.status ? true : false
                       }
                     />
                     <Label check>Inactive <EsgTooltip tooltipText='This option controls whether the prize is visible to user(s) in the mobile app' name='prize-inactive' ></EsgTooltip></Label>

@@ -32,12 +32,12 @@ function CreatePrize(props) {
 		in_stock_qty: Yup.number().required('Required'),
 		start_date: Yup.string().required('Required'),
 		expired_date: Yup.string().required('Required'),
-		status: Yup.number().required('Required'),
+		// status: Yup.number().required('Required'),
 		// redeem_points: Yup.number().required('Required'),
 		// redeem_once_ind: Yup.bool().nullable().required('Required'),
 	});
 	const handleSubmit = (values, { setSubmitting }) => {
-		setSubmitting(true)
+		// setSubmitting(true)
 		const formData = new FormData();
 		if (values.banner_file) {
 			formData.append('image', values.banner_file);
