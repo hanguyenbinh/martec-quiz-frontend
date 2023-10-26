@@ -11,7 +11,7 @@ import { Provider } from "react-redux";
 import { configureStore } from "./store";
 
 import i18n from './i18n';
-
+import { initFacebookSdk } from './initFbSdk';
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <I18nextProvider i18n={i18n}>
@@ -29,3 +29,5 @@ root.render(
 // to log results (for example: reportWebVitals(////console.logdisabled))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+
+

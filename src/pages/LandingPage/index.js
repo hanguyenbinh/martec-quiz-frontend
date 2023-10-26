@@ -1,14 +1,8 @@
 import React from 'react';
-import Navbar from "./Navbar";
-import Home from "./Home";
-import AboutUs from './AboutUs';
-import MajorIndicators from './MajorIndicators';
-import IncentivesReward from './IncentivesReward';
-import HowToStart from './HowToStart';
-import Footer from 'src/Layouts/Footer';
-import SupportingOrganisation from './SupportingOrganisation';
-import Publication from './Publication';
 import { useEffect } from 'react';
+import { Navbar } from 'reactstrap';
+import FacebookLoginButton from 'src/Components/Common/FacebookLoginButton/FacebookLoginButton';
+import Home from './Home';
 
 const LandingPage = (props) => {
     document.title = "ESG Recognition Scheme Platform Platform | HKCA";
@@ -29,13 +23,7 @@ const LandingPage = (props) => {
             <div className="layout-wrapper landing">
                 <Navbar />
                 <Home />
-                <AboutUs />
-                <MajorIndicators />
-                <IncentivesReward />
-                <HowToStart />
-                <Publication></Publication>
-                <SupportingOrganisation></SupportingOrganisation>
-                <Footer />
+                <FacebookLoginButton></FacebookLoginButton>
             </div>
         </React.Fragment>
     );

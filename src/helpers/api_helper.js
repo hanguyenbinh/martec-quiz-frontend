@@ -7,10 +7,6 @@ axios.defaults.baseURL = api.API_URL;
 // content type
 axios.defaults.headers.post["Content-Type"] = "application/json";
 
-// content type
-// const token = JSON.parse(localStorage.getItem("accessToken")) ? JSON.parse(localStorage.getItem("accessToken")).token : null;
-// if (token)
-//   axios.defaults.headers["Authorization"] = "Bearer " + token;
 
 // intercepting to capture errors
 axios.interceptors.response.use(
@@ -20,7 +16,6 @@ axios.interceptors.response.use(
   function (error) {
     if (error.response.data.statusCode === 401) {
       localStorage.clear();
-      window.location = '/get-otp';
     }
     // Any status codes that falls outside the range of 2xx cause this function to trigger
     let errorMsg = '';
@@ -54,8 +49,11 @@ const setAuthorization = (token) => {
 };
 
 axios.interceptors.request.use(
+
   function (config) {
+
     const accessToken = getLoggedinUser();
+    console.log('axios.interceptors.request', accessToken)
     if (accessToken) {
       config.headers["Authorization"] = "Bearer " + accessToken;
 
@@ -121,10 +119,5 @@ const getLoggedinUser = () => {
 const getOrganisationType = () => {
   return localStorage.getItem("organisationType");
 }
-const getLoggedinUserEmail = () => {
-  const email = localStorage.getItem("email");
-  ////console.logdisabled('email', email)
-  return email;
-};
 
-export { APIClient, setAuthorization, getLoggedinUser, getLoggedinUserEmail, getOrganisationType };
+export { APIClient, setAuthorization, getLoggedinUser, getOrganisationType };

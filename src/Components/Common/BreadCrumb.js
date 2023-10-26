@@ -36,21 +36,6 @@ const BreadCrumb = ({ title, pageTitle, carousel = null }) => {
                     </div>
                 </Col>
             </Row>
-            {carousel && carousel ? (<Row>
-                <Col lg={12}>
-                    <Card className="overflow-hidden">
-                        <CardBody className="bg-soft-success text-success fw-semibold d-flex">
-                            <div className="marquee">
-                                <div>
-                                    <span>Key Members: {carousel.join(', ')}</span>
-                                    <span>Key Members: {carousel.join(', ')}</span>
-                                </div>
-                            </div>
-                        </CardBody>
-                    </Card>
-                </Col>
-            </Row>) : null}
-
         </React.Fragment >
     );
 };

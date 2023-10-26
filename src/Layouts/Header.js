@@ -7,15 +7,8 @@ import { Dropdown, DropdownMenu, DropdownToggle, Form } from "reactstrap"
 import ProfileDropdown from "../Components/Common/ProfileDropdown"
 
 const Header = ({ onChangeLayoutMode, layoutModeType, headerClass }) => {
-	const [search, setSearch] = useState(false)
-	const orgLogo = localStorage.getItem('orglogo');
-	const orgName = localStorage.getItem('orgName');
-	const lastLoginString = localStorage.getItem('lastLogin');
-	const lastLogin = JSON.parse(lastLoginString);
-	const email = localStorage.getItem('email');
 
 	const toogleSearch = () => {
-		setSearch(!search)
 	}
 
 	const toogleMenuBtn = () => {
@@ -77,19 +70,17 @@ const Header = ({ onChangeLayoutMode, layoutModeType, headerClass }) => {
 							<div className="header-item">
 								<div className="d-flex flex-column">
 									<div className={`mb-1 mt-1`}>
-										<img className="me-3" src={orgLogo} alt="" height="32" />
 									</div>
 									<div className="d-flex justify-content-center">
-										{orgName}
+
 									</div>
 								</div>
 							</div>
 						</div>
 
 						<div className="d-flex align-items-center">
-							Last login on [{moment(lastLogin.lastLogin).format('lll')}] by [{lastLogin.identifier}]
 							<Dropdown
-								isOpen={search}
+								isOpen={false}
 								toggle={toogleSearch}
 								className="d-md-none topbar-head-dropdown header-item"
 							>
@@ -118,26 +109,6 @@ const Header = ({ onChangeLayoutMode, layoutModeType, headerClass }) => {
 									</Form>
 								</DropdownMenu>
 							</Dropdown>
-
-							{/* LanguageDropdown */}
-							{/* <LanguageDropdown /> */}
-
-							{/* WebAppsDropdown */}
-							{/* <WebAppsDropdown /> */}
-
-
-
-							{/* FullScreenDropdown */}
-							{/* <FullScreenDropdown /> */}
-
-							{/* Dark/Light Mode set */}
-							{/* <LightDark
-								layoutMode={layoutModeType}
-								onChangeLayoutMode={onChangeLayoutMode}
-							/> */}
-
-							{/* NotificationDropdown */}
-							{/* <NotificationDropdown /> */}
 
 							<ProfileDropdown />
 						</div>

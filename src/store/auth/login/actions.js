@@ -1,105 +1,56 @@
 import {
-  LOGIN_USER,
-  LOGIN_SUCCESS,
-  LOGOUT_USER,
-  LOGOUT_USER_SUCCESS,
+  LOGIN_MESSAGE,
+  LOGIN_MESSAGE_SUCCESS,
+  LOGOUT_MESSAGE,
+  LOGOUT_MESSAGE_SUCCESS,
   API_ERROR,
-  SOCIAL_LOGIN,
   RESET_LOGIN_FLAG,
-  LOGIN_INITIATE,
-  LOGIN_INITIATE_SUCCESS,
-  LOGIN_CHALLENGE,
-  LOGIN_CHALLENGE_SUCCESS,
-  REGISTER_CHALLENGE,
-  REGISTER_CHALLENGE_SUCCESS,
-  REGISTER_INITIATE,
-  GET_ORGANISATIONS,
-  GET_ORGANISATIONS_SUCCESS
+  POST_FACEBOOK_IMAGE_MESSAGE,
+  POST_FACEBOOK_IMAGE_MESSAGE_SUCCESS,
 } from "./actionTypes";
 
-export const loginInitiate = (email, orgId, history) => {
+export const loginAction = (data, history) => {
   return {
-    type: LOGIN_INITIATE,
-    payload: { orgId, email, history },
-  };
-};
-
-export const registerInitiate = (email, history) => {
-  return {
-    type: REGISTER_INITIATE,
-    payload: { email, history },
-  };
-};
-
-export const loginChallenge = (obj, history) => {
-  return {
-    type: LOGIN_CHALLENGE,
-    payload: { ...obj, history },
-  };
-};
-
-export const getOrganisations = () => {
-  return {
-    type: GET_ORGANISATIONS,
-    payload: {},
-  };
-};
-
-export const getOrganisationsSuccess = response => {
-  return {
-    type: GET_ORGANISATIONS_SUCCESS,
-    payload: response,
-  };
-};
-
-export const registerChallenge = (obj, history) => {
-  return {
-    type: REGISTER_CHALLENGE,
-    payload: { ...obj, history },
-  };
-};
-
-export const registerChallengeSuccess = accessToken => {
-  return {
-    type: REGISTER_CHALLENGE_SUCCESS,
-    payload: { accessToken },
+    type: LOGIN_MESSAGE,
+    payload: { data, history },
   };
 };
 
 
-export const loginSuccess = user => {
+
+export const loginActionSuccess = user => {
   return {
-    type: LOGIN_SUCCESS,
+    type: LOGIN_MESSAGE_SUCCESS,
     payload: user,
   };
 };
 
-export const loginChallengeSuccess = accessToken => {
+export const postFacebookImageAction = (data, history) => {
   return {
-    type: LOGIN_CHALLENGE_SUCCESS,
-    payload: accessToken,
+    type: POST_FACEBOOK_IMAGE_MESSAGE,
+    payload: { data, history },
   };
 };
 
-export const loginInitiateSuccess = response => {
+export const postFacebookImageActionSuccess = data => {
   return {
-    type: LOGIN_INITIATE_SUCCESS,
-    payload: response,
+    type: POST_FACEBOOK_IMAGE_MESSAGE_SUCCESS,
+    payload: data,
   };
 };
 
 
 
-export const logoutUser = history => {
+export const logoutAction = history => {
   return {
-    type: LOGOUT_USER,
+    type: LOGOUT_MESSAGE,
     payload: { history },
   };
 };
 
-export const logoutUserSuccess = () => {
+export const logoutActionSuccess = () => {
   return {
-    type: LOGOUT_USER_SUCCESS,
+    type: LOGOUT_MESSAGE_SUCCESS,
     payload: {},
   };
 };
@@ -111,12 +62,6 @@ export const apiError = error => {
   };
 };
 
-export const socialLogin = (data, history, type) => {
-  return {
-    type: SOCIAL_LOGIN,
-    payload: { data, history, type },
-  };
-};
 
 export const resetLoginFlag = () => {
   return {

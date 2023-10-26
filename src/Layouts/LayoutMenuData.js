@@ -43,6 +43,7 @@ const Navdata = (props) => {
 	}
 
 	useEffect(() => {
+		console.log('current state', iscurrentState)
 		document.body.classList.remove("twocolumn-panel")
 		if (iscurrentState !== "Dashboard") {
 			setIsDashboard(false)
@@ -113,69 +114,11 @@ const Navdata = (props) => {
 		{
 			id: "dashboard",
 			label: "Dashboard",
-			link: organisationType === 'company' ? "/dashboard" : "ca-dashboard",
+			link: "/dashboard",
 			parentId: "dashboard",
 			icon: "dashboard",
 			role: 'normal'
-		},
-		{
-			id: "submitData",
-			label: ("Submit Data"),
-			link: "/submit-data",
-			parentId: "submitData",
-			icon: 'upload',
-			role: 'company'
-		},
-		{
-			id: "submissionsHistory",
-			label: ("Submission(s) History"),
-			link: "/submissions-history",
-			parentId: "submissionsHistory",
-			role: 'company',
-			icon: 'history',
-		},
-		{
-			id: "downloadReport",
-			label: ("Download Report"),
-			link: "/download-report",
-			parentId: "download-report",
-			role: 'company',
-			icon: 'download'
-		},
-		{
-			id: "events",
-			label: ("Events"),
-			link: "/events",
-			parentId: "events",
-			role: 'normal',
-			icon: 'festival'
-		},
-		{
-			id: "prizes",
-			label: ("Prizes"),
-			link: "/prizes",
-			parentId: "prizes",
-			role: 'normal',
-			icon: 'redeem'
-		},
-		{
-			id: "coins",
-			label: ("Coins"),
-			link: "/coins",
-			parentId: "coins",
-			role: 'normal',
-			icon: 'finance_chip'
-		},
-
-		{
-			id: "faq",
-			label: ("FAQ"),
-			link: "/faq",
-			parentId: "faq",
-			role: 'normal',
-			icon: 'quiz'
 		}
-
 	]
 	return <React.Fragment>{menuItems}</React.Fragment>
 }

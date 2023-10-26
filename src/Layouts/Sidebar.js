@@ -44,14 +44,6 @@ const Sidebar = (props) => {
 		<React.Fragment>
 			<div className="app-menu navbar-menu">
 				<div className="navbar-brand-box">
-					<Link to="/" className="app-title">
-						<span className="app-title d-flex flex-column pt-0 justify-content-center align-items-center" style={{ marginTop: -32 }}>
-							<img className=" w-100 mt-3" src={logoImg} />
-							<span>
-								{props.t('Application Name')}
-							</span>
-						</span>
-					</Link>
 
 					<button
 						onClick={addEventListenerOnSmHoverMenu}
@@ -71,9 +63,7 @@ const Sidebar = (props) => {
 						</Container>
 						<div style={{ flexGrow: 1 }}></div>
 						<div className="d-flex flex-column align-items-center">
-							<img className="w-75 mb-2" src={hkcaLogoImg} />
-							<p className="text-white text-center m-2">Provided by HKCA</p>
-							<p className="text-white text-center">Powered by JSESG Group</p>
+							<p className="text-white text-center m-2">binh.ha@vtl-vtl.com</p>
 						</div>
 
 					</SimpleBar>

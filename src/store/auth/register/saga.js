@@ -14,42 +14,41 @@ import {
 import { isArray } from "lodash";
 import { toast } from "react-toastify";
 
-// initialize relavant method of both Auth
-const fireBaseBackend = getFirebaseBackend();
 
-// Is user register successfull then direct plot user in redux.
-function* registerUser({ payload: { user, history } }) {
-  try {
-    const response = yield call(
-      postRegisterUser,
-      {
-        ...user,
-        orgId: user.id,
-        orgName: user.org_name,
-        id: undefined,
-        token: user.accessToken
 
-      });
-    if (response.status === true) {
-      yield put(registerUserSuccessful(response));
-      toast.success("Register user successfully", { autoClose: 3000 });
-      // history.push("/login");
-    } else {
-      yield put(registerUserFailed(response.message + ': ' + response.data.errmsg));
-      toast.error(response.data.errmsg, { autoClose: 3000 });
-    }
-  } catch (error) {
-    yield put(registerUserFailed(error));
-    toast.error(error, { autoClose: 3000 });
-  }
-}
+// // Is user register successfull then direct plot user in redux.
+// function* registerUser({ payload: { user, history } }) {
+//   try {
+//     const response = yield call(
+//       postRegisterUser,
+//       {
+//         ...user,
+//         orgId: user.id,
+//         orgName: user.org_name,
+//         id: undefined,
+//         token: user.accessToken
 
-export function* watchUserRegister() {
-  yield takeEvery(REGISTER_USER, registerUser);
-}
+//       });
+//     if (response.status === true) {
+//       yield put(registerUserSuccessful(response));
+//       toast.success("Register user successfully", { autoClose: 3000 });
+//       // history.push("/login");
+//     } else {
+//       yield put(registerUserFailed(response.message + ': ' + response.data.errmsg));
+//       toast.error(response.data.errmsg, { autoClose: 3000 });
+//     }
+//   } catch (error) {
+//     yield put(registerUserFailed(error));
+//     toast.error(error, { autoClose: 3000 });
+//   }
+// }
+
+// export function* watchUserRegister() {
+//   yield takeEvery(REGISTER_USER, registerUser);
+// }
 
 function* accountSaga() {
-  yield all([fork(watchUserRegister)]);
+  // yield all([fork(watchUserRegister)]);
 }
 
 export default accountSaga;

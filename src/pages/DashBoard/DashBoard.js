@@ -1,151 +1,89 @@
-import { getLatestData } from "../../store/dashboard/actions"
-import React, { useEffect, useState } from "react"
+import React from "react"
 import { withTranslation } from "react-i18next"
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 import { withRouter } from "react-router-dom"
-import { Container, Row } from "reactstrap"
+import { Button, Card, CardBody, CardFooter, Col, Container, FormGroup, Input, Label, Row } from "reactstrap"
 import BreadCrumb from "../../Components/Common/BreadCrumb"
-import AppChart from "./components/AppChart"
-import { getOrganisationType } from "src/helpers/api_helper"
-import IndicatorType from "src/data/indicatorType"
-import { camelize } from "src/helpers/string_helper"
 import { DashboardProvider } from "./DashBoard.context"
-
-const chartOptions = IndicatorType
-
-export const data = {
-	labels: [],
-	datasets: [
-		{
-			type: "line",
-			label: "Hip Sing",
-			borderColor: "#3577f1",
-			borderWidth: 4,
-			fill: false,
-			data: []
-		},
-		{
-			type: "line",
-			label: "Market Average",
-			borderColor: "#f06548",
-			borderWidth: 4,
-			fill: true,
-			data: []
-		}
-	]
-}
+import { postFacebookImageAction } from "src/store/actions"
+import { Formik, useFormikContext } from "formik"
+import { useRef } from "react"
+import * as Yup from 'yup';
 
 const DashBoard = (props) => {
-	const T = props.t ? props.t : (v) => v;
-	const dispatch = useDispatch();
-	const [selectedItem, setSelectedItem] = useState(chartOptions[1].label);
-
-	const { years, indicatorResults } = useSelector(state => ({
-		indicatorResults: state.Dashboard.indicatorResults,
-		years: state.Dashboard.years,
-	}));
-
-	const [chartData, setChartData] = useState(data);
-
-	useEffect(() => {
-		if (indicatorResults) {
-			const indicatorName = camelize(selectedItem);
-			setChartData(preState => {
-				return {
-					labels: years,
-					datasets: [
-						{
-							type: "line",
-							label: "My performance",
-							borderColor: "#3577f1",
-							borderWidth: 4,
-							fill: false,
-							data: indicatorResults.map(item => {
-								if (!item.value) return null;
-								let indicator = null;
-
-								Object.keys(item.value.indicator).forEach(key => {
-									if (key.toLocaleLowerCase() === indicatorName.toLocaleLowerCase()) {
-										indicator = item.value.indicator[key]
-										return
-									}
-								})
-								return indicator;
-							})
-						},
-						{
-							type: "line",
-							label: "Industry performance",
-							borderColor: "#f06548",
-							borderWidth: 4,
-							fill: true,
-							data: indicatorResults.map(item => {
-								if (!item.value) return null;
-								let average = null;
-
-								Object.keys(item.value.average).forEach(key => {
-									if (key.toLocaleLowerCase() === indicatorName.toLocaleLowerCase()) {
-										average = item.value.average[key]
-										return
-									}
-								})
-								return average;
-							})
-						}
-					]
-				}
-			});
+	const T = props.t ? props.t : (v) => v; const dispatch = useDispatch();
+	const formikRef = useRef()
+	const initialValues = React.useMemo(() => {
+		return {
+			imageUrl: '',
 		}
-	}, [indicatorResults, years, selectedItem])
-
-
-	useEffect(() => {
-
-	}, [chartData])
-
-	useEffect(() => {
-		const organisationType = getOrganisationType();
-		if (organisationType !== 'company') props.history.push('/ca-dashboard')
-		const email = localStorage.getItem("email");
-		if (email) dispatch(getLatestData(email, ''));
 	}, [])
-	const keyMembers = [
-		'Kum Shing',
-		'Gammon',
-		'Techoy',
-		'Yau Lee',
-		'Hip Hing',
-		'Kwan Lee',
-		'Chu Wo',
-		'Paul Y.',
-		'China State',
-		'Dragages',
-		'Alliance',
-		'Kim Hung']
+
+	const validationSchema = Yup.object().shape({
+		imageUrl: Yup.string().required('Required')
+	});
+
+	const handleSubmit = (values, { setSubmitting }) => {
+		setSubmitting(true);
+		console.log(values)
+		dispatch(postFacebookImageAction(values, props.history))
+		setSubmitting(false);
+	}
 
 
 	return (
-		<DashboardProvider
-			value={{
-				selectedItem,
-				setSelectedItem,
-			}}
-		>
+		<DashboardProvider>
 			<div className="page-content">
 				<Container fluid>
-					<BreadCrumb title="Dashboards" carousel={keyMembers} />
-					<Row>
-						<AppChart
-							title="Indicator Chart"
-							data={chartData}
-							indicatorResults={indicatorResults}
-							years={years}
-							options={chartOptions} />
-					</Row>
+					<BreadCrumb title="Dashboards" carousel={[]} />
+					<Formik innerRef={formikRef} initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
 
+						<PublishImageForm></PublishImageForm>
+
+
+					</Formik>
 				</Container>
 			</div>
 		</DashboardProvider>
+	)
+}
+
+const PublishImageForm = () => {
+	const { isSubmitting, values, errors, setFieldValue, setFieldTouched, handleChange, handleBlur, touched, submitForm } = useFormikContext()
+	return (
+		<>
+			<BreadCrumb title="Publish an Image" />
+			<Row className="mb-4">
+				<Col sm={12} md={8}>
+					<Card className="mb-0">
+						<CardBody>
+							<FormGroup>
+								<Label>Image url</Label>
+								<Input
+									name="imageUrl"
+									className="form-control"
+									placeholder="Image url"
+									type="text"
+									onChange={handleChange}
+									onBlur={handleBlur}
+									value={values.imageUrl}
+									valid={touched.imageUrl && errors.imageUrl ? false : true}
+									invalid={
+										touched.imageUrl && errors.imageUrl ? true : false
+									}
+								/>
+							</FormGroup>
+						</CardBody>
+						<CardFooter>
+							<div className="d-flex align-items-center justify-content-end">
+								<Button disabled={isSubmitting} onClick={submitForm} className="me-2">Go</Button>
+							</div>
+						</CardFooter>
+					</Card>
+				</Col>
+			</Row>
+
+		</>
 	)
 }
 

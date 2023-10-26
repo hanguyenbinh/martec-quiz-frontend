@@ -1,17 +1,12 @@
 import {
-	LOGIN_USER,
-	LOGIN_SUCCESS,
-	LOGOUT_USER,
-	LOGOUT_USER_SUCCESS,
+	LOGIN_MESSAGE,
+	LOGIN_MESSAGE_SUCCESS,
+	LOGOUT_MESSAGE,
+	LOGOUT_MESSAGE_SUCCESS,
 	API_ERROR,
 	RESET_LOGIN_FLAG,
-	LOGIN_INITIATE,
-	LOGIN_INITIATE_SUCCESS,
-	LOGIN_CHALLENGE_SUCCESS,
-	REGISTER_CHALLENGE_SUCCESS,
-	REGISTER_INITIATE,
-	GET_ORGANISATIONS,
-	GET_ORGANISATIONS_SUCCESS
+	POST_FACEBOOK_IMAGE_MESSAGE,
+	POST_FACEBOOK_IMAGE_MESSAGE_SUCCESS
 } from "./actionTypes"
 
 const initialState = {
@@ -26,50 +21,31 @@ const initialState = {
 
 const Login = (state = initialState, action) => {
 	switch (action.type) {
-		case LOGIN_USER:
+		case LOGIN_MESSAGE:
 			state = {
 				...state,
 				loading: true
 			}
 			break
-		case REGISTER_INITIATE:
-		case LOGIN_INITIATE:
-			state = {
-				...state,
-				email: action.payload.email,
-				loading: true,
-				orgId: action.payload.orgId
-			}
-			break;
-		case LOGIN_INITIATE_SUCCESS:
-			state = {
-				...state,
-				challengeId: action.payload.challengeId,
-				error: null,
-				loading: false
-			}
-			break;
-		case LOGIN_SUCCESS:
+		case LOGIN_MESSAGE_SUCCESS:
 			state = {
 				...state,
 				loading: false,
 				...action.payload.data
 			}
 			break
-		case REGISTER_CHALLENGE_SUCCESS:
-		case LOGIN_CHALLENGE_SUCCESS:
+		case POST_FACEBOOK_IMAGE_MESSAGE:
 			state = {
 				...state,
-				accessToken: action.payload.accessToken,
-				lastLogin: action.payload.lastLogin,
-				loading: false
+				loading: true
 			}
-			break;
-		case LOGOUT_USER:
-			state = { ...state, isUserLogout: false }
 			break
-		case LOGOUT_USER_SUCCESS:
-			state = { ...state, isUserLogout: true }
+		case POST_FACEBOOK_IMAGE_MESSAGE_SUCCESS:
+			state = {
+				...state,
+				loading: false,
+				...action.payload.data
+			}
 			break
 		case API_ERROR: {
 			let error = '';
@@ -98,24 +74,10 @@ const Login = (state = initialState, action) => {
 				error: null
 			}
 			break
-		case GET_ORGANISATIONS:
-			state = {
-				...state,
-				loading: true,
-				error: false
-			}
+		case LOGOUT_MESSAGE:
+			action.payload.history.push('/home')
+			window.FB?.logout((response) => console.log);
 			break;
-		case GET_ORGANISATIONS_SUCCESS:
-			state = {
-				...state,
-				loading: false,
-				error: false,
-				organisations: action.payload.data
-			}
-			break;
-		default:
-			state = { ...state }
-			break
 	}
 	return state
 }

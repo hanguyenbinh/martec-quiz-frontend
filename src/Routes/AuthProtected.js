@@ -1,33 +1,26 @@
 import React, { useEffect } from "react"
-import { Redirect, Route } from "react-router-dom"
+import { Route } from "react-router-dom"
 import { setAuthorization } from "../helpers/api_helper"
 import { useDispatch } from "react-redux"
 
 import { useProfile } from "../Components/Hooks/UserHooks"
 
-import { logoutUser } from "../store/actions"
+import { logoutAction } from "../store/actions"
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min"
 
 const AuthProtected = (props) => {
 	const dispatch = useDispatch()
-	const { loading, accessToken, email } = useProfile()
-	////console.logdisabled('AuthProtected', loading, accessToken, email)
+	const { accessToken } = useProfile()
+	const history = useHistory();
+	console.log('AuthProtected', accessToken)
 	useEffect(() => {
-		if (!loading && accessToken && email) {
+		if (accessToken) {
 			setAuthorization(accessToken)
-		} else if (loading && !accessToken) {
-			dispatch(logoutUser())
+		} else {
+			console.log('afdasfssafsafasfsaff')
+			dispatch(logoutAction(history))
 		}
-	}, [accessToken, loading, dispatch])
-
-	/*
-		redirect is un-auth access protected routes via url
-		*/
-
-	if (loading && (!accessToken || !email)) {
-		return (
-			<Redirect to={{ pathname: "/get-otp", state: { from: props.location } }} />
-		);
-	}
+	}, [accessToken, dispatch])
 
 	return <>{props.children}</>
 }
