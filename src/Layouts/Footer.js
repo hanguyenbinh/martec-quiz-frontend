@@ -23,16 +23,13 @@ const Footer = () => {
                                 <li><span className="material-symbols-outlined fs-5 me-1">
                                     mail
                                 </span>
-                                    admin@hkca.com.hk</li>
-                                <li><span className="material-symbols-outlined fs-5 me-1">
-                                    home
-                                </span>3/F, 180-182 Hennessy Road, Wanchai, Hong Kong</li>
+                                    binh.ha@vtl-vtl.com</li>
                             </ul>
                         </div>
                     </Row>
 
                     <div className="copyright">
-                        {new Date().getFullYear()} © The Hong Kong Construction Association, Limited. All Rights Reserved.
+                        {new Date().getFullYear()} © All Rights Reserved.
                     </div>
                 </Container>
             </footer>

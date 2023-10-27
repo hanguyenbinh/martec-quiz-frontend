@@ -1,5 +1,5 @@
 import React, { useEffect } from "react"
-import { Link, withRouter } from "react-router-dom"
+import { withRouter } from "react-router-dom"
 import SimpleBar from "simplebar-react"
 
 //Import Components
@@ -7,8 +7,6 @@ import VerticalLayout from "./VerticalLayouts"
 import { Container } from "reactstrap"
 import { withTranslation } from "react-i18next"
 
-import logoImg from "src/assets/images/esg-logo-white.png"
-import hkcaLogoImg from "src/assets/images/hkca-logo-only.png"
 
 const Sidebar = (props) => {
 	const layoutType = props

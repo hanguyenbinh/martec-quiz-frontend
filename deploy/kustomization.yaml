@@ -1,8 +1,0 @@
-apiVersion: kustomize.config.k8s.io/v1beta1
-kind: Kustomization
-resources:
-- hkca-esg-admin-web-dev.yaml
-
-images:
-- name: 186966626644.dkr.ecr.ap-east-1.amazonaws.com/hkca-esg-admin-web-dev
-  newTag: 851ce317cfc42d530658a6d6effafde5488d01f8-dev

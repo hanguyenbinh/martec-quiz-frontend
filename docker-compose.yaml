@@ -1,11 +1,9 @@
 version: "3"
 
 services:
-    esg_frontend:
+    martec_frontend:
         build:
             context: .
-            dockerfile: ./Dockerfile.dev
+            dockerfile: ./Dockerfile
         ports:
-            - 54434:80
-        environment:
-        - PORTAL_URL=http://218.255.16.134:54433/v1
+            - 5000:443

@@ -20,11 +20,9 @@ import avatar10 from "../../assets/images/users/avatar-10.jpg";
 import img01 from "../../assets/images/nft/img-01.jpg";
 import img02 from "../../assets/images/nft/img-02.jpg";
 import img03 from "../../assets/images/nft/img-03.jpg";
-import img04 from "../../assets/images/nft/gif/img-4.gif";
 import img05 from "../../assets/images/nft/img-05.jpg";
 import img06 from "../../assets/images/nft/img-06.jpg";
 
-import esglogo from '../../assets/images/landing/esglogo.jpeg'
 
 import gifImg01 from "../../assets/images/nft/gif/img-1.gif";
 
@@ -36,12 +34,12 @@ import esgIcon4 from '../../assets/images/landing/4.png';
 const connectData = [
     {
         img: esgIcon1,
-        title: "ESG Recognition Scheme Platform",
+        title: "",
         textContent: "",
     },
     {
         img: esgIcon2,
-        title: "ESG BUILD FUN App",
+        title: "",
         textContent: "",
     },
     {

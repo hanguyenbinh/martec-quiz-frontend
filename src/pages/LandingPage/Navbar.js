@@ -1,11 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Collapse, Container, NavbarToggler, NavLink } from 'reactstrap';
-import { Link } from 'react-router-dom'; import Scrollspy from "react-scrollspy";
-
-
-//import Images
-import logodark from "../../assets/images/HKCA_Logo.png";
-import logolight from "src/assets/images/esg-logo-h.png"
+import { Container } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
     const [isOpenMenu, setisOpenMenu] = useState(false);
@@ -29,18 +24,9 @@ const Navbar = () => {
         <React.Fragment>
             <nav className={"navbar navbar-expand-lg navbar-landing navbar-light fixed-top " + navClass} id="navbar">
                 <Container className='esg-container'>
-                    <div>
-                        <Link className="navbar-brand" to="/home">
-                            <img src={logodark} className="card-logo" alt="logo" height="80" />
-                        </Link>
-                        <img src={logolight} className="card-logo" alt="logo" height="120" />
-
-                    </div>
-
                     <div className="member-login-button me-0 justify-content-end">
                         <Link to="/login" className="btn btn-success">Member Login </Link>
                     </div>
-
                 </Container>
             </nav>
             <div className="bg-overlay bg-overlay-pattern"></div>

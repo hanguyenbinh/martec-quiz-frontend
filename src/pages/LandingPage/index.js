@@ -5,7 +5,7 @@ import FacebookLoginButton from 'src/Components/Common/FacebookLoginButton/Faceb
 import Home from './Home';
 
 const LandingPage = (props) => {
-    document.title = "ESG Recognition Scheme Platform Platform | HKCA";
+    document.title = "Martec Quiz";
 
     useEffect(() => {
 
